@@ -21,28 +21,34 @@
     var CONFIG = {"hostname":"brubbish.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"search":null,"path":"search.xml","field":"post","format":"html","limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Brubbish&#39;s">
-<meta property="og:url" content="https://brubbish.github.io/index.html">
+  <meta name="description" content="VEX IR学习搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂 所以这篇的要求也就是能看懂和在变量名之类的做一点优化（统一）就行了 代码从程序里转了一段中间代码： 12345678910111213141516171819202122232425262728293031323334353637383940414">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2021-04-27">
+<meta property="og:url" content="https://brubbish.github.io/52443.html">
 <meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="VEX IR学习搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂 所以这篇的要求也就是能看懂和在变量名之类的做一点优化（统一）就行了 代码从程序里转了一段中间代码： 12345678910111213141516171819202122232425262728293031323334353637383940414">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210428124520.png">
+<meta property="article:published_time" content="2021-04-27T12:07:37.943Z">
+<meta property="article:modified_time" content="2021-04-30T05:56:08.983Z">
 <meta property="article:author" content="Bruce">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210428124520.png">
 
-<link rel="canonical" href="https://brubbish.github.io/">
+<link rel="canonical" href="https://brubbish.github.io/52443.html">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Brubbish's</title>
+  <title>2021-04-27 | Brubbish's</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
     <script>
@@ -183,81 +189,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/39190.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/39190.html" class="post-title-link" itemprop="url">不定期日记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2099-12-31 19:20:00" itemprop="dateCreated datePublished" datetime="2099-12-31T19:20:00+08:00">2099-12-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-26 18:00:35" itemprop="dateModified" datetime="2021-04-26T18:00:35+08:00">2021-04-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>…</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/39190.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -273,10 +208,9 @@
       <meta itemprop="name" content="Brubbish's">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/52443.html" class="post-title-link" itemprop="url">2021-04-27</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          2021-04-27
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -296,6 +230,13 @@
               </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -306,7 +247,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="VEX-IR学习"><a href="#VEX-IR学习" class="headerlink" title="VEX IR学习"></a>VEX IR学习</h1><p>搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂</p>
+        <h1 id="VEX-IR学习"><a href="#VEX-IR学习" class="headerlink" title="VEX IR学习"></a>VEX IR学习</h1><p>搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂</p>
 <p>所以这篇的要求也就是能看懂和在变量名之类的做一点优化（统一）就行了</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>从程序里转了一段中间代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">IRSB &#123;</span><br><span class="line">   t0:Ity_I32 t1:Ity_I32 t2:Ity_I32 t3:Ity_I32 t4:Ity_I32 t5:Ity_I32 t6:Ity_I32 t7:Ity_I32 t8:Ity_I32 t9:Ity_I32 t10:Ity_I32 t11:Ity_I32 t12:Ity_I32 t13:Ity_I32 t14:Ity_I32 t15:Ity_I32 t16:Ity_I32 t17:Ity_I32 t18:Ity_I32 t19:Ity_I32 t20:Ity_I32 t21:Ity_I32 t22:Ity_I32 t23:Ity_I32 t24:Ity_I32 t25:Ity_I32 t26:Ity_I32 t27:Ity_I32</span><br><span class="line"></span><br><span class="line">   00 | ------ IMark(0x80491b0, 1, 0) ------</span><br><span class="line">   01 | t0 &#x3D; GET:I32(ebp)</span><br><span class="line">   02 | t13 &#x3D; GET:I32(esp)</span><br><span class="line">   03 | t12 &#x3D; Sub32(t13,0x00000004)</span><br><span class="line">   04 | PUT(esp) &#x3D; t12</span><br><span class="line">   05 | STle(t12) &#x3D; t0</span><br><span class="line">   06 | ------ IMark(0x80491b1, 2, 0) ------</span><br><span class="line">   07 | PUT(ebp) &#x3D; t12</span><br><span class="line">   08 | ------ IMark(0x80491b3, 3, 0) ------</span><br><span class="line">   09 | t2 &#x3D; Sub32(t12,0x00000018)</span><br><span class="line">   10 | PUT(cc_op) &#x3D; 0x00000006</span><br><span class="line">   11 | PUT(cc_dep1) &#x3D; t12</span><br><span class="line">   12 | PUT(cc_dep2) &#x3D; 0x00000018</span><br><span class="line">   13 | PUT(cc_ndep) &#x3D; 0x00000000</span><br><span class="line">   14 | PUT(esp) &#x3D; t2</span><br><span class="line">   15 | PUT(eip) &#x3D; 0x080491b6</span><br><span class="line">   16 | ------ IMark(0x80491b6, 7, 0) ------</span><br><span class="line">   17 | t15 &#x3D; Add32(t12,0xfffffffc)</span><br><span class="line">   18 | STle(t15) &#x3D; 0x00000000</span><br><span class="line">   19 | PUT(eip) &#x3D; 0x080491bd</span><br><span class="line">   20 | ------ IMark(0x80491bd, 7, 0) ------</span><br><span class="line">   21 | t17 &#x3D; Add32(t12,0xfffffff8)</span><br><span class="line">   22 | STle(t17) &#x3D; 0x00000000</span><br><span class="line">   23 | ------ IMark(0x80491c4, 6, 0) ------</span><br><span class="line">   24 | PUT(eip) &#x3D; 0x080491ca</span><br><span class="line">   25 | ------ IMark(0x80491ca, 3, 0) ------</span><br><span class="line">   26 | STle(t2) &#x3D; 0x0804a021</span><br><span class="line">   27 | ------ IMark(0x80491cd, 3, 0) ------</span><br><span class="line">   28 | t20 &#x3D; Add32(t12,0xfffffff8)</span><br><span class="line">   29 | PUT(eax) &#x3D; t20</span><br><span class="line">   30 | PUT(eip) &#x3D; 0x080491d0</span><br><span class="line">   31 | ------ IMark(0x80491d0, 4, 0) ------</span><br><span class="line">   32 | t22 &#x3D; Add32(t2,0x00000004)</span><br><span class="line">   33 | STle(t22) &#x3D; t20</span><br><span class="line">   34 | PUT(eip) &#x3D; 0x080491d4</span><br><span class="line">   35 | ------ IMark(0x80491d4, 5, 0) ------</span><br><span class="line">   36 | t25 &#x3D; Sub32(t2,0x00000004)</span><br><span class="line">   37 | PUT(esp) &#x3D; t25</span><br><span class="line">   38 | STle(t25) &#x3D; 0x080491d9</span><br><span class="line">   NEXT: PUT(eip) &#x3D; 0x08049060; Ijk_Call</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -347,636 +288,34 @@
 <p>到57行前都是些重复的语句   </p>
 <p>57行：<br>mul64：官方文档中写道，mul代表的是signless的，相对的有以下乘法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      &#x2F;* -- Ordering not important after here. -- *&#x2F;</span><br><span class="line">      ...</span><br><span class="line">      &#x2F;* Widening multiplies *&#x2F;</span><br><span class="line">      Iop_MullS8, Iop_MullS16, Iop_MullS32, Iop_MullS64,</span><br><span class="line">      Iop_MullU8, Iop_MullU16, Iop_MullU32, Iop_MullU64,</span><br><span class="line"></span><br><span class="line">看上去和arm的精简指令集挺像的</span><br></pre></td></tr></table></figure><br>看到这行可能会有疑惑：imul是带符号的啊…<br>再往下看看， 60行：sar64，</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/3418.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/3418.html" class="post-title-link" itemprop="url">2021-04-25</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-25 17:49:20" itemprop="dateCreated datePublished" datetime="2021-04-25T17:49:20+08:00">2021-04-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-30 16:20:42" itemprop="dateModified" datetime="2021-04-30T16:20:42+08:00">2021-04-30</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CVE-2011-0104"><a href="#CVE-2011-0104" class="headerlink" title="CVE-2011-0104"></a>CVE-2011-0104</h1><p>tags:</p>
-<ul>
-<li>漏洞战争</li>
-<li>Win漏洞分析</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>版本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>操作系统</td>
-<td>WindowsXP SP3</td>
-</tr>
-<tr>
-<td>调试器</td>
-<td>windbg 6.12、OD 1.10</td>
-</tr>
-<tr>
-<td>漏洞软件</td>
-<td>Office Excel 2003 SP3</td>
-</tr>
-<tr>
-<td>反编译器</td>
-<td>IDA 6.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>注：随书文件中的excel在干净的系统中直接打开会显示“操作系统当前的配置不能运行此程序”，需要先安装一个Office</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/3418.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/3919.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/3919.html" class="post-title-link" itemprop="url">2020总结以及2021的flag</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-01 19:20:00" itemprop="dateCreated datePublished" datetime="2021-01-01T19:20:00+08:00">2021-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-14 11:13:12" itemprop="dateModified" datetime="2021-01-14T11:13:12+08:00">2021-01-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>昨天00：40睡到了11：00…<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/3919.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/3418.html" rel="prev" title="2021-04-25">
+      <i class="fa fa-chevron-left"></i> 2021-04-25
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/39190.html" rel="next" title="不定期日记">
+      不定期日记 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/21992.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/21992.html" class="post-title-link" itemprop="url">堆学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-01 19:20:18" itemprop="dateCreated datePublished" datetime="2020-12-01T19:20:18+08:00">2020-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 16:52:08" itemprop="dateModified" datetime="2021-03-16T16:52:08+08:00">2021-03-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="堆相关数据结构"><a href="#堆相关数据结构" class="headerlink" title="堆相关数据结构"></a>堆相关数据结构</h1><h2 id="微观结构"><a href="#微观结构" class="headerlink" title="微观结构"></a>微观结构</h2><h3 id="malloc-chunk"><a href="#malloc-chunk" class="headerlink" title="malloc_chunk"></a>malloc_chunk</h3><p>程序malloc出的内存称为chunk，在ptmalloc内部用下面的结构体表示，内存空间释放后被加入空闲管理列表。一个chunk不论是分配还是释放，结构都相同。<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/21992.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/29281.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/29281.html" class="post-title-link" itemprop="url">ctfwiki堆漏洞整理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-01 19:20:18" itemprop="dateCreated datePublished" datetime="2020-12-01T19:20:18+08:00">2020-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-31 19:00:10" itemprop="dateModified" datetime="2021-03-31T19:00:10+08:00">2021-03-31</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="堆溢出"><a href="#堆溢出" class="headerlink" title="堆溢出"></a>堆溢出</h1><p>向某个堆块写入的字节数超过了可用字节数（堆管理器会对用户申请的字节数进行调整，可用字节数可能大于申请的字节数），数据溢出到下一个（物理相邻的高地址）堆块上<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/29281.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/51845.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/51845.html" class="post-title-link" itemprop="url">xctf栈溢出WP（1）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-01 19:20:13" itemprop="dateCreated datePublished" datetime="2020-12-01T19:20:13+08:00">2020-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-30 16:17:55" itemprop="dateModified" datetime="2021-04-30T16:17:55+08:00">2021-04-30</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>…<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/51845.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/61126.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/61126.html" class="post-title-link" itemprop="url">xctf堆溢出WP（1）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-01 19:20:13" itemprop="dateCreated datePublished" datetime="2020-12-01T19:20:13+08:00">2020-12-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-15 12:25:07" itemprop="dateModified" datetime="2021-03-15T12:25:07+08:00">2021-03-15</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>…<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/61126.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/26411.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/26411.html" class="post-title-link" itemprop="url">部分pwn题wp</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-26 19:46:04" itemprop="dateCreated datePublished" datetime="2020-11-26T19:46:04+08:00">2020-11-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-15 12:26:34" itemprop="dateModified" datetime="2021-03-15T12:26:34+08:00">2021-03-15</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>主要是大二上刚开学做的题<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/26411.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/31605.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/31605.html" class="post-title-link" itemprop="url">大一暑假日常</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-01 15:00:30" itemprop="dateCreated datePublished" datetime="2020-09-01T15:00:30+08:00">2020-09-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-01 19:40:30" itemprop="dateModified" datetime="2020-12-01T19:40:30+08:00">2020-12-01</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="8-8"><a href="#8-8" class="headerlink" title="8-8"></a>8-8</h2><p>上周在做moectf，被新生赛弄自闭了（</p>
-<p>加密与解密</p>
-<h2 id="8-1"><a href="#8-1" class="headerlink" title="8-1"></a>8-1</h2><p>7-31没学所以没写…<br>写了七题moectf，两题re，三题web，一题pwn，一题经典密码<br>pwn写的感觉自己很瓜，有个叫backdoor的函数名硬是看了半个小时没看到…<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/31605.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1028,6 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VEX-IR学习"><span class="nav-number">1.</span> <span class="nav-text">VEX IR学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析1"><span class="nav-number">1.2.</span> <span class="nav-text">分析1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析2"><span class="nav-number">1.3.</span> <span class="nav-text">分析2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析3-来波大的"><span class="nav-number">1.4.</span> <span class="nav-text">分析3_来波大的</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
