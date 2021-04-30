@@ -1957,14 +1957,9 @@ cpu通过总线传输信息，总线分为：地址，， 控制，， 数据，
       </tags>
   </entry>
   <entry>
-    <title>2021-04-25</title>
+    <title>CVE-2011-0104</title>
     <url>/3418.html</url>
-    <content><![CDATA[<h1 id="CVE-2011-0104"><a href="#CVE-2011-0104" class="headerlink" title="CVE-2011-0104"></a>CVE-2011-0104</h1><p>tags:</p>
-<ul>
-<li>漏洞战争</li>
-<li>Win漏洞分析</li>
-</ul>
-<div class="table-container">
+    <content><![CDATA[<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -2018,11 +2013,21 @@ cpu通过总线传输信息，总线分为：地址，， 控制，， 数据，
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>在网上查了一下污点追踪，大概是一个定位漏洞的方法，感觉这个方法确实挺常用的（吧）。另外，找到了一篇武大的基于污点追踪的嵌入式固件漏洞研究的论文。<br>感觉这两次复现对于调试能力的提升还是很大的，但总是研究到漏洞的触发就想着结束，至于shellcode和修复就没太想继续研究…</p>
 <p>参考：<a href="https://blog.csdn.net/bluebloodye/article/details/104911168" target="_blank" rel="noopener">https://blog.csdn.net/bluebloodye/article/details/104911168</a></p>
 ]]></content>
+      <tags>
+        <tag>Win漏洞分析</tag>
+        <tag>漏洞战争</tag>
+      </tags>
   </entry>
   <entry>
     <title>2021-04-27</title>
     <url>/52443.html</url>
-    <content><![CDATA[<h1 id="VEX-IR学习"><a href="#VEX-IR学习" class="headerlink" title="VEX IR学习"></a>VEX IR学习</h1><p>搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂</p>
+    <content><![CDATA[<hr>
+<p>title: VEX IR学习<br>tags:</p>
+<ul>
+<li>课题<br>abbrlink: 52443</li>
+</ul>
+<hr>
+<p>搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂</p>
 <p>所以这篇的要求也就是能看懂和在变量名之类的做一点优化（统一）就行了</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>从程序里转了一段中间代码：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IRSB &#123;</span><br><span class="line">   t0:Ity_I32 t1:Ity_I32 t2:Ity_I32 t3:Ity_I32 t4:Ity_I32 t5:Ity_I32 t6:Ity_I32 t7:Ity_I32 t8:Ity_I32 t9:Ity_I32 t10:Ity_I32 t11:Ity_I32 t12:Ity_I32 t13:Ity_I32 t14:Ity_I32 t15:Ity_I32 t16:Ity_I32 t17:Ity_I32 t18:Ity_I32 t19:Ity_I32 t20:Ity_I32 t21:Ity_I32 t22:Ity_I32 t23:Ity_I32 t24:Ity_I32 t25:Ity_I32 t26:Ity_I32 t27:Ity_I32</span><br><span class="line"></span><br><span class="line">   00 | ------ IMark(0x80491b0, 1, 0) ------</span><br><span class="line">   01 | t0 &#x3D; GET:I32(ebp)</span><br><span class="line">   02 | t13 &#x3D; GET:I32(esp)</span><br><span class="line">   03 | t12 &#x3D; Sub32(t13,0x00000004)</span><br><span class="line">   04 | PUT(esp) &#x3D; t12</span><br><span class="line">   05 | STle(t12) &#x3D; t0</span><br><span class="line">   06 | ------ IMark(0x80491b1, 2, 0) ------</span><br><span class="line">   07 | PUT(ebp) &#x3D; t12</span><br><span class="line">   08 | ------ IMark(0x80491b3, 3, 0) ------</span><br><span class="line">   09 | t2 &#x3D; Sub32(t12,0x00000018)</span><br><span class="line">   10 | PUT(cc_op) &#x3D; 0x00000006</span><br><span class="line">   11 | PUT(cc_dep1) &#x3D; t12</span><br><span class="line">   12 | PUT(cc_dep2) &#x3D; 0x00000018</span><br><span class="line">   13 | PUT(cc_ndep) &#x3D; 0x00000000</span><br><span class="line">   14 | PUT(esp) &#x3D; t2</span><br><span class="line">   15 | PUT(eip) &#x3D; 0x080491b6</span><br><span class="line">   16 | ------ IMark(0x80491b6, 7, 0) ------</span><br><span class="line">   17 | t15 &#x3D; Add32(t12,0xfffffffc)</span><br><span class="line">   18 | STle(t15) &#x3D; 0x00000000</span><br><span class="line">   19 | PUT(eip) &#x3D; 0x080491bd</span><br><span class="line">   20 | ------ IMark(0x80491bd, 7, 0) ------</span><br><span class="line">   21 | t17 &#x3D; Add32(t12,0xfffffff8)</span><br><span class="line">   22 | STle(t17) &#x3D; 0x00000000</span><br><span class="line">   23 | ------ IMark(0x80491c4, 6, 0) ------</span><br><span class="line">   24 | PUT(eip) &#x3D; 0x080491ca</span><br><span class="line">   25 | ------ IMark(0x80491ca, 3, 0) ------</span><br><span class="line">   26 | STle(t2) &#x3D; 0x0804a021</span><br><span class="line">   27 | ------ IMark(0x80491cd, 3, 0) ------</span><br><span class="line">   28 | t20 &#x3D; Add32(t12,0xfffffff8)</span><br><span class="line">   29 | PUT(eax) &#x3D; t20</span><br><span class="line">   30 | PUT(eip) &#x3D; 0x080491d0</span><br><span class="line">   31 | ------ IMark(0x80491d0, 4, 0) ------</span><br><span class="line">   32 | t22 &#x3D; Add32(t2,0x00000004)</span><br><span class="line">   33 | STle(t22) &#x3D; t20</span><br><span class="line">   34 | PUT(eip) &#x3D; 0x080491d4</span><br><span class="line">   35 | ------ IMark(0x80491d4, 5, 0) ------</span><br><span class="line">   36 | t25 &#x3D; Sub32(t2,0x00000004)</span><br><span class="line">   37 | PUT(esp) &#x3D; t25</span><br><span class="line">   38 | STle(t25) &#x3D; 0x080491d9</span><br><span class="line">   NEXT: PUT(eip) &#x3D; 0x08049060; Ijk_Call</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -2063,5 +2068,62 @@ cpu通过总线传输信息，总线分为：地址，， 控制，， 数据，
 <p>到57行前都是些重复的语句   </p>
 <p>57行：<br>mul64：官方文档中写道，mul代表的是signless的，相对的有以下乘法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">      &#x2F;* -- Ordering not important after here. -- *&#x2F;</span><br><span class="line">      ...</span><br><span class="line">      &#x2F;* Widening multiplies *&#x2F;</span><br><span class="line">      Iop_MullS8, Iop_MullS16, Iop_MullS32, Iop_MullS64,</span><br><span class="line">      Iop_MullU8, Iop_MullU16, Iop_MullU32, Iop_MullU64,</span><br><span class="line"></span><br><span class="line">看上去和arm的精简指令集挺像的</span><br></pre></td></tr></table></figure><br>看到这行可能会有疑惑：imul是带符号的啊…<br>再往下看看， 60行：sar64，</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>CVE-2010-2883 Adobe Reader TFF字体SING表栈溢出漏洞</title>
+    <url>/57740.html</url>
+    <content><![CDATA[<p>Adobe Reader和Acrobat中的CoolType.dll库在解析字体文件SING（Smart INdependent Glyphlets）中的uniqueName项时存在栈溢出漏洞。用户打开特制的PDF就可以执行任意恶意代码<br><a id="more"></a></p>
+<h2 id="分析环境"><a href="#分析环境" class="headerlink" title="分析环境"></a>分析环境</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作系统</td>
+<td>WindowsXP PS3 32位</td>
+</tr>
+<tr>
+<td>调试器</td>
+<td>OD 1.10 吾爱汉化版</td>
+</tr>
+<tr>
+<td>反编译器</td>
+<td>IDA6.5</td>
+</tr>
+<tr>
+<td>漏洞软件</td>
+<td>Adobe Reader 9.3.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>注：根据CVE的描述，漏洞影响的范围包括了Windows和macos上，9.4前的9.x和8.2.5前的8.x</p>
+<h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><h3 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h3><p>IDA反汇编CoolType.dll，易定位漏洞<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210414202752.png" alt="20210414202752">    </p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210414202821.png" alt="20210414202821"><br>注意到在pwn题里常见的危险函数strcat，且在调用strcat前并没有对长度进行判断    </p>
+<h3 id="漏洞样本"><a href="#漏洞样本" class="headerlink" title="漏洞样本"></a>漏洞样本</h3><p>用二进制查看工具打开书中提供的TTF文件。<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//TFF中SING表的入口结构</span></span><br><span class="line"><span class="keyword">typedef</span> struct_SING</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> tag[<span class="number">4</span>];    <span class="comment">//标记"SING"</span></span><br><span class="line">    ULONG checksum; <span class="comment">//校验和</span></span><br><span class="line">    ULONG offset;   <span class="comment">//相对偏移</span></span><br><span class="line">    ULONG length;   <span class="comment">//数据长度</span></span><br><span class="line">&#125; TableEntry;</span><br></pre></td></tr></table></figure><br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210414210833.png" alt="20210414210833"><br>再根据书中提供的SING表结构，找到uniqueName（BYTE[28]）<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210414211429.png" alt="20210414211429"><br>即strcat后，这个部分就将复制到指定的区域</p>
+<h3 id="动态调试"><a href="#动态调试" class="headerlink" title="动态调试"></a>动态调试</h3><hr>
+<ul>
+<li>注：在调试时遇到了一个问题…Adobe Reader挂上od后打开任何pdf都会发生异常然后结束运行。百度后发现是od调试选项的问题，在选项里加上最后一个“忽略指定异常”应该就可以正常调试<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415212329.png" alt="20210415212329"></li>
+</ul>
+<p>再：几天后在看雪上也看到了类似的问题和泉哥给出的建议：<a href="https://bbs.pediy.com/thread-212556.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-212556.htm</a></p>
+<hr>
+<p>打开OD，加载Adobe Reader，F9，在0x0803DD74和0x0803DDAB处下断点，打开能触发漏洞的pdf   </p>
+<p>F9运行至push “SING”后再单步运行至最近的call函数，<br>此时ECX指向SING表的入口地址，进入[0012E4B4]就可以找到SING表<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415214856.png" alt="20210415214856"><br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415215446.png" alt="20210415215446"><br>可以看出两个断点间代码的作用是判断SING表入口的有效性，并把uniqueName的地址传给EAX<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">注：上2图不是同一次运行的截图，所以地址不一样</span><br></pre></td></tr></table></figure></p>
+<p>F9+F8到strcat的下一行，即发生溢出后，查看此时的栈帧情况（看起来GS至少在WinXP就有了）<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415221211.png" alt="20210415221211"><br>此时返回地址已经被更改成了icucnv36.dll，通过工具可以知道这个库没有开启ASLR    </p>
+<p>往下运行到0x0808B308，这里是一个进入icucnv36.dll的call指令，跟进去看一看<br>只有简单的三条指令：<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415222508.png" alt="20210415222508"><br>调整了ebp   </p>
+<p>运行至0xA82A714<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415223734.png" alt="20210415223734"><br>而0c0c0c0c处的内容为：<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415224754.png" alt="20210415224754"><br>可以看出是一个堆喷。   </p>
+<p>后续的操作依次调用了CreateFileA、CreateFileMappingA、MapViewOfFile，开辟出一块可读写可执行的区域绕过DEP(NX)并写入shellcode，随后执行shellcode</p>
+<h2 id="流程总结"><a href="#流程总结" class="headerlink" title="流程总结"></a>流程总结</h2><p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415225645.png" alt="20210415225645"></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>调试的第一个RW漏洞，感觉比想象中的漏洞复现复杂一些，并不是跟着别人/书里的步骤一步步执行就可以的，还可能遇到一些环境的问题（which整了好久，感谢021w师傅的指导orz）和要琢磨好久的点。<br>がんばって</p>
+<p>参考：<br><a href="https://bbs.pediy.com/thread-251801.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-251801.htm</a><br><a href="https://021w.github.io/2020/08/01/CVE-2010-2883%E6%A0%88%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">https://021w.github.io/2020/08/01/CVE-2010-2883%E6%A0%88%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</a></p>
+]]></content>
+      <tags>
+        <tag>Win漏洞分析</tag>
+        <tag>漏洞战争</tag>
+      </tags>
   </entry>
 </search>

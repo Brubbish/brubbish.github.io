@@ -292,7 +292,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-30 13:56:08" itemprop="dateModified" datetime="2021-04-30T13:56:08+08:00">2021-04-30</time>
+                <time title="修改时间：2021-04-30 16:26:00" itemprop="dateModified" datetime="2021-04-30T16:26:00+08:00">2021-04-30</time>
               </span>
 
           
@@ -306,7 +306,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="VEX-IR学习"><a href="#VEX-IR学习" class="headerlink" title="VEX IR学习"></a>VEX IR学习</h1><p>搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂</p>
+          <hr>
+<p>title: VEX IR学习<br>tags:</p>
+<ul>
+<li>课题<br>abbrlink: 52443</li>
+</ul>
+<hr>
+<p>搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂</p>
 <p>所以这篇的要求也就是能看懂和在变量名之类的做一点优化（统一）就行了</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>从程序里转了一段中间代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">IRSB &#123;</span><br><span class="line">   t0:Ity_I32 t1:Ity_I32 t2:Ity_I32 t3:Ity_I32 t4:Ity_I32 t5:Ity_I32 t6:Ity_I32 t7:Ity_I32 t8:Ity_I32 t9:Ity_I32 t10:Ity_I32 t11:Ity_I32 t12:Ity_I32 t13:Ity_I32 t14:Ity_I32 t15:Ity_I32 t16:Ity_I32 t17:Ity_I32 t18:Ity_I32 t19:Ity_I32 t20:Ity_I32 t21:Ity_I32 t22:Ity_I32 t23:Ity_I32 t24:Ity_I32 t25:Ity_I32 t26:Ity_I32 t27:Ity_I32</span><br><span class="line"></span><br><span class="line">   00 | ------ IMark(0x80491b0, 1, 0) ------</span><br><span class="line">   01 | t0 &#x3D; GET:I32(ebp)</span><br><span class="line">   02 | t13 &#x3D; GET:I32(esp)</span><br><span class="line">   03 | t12 &#x3D; Sub32(t13,0x00000004)</span><br><span class="line">   04 | PUT(esp) &#x3D; t12</span><br><span class="line">   05 | STle(t12) &#x3D; t0</span><br><span class="line">   06 | ------ IMark(0x80491b1, 2, 0) ------</span><br><span class="line">   07 | PUT(ebp) &#x3D; t12</span><br><span class="line">   08 | ------ IMark(0x80491b3, 3, 0) ------</span><br><span class="line">   09 | t2 &#x3D; Sub32(t12,0x00000018)</span><br><span class="line">   10 | PUT(cc_op) &#x3D; 0x00000006</span><br><span class="line">   11 | PUT(cc_dep1) &#x3D; t12</span><br><span class="line">   12 | PUT(cc_dep2) &#x3D; 0x00000018</span><br><span class="line">   13 | PUT(cc_ndep) &#x3D; 0x00000000</span><br><span class="line">   14 | PUT(esp) &#x3D; t2</span><br><span class="line">   15 | PUT(eip) &#x3D; 0x080491b6</span><br><span class="line">   16 | ------ IMark(0x80491b6, 7, 0) ------</span><br><span class="line">   17 | t15 &#x3D; Add32(t12,0xfffffffc)</span><br><span class="line">   18 | STle(t15) &#x3D; 0x00000000</span><br><span class="line">   19 | PUT(eip) &#x3D; 0x080491bd</span><br><span class="line">   20 | ------ IMark(0x80491bd, 7, 0) ------</span><br><span class="line">   21 | t17 &#x3D; Add32(t12,0xfffffff8)</span><br><span class="line">   22 | STle(t17) &#x3D; 0x00000000</span><br><span class="line">   23 | ------ IMark(0x80491c4, 6, 0) ------</span><br><span class="line">   24 | PUT(eip) &#x3D; 0x080491ca</span><br><span class="line">   25 | ------ IMark(0x80491ca, 3, 0) ------</span><br><span class="line">   26 | STle(t2) &#x3D; 0x0804a021</span><br><span class="line">   27 | ------ IMark(0x80491cd, 3, 0) ------</span><br><span class="line">   28 | t20 &#x3D; Add32(t12,0xfffffff8)</span><br><span class="line">   29 | PUT(eax) &#x3D; t20</span><br><span class="line">   30 | PUT(eip) &#x3D; 0x080491d0</span><br><span class="line">   31 | ------ IMark(0x80491d0, 4, 0) ------</span><br><span class="line">   32 | t22 &#x3D; Add32(t2,0x00000004)</span><br><span class="line">   33 | STle(t22) &#x3D; t20</span><br><span class="line">   34 | PUT(eip) &#x3D; 0x080491d4</span><br><span class="line">   35 | ------ IMark(0x80491d4, 5, 0) ------</span><br><span class="line">   36 | t25 &#x3D; Sub32(t2,0x00000004)</span><br><span class="line">   37 | PUT(esp) &#x3D; t25</span><br><span class="line">   38 | STle(t25) &#x3D; 0x080491d9</span><br><span class="line">   NEXT: PUT(eip) &#x3D; 0x08049060; Ijk_Call</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -379,7 +385,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/3418.html" class="post-title-link" itemprop="url">2021-04-25</a>
+            <a href="/3418.html" class="post-title-link" itemprop="url">CVE-2011-0104</a>
         </h2>
 
         <div class="post-meta">
@@ -396,7 +402,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-30 16:20:42" itemprop="dateModified" datetime="2021-04-30T16:20:42+08:00">2021-04-30</time>
+                <time title="修改时间：2021-04-30 16:25:08" itemprop="dateModified" datetime="2021-04-30T16:25:08+08:00">2021-04-30</time>
               </span>
 
           
@@ -410,12 +416,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="CVE-2011-0104"><a href="#CVE-2011-0104" class="headerlink" title="CVE-2011-0104"></a>CVE-2011-0104</h1><p>tags:</p>
-<ul>
-<li>漏洞战争</li>
-<li>Win漏洞分析</li>
-</ul>
-<div class="table-container">
+          <div class="table-container">
 <table>
 <thead>
 <tr>
@@ -447,6 +448,78 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/3418.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/57740.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/57740.html" class="post-title-link" itemprop="url">CVE-2010-2883 Adobe Reader TFF字体SING表栈溢出漏洞</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-13 18:29:14" itemprop="dateCreated datePublished" datetime="2021-04-13T18:29:14+08:00">2021-04-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-30 16:24:29" itemprop="dateModified" datetime="2021-04-30T16:24:29+08:00">2021-04-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Adobe Reader和Acrobat中的CoolType.dll库在解析字体文件SING（Smart INdependent Glyphlets）中的uniqueName项时存在栈溢出漏洞。用户打开特制的PDF就可以执行任意恶意代码<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/57740.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -898,80 +971,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/31605.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/31605.html" class="post-title-link" itemprop="url">大一暑假日常</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-01 15:00:30" itemprop="dateCreated datePublished" datetime="2020-09-01T15:00:30+08:00">2020-09-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-01 19:40:30" itemprop="dateModified" datetime="2020-12-01T19:40:30+08:00">2020-12-01</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="8-8"><a href="#8-8" class="headerlink" title="8-8"></a>8-8</h2><p>上周在做moectf，被新生赛弄自闭了（</p>
-<p>加密与解密</p>
-<h2 id="8-1"><a href="#8-1" class="headerlink" title="8-1"></a>8-1</h2><p>7-31没学所以没写…<br>写了七题moectf，两题re，三题web，一题pwn，一题经典密码<br>pwn写的感觉自己很瓜，有个叫backdoor的函数名硬是看了半个小时没看到…<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/31605.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1041,12 +1040,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
