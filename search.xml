@@ -2242,7 +2242,12 @@ cpu通过总线传输信息，总线分为：地址，， 控制，， 数据，
 <p>准备开始翻译一篇 iot sec 的survey</p>
 <h3 id="2021-06-17"><a href="#2021-06-17" class="headerlink" title="2021-06-17"></a>2021-06-17</h3><p>这几天把那篇综述翻译完了，感觉配合 DeepL 和 Google Translate 难度直接降下来了（👉对于一些长难句），一些没接触过的专业词汇查一下了解后也能够翻译出来。主要是语文水平限制了我的发挥（👉不知道正常人的语序和啥时候用逗号）。<br>感觉翻译（/读论文）的过程对视野提升还是蛮大的<br>虽然是19年底的论文，但是iot安全的发展是真的快，文中提到的一些安全问题已经改进了，也产生了新的成果和趋势，但依旧不失为搞懂iot安全领域方向的入门综述<br>今天突然发现是一篇THU信安实验室的论文，<del>虽然不知道MDPI是个啥水平</del>。Orz，膜<br>由于安全客有稿费（看雪好像只有雪币和临时号转正，Freebuf的话不知道收不收翻译），稍微再看了两遍翻译的结果，修改一下就在安全客提交了<br>希望能通过23333<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210617212847.png" alt="20210617212847"></p>
 <h3 id="2021-06-20"><a href="#2021-06-20" class="headerlink" title="2021-06-20"></a>2021-06-20</h3><p>这几天感觉事太多但不知道干啥好…    、<br>下周就课设&amp;考试了<br>就先把GitHub里star了的一个教程看完吧orz<br>顺便更新了一下kali2019<br>看了个<em>make\</em>的区别<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620211559.png" alt="20210620211559"></p>
-<h3 id="2021-06-29"><a href="#2021-06-29" class="headerlink" title="2021-06-29"></a>2021-06-29</h3>]]></content>
+<h3 id="2021-06-26"><a href="#2021-06-26" class="headerlink" title="2021-06-26"></a>2021-06-26</h3><p>在bugku上打了个awd排位赛，纯用来熟悉awd。MobaXterm真好用</p>
+<h3 id="2021-06-30"><a href="#2021-06-30" class="headerlink" title="2021-06-30"></a>2021-06-30</h3><p>从20号到今天（其实是昨天）都在弄IoT固件分析入门（和复习），边做边整理，今天把整理出的东西发到安全客上了。（该想想接下来学啥了）</p>
+<p>上回发的翻译今天也发表出来了，又看了一下，发现是诸葛建伟老师参与的论文，膜啊Orzz</p>
+<p>今天院考都考完了，剩下下周的马原和英语，又可以浪几天2333</p>
+<p>CISCN决赛还是一点消息都芜…</p>
+]]></content>
       <tags>
         <tag>日报</tag>
       </tags>
