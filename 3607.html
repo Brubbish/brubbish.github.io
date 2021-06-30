@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"brubbish.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"search":null,"path":"search.xml","field":"post","format":"html","limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="不知道干啥，打算把前段时间GitHub 上 star 了的一个项目学一遍，地址：IoT_Sec_Tutorial 访问慢的话，gitee上也有镜像可看目测纯固件，贼基础update：像是对《路由器0day》那本书部分内容的整理和补充">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IoT固件分析入门">
+<meta property="og:url" content="https://brubbish.github.io/3607.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="不知道干啥，打算把前段时间GitHub 上 star 了的一个项目学一遍，地址：IoT_Sec_Tutorial 访问慢的话，gitee上也有镜像可看目测纯固件，贼基础update：像是对《路由器0day》那本书部分内容的整理和补充">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620224600.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620225019.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620224159.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620224110.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620224324.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624986195558.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624986159726.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624986173336.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210621132510.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210621133748.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624255953284.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210621134851.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624255856853.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624260673155.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624261882922.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624262791018.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624264395101.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624264784960.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624270973127.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624273313162.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624273441470.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624273657173.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624281330648.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624282660256.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624444045680.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624443670290.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/29673689/123412395-21b98c00-d5e4-11eb-9f18-48bfe66710b9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624627289020.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624627931880.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624632998578.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624633241653.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624633746613.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624633809906.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624694537916.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624704034068.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624704529132.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624714926982.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624718994151.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624724526947.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624724654160.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624727049941.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624730236282.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624731700885.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624731779105.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624626949169.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624772939989.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624781752755.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624781656552.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624790960410.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624798081527.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624842375040.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624843310448.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624891866217.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624891907810.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624898602074.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624946914008.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624947011340.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624968893594.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624969614083.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624972065509.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624973987614.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624975561050.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624976989927.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624977950116.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624982108789.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624978566220.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624982335259.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624982776036.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624984447102.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624984569909.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624984880272.png">
+<meta property="article:published_time" content="2021-06-20T13:55:09.320Z">
+<meta property="article:modified_time" content="2021-06-30T15:02:30.352Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="IoT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620224600.png">
+
+<link rel="canonical" href="https://brubbish.github.io/3607.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>IoT固件分析入门 | Brubbish's</title><meta name="robots" content="noindex">
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-153514659-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  
+<link rel="alternate" href="/atom.xml" title="Brubbish's" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Brubbish's</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+      <script data-ad-client="ca-pub-9943095847270020" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/3607.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IoT固件分析入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-20 21:55:09" itemprop="dateCreated datePublished" datetime="2021-06-20T21:55:09+08:00">2021-06-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-30 23:02:30" itemprop="dateModified" datetime="2021-06-30T23:02:30+08:00">2021-06-30</time>
+              </span>
+  <span title="post.wordcount">
+     ○5.4k 字
+    </span>
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+        
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>不知道干啥，打算把前段时间GitHub 上 star 了的一个项目学一遍，地址：<a href="https://github.com/G4rb3n/IoT_Sec_Tutorial/" target="_blank" rel="noopener">IoT_Sec_Tutorial</a></p>
+<p>访问慢的话，gitee上也有镜像可看<br>目测纯固件，贼基础<br>update：像是对《路由器0day》那本书部分内容的整理和补充</p>
+<a id="more"></a>
+<h1 id="0x0准备"><a href="#0x0准备" class="headerlink" title="0x0准备"></a>0x0准备</h1><p>因为kali是刚上大学的时候装的，现在都出到2021了，我的版本还是2019，所以先升级一波</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | sudo tee /etc/apt/sources.list</span><br><span class="line">sudo apt update &amp;&amp; sudo apt -y full-upgrade</span><br><span class="line">[ -f /var/run/reboot-required ] &amp;&amp; sudo reboot -f</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更新完后可以查看一下系统版本：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep VERSION /etc/os-release</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更新系统时间（我的时间好像之前一直都不对orz）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y ntpdate</span><br><span class="line">rm -rf etc/localtime</span><br><span class="line">cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br><span class="line">ntpdate -u ntp.api.bz</span><br></pre></td></tr></table></figure>
+<ul>
+<li>切换shell（为啥升级后zsh没有直接变成默认orzz）<br>先查看系统中有几种shell：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/shells</span><br></pre></td></tr></table></figure>
+<p>kali自带了zsh，直接切换就行了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp -i /etc/skel/.zshrc ~/</span><br><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+<p>zsh配合oh-my-zsh比较好用，安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh</span><br></pre></td></tr></table></figure>
+<p>添加全路径显示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gedit ~/.oh-my-zsh/themes/robbyrussell.zsh-theme</span><br><span class="line"><span class="meta">#</span><span class="bash">然后把%&#123;<span class="variable">$fg</span>[cyan]%&#125;%c%&#123;<span class="variable">$reset_color</span>%&#125;的%c改为[<span class="variable">$PWD</span>]</span></span><br></pre></td></tr></table></figure>
+<p>如果想用别的桌面系统：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --config x-session-manager</span><br></pre></td></tr></table></figure>
+<h1 id="0x1提取固件"><a href="#0x1提取固件" class="headerlink" title="0x1提取固件"></a>0x1提取固件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">之前用过binwalk，但大多都是在misc题目里处理压缩文件、图片啥的，没有仔细看过binwalk的命令</span><br><span class="line">其实除了binwalk之外，还有其他的固件分析&#x2F;提取工具，在GitHub上用“firmware analysis”之类的关键词能查到</span><br></pre></td></tr></table></figure>
+<p>给了个华硕RT-N300路由器的固件，binwalk直接提取即可。</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620224600.png" alt="20210620224600"><br>提取出来发现没有进行加密（…16年，这也太不安全了吧orz，不过现在基本都有了</p>
+<p>可以看到这个路由器用的是squashfs文件系统</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620225019.png" alt="20210620225019">其中squashfs-root可用于分析了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">文件系统是操作系统的重要组成部分，是操作运行的基础。不同的路由器使用的文件系统格式不尽相同。根文件系统会被打包成当前路由器所使用的文件系统格式，然后组装到固件中。路由器希望文件系统越小越好，所以这些文件系统中各种压缩格式随处可见。</span><br><span class="line"></span><br><span class="line">Squashfs是一个只读格式的文件系统，具有超高压缩率，其压缩率最高可达34%。当系统启动后，会将文件系统保存在一个压缩过的文件系统文件中，这个文件可以使用换回的形式挂载并对其中的文件进行访问，当进程需要某些文件时，仅将对应部分的压缩文件解压缩。</span><br><span class="line"></span><br><span class="line">Squashfs文件系统常用的压缩格式有GZIP、LZMA、LZO、XZ（LZMA2）。路由器的根文件系统通常会按照Squashfs文件系统常用压缩格式中的一种进行打包，形成一个完整的Squashfs文件系统，然后与路由器操作系统的内核一起形成更新固件。</span><br><span class="line"></span><br><span class="line">由于squashFS可以在不需要解压的情况下直接挂载，因此有许多应用场景，例如：</span><br><span class="line">1、安装Linux时用的live cd</span><br><span class="line">2、小型嵌入式设备中的rootfs。rootfs一般以压缩好的形式存放在ROM中，如果开机时把整个rootfs都解压到内存里再读取，对于ROM和RAM容量一般都很小的小型嵌入式设备来说性价比太低。</span><br></pre></td></tr></table></figure>
+<h2 id="Binwalk命令选项"><a href="#Binwalk命令选项" class="headerlink" title="Binwalk命令选项"></a>Binwalk命令选项</h2><p>常规选项：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620224159.png" alt="20210620224159"></p>
+<p>提取选项：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620224110.png" alt="20210620224110"></p>
+<p>Diff：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210620224324.png" alt="20210620224324"></p>
+<p>文件签名：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624986195558.png" alt="1624986195558"></p>
+<p>熵值：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624986159726.png" alt="1624986159726"></p>
+<p>Raw Compression：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624986173336.png" alt="1624986173336"></p>
+<h2 id="如何手动提取固件"><a href="#如何手动提取固件" class="headerlink" title="如何手动提取固件"></a>如何手动提取固件</h2><p>squashfs文件系统头部特征较多，有sqsh、hsqs、qshs、shsq、hsqt、tqsh、sqlz。我们用hexdump搜索特征在文件中的地址</p>
+<ul>
+<li>hexdump：一个二进制文件的查看工具，可转为OCT、DEC、HEX进制查看<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210621132510.png" alt="20210621132510"></li>
+</ul>
+<p>得到如下搜索结果<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210621133748.png" alt="20210621133748"></p>
+<p>hsqs位于文件的0xe20c0，用dd命令截取出固件：</p>
+<ul>
+<li>注：dd命令中skip指定的值只能为十进制。用shell转换进制可以使用：$((BASE#NUM))</li>
+<li><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624255953284.png" alt="1624255953284"></li>
+</ul>
+<p>得到了一个squashfs格式的文件<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210621134851.png" alt="20210621134851"><br>用unsquashfs解压得到squashfs-root，即用binwalk提取出的同名文件。</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624255856853.png" alt="1624255856853"></p>
+<p>如果遇到binwalk之类的工具无法提取的情况，大多都是经过混淆，需要进一步处理</p>
+<h2 id="Binwalk如何进行提取："><a href="#Binwalk如何进行提取：" class="headerlink" title="Binwalk如何进行提取："></a>Binwalk如何进行提取：</h2><p>通过maigc特征集与文件进行比对，但识别效率比file命令高多了<br>特征集：<a href="https://github.com/ReFirmLabs/binwalk/tree/62e9caa164/src/binwalk/magic" target="_blank" rel="noopener">https://github.com/ReFirmLabs/binwalk/tree/62e9caa164/src/binwalk/magic</a></p>
+<p>识别过程主要使用libmagic库的4个函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">magic_t</span> <span class="title">magic_open</span><span class="params">(<span class="keyword">int</span> flags)</span></span>;<span class="comment">//创建并返回一个magic cookie指针。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">magic_close</span><span class="params">(<span class="keyword">magic_t</span> cookie)</span></span>;<span class="comment">//关闭magic签名数据库并释放所有使用过的资源。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="title">magic_buffer</span><span class="params">(<span class="keyword">magic_t</span> cookie,<span class="keyword">const</span> <span class="keyword">void</span> *buffer,<span class="keyword">size_t</span> len)</span></span>;<span class="comment">//读取buffer中指定长度的数据并与magic签名数据库进行对比，返回对比结果描述。</span></span><br><span class="line"></span><br><span class="line"><span class="function">Int <span class="title">magic_load</span><span class="params">(<span class="keyword">magic_t</span> cookie,<span class="keyword">const</span> <span class="keyword">char</span> *filename)</span></span>;<span class="comment">//从filename指定文件加载magic签名数据库，Binwalk把多个magic签名文件组合到一个临时文件中用于加载</span></span><br></pre></td></tr></table></figure>
+<h1 id="0x2-静态分析"><a href="#0x2-静态分析" class="headerlink" title="0x2 静态分析"></a>0x2 静态分析</h1><p>给了个从Dlink固件里提取的样本，打开发现被加密了，得爆破。</p>
+<p>kali自带了一些关于压缩文件的工具，比如生成字典用的crunch、rsmangler，爆破用的frackzip等，这些工具用法都不难</p>
+<ul>
+<li>crunch:<a href="https://bystart.cn/index.php/17/linux/07" target="_blank" rel="noopener">Kali使用crunch生成密码字典 - 青檬小栈 </a><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624260673155.png" alt="1624260673155"></li>
+</ul>
+<p>直接用frackzip破解，（根据教程的提示）得到密码beUT9Z</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624261882922.png" alt="1624261882922"></p>
+<p>解压得到以下文件</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624262791018.png" alt="1624262791018"></p>
+<ul>
+<li>.mbn：高通的一套用于加载网络环境的文件（modem software configuration）</li>
+<li>.yaffs2：针对NAND芯片设计的嵌入式文件系统，可用unyaffs提取</li>
+</ul>
+<p>unyaffs提取yaffs2</p>
+<p>核心应该是2K-mdm-image-mdm9625.yaffs2，不确定的话可以把三个.yaffs2都提取了（然后就该复习一下嵌入式系统的目录结构了）</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624264395101.png" alt="1624264395101"></p>
+<p>接下来查看配置文件，有可能从配置文件中发现敏感信息</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624264784960.png" alt="1624264784960"></p>
+<blockquote>
+<p>其中的inadyn-mt.conf文件引起了我们注意，这是no-ip应用的配置文件，no-ip就是一个相当于花生壳的东西，可以申请动态域名</p>
+</blockquote>
+<p>cat 一看，果然no-ip的用户名和密码都出现了（这么明显真的难以置信）</p>
+<p>接下来使用firmwalker来自动化遍历</p>
+<blockquote>
+<p>Firmwalker:</p>
+<p>A simple bash script for searching the extracted or mounted firmware file system.</p>
+<p>It will search through the extracted or mounted firmware file system for things of interest such as:</p>
+<ul>
+<li>etc/shadow and etc/passwd</li>
+<li>list out the etc/ssl directory</li>
+<li>search for SSL related files such as .pem, .crt, etc.</li>
+<li>search for configuration files</li>
+<li>look for script files</li>
+<li>search for other .bin files</li>
+<li>look for keywords such as admin, password, remote, etc.</li>
+<li>search for common web servers used on IoT devices</li>
+<li>search for common binaries such as ssh, tftp, dropbear, etc.</li>
+<li>search for URLs, email addresses and IP addresses</li>
+<li>Experimental support for making calls to the Shodan API using the Shodan CLI</li>
+</ul>
+<p>（其实就相当于一个遍历查找后缀、内容的批处理脚本）</p>
+</blockquote>
+<p>使用脚本获得所有可能可以利用的文件（建议进入脚本目录执行）</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624270973127.png" alt="1624270973127"></p>
+<p>除了配置文件外，分析存在风险的二进制程序也很重要。</p>
+<p>在etc/init.d目录下存放启动时运行的程序和脚本，其中有一个叫start_appmgr，mgr一般指固件的主控。查看脚本：</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624273313162.png" alt="1624273313162"></p>
+<p>把appmgr拖到ida<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624273441470.png" alt="1624273441470"></p>
+<p>凭借一点点pwn的经验，我们发现了一个backdoor<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624273657173.png" alt="1624273657173"></p>
+<p>这个漏洞被收录到CVE-2016-10178：<a href="https://pierrekim.github.io/blog/2016-09-28-dlink-dwr-932b-lte-routers-vulnerabilities.html" target="_blank" rel="noopener">Multiple vulnerabilities found in the Dlink DWR-932B (backdoor, backdoor accounts, weak WPS, RCE …) - IT Security Research by Pierre (pierrekim.github.io)</a></p>
+<p>即向192.168.1.1:39889发送HELODBG可以直接getshell（不太清楚为啥是39889端口，静态看了好久没看出来，<del>猜测是跟下图和label_66有关</del>）</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624281330648.png" alt="1624281330648"></p>
+<p>update:用Ghidra搜到了<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624282660256.png" alt="1624282660256"></p>
+<p>这个漏洞确实明显2333</p>
+<p>这个固件还有好几个漏洞，太拉了吧Orz…</p>
+<h1 id="0x3-动态分析"><a href="#0x3-动态分析" class="headerlink" title="0x3 动态分析"></a>0x3 动态分析</h1><h2 id="QEMU和Firmadyne"><a href="#QEMU和Firmadyne" class="headerlink" title="QEMU和Firmadyne"></a>QEMU和Firmadyne</h2><p>QEMU这个模拟器想必都不陌生，一个近乎能够模拟所有硬件设备的软件；倒是第一次听说Firmadyne这个工具，查了一下是一个基于QEMU的分析平台，包含模拟、固件提取、调试等功能，但似乎支持的硬件设备较少？orz</p>
+<h2 id="部署Firmadyne"><a href="#部署Firmadyne" class="headerlink" title="部署Firmadyne"></a>部署Firmadyne</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Tutorial里用的是attifyti提供的Ubuntu 14（因为作者说部署这玩意太麻烦了），但Firmadyne的作者在项目的某个issue里说了句“Ubuntu 14 也太早了”之类的话，于是打算自己部署一下</span><br><span class="line">Also，如果想用直接用attifyti的AttifyOS，https:&#x2F;&#x2F;github.com&#x2F;adi0x90&#x2F;attifyos，目前的系统基于Ubuntu18.04，官方的下载地址在谷歌网盘</span><br></pre></td></tr></table></figure>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>因为涉及到GitHub上一些项目的下载，网络不太好的话可能需要一些帮助：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">clash on kali:</span><br><span class="line">下载clash并运行：https://github.com/Dreamacro/clash/releases</span><br><span class="line">导入节点：wget -O ~/.config/clash/config.yaml  clash_url</span><br><span class="line"></span><br><span class="line">配置代理：</span><br><span class="line">gsettings set org.gnome.system.proxy mode 'manual'</span><br><span class="line">gsettings set org.gnome.system.proxy.http port 7890</span><br><span class="line">gsettings set org.gnome.system.proxy.http host '127.0.0.1'</span><br><span class="line">gsettings set org.gnome.system.proxy.socks port 7891</span><br><span class="line">gsettings set org.gnome.system.proxy.socks host '127.0.0.1'</span><br><span class="line">gsettings set org.gnome.system.proxy ignore-hosts "['localhost', '127.0.0.0/8', '::1']"\</span><br><span class="line"></span><br><span class="line">进行配置，访问：</span><br><span class="line">http://clash.razord.top/</span><br></pre></td></tr></table></figure>
+<p>** 注：以下绕了好多弯，最后也没成功，用了AttifyOS 😅😅😅😅😅</p>
+<h3 id="【方案1】安装Firmadyne"><a href="#【方案1】安装Firmadyne" class="headerlink" title="【方案1】安装Firmadyne"></a>【方案1】安装Firmadyne</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt-get install qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils</span><br><span class="line">apt-get install busybox-static fakeroot git dmsetup kpartx netcat-openbsd nmap python-psycopg2 python3-psycopg2 snmp uml-utilities util-linux vlan</span><br><span class="line">git clone --recursive https://github.com/firmadyne/firmadyne.git</span><br><span class="line">cd ./firmadyne</span><br><span class="line">./download.sh</span><br></pre></td></tr></table></figure>
+<p>配置Postgresql：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 安装数据库</span><br><span class="line">sudo apt-get install postgresql</span><br><span class="line"># 创建用户,注意要设置密码为 firmadyne</span><br><span class="line">sudo -u postgres createuser -P firmadyne</span><br><span class="line"># 创建数据库</span><br><span class="line">sudo -u postgres createdb -O firmadyne firmware</span><br><span class="line"># 初始化数据库</span><br><span class="line">sudo -u postgres psql -d firmware &lt; .&#x2F;firmadyne&#x2F;database&#x2F;schema</span><br></pre></td></tr></table></figure>
+<p>如果出现如下错误</p>
+<blockquote>
+<p>could not connect to database template1: could not connect to server: No such file or directory.</p>
+<p>Is the server running locally and accepting</p>
+<p>connections on Unix domain socket “var/run/postgresql/.s.PGSQL.5432”?</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624444045680.png" alt="1624444045680"></p>
+<p>有可能是没有初始化数据库（至少我是因为这个），用如下方法解决：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置postgres用户的密码</span></span><br><span class="line">passwd postgres</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建postgresql的文件夹</span></span><br><span class="line">sudo mkdir /data</span><br><span class="line">sudo chmod o+w /data</span><br><span class="line">su - postgres</span><br><span class="line">mkdir /data/postgresql</span><br><span class="line">mkdir /data/postgresql/data</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> postgres用户初始化数据库</span></span><br><span class="line">/usr/lib/postgresql/13/bin/initdb -D /data/postgresql/data</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动数据库</span></span><br><span class="line">/usr/lib/postgresql/13/bin/pg_ctl -D /data/postgresql/data -l logfile start</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看是否监听了端口(结果应类似下图)</span></span><br><span class="line">netstat -nlp |grep 5432</span><br><span class="line"></span><br><span class="line">参考：https://www.cnblogs.com/0x200/p/14026460.html</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624443670290.png" alt="1624443670290"></p>
+<p>接下来应该就能按照官方的Usage来使用了（没试）：<a href="https://github.com/firmadyne/firmadyne#usage" target="_blank" rel="noopener">firmadyne: Platform for emulation and dynamic analysis of Linux-based firmware </a></p>
+<h3 id="【方案2】安装firmware-analysis-plus"><a href="#【方案2】安装firmware-analysis-plus" class="headerlink" title="【方案2】安装firmware-analysis-plus"></a>【方案2】安装<a href="https://github.com/liyansong2018/firmware-analysis-plus" target="_blank" rel="noopener">firmware-analysis-plus</a></h3><p>因为用Firmadyne直接进行调试比较麻烦，所以用了FAP这个项目。</p>
+<p>这是个国人写的中文项目，没啥好说的：<a href="https://github.com/liyansong2018/firmware-analysis-plus" target="_blank" rel="noopener">liyansong2018/firmware-analysis-plus: 开源固件仿真平台，使用 firmadyne 一键模拟固件 (github.com)</a></p>
+<p>安装作者提供的binwalk的时候一直报错(kali2021 &amp; ubuntu18 both)，导致一直卡在提取固件的步骤（emmmm哪位大哥部署成功后教我一下)</p>
+<p><img src="https://user-images.githubusercontent.com/29673689/123412395-21b98c00-d5e4-11eb-9f18-48bfe66710b9.png" alt="image"></p>
+<p>对此提了个issue</p>
+<h3 id="【方案3】AttifyOS"><a href="#【方案3】AttifyOS" class="headerlink" title="【方案3】AttifyOS"></a>【方案3】AttifyOS</h3><p>这个方法比较稳，自己部署也太折磨人了（外加考试周给娃弄傻了）</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624627289020.png" alt="1624627289020"></p>
+<p><em>注：密码是attify</em></p>
+<h2 id="模拟执行固件"><a href="#模拟执行固件" class="headerlink" title="模拟执行固件"></a>模拟执行固件</h2><p>模拟固件运行：</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624627931880.png" alt="1624627931880">通过192.168.0.50即可访问固件</p>
+<h2 id="调试固件"><a href="#调试固件" class="headerlink" title="调试固件"></a>调试固件</h2><p>这个部分用到了Damn Vulnerable Router Firmware这个项目，大小400M+，建议上gitee clone</p>
+<p>安装以下工具：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gdb-multiarch</span><br><span class="line">wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh</span><br><span class="line">sudo pip3 install capstone unicorn keystone-engine</span><br></pre></td></tr></table></figure>
+<p>进入DVRF/Firmware/，用binwalk提取DVRF_v03.bin</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624632998578.png" alt="1624632998578"></p>
+<p>提取出来的目录里有个文件夹pwnable，里面存放着漏洞程序示例，选取stack_bof_01程序进行实验，程序的源代码可以在DVRF/Pwnable Source/Intro/里查看</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624633241653.png" alt="1624633241653"></p>
+<p>首先用reasdelf查看程序架构</p>
+<p>!<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624633746613.png" alt="1624633746613"></p>
+<p>（顺手试了一下checksec，这里居然有装😀）</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624633809906.png" alt="1624633809906"></p>
+<p>拷贝qwmu-mipsel-static到固件根目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp (which qemu-mipsel-static) .</span><br></pre></td></tr></table></figure>
+<p>用qemu虚拟运行stack_bof_01：</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624694537916.png" alt="1624694537916"></p>
+<p>以调试的方式启动程序，并在1234端口进行监听：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chroot . ./qemu-mipsel-static -g 1234 ./pwnable/Intro/stack_bof_01</span><br></pre></td></tr></table></figure>
+<p>打开一个新的shell，运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gdb-multiarch pwnable&#x2F;Intro&#x2F;stack_bof_01</span><br><span class="line"></span><br><span class="line"># 设置架构</span><br><span class="line">set architecture mips</span><br><span class="line"></span><br><span class="line">#设置调试端口</span><br><span class="line">target remote 127.0.0.1:1234</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624704034068.png" alt="1624704034068"></p>
+<p>创建trash触发溢出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern create 300</span><br></pre></td></tr></table></figure>
+<p>带上它重新进行调试</p>
+<p>gdb attach后继续让程序运行，触发vul</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624704529132.png" alt="1624704529132"></p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624714926982.png" alt="1624714926982"></p>
+<p>接下来就直接ret2system，但经过尝试后发现，如果直接把跳转地址设置为后门函数dat_shell的起始地址0x400950会触发异常</p>
+<p>查看函数汇编代码（MIPS…看不懂的话可以边看边学一波，<a href="https://blog.csdn.net/flyingqr/article/details/7073088" target="_blank" rel="noopener">MIPS 通用寄存器_flyingqr的专栏-CSDN博客_mips寄存器</a>；<a href="https://www.cnblogs.com/glodears/p/9762615.html" target="_blank" rel="noopener">MIPS汇编指令集 - 深海之炎 - 博客园 </a>；<a href="https://www.yuque.com/liyanfu/mq65pb/bv7xb5" target="_blank" rel="noopener">MIPS的汇编指令 · 语雀 </a>）</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624718994151.png" alt="1624718994151"></p>
+<p>调试中发现，当执行到0x400970时，gp寄存器指向了不可访问的地址</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624724526947.png" alt="1624724526947"></p>
+<p>而gp的值是由上一条指令得到的</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624724654160.png" alt="1624724654160"></p>
+<p>本来执行后v0要指向 指向__DT_MIPS_BASE_ADDRESS的指针</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624727049941.png" alt="1624727049941"></p>
+<p>简单来说就是强行跳转到backdoor之后，因为t9（默认在运行中指向当前函数的起始地址）没有发生改变，导致在执行0x400970时产生异常访问</p>
+<p>但可以发现（其实是按照exp来推…）main函数中的gp在-0x7fe4后刚好指向PTR__DT_MIPS_BASE_ADDRESS*（猜测原因是源代码中后门函数在main函数后面且没有被调用，导致编译时认为main函数和后门函数的 gp和表的偏移 相等）</p>
+<p>于是得到<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624730236282.png" alt="1624730236282"></p>
+<hr>
+<p>update：</p>
+<p>main函数中<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624731700885.png" alt="1624731700885"><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624731779105.png" alt="1624731779105"></p>
+<p>所以gp在函数执行完毕后依旧指向的是基地址表</p>
+<hr>
+<p><em>感觉对于mips程序的分析，Ghidra比IDA好用些</em></p>
+<p>从这题也能看出mips和x86、x64的不同之处，<strong>除了这种特殊情况外，大多数情况下还是应该寻找gadget来进行跳转改变t9寄存器</strong></p>
+<p><strong>这一节就到这，DVRF这个项目还设计了一些别的漏洞程序可以再进行分析</strong></p>
+<h1 id="0x4-解密固件"><a href="#0x4-解密固件" class="headerlink" title="0x4 解密固件"></a>0x4 解密固件</h1><p>访问dlink的ftp服务器获得几个DIR-882的固件（图中选中的文件），时间跨度为2017~2020年</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp:&#x2F;&#x2F;ftp2.dlink.com&#x2F;PRODUCTS&#x2F;DIR-882&#x2F;REVA&#x2F;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624626949169.png" alt="1624626949169"></p>
+<p>解压得到固件和对应的版本说明</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624772939989.png" alt="1624772939989"></p>
+<h2 id="加密固件发布方案"><a href="#加密固件发布方案" class="headerlink" title="加密固件发布方案"></a>加密固件发布方案</h2><p>一般来说，有三种发布固件的方案</p>
+<ul>
+<li>出厂时未加密，解密例程在高版本固件v1.1中给出，为后续的加密固件做准备<br>对于这个方案，我们可以通过解密v1.1来获得解密例程</li>
+<li>出厂时的固件已经加密，供应商决定更改高版本固件的加密方式，并发布了包含解密例程的未加密中间版本v1.2<br>这一方案与上面那个类似</li>
+<li>出厂时的固件已经加密，供应商决定更改高版本固件的加密方式，并发布了包含解密例程的使用原加密方式加密的过渡版本v1.3<br>这种方案对获取解密例程的难度较大，可从硬件中直接提取固件或对发布的v1.3进行分析</li>
+</ul>
+<p>DIR-882的固件发布方案为第一种，示意图如下<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624781752755.png" alt="1624781752755"></p>
+<p><em>虽然个人认为第三种方案才是较为常见的，但教程中并没有讲到。猜测除了从硬件中提取外，还可以通过模拟器模拟然后进行patch或拿头还原</em></p>
+<h2 id="解密过程"><a href="#解密过程" class="headerlink" title="解密过程"></a>解密过程</h2><p>用binwalk分析最新和最早的两个固件<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624781656552.png" alt="1624781656552"></p>
+<p>经过binwalk分析，FW104B02正是存在解密程序的中间版本（从文件名也能看出）</p>
+<blockquote>
+<p>对于判断固件是否被加密/混淆还可以使用之前提到的binwalk -E 来查看文件各个区域的熵值</p>
+</blockquote>
+<p>提取该固件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binwalk -eM DIR882A1_FW104B02_Middle_FW_Unencrypt.bin</span><br></pre></td></tr></table></figure>
+<p>在最终目录下搜索找到imgdecrypt，从名字看出是下个版本固件的解密例程<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624790960410.png" alt="1624790960410"></p>
+<p>可以静态分析程序的解密算法，也可以直接运行程序来对加密固件进行解密。</p>
+<p>在本地运行时依旧需要借助qemu-mipsel-static模拟器，使用方法和上一节的模拟过程类似，不表。</p>
+<p>利用imgdecrypt还可以还原出ftp服务器上提供的最新的固件，所以可能后续版本和Dlink其它型号的路由器也能用这个程序还原固件？Orz</p>
+<h1 id="0x5-修复固件运行环境"><a href="#0x5-修复固件运行环境" class="headerlink" title="0x5 修复固件运行环境"></a>0x5 修复固件运行环境</h1><p>有一些固件因为硬件依赖等原因导致qemu和firmadyne之类的软件无法正确模拟</p>
+<p>比如下面这个</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp:&#x2F;&#x2F;ftp2.dlink.com&#x2F;PRODUCTS&#x2F;DIR-605L&#x2F;REVA&#x2F;DIR-605L_FIRMWARE_1.13.ZIP</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624798081527.png" alt="1624798081527"></p>
+<blockquote>
+<p>模拟固件运行的实质其实就是把固件的Web程序跑起来，而模拟失败则说明Web程序运行出错了，我们接下来就要看看Web程序报错的原因以及如何修复运行环境。</p>
+</blockquote>
+<h2 id="尝试运行固件"><a href="#尝试运行固件" class="headerlink" title="尝试运行固件"></a>尝试运行固件</h2><p>首先binwalk提取固件，进入文件系统目录squashfs-root-0</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624842375040.png" alt="1624842375040"></p>
+<p>找到web服务程序Boa</p>
+<blockquote>
+<p>Boa程序是一个轻量级的web服务器程序，常见于嵌入式系统中。dlink就是在boa开源代码的基础上新增了很多功能接口以实现路由器上的不同功能。boa程序的路径为/bin/boa，同时我们发现在/etc/boa路径下还有个boa的密码配置文件，我们可以直接获取到boa加密后的密码。</p>
+</blockquote>
+<p>用qemu-mips-static运行，结果产生了段错误</p>
+<blockquote>
+<p>mips 是32位大端字节序</p>
+<p>mipsel 是32位小端字节序</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624843310448.png" alt="1624843310448"></p>
+<h2 id="分析错误并修复"><a href="#分析错误并修复" class="headerlink" title="分析错误并修复"></a>分析错误并修复</h2><blockquote>
+<p>注：APMIB 是个Realtek的玩意（原来realtek还有做路由器相关的东西…）</p>
+<ul>
+<li>apmib_init(), 從 flash 讀出 mib 值寫入 RAM        —<a href="https://jyhshin.pixnet.net/blog/post/47162002" target="_blank" rel="noopener">Realtek apmib library @ 邱小新の工作筆記 </a></li>
+</ul>
+<p>有些CVE（如CVE-2019-19823）就跟APMIB有关        —<a href="https://sploit.tech/2019/12/16/Realtek-TOTOLINK.html" target="_blank" rel="noopener">TOTOLINK and other Realtek SDK based routers - full takeover (sploit.tech)</a></p>
+<p>MIB：management information base，与SNMP有关，可在维基里进一步了解：<a href="https://en.wikipedia.org/wiki/Management_information_base" target="_blank" rel="noopener">Management information base - Wikipedia</a></p>
+</blockquote>
+<p>由于没有flash，导致读mib失败</p>
+<p>拖到反编译工具中分析。先定位到字符串“Initialize AP MIB failed!”的位置。注意到在输出这个字符串前有个调用APMIB初始化的跳转，在此下断点，IDA远程调试</p>
+<p>QEMU的远程调试不需要gdbserver，-g 指定端口，ida 远程调试选项指定相应端口就行<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624891866217.png" alt="1624891866217"><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624891907810.png" alt="1624891907810"></p>
+<p>简单调试后发现，程序进入APMIB初始化函数后将返回值赋给v0，返回后对返回值进行判断。（跟着教程做完后，发现其实用静态分析看的就很明显，但多调试总是没有坏处的嘛）</p>
+<p>跳转回去的位置在这：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624898602074.png" alt="1624898602074"></p>
+<p>我们先试试看把原来的跳转patch一下能不能运行正常固件boa。</p>
+<p>有以下两个可行方案：</p>
+<ol>
+<li>hxd（或其他二进制编辑器），把benz（0x14，不为0跳转）改为beqz（0x10，为0跳转）<br>这个方法比较直接，定位到指令后把0x14改为0x10即可</li>
+<li>Ghidra，把bne改为beq（Ghidra中反编译出的原指令为bne）</li>
+</ol>
+<ul>
+<li><strong>如何用Ghidra进行patch并保存：</strong></li>
+</ul>
+<ol>
+<li>下载python脚本<a href="https://github.com/schlafwandler/ghidra_SavePatch" target="_blank" rel="noopener">ghidra_SavePatch</a> 并放到Ghidra存放python脚本的目录（找不到目录的话，如图）。<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624946914008.png" alt="1624946914008"></li>
+<li>按照下图导入脚本。</li>
+<li>patch<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624947011340.png" alt="1624947011340"></li>
+<li>光标放在更改的指令，在script manager里运行脚本。</li>
+</ol>
+<p>参考：<a href="https://materials.rangeforce.com/tutorial/2020/04/12/Patching-Binaries/" target="_blank" rel="noopener">Patching Binaries With Ghidra – RangeForce</a></p>
+<ul>
+<li><strong>不用ida的原因：</strong></li>
+</ul>
+<p>把patch保存到文件中时，发现报错，稍微搜了一下，依然不知道是啥原因orz</p>
+<blockquote>
+<p>418228: has no file mapping (original: 14 patched: 10)…skipping…</p>
+</blockquote>
+<p>再次运行试试，发现又报错了：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624968893594.png" alt="1624968893594"></p>
+<p>再放到Ghidra里分析，依旧通过字符串定位错误触发点。<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624969614083.png" alt="1624969614083"></p>
+<p>两个函数（调用的地方位于websAspInit）里的报错由open函数造成（图为create_chklist_file()，但两个报错类似，均为一开始打开某个文件出错）<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624972065509.png" alt="1624972065509"></p>
+<p>用IDA调试发现报错后仍然继续运行，异常发生在执行apmib_get()时：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624973987614.png" alt="1624973987614"></p>
+<p>具体在0x4084c9b0时，把[0+v0]里的值赋给v1，而0x1001明显是一个访问不了的地址<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624975561050.png" alt="1624975561050"><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624976989927.png" alt="1624976989927"></p>
+<p>查一下apmib_get是干啥的。似乎是用来获取硬件配置信息，但我们要想让固件跑起来可以不需要这个。那么直接把获得apmib_get入口后的跳转语句nop掉<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624977950116.png" alt="1624977950116"></p>
+<p>重新尝试运行<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624982108789.png" alt="1624982108789"><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624978566220.png" alt="1624978566220"></p>
+<p>固件会一直尝试朝 ioctl（设备驱动的控制接口）发送0x89f0（应该是一个SIOCDEVPRIVATE），我们模拟的固件并不支持，但没啥大影响。（用Google搜一下“Unsupported ioctl: cmd=0x89f0”可以找到一些蛮有意思的东西2333）</p>
+<blockquote>
+<p>关于ioctl：<a href="https://blog.csdn.net/shanshanpt/article/details/19897897" target="_blank" rel="noopener">ioctl()函数详解_shanshanpt的专栏-CSDN博客</a></p>
+</blockquote>
+<p>查看报错的页面（用vim看代码舒服一些），嗯，前端的东西：</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624982335259.png" alt="1624982335259"></p>
+<p>从文件名可以猜到是个跟路由器界面语言选择有关的文件。</p>
+<p>文件不长，注意到有个函数跟语言和硬件有关：</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624982776036.png" alt="1624982776036"></p>
+<p>那么我们可以不让它运行到这个页面。</p>
+<p>查找调用了*LangSelect.asp的页面，发现只有一个first.asp<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624984447102.png" alt="1624984447102"><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624984569909.png" alt="1624984569909"></p>
+<p><em>SC是哪的LangCode，哪位大兄弟查到了的话麻烦告诉我一下</em></p>
+<p>直接修改，重新运行完事<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624984880272.png" alt="1624984880272"></p>
+<blockquote>
+<p>这个固件成功运行后可以顺便看一看这个洞： <a href="https://wiki.96.mk/IOT%E5%AE%89%E5%85%A8/D-Link/%EF%BC%88CVE-2018-20057%EF%BC%89D-Link%20DIR-619L%26605L%20%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" target="_blank" rel="noopener">（CVE-2018-20057）D-Link DIR-619L&amp;605L 命令注入漏洞 - Wiki </a> ，直接用了后门</p>
+</blockquote>
+<p>这节的错误解决方法均通过修改指令，《路由器0day》书中的方法是伪造.so来劫持函数，也值得一学：<a href="https://p1kk.github.io/2020/04/15/%E8%B7%AF%E7%94%B1%E5%99%A8/%E8%B7%AF%E7%94%B1%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">分析固件第一步</a></p>
+<h1 id="0x6-结束"><a href="#0x6-结束" class="headerlink" title="0x6 结束"></a>0x6 结束</h1><p>感觉算是一个很不错的IoT固件分析入门教程，今天收到《路由器0day》后在路上粗略地看了下目录，除了专门的漏洞分析外，这个教程差不多把纯固件分析的要点都涉及到了（至于是不是 a bit out of date 就另当别论，不过感觉也还好⑧）</p>
+<!-- flag of hidden posts -->
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/IoT/" rel="tag"><i class="fa fa-tag"></i> IoT</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x0准备"><span class="nav-number">1.</span> <span class="nav-text">0x0准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x1提取固件"><span class="nav-number">2.</span> <span class="nav-text">0x1提取固件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Binwalk命令选项"><span class="nav-number">2.1.</span> <span class="nav-text">Binwalk命令选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何手动提取固件"><span class="nav-number">2.2.</span> <span class="nav-text">如何手动提取固件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binwalk如何进行提取："><span class="nav-number">2.3.</span> <span class="nav-text">Binwalk如何进行提取：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x2-静态分析"><span class="nav-number">3.</span> <span class="nav-text">0x2 静态分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x3-动态分析"><span class="nav-number">4.</span> <span class="nav-text">0x3 动态分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#QEMU和Firmadyne"><span class="nav-number">4.1.</span> <span class="nav-text">QEMU和Firmadyne</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署Firmadyne"><span class="nav-number">4.2.</span> <span class="nav-text">部署Firmadyne</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">4.2.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【方案1】安装Firmadyne"><span class="nav-number">4.2.2.</span> <span class="nav-text">【方案1】安装Firmadyne</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【方案2】安装firmware-analysis-plus"><span class="nav-number">4.2.3.</span> <span class="nav-text">【方案2】安装firmware-analysis-plus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【方案3】AttifyOS"><span class="nav-number">4.2.4.</span> <span class="nav-text">【方案3】AttifyOS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟执行固件"><span class="nav-number">4.3.</span> <span class="nav-text">模拟执行固件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试固件"><span class="nav-number">4.4.</span> <span class="nav-text">调试固件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x4-解密固件"><span class="nav-number">5.</span> <span class="nav-text">0x4 解密固件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加密固件发布方案"><span class="nav-number">5.1.</span> <span class="nav-text">加密固件发布方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解密过程"><span class="nav-number">5.2.</span> <span class="nav-text">解密过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x5-修复固件运行环境"><span class="nav-number">6.</span> <span class="nav-text">0x5 修复固件运行环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#尝试运行固件"><span class="nav-number">6.1.</span> <span class="nav-text">尝试运行固件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析错误并修复"><span class="nav-number">6.2.</span> <span class="nav-text">分析错误并修复</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x6-结束"><span class="nav-number">7.</span> <span class="nav-text">0x6 结束</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
