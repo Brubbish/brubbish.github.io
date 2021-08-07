@@ -350,9 +350,9 @@
 
       
         <blockquote>
-<p>本文由<strong>本人</strong>首发于安全客：<a href="https://www.anquanke.com/post/id/245945" target="_blank" rel="noopener">IoT固件分析入门 - 安全客，安全资讯平台 (anquanke.com)</a></p>
+<p>本文由<strong>本人</strong>首发于安全客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjQ1OTQ1">IoT固件分析入门 - 安全客，安全资讯平台 (anquanke.com)<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<p>不知道干啥，打算把前段时间GitHub 上 star 了的一个项目学一遍，地址：<a href="https://github.com/G4rb3n/IoT_Sec_Tutorial/" target="_blank" rel="noopener">IoT_Sec_Tutorial</a></p>
+<p>不知道干啥，打算把前段时间GitHub 上 star 了的一个项目学一遍，地址：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0c0cmIzbi9Jb1RfU2VjX1R1dG9yaWFsLw==">IoT_Sec_Tutorial<i class="fa fa-external-link-alt"></i></span></p>
 <p>访问慢的话，gitee上也有镜像可看<br>目测纯固件，贼基础<br>update：像是对《路由器0day》那本书部分内容的整理和补充</p>
 <a id="more"></a>
 <h1 id="0x0准备"><a href="#0x0准备" class="headerlink" title="0x0准备"></a>0x0准备</h1><p>因为kali是刚上大学的时候装的，现在都出到2021了，我的版本还是2019，所以先升级一波</p>
@@ -402,13 +402,13 @@
 <p>得到了一个squashfs格式的文件<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210621134851.png" alt="20210621134851"><br>用unsquashfs解压得到squashfs-root，即用binwalk提取出的同名文件。</p>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624255856853.png" alt="1624255856853"></p>
 <p>如果遇到binwalk之类的工具无法提取的情况，大多都是经过混淆，需要进一步处理</p>
-<h2 id="Binwalk如何进行提取："><a href="#Binwalk如何进行提取：" class="headerlink" title="Binwalk如何进行提取："></a>Binwalk如何进行提取：</h2><p>通过maigc特征集与文件进行比对，但识别效率比file命令高多了<br>特征集：<a href="https://github.com/ReFirmLabs/binwalk/tree/62e9caa164/src/binwalk/magic" target="_blank" rel="noopener">https://github.com/ReFirmLabs/binwalk/tree/62e9caa164/src/binwalk/magic</a></p>
+<h2 id="Binwalk如何进行提取："><a href="#Binwalk如何进行提取：" class="headerlink" title="Binwalk如何进行提取："></a>Binwalk如何进行提取：</h2><p>通过maigc特征集与文件进行比对，但识别效率比file命令高多了<br>特征集：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1JlRmlybUxhYnMvYmlud2Fsay90cmVlLzYyZTljYWExNjQvc3JjL2JpbndhbGsvbWFnaWM=">https://github.com/ReFirmLabs/binwalk/tree/62e9caa164/src/binwalk/magic<i class="fa fa-external-link-alt"></i></span></p>
 <p>识别过程主要使用libmagic库的4个函数：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">magic_t</span> <span class="title">magic_open</span><span class="params">(<span class="keyword">int</span> flags)</span></span>;<span class="comment">//创建并返回一个magic cookie指针。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">magic_close</span><span class="params">(<span class="keyword">magic_t</span> cookie)</span></span>;<span class="comment">//关闭magic签名数据库并释放所有使用过的资源。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="title">magic_buffer</span><span class="params">(<span class="keyword">magic_t</span> cookie,<span class="keyword">const</span> <span class="keyword">void</span> *buffer,<span class="keyword">size_t</span> len)</span></span>;<span class="comment">//读取buffer中指定长度的数据并与magic签名数据库进行对比，返回对比结果描述。</span></span><br><span class="line"></span><br><span class="line"><span class="function">Int <span class="title">magic_load</span><span class="params">(<span class="keyword">magic_t</span> cookie,<span class="keyword">const</span> <span class="keyword">char</span> *filename)</span></span>;<span class="comment">//从filename指定文件加载magic签名数据库，Binwalk把多个magic签名文件组合到一个临时文件中用于加载</span></span><br></pre></td></tr></table></figure>
 <h1 id="0x2-静态分析"><a href="#0x2-静态分析" class="headerlink" title="0x2 静态分析"></a>0x2 静态分析</h1><p>给了个从Dlink固件里提取的样本，打开发现被加密了，得爆破。</p>
 <p>kali自带了一些关于压缩文件的工具，比如生成字典用的crunch、rsmangler，爆破用的frackzip等，这些工具用法都不难</p>
 <ul>
-<li>crunch:<a href="https://bystart.cn/index.php/17/linux/07" target="_blank" rel="noopener">Kali使用crunch生成密码字典 - 青檬小栈 </a><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624260673155.png" alt="1624260673155"></li>
+<li>crunch:<span class="exturl" data-url="aHR0cHM6Ly9ieXN0YXJ0LmNuL2luZGV4LnBocC8xNy9saW51eC8wNw==">Kali使用crunch生成密码字典 - 青檬小栈 <i class="fa fa-external-link-alt"></i></span><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624260673155.png" alt="1624260673155"></li>
 </ul>
 <p>直接用frackzip破解，（根据教程的提示）得到密码beUT9Z</p>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624261882922.png" alt="1624261882922"></p>
@@ -454,7 +454,7 @@
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624273313162.png" alt="1624273313162"></p>
 <p>把appmgr拖到ida<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624273441470.png" alt="1624273441470"></p>
 <p>凭借一点点pwn的经验，我们发现了一个backdoor<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624273657173.png" alt="1624273657173"></p>
-<p>这个漏洞被收录到CVE-2016-10178：<a href="https://pierrekim.github.io/blog/2016-09-28-dlink-dwr-932b-lte-routers-vulnerabilities.html" target="_blank" rel="noopener">Multiple vulnerabilities found in the Dlink DWR-932B (backdoor, backdoor accounts, weak WPS, RCE …) - IT Security Research by Pierre (pierrekim.github.io)</a></p>
+<p>这个漏洞被收录到CVE-2016-10178：<span class="exturl" data-url="aHR0cHM6Ly9waWVycmVraW0uZ2l0aHViLmlvL2Jsb2cvMjAxNi0wOS0yOC1kbGluay1kd3ItOTMyYi1sdGUtcm91dGVycy12dWxuZXJhYmlsaXRpZXMuaHRtbA==">Multiple vulnerabilities found in the Dlink DWR-932B (backdoor, backdoor accounts, weak WPS, RCE …) - IT Security Research by Pierre (pierrekim.github.io)<i class="fa fa-external-link-alt"></i></span></p>
 <p>即向192.168.1.1:39889发送HELODBG可以直接getshell（不太清楚为啥是39889端口，静态看了好久没看出来，<del>猜测是跟下图和label_66有关</del>）</p>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624281330648.png" alt="1624281330648"></p>
 <p>update:用Ghidra搜到了<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624282660256.png" alt="1624282660256"></p>
@@ -478,9 +478,9 @@
 <p>有可能是没有初始化数据库（至少我是因为这个），用如下方法解决：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置postgres用户的密码</span></span><br><span class="line">passwd postgres</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建postgresql的文件夹</span></span><br><span class="line">sudo mkdir /data</span><br><span class="line">sudo chmod o+w /data</span><br><span class="line">su - postgres</span><br><span class="line">mkdir /data/postgresql</span><br><span class="line">mkdir /data/postgresql/data</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> postgres用户初始化数据库</span></span><br><span class="line">/usr/lib/postgresql/13/bin/initdb -D /data/postgresql/data</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动数据库</span></span><br><span class="line">/usr/lib/postgresql/13/bin/pg_ctl -D /data/postgresql/data -l logfile start</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看是否监听了端口(结果应类似下图)</span></span><br><span class="line">netstat -nlp |grep 5432</span><br><span class="line"></span><br><span class="line">参考：https://www.cnblogs.com/0x200/p/14026460.html</span><br></pre></td></tr></table></figure>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624443670290.png" alt="1624443670290"></p>
-<p>接下来应该就能按照官方的Usage来使用了（没试）：<a href="https://github.com/firmadyne/firmadyne#usage" target="_blank" rel="noopener">firmadyne: Platform for emulation and dynamic analysis of Linux-based firmware </a></p>
-<h3 id="【方案2】安装firmware-analysis-plus"><a href="#【方案2】安装firmware-analysis-plus" class="headerlink" title="【方案2】安装firmware-analysis-plus"></a>【方案2】安装<a href="https://github.com/liyansong2018/firmware-analysis-plus" target="_blank" rel="noopener">firmware-analysis-plus</a></h3><p>因为用Firmadyne直接进行调试比较麻烦，所以用了FAP这个项目。</p>
-<p>这是个国人写的中文项目，没啥好说的：<a href="https://github.com/liyansong2018/firmware-analysis-plus" target="_blank" rel="noopener">liyansong2018/firmware-analysis-plus: 开源固件仿真平台，使用 firmadyne 一键模拟固件 (github.com)</a></p>
+<p>接下来应该就能按照官方的Usage来使用了（没试）：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Zpcm1hZHluZS9maXJtYWR5bmUjdXNhZ2U=">firmadyne: Platform for emulation and dynamic analysis of Linux-based firmware <i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="【方案2】安装firmware-analysis-plus"><a href="#【方案2】安装firmware-analysis-plus" class="headerlink" title="【方案2】安装firmware-analysis-plus"></a>【方案2】安装<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpeWFuc29uZzIwMTgvZmlybXdhcmUtYW5hbHlzaXMtcGx1cw==">firmware-analysis-plus<i class="fa fa-external-link-alt"></i></span></h3><p>因为用Firmadyne直接进行调试比较麻烦，所以用了FAP这个项目。</p>
+<p>这是个国人写的中文项目，没啥好说的：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpeWFuc29uZzIwMTgvZmlybXdhcmUtYW5hbHlzaXMtcGx1cw==">liyansong2018/firmware-analysis-plus: 开源固件仿真平台，使用 firmadyne 一键模拟固件 (github.com)<i class="fa fa-external-link-alt"></i></span></p>
 <p>安装作者提供的binwalk的时候一直报错(kali2021 &amp; ubuntu18 both)，导致一直卡在提取固件的步骤（emmmm哪位大哥部署成功后教我一下)</p>
 <p><img src="https://user-images.githubusercontent.com/29673689/123412395-21b98c00-d5e4-11eb-9f18-48bfe66710b9.png" alt="image"></p>
 <p>对此提了个issue</p>
@@ -516,7 +516,7 @@
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624704529132.png" alt="1624704529132"></p>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624714926982.png" alt="1624714926982"></p>
 <p>接下来就直接ret2system，但经过尝试后发现，如果直接把跳转地址设置为后门函数dat_shell的起始地址0x400950会触发异常</p>
-<p>查看函数汇编代码（MIPS…看不懂的话可以边看边学一波，<a href="https://blog.csdn.net/flyingqr/article/details/7073088" target="_blank" rel="noopener">MIPS 通用寄存器_flyingqr的专栏-CSDN博客_mips寄存器</a>；<a href="https://www.cnblogs.com/glodears/p/9762615.html" target="_blank" rel="noopener">MIPS汇编指令集 - 深海之炎 - 博客园 </a>；<a href="https://www.yuque.com/liyanfu/mq65pb/bv7xb5" target="_blank" rel="noopener">MIPS的汇编指令 · 语雀 </a>）</p>
+<p>查看函数汇编代码（MIPS…看不懂的话可以边看边学一波，<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZseWluZ3FyL2FydGljbGUvZGV0YWlscy83MDczMDg4">MIPS 通用寄存器_flyingqr的专栏-CSDN博客_mips寄存器<i class="fa fa-external-link-alt"></i></span>；<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZ2xvZGVhcnMvcC85NzYyNjE1Lmh0bWw=">MIPS汇编指令集 - 深海之炎 - 博客园 <i class="fa fa-external-link-alt"></i></span>；<span class="exturl" data-url="aHR0cHM6Ly93d3cueXVxdWUuY29tL2xpeWFuZnUvbXE2NXBiL2J2N3hiNQ==">MIPS的汇编指令 · 语雀 <i class="fa fa-external-link-alt"></i></span>）</p>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624718994151.png" alt="1624718994151"></p>
 <p>调试中发现，当执行到0x400970时，gp寄存器指向了不可访问的地址</p>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624724526947.png" alt="1624724526947"></p>
@@ -583,10 +583,10 @@
 <h2 id="分析错误并修复"><a href="#分析错误并修复" class="headerlink" title="分析错误并修复"></a>分析错误并修复</h2><blockquote>
 <p>注：APMIB 是个Realtek的玩意（原来realtek还有做路由器相关的东西…）</p>
 <ul>
-<li>apmib_init(), 從 flash 讀出 mib 值寫入 RAM        —<a href="https://jyhshin.pixnet.net/blog/post/47162002" target="_blank" rel="noopener">Realtek apmib library @ 邱小新の工作筆記 </a></li>
+<li>apmib_init(), 從 flash 讀出 mib 值寫入 RAM        —<span class="exturl" data-url="aHR0cHM6Ly9qeWhzaGluLnBpeG5ldC5uZXQvYmxvZy9wb3N0LzQ3MTYyMDAy">Realtek apmib library @ 邱小新の工作筆記 <i class="fa fa-external-link-alt"></i></span></li>
 </ul>
-<p>有些CVE（如CVE-2019-19823）就跟APMIB有关        —<a href="https://sploit.tech/2019/12/16/Realtek-TOTOLINK.html" target="_blank" rel="noopener">TOTOLINK and other Realtek SDK based routers - full takeover (sploit.tech)</a></p>
-<p>MIB：management information base，与SNMP有关，可在维基里进一步了解：<a href="https://en.wikipedia.org/wiki/Management_information_base" target="_blank" rel="noopener">Management information base - Wikipedia</a></p>
+<p>有些CVE（如CVE-2019-19823）就跟APMIB有关        —<span class="exturl" data-url="aHR0cHM6Ly9zcGxvaXQudGVjaC8yMDE5LzEyLzE2L1JlYWx0ZWstVE9UT0xJTksuaHRtbA==">TOTOLINK and other Realtek SDK based routers - full takeover (sploit.tech)<i class="fa fa-external-link-alt"></i></span></p>
+<p>MIB：management information base，与SNMP有关，可在维基里进一步了解：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTWFuYWdlbWVudF9pbmZvcm1hdGlvbl9iYXNl">Management information base - Wikipedia<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <p>由于没有flash，导致读mib失败</p>
 <p>拖到反编译工具中分析。先定位到字符串“Initialize AP MIB failed!”的位置。注意到在输出这个字符串前有个调用APMIB初始化的跳转，在此下断点，IDA远程调试</p>
@@ -603,12 +603,12 @@
 <li><strong>如何用Ghidra进行patch并保存：</strong></li>
 </ul>
 <ol>
-<li>下载python脚本<a href="https://github.com/schlafwandler/ghidra_SavePatch" target="_blank" rel="noopener">ghidra_SavePatch</a> 并放到Ghidra存放python脚本的目录（找不到目录的话，如图）。<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624946914008.png" alt="1624946914008"></li>
+<li>下载python脚本<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NjaGxhZndhbmRsZXIvZ2hpZHJhX1NhdmVQYXRjaA==">ghidra_SavePatch<i class="fa fa-external-link-alt"></i></span> 并放到Ghidra存放python脚本的目录（找不到目录的话，如图）。<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624946914008.png" alt="1624946914008"></li>
 <li>按照下图导入脚本。</li>
 <li>patch<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624947011340.png" alt="1624947011340"></li>
 <li>光标放在更改的指令，在script manager里运行脚本。</li>
 </ol>
-<p>参考：<a href="https://materials.rangeforce.com/tutorial/2020/04/12/Patching-Binaries/" target="_blank" rel="noopener">Patching Binaries With Ghidra – RangeForce</a></p>
+<p>参考：<span class="exturl" data-url="aHR0cHM6Ly9tYXRlcmlhbHMucmFuZ2Vmb3JjZS5jb20vdHV0b3JpYWwvMjAyMC8wNC8xMi9QYXRjaGluZy1CaW5hcmllcy8=">Patching Binaries With Ghidra – RangeForce<i class="fa fa-external-link-alt"></i></span></p>
 <ul>
 <li><strong>不用ida的原因：</strong></li>
 </ul>
@@ -625,7 +625,7 @@
 <p>重新尝试运行<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624982108789.png" alt="1624982108789"><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624978566220.png" alt="1624978566220"></p>
 <p>固件会一直尝试朝 ioctl（设备驱动的控制接口）发送0x89f0（应该是一个SIOCDEVPRIVATE），我们模拟的固件并不支持，但没啥大影响。（用Google搜一下“Unsupported ioctl: cmd=0x89f0”可以找到一些蛮有意思的东西2333）</p>
 <blockquote>
-<p>关于ioctl：<a href="https://blog.csdn.net/shanshanpt/article/details/19897897" target="_blank" rel="noopener">ioctl()函数详解_shanshanpt的专栏-CSDN博客</a></p>
+<p>关于ioctl：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NoYW5zaGFucHQvYXJ0aWNsZS9kZXRhaWxzLzE5ODk3ODk3">ioctl()函数详解_shanshanpt的专栏-CSDN博客<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <p>查看报错的页面（用vim看代码舒服一些），嗯，前端的东西：</p>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624982335259.png" alt="1624982335259"></p>
@@ -637,9 +637,9 @@
 <p><em>SC是哪的LangCode，哪位大兄弟查到了的话麻烦告诉我一下</em></p>
 <p>直接修改，重新运行完事<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/1624984880272.png" alt="1624984880272"></p>
 <blockquote>
-<p>这个固件成功运行后可以顺便看一看这个洞： <a href="https://wiki.96.mk/IOT%E5%AE%89%E5%85%A8/D-Link/%EF%BC%88CVE-2018-20057%EF%BC%89D-Link%20DIR-619L%26605L%20%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" target="_blank" rel="noopener">（CVE-2018-20057）D-Link DIR-619L&amp;605L 命令注入漏洞 - Wiki </a> ，直接用了后门</p>
+<p>这个固件成功运行后可以顺便看一看这个洞： <span class="exturl" data-url="aHR0cHM6Ly93aWtpLjk2Lm1rL0lPVCVFNSVBRSU4OSVFNSU4NSVBOC9ELUxpbmsvJUVGJUJDJTg4Q1ZFLTIwMTgtMjAwNTclRUYlQkMlODlELUxpbmslMjBESVItNjE5TCUyNjYwNUwlMjAlRTUlOTElQkQlRTQlQkIlQTQlRTYlQjMlQTglRTUlODUlQTUlRTYlQkMlOEYlRTYlQjQlOUUv">（CVE-2018-20057）D-Link DIR-619L&amp;605L 命令注入漏洞 - Wiki <i class="fa fa-external-link-alt"></i></span> ，直接用了后门</p>
 </blockquote>
-<p>这节的错误解决方法均通过修改指令，《路由器0day》书中的方法是伪造.so来劫持函数，也值得一学：<a href="https://p1kk.github.io/2020/04/15/%E8%B7%AF%E7%94%B1%E5%99%A8/%E8%B7%AF%E7%94%B1%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">分析固件第一步</a></p>
+<p>这节的错误解决方法均通过修改指令，《路由器0day》书中的方法是伪造.so来劫持函数，也值得一学：<span class="exturl" data-url="aHR0cHM6Ly9wMWtrLmdpdGh1Yi5pby8yMDIwLzA0LzE1LyVFOCVCNyVBRiVFNyU5NCVCMSVFNSU5OSVBOC8lRTglQjclQUYlRTclOTQlQjElRTUlODglODYlRTYlOUUlOTAv">分析固件第一步<i class="fa fa-external-link-alt"></i></span></p>
 <h1 id="0x6-结束"><a href="#0x6-结束" class="headerlink" title="0x6 结束"></a>0x6 结束</h1><p>感觉算是一个很不错的IoT固件分析入门教程，今天收到《路由器0day》后在路上粗略地看了下目录，除了专门的漏洞分析外，这个教程差不多把纯固件分析的要点都涉及到了（至于是不是 a bit out of date 就另当别论，不过感觉也还好⑧）</p>
 
     </div>

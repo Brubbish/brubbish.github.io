@@ -328,7 +328,7 @@
 <ul>
 <li>注：在调试时遇到了一个问题…Adobe Reader挂上od后打开任何pdf都会发生异常然后结束运行。百度后发现是od调试选项的问题，在选项里加上最后一个“忽略指定异常”应该就可以正常调试<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415212329.png" alt="20210415212329"></li>
 </ul>
-<p>再：几天后在看雪上也看到了类似的问题和泉哥给出的建议：<a href="https://bbs.pediy.com/thread-212556.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-212556.htm</a></p>
+<p>再：几天后在看雪上也看到了类似的问题和泉哥给出的建议：<span class="exturl" data-url="aHR0cHM6Ly9iYnMucGVkaXkuY29tL3RocmVhZC0yMTI1NTYuaHRt">https://bbs.pediy.com/thread-212556.htm<i class="fa fa-external-link-alt"></i></span></p>
 <hr>
 <p>打开OD，加载Adobe Reader，F9，在0x0803DD74和0x0803DDAB处下断点，打开能触发漏洞的pdf   </p>
 <p>F9运行至push “SING”后再单步运行至最近的call函数，<br>此时ECX指向SING表的入口地址，进入[0012E4B4]就可以找到SING表<br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415214856.png" alt="20210415214856"><br><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415215446.png" alt="20210415215446"><br>可以看出两个断点间代码的作用是判断SING表入口的有效性，并把uniqueName的地址传给EAX<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注：上2图不是同一次运行的截图，所以地址不一样</span><br></pre></td></tr></table></figure></p>
@@ -338,7 +338,7 @@
 <p>后续的操作依次调用了CreateFileA、CreateFileMappingA、MapViewOfFile，开辟出一块可读写可执行的区域绕过DEP(NX)并写入shellcode，随后执行shellcode</p>
 <h2 id="流程总结"><a href="#流程总结" class="headerlink" title="流程总结"></a>流程总结</h2><p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415225645.png" alt="20210415225645"></p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>调试的第一个RW漏洞，感觉比想象中的漏洞复现复杂一些，并不是跟着别人/书里的步骤一步步执行就可以的，还可能遇到一些环境的问题（which整了好久，感谢021w师傅的指导orz）和要琢磨好久的点。<br>がんばって</p>
-<p>参考：<br><a href="https://bbs.pediy.com/thread-251801.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-251801.htm</a><br><a href="https://021w.github.io/2020/08/01/CVE-2010-2883%E6%A0%88%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">https://021w.github.io/2020/08/01/CVE-2010-2883%E6%A0%88%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</a></p>
+<p>参考：<br><span class="exturl" data-url="aHR0cHM6Ly9iYnMucGVkaXkuY29tL3RocmVhZC0yNTE4MDEuaHRt">https://bbs.pediy.com/thread-251801.htm<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly8wMjF3LmdpdGh1Yi5pby8yMDIwLzA4LzAxL0NWRS0yMDEwLTI4ODMlRTYlQTAlODglRTYlQkMlOEYlRTYlQjQlOUUlRTUlODglODYlRTYlOUUlOTAv">https://021w.github.io/2020/08/01/CVE-2010-2883%E6%A0%88%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 

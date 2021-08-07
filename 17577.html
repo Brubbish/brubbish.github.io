@@ -278,7 +278,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="1-用github搞了博客"><a href="#1-用github搞了博客" class="headerlink" title="1.用github搞了博客"></a>1.用github搞了博客</h3><p>参考：<a href="https://www.fast.ai/2020/01/16/fast_template/" target="_blank" rel="noopener">https://www.fast.ai/2020/01/16/fast_template/</a><br>并用了他的模板….<br>页面还没改完</p>
+        <h3 id="1-用github搞了博客"><a href="#1-用github搞了博客" class="headerlink" title="1.用github搞了博客"></a>1.用github搞了博客</h3><p>参考：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFzdC5haS8yMDIwLzAxLzE2L2Zhc3RfdGVtcGxhdGUv">https://www.fast.ai/2020/01/16/fast_template/<i class="fa fa-external-link-alt"></i></span><br>并用了他的模板….<br>页面还没改完</p>
 <h3 id="2-汇编语言学习"><a href="#2-汇编语言学习" class="headerlink" title="2.汇编语言学习"></a>2.汇编语言学习</h3><h5 id="BX-和loop指令"><a href="#BX-和loop指令" class="headerlink" title="[BX]和loop指令"></a>[BX]和loop指令</h5><p>一次执行完循环的过程：<br>g指令：<br>“g 0012”从当前的cs：ip指向的指令执行，一直到（ip）=0012为止<br>p指令：<br>直到（cx）=0为止</p>
 <h5 id="段前缀："><a href="#段前缀：" class="headerlink" title="段前缀："></a>段前缀：</h5><p>在访问内存单元的指令中显式低给出内存单元段地址所在的段寄存器，如：<br>mov ax,ds:[bx]<br>mov ax,cs:[bx]<br>mov ax,ss,[bx]<br>mov ax,ex,[0]<br>….<br><a id="more"></a></p>
 <h5 id="在代码段中使用数据"><a href="#在代码段中使用数据" class="headerlink" title="在代码段中使用数据"></a>在代码段中使用数据</h5><p>code segment<br>“dw 0123，0456”<br>….<br>dw的含义是定义字型数据，因为用dw定义的数据出于代码段的最开始，所以偏移地址为0，这两个数据就在代码段的偏移0，2 处，地址为cs:0,cs:2</p>

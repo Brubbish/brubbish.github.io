@@ -388,7 +388,7 @@
 <li>realloc</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">当 realloc(ptr,size) 的 size 不等于 ptr 的 size 时</span><br><span class="line">  如果申请 size &gt; 原来 size</span><br><span class="line">    如果 chunk 与 top chunk 相邻，直接扩展这个 chunk 到新 size 大小</span><br><span class="line">    如果 chunk 与 top chunk 不相邻，相当于 free(ptr),malloc(new_size)</span><br><span class="line">  如果申请 size &lt; 原来 size</span><br><span class="line">    如果相差不足以容得下一个最小 chunk(64 位下 32 个字节，32 位下 16 个字节)，则保持不变</span><br><span class="line">    如果相差可以容得下一个最小 chunk，则切割原 chunk 为两部分，free 掉后一部分</span><br><span class="line">当 realloc(ptr,size) 的 size 等于 0 时，相当于 free(ptr)</span><br><span class="line">当 realloc(ptr,size) 的 size 等于 ptr 的 size，不进行任何操作</span><br></pre></td></tr></table></figure>
-<h1 id="free的时候发生了什么"><a href="#free的时候发生了什么" class="headerlink" title="free的时候发生了什么"></a>free的时候发生了什么</h1><p><a href="https://code.woboq.org/userspace/glibc/malloc/malloc.c.html#__libc_free" target="_blank" rel="noopener">源码</a></p>
+<h1 id="free的时候发生了什么"><a href="#free的时候发生了什么" class="headerlink" title="free的时候发生了什么"></a>free的时候发生了什么</h1><p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLndvYm9xLm9yZy91c2Vyc3BhY2UvZ2xpYmMvbWFsbG9jL21hbGxvYy5jLmh0bWwjX19saWJjX2ZyZWU=">源码<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="libc-free"><a href="#libc-free" class="headerlink" title="__libc_free"></a>__libc_free</h2><p>只有一个参数，为需要free的地址判断：</p>
 <ol>
 <li>是否hook了（有则执行free_hook，结束free）（下）</li>
@@ -434,7 +434,7 @@
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (have_lock &amp;&amp; old != <span class="literal">NULL</span></span><br><span class="line">        &amp;&amp; __builtin_expect (fastbin_index (chunksize (old)) != idx, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
 <p>另外还有一些多线程的操作没有记上<br>free一个fastbin的过程只进行了一些判断和链接操作，对inuse位没有处理</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>想把代码放上来，但是折叠之后不知道怎么高亮…<br>从：<br><a href="https://code.woboq.org/userspace/glibc/malloc/malloc.c.html#4232" target="_blank" rel="noopener">https://code.woboq.org/userspace/glibc/malloc/malloc.c.html#4232</a><br>到4301行</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>想把代码放上来，但是折叠之后不知道怎么高亮…<br>从：<br><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLndvYm9xLm9yZy91c2Vyc3BhY2UvZ2xpYmMvbWFsbG9jL21hbGxvYy5jLmh0bWwjNDIzMg==">https://code.woboq.org/userspace/glibc/malloc/malloc.c.html#4232<i class="fa fa-external-link-alt"></i></span><br>到4301行</p>
 <h3 id="非fastbin"><a href="#非fastbin" class="headerlink" title="非fastbin"></a>非fastbin</h3><p>包括smallbin、largebin、unsortbin</p>
 <h4 id="consolidate-amp-amp-free"><a href="#consolidate-amp-amp-free" class="headerlink" title="consolidate&amp;&amp;free"></a>consolidate&amp;&amp;free</h4><p>合并区块的顺序：先考虑物理低地址的空闲块，合并后的chunk指向合并的chunk的低地址</p>
 <p>步骤：</p>
@@ -485,10 +485,10 @@
 <li>先从 tcache 取 chunk，直到 tcache 为空，tcache 为空后，从 bin 中找</li>
 <li>tcache 为空时，如果 fastbin/smallbin/unsorted bin 中有 size 符合的 chunk，会先把 fastbin/smallbin/unsorted bin 中的 chunk 放到 tcache 中，直到填满。之后再从 tcache 中取；因此 chunk 在 bin 中和 tcache 中的顺序会反过来</li>
 </ul>
-<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><a href="https://blog.csdn.net/qq_17713935/article/details/86231502" target="_blank" rel="noopener">https://blog.csdn.net/qq_17713935/article/details/86231502</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/24753861" target="_blank" rel="noopener">Linux堆内存管理深入分析（上）</a><br><a href="https://zhuanlan.zhihu.com/p/24790164" target="_blank" rel="noopener">Linux堆内存管理深入分析（下）</a></p>
-<p><a href="https://ctf-wiki.org/pwn/linux/glibc-heap/implementation/overview/" target="_blank" rel="noopener">ctf-wiki</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/77316206" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/77316206</a></p>
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE3NzEzOTM1L2FydGljbGUvZGV0YWlscy84NjIzMTUwMg==">https://blog.csdn.net/qq_17713935/article/details/86231502<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8yNDc1Mzg2MQ==">Linux堆内存管理深入分析（上）<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8yNDc5MDE2NA==">Linux堆内存管理深入分析（下）<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jdGYtd2lraS5vcmcvcHduL2xpbnV4L2dsaWJjLWhlYXAvaW1wbGVtZW50YXRpb24vb3ZlcnZpZXcv">ctf-wiki<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC83NzMxNjIwNg==">https://zhuanlan.zhihu.com/p/77316206<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 
