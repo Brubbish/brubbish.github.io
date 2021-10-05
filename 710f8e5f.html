@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="就此开一篇单独记录 py 爬虫的学习以及实操中遇到的问题(可能吧) （分割线用（***或—））">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 爬虫学习">
+<meta property="og:url" content="https://brubbish.github.io/710f8e5f.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="就此开一篇单独记录 py 爬虫的学习以及实操中遇到的问题(可能吧) （分割线用（***或—））">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/17/8tyB5j.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/17/8tysGn.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/17/8tyy2q.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/17/8ty6x0.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/19/8y3yQ0.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/19/8yjZ5R.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/19/8yjEVJ.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/21/8fFk0H.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/21/8fFPXD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/21/8fFFne.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/26/GSHMGD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/02/GGx6qs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/02/GGxyrj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/05/GBh3Pf.png">
+<meta property="article:published_time" content="2020-03-16T15:58:00.000Z">
+<meta property="article:modified_time" content="2020-07-05T13:36:52.000Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/03/17/8tyB5j.md.png">
+
+
+<link rel="canonical" href="https://brubbish.github.io/710f8e5f.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/710f8e5f.html","path":"710f8e5f.html","title":"python 爬虫学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>python 爬虫学习 | Brubbish's</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#more"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">爬虫入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#requests-%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">requests 库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tip%EF%BC%9A-pip-%E4%B8%8B%E8%BD%BD%E8%B6%85%E6%97%B6%EF%BC%88timeout%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">tip： pip 下载超时（timeout）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#r-request-get-url"><span class="nav-number">1.2.</span> <span class="nav-text">r&#x3D;request.get(url)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5%E7%9A%84%E9%80%9A%E7%94%A8%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6"><span class="nav-number">1.3.</span> <span class="nav-text">爬取网页的通用代码框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requests-%E5%BA%93%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">requests 库主要方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kwargs"><span class="nav-number">1.4.1.</span> <span class="nav-text">**kwargs:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%AC%E8%99%AB%E5%B0%BA%E5%AF%B8"><span class="nav-number">1.5.</span> <span class="nav-text">爬虫尺寸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%90%E5%88%B6%E7%88%AC%E8%99%AB"><span class="nav-number">1.6.</span> <span class="nav-text">限制爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#robots-%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.7.</span> <span class="nav-text">robots 协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%92%E7%BB%9D%E8%A2%AB%E7%88%AC%EF%BC%9A%E5%B0%9D%E8%AF%95%E4%BF%AE%E6%94%B9-user-agent"><span class="nav-number">1.8.</span> <span class="nav-text">拒绝被爬：尝试修改 user-agent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%85%B3%E9%94%AE%E8%AF%8D%E6%8F%90%E4%BA%A4"><span class="nav-number">1.9.</span> <span class="nav-text">搜索引擎关键词提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E7%9A%84%E7%88%AC%E5%8F%96%E5%92%8C%E5%AD%98%E5%82%A8"><span class="nav-number">1.10.</span> <span class="nav-text">图片的爬取和存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeautifulSoup-%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">BeautifulSoup 库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-2"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BeautifulSoup-%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0"><span class="nav-number">2.2.</span> <span class="nav-text">BeautifulSoup 基本元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html-%E5%86%85%E5%AE%B9%E9%81%8D%E5%8E%86"><span class="nav-number">2.3.</span> <span class="nav-text">html 内容遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%A1%8C%E9%81%8D%E5%8E%86%EF%BC%9A"><span class="nav-number">2.3.1.</span> <span class="nav-text">下行遍历：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E8%A1%8C%E9%81%8D%E5%8E%86%EF%BC%9A"><span class="nav-number">2.3.2.</span> <span class="nav-text">上行遍历：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E8%A1%8C%E9%81%8D%E5%8E%86%EF%BC%9A"><span class="nav-number">2.3.3.</span> <span class="nav-text">平行遍历：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prettify"><span class="nav-number">2.4.</span> <span class="nav-text">Prettify</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re-%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">Re 库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">调用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%A1%A8%E8%BE%BE%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.2.</span> <span class="nav-text">表达式的表达类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%E5%87%BD%E6%95%B0"><span class="nav-number">4.3.</span> <span class="nav-text">主要功能函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RE%E5%BA%93%E7%9A%84match%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.4.</span> <span class="nav-text">RE库的match对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D"><span class="nav-number">4.5.</span> <span class="nav-text">贪婪匹配和最小匹配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scrapy%E5%BA%93"><span class="nav-number">5.</span> <span class="nav-text">Scrapy库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85"><span class="nav-number">5.1.</span> <span class="nav-text">scrapy爬虫框架安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scrapy-%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E7%BB%93%E6%9E%84"><span class="nav-number">5.2.</span> <span class="nav-text">scrapy 爬虫框架结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scrapy%E5%BA%93%E7%88%AC%E8%99%AB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">5.3.</span> <span class="nav-text">scrapy库爬虫常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">5.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-2"><span class="nav-number">6.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E6%8E%92%E5%90%8D%E7%88%AC%E5%8F%96"><span class="nav-number">6.1.</span> <span class="nav-text">中国大学排名爬取</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/710f8e5f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python 爬虫学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-03-16 23:58:00" itemprop="dateCreated datePublished" datetime="2020-03-16T23:58:00+08:00">2020-03-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-05 21:36:52" itemprop="dateModified" datetime="2020-07-05T21:36:52+08:00">2020-07-05</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>就此开一篇单独记录 py 爬虫的学习<u>以及实操中遇到的问题</u>(可能吧)<br>
+（分割线用（***或—））</p>
+<h2 id="more"><span id="more"></span></h2>
+<h1>爬虫入门</h1>
+<p>以下为 mooc 上 BIT 嵩天老师课程<a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/BIT-1001870001?tid=1206951268#/learn/announce">Python 网络爬虫与信息提取</a>的学习</p>
+<h2 id="requests-库">requests 库</h2>
+<h3 id="安装">安装</h3>
+<p>管理员打开 cmd，安装 requests 库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests </span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tyB5j.md.png" alt="以此检测安装成功"></p>
+<h4 id="tip：-pip-下载超时（timeout）">tip： pip 下载超时（timeout）</h4>
+<p>cmd 输入指令：</p>
+<ol>
+<li>pip --default-timeout=100 install -U pip</li>
+</ol>
+<p>或</p>
+<ol start="2">
+<li>pip install pip -U</li>
+</ol>
+<p>pip config set global.index-url <a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a><br>
+（升级 pip 后更换为的清华镜像）</p>
+<h3 id="r-request-get-url">r=request.get(url)</h3>
+<p>构造一个向服务器请求资源的 request 对象，返回一个包含服务器资源的 response 对象<br>
+response 对象包含了服务器返回的所有信息</p>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tysGn.md.png" alt="8tysGn.md.png"></p>
+<p>r.apparent_encoding: 根据网页内容分析出的编码方式<br>
+r.encoding: 如果 header 中不存在 charset，则默认编码为 ISO-8859-1</p>
+<h3 id="爬取网页的通用代码框架">爬取网页的通用代码框架</h3>
+<p><img src="https://s1.ax1x.com/2020/03/17/8tyy2q.md.png" alt="8tyy2q.md.png"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requsets</span><br><span class="line"><span class="comment">#----</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span>(<span class="params">url</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r=requests.get(url,timeout=<span class="number">30</span>)</span><br><span class="line">        r.raise_for_status()    <span class="comment"># 判断状态  如果不是200，则引发HTTPError异常</span></span><br><span class="line">        r.encoding=r.apparent_encoding</span><br><span class="line">        <span class="keyword">return</span> r.text</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;产生异常&quot;</span></span><br><span class="line"><span class="comment">#----</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    url=<span class="string">&quot;http://www.baidu.com&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;getHTMLText(url))</span></span><br></pre></td></tr></table></figure>
+<p>try：python 捕捉异常语句，详见：<a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-exceptions.html">https://www.runoob.com/python/python-exceptions.html</a></p>
+<h3 id="requests-库主要方法">requests 库主要方法</h3>
+<p><img src="https://s1.ax1x.com/2020/03/17/8ty6x0.md.png" alt="8ty6x0.md.png"></p>
+<p>requests.request(method, url, **kwargs)<br>
+requests.get(url, params=None, **kwargs)<br>
+requests.head(url, **kwargs)<br>
+requests.post(url, data=None, json=None, **kwargs)<br>
+requests.put(url, data=None, **kwargs)<br>
+requests.patch(url, data=None, **kwargs)<br>
+requests.delete(url, **kwargs)</p>
+<h4 id="kwargs">**kwargs:</h4>
+<ol>
+<li>params：字典或字节序列，作为参数添加到 url 中</li>
+<li>data：字典、字节序列或文件对象，作为 request 的内容</li>
+<li>json：json 格式的数据，作为 request 的内容</li>
+<li>headers：定制 header</li>
+<li>cookies</li>
+<li>auth</li>
+<li>files：传输文件</li>
+<li>timeout：设定超时时间，单位为秒</li>
+<li>proxies：设置代理服务器</li>
+<li>allow_redirects</li>
+<li>stream</li>
+<li>verify</li>
+<li>cert</li>
+</ol>
+<h3 id="爬虫尺寸">爬虫尺寸</h3>
+<p>小规模：爬取网页。数据量小，速度不敏感。使用 requests 库<br>
+中规模：爬取网站。数据量大，速度敏感。使用 scrapy 库<br>
+大规模：爬取全网。（搜索引擎）</p>
+<h3 id="限制爬虫">限制爬虫</h3>
+<ol>
+<li>来源审查：判断 user-agent</li>
+<li>robots 协议</li>
+</ol>
+<h3 id="robots-协议">robots 协议</h3>
+<p>Robots Exclusion Standard<br>
+网络爬虫先识别 robots.txt 再进行爬取<br>
+robots 协议时建议而非约束性，不遵守的话存在法律风险（类人行为可不参考 robots 协议）</p>
+<h3 id="拒绝被爬：尝试修改-user-agent">拒绝被爬：尝试修改 user-agent</h3>
+<p><img src="https://s1.ax1x.com/2020/03/19/8y3yQ0.md.png" alt="主要为黄色荧光部分"></p>
+<h3 id="搜索引擎关键词提交">搜索引擎关键词提交</h3>
+<p>百度：<a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=">https://www.baidu.com/s?wd=</a><u>关键词</u></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">keyword=<span class="string">&quot;xxxx&quot;</span></span><br><span class="line"></span><br><span class="line">kv=&#123;<span class="string">&#x27;wd&#x27;</span>:keyword&#125;</span><br><span class="line"></span><br><span class="line">r=requests.get(<span class="string">&quot;https://www.baidu.com/s&quot;</span>,params=kv)</span><br></pre></td></tr></table></figure>
+<h3 id="图片的爬取和存储">图片的爬取和存储</h3>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">url=<span class="string">&quot;....../...jpg&quot;</span></span><br><span class="line">root=<span class="string">&quot;D://pics//&quot;</span></span><br><span class="line">path=root+url.split(<span class="string">&#x27;/&#x27;</span>)[-<span class="number">1</span>]    <span class="comment">#需要import os</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(root):</span><br><span class="line">        os.mkdir(root)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path):</span><br><span class="line">        r=requests.get(url)</span><br><span class="line">        <span class="comment">#保存↓</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path,<span class="string">&#x27;wb&#x27;</span>)<span class="keyword">as</span> f:</span><br><span class="line">            f.write(r.content)</span><br><span class="line">            f.close()</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;成功“)</span></span><br><span class="line"><span class="string">    else:</span></span><br><span class="line"><span class="string">        print(&quot;</span>文件已存在<span class="string">&quot;)</span></span><br><span class="line"><span class="string">except:</span></span><br><span class="line"><span class="string">    print(&quot;</span>失败<span class="string">&quot;)</span></span><br></pre></td></tr></table></figure>
+<h2 id="BeautifulSoup-库">BeautifulSoup 库</h2>
+<p>BeautifulSoup 库是一个解析、遍历、维护标签树的功能库</p>
+<h3 id="安装-2">安装</h3>
+<p>cmd 下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install beautifulsoup4</span><br></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">或</span><br><span class="line"><span class="keyword">import</span> bs4</span><br></pre></td></tr></table></figure>
+<p>作用：html 文档 ↔ 标签树 ↔beautifulsoup 类</p>
+<h3 id="BeautifulSoup-基本元素">BeautifulSoup 基本元素</h3>
+<p><img src="https://s1.ax1x.com/2020/03/19/8yjZ5R.md.png" alt="8yjZ5R.md.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/19/8yjEVJ.md.png" alt="8yjEVJ.md.png"></p>
+<p>例：<br>
+打印标签</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">r=requests.get(<span class="string">&quot;https://python123.io/ws/demo.html&quot;</span>)</span><br><span class="line">demo=r.text</span><br><span class="line">soup=BeautifulSoup(demo,<span class="string">&quot;html.parser&quot;</span>)  <span class="comment">#parser:html解析器</span></span><br><span class="line">soup.title  <span class="comment">#打印title标签</span></span><br><span class="line">soup.a.attrs[<span class="string">&quot;href&quot;</span>]   <span class="comment">#打印标签的链接</span></span><br></pre></td></tr></table></figure>
+<h3 id="html-内容遍历">html 内容遍历</h3>
+<p>html–树形结构<br>
+遍历：下行遍历、上行遍历、平行遍历</p>
+<h4 id="下行遍历：">下行遍历：</h4>
+<p><img src="https://s1.ax1x.com/2020/03/21/8fFk0H.png" alt=" "></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(child) <span class="keyword">in</span> soup.body.children:</span><br><span class="line">    <span class="built_in">print</span>(child)</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">获得子节点的数量：</span><br><span class="line"><span class="built_in">len</span>(soup.body.contents)</span><br><span class="line"></span><br><span class="line">获得其中某个的内容：</span><br><span class="line">soup.body.contents[<span class="number">1</span>]   <span class="comment">#获得第二个</span></span><br></pre></td></tr></table></figure>
+<p>ps:'儿子节点’这种叫法听起来真是贼奇怪</p>
+<h4 id="上行遍历：">上行遍历：</h4>
+<p><img src="https://s1.ax1x.com/2020/03/21/8fFPXD.png" alt=" "></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">查看父标签:</span><br><span class="line">soup.title.parent</span><br><span class="line">最高级标签（&lt;html&gt;他爸是他自己（.....)</span><br><span class="line"></span><br><span class="line">完整遍历：</span><br><span class="line">soup=BeautifulSoup(demo,<span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> parent <span class="keyword">in</span> soup.a.parents:</span><br><span class="line">    <span class="keyword">if</span> parent <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(parent)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(parent)</span><br></pre></td></tr></table></figure>
+<h4 id="平行遍历：">平行遍历：</h4>
+<p>发生在同一个父节点下的各个节点间<br>
+平行遍历获得的下一个结点不一定是标签类型</p>
+<p><img src="https://s1.ax1x.com/2020/03/21/8fFFne.png" alt=" "></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">查看下一个平行标签:</span><br><span class="line">soup.a.next_sibling</span><br><span class="line">查看前一个平行标签:</span><br><span class="line">soup.a.previous_sibling</span><br><span class="line"></span><br><span class="line">完整：</span><br><span class="line"><span class="keyword">for</span> sibling <span class="keyword">in</span> soup.a.<span class="built_in">next</span>（或前序结点previous）_siblings:</span><br><span class="line">    <span class="built_in">print</span>(sibling)</span><br></pre></td></tr></table></figure>
+<h3 id="Prettify">Prettify</h3>
+<p>作用：在每个标签后添加换行符，print 的时候易于阅读<br>
+使用方法：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(soup.prettify())</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(soup.a.prettify())    <span class="comment">#单独对某个标签进行处理</span></span><br></pre></td></tr></table></figure>
+<p> </p>
+<p>以上为 2020.3.16-2020.3.21</p>
+<hr>
+<h2 id="正则表达式">正则表达式</h2>
+<p>regular expression (RE)</p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>说明</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>任何单个字符</td>
+<td></td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>字符集</td>
+<td>[abc]:a、b、c; [a-z]:a~z 单个字符</td>
+</tr>
+<tr>
+<td>[^ ]</td>
+<td>非字符集</td>
+<td>[^abc]: 非 a、b、c 的单个字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>前一个字符 0 次或无限次扩展</td>
+<td>abc *：ab、abc、abcc… …</td>
+</tr>
+<tr>
+<td>+</td>
+<td>前一个字符 1 次或无限次扩展</td>
+<td>abc *：abc、abcc… …</td>
+</tr>
+<tr>
+<td>?</td>
+<td>前一个字符 0 次或 1 次扩展</td>
+<td>abc *：abc、abcc… …</td>
+</tr>
+<tr>
+<td>\</td>
+<td></td>
+<td>左右表达式任意一个： abc\ def :abc 或 def</td>
+</tr>
+<tr>
+<td>{num}</td>
+<td>扩展前一个字符 m 次</td>
+<td>ab{2}c：abbc</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串开头</td>
+<td>^abc:abc 在字符串的开头</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串结尾</td>
+<td>$abc:abc 在字符串的结尾</td>
+</tr>
+<tr>
+<td>( )</td>
+<td>分组标记，内部使用\</td>
+<td>操作符 (abc):abc; (abc</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>等价于 0~9</td>
+<td></td>
+</tr>
+<tr>
+<td>\w</td>
+<td>等价于 A ~ Z, a ~ z, 0 ~ 9, _</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-tutorial.html">https://www.runoob.com/regexp/regexp-tutorial.html</a></p>
+<h2 id="Re-库">Re 库</h2>
+<h3 id="调用方法">调用方法</h3>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
+<h3 id="表达式的表达类型">表达式的表达类型</h3>
+<p>raw string：不包含转义符(\)的字符串<br>
+string 类型(将’‘理解为转义符)<br>
+raw string 如：r’[1-9]\d{5}‘、r’\d{3}-\d{8}\d{4}-\d{7}’<br>
+string 如：[1-9]\\d{5}‘\\d{3}-\\d{8}\\d{4}-\\d{7}’</p>
+<h3 id="主要功能函数">主要功能函数</h3>
+<p><img src="https://s1.ax1x.com/2020/03/26/GSHMGD.png" alt=" "></p>
+<ol>
+<li>re.search(pattern,string,flags=0)</li>
+<li>re.match(pattern,string,flags=0)</li>
+<li>re.findall(pattern,string,flags=0)</li>
+<li>re.finditer(pattern,stirng,flags=0)</li>
+</ol>
+<p>pattern: 正则表达式的字符串或原生字符串表示<br>
+string：待匹配字符串</p>
+<p>flags：正则表达式使用时的一些控制标记，包括：<br>
+re. I:ignorecase, 忽略大小写<br>
+re. M:multiline, 使用’^‘时将每行都当作匹配开始<br>
+re. S:dotall, 让’.'匹配所有字符，包括换行符</p>
+<ol start="5">
+<li>re.search(pattern,string,maxsplit=0,flags=0)</li>
+</ol>
+<p>maxsplit: 最大分割数，限制分割的数量为 n，将剩下的所有部分输出为第 n+1 个</p>
+<ol start="6">
+<li>re.sub(pattern,repl,string,count=0,flags=0)</li>
+</ol>
+<p>repl: 替换的字符串<br>
+count：替换的最大次数<br>
+ </p>
+<p>以上为2020.03.22-2020.03.28</p>
+<hr>
+<h3 id="RE库的match对象">RE库的match对象</h3>
+<p>用 type(match)检查 match 的类型</p>
+<p><img src="https://s1.ax1x.com/2020/04/02/GGx6qs.png" alt=" "><br>
+<img src="https://s1.ax1x.com/2020/04/02/GGxyrj.png" alt=" "></p>
+<h3 id="贪婪匹配和最小匹配">贪婪匹配和最小匹配</h3>
+<p>re库默认采用贪婪匹配，即输出匹配最长的子串</p>
+<h2 id="Scrapy库">Scrapy库</h2>
+<h3 id="scrapy爬虫框架安装">scrapy爬虫框架安装</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install scrapy</span><br><span class="line">scrapy -h    # 测试安装成功</span><br></pre></td></tr></table></figure>
+<h3 id="scrapy-爬虫框架结构">scrapy 爬虫框架结构</h3>
+<p>5个主体+2个中间件<br>
+3个主体（engine+downloader+scheduler）为已有实现<br>
+2个主体（item pipelines+spiders）为用户配置：<br>
+item pipelines对获得信息进行处理<br>
+spiders提供url和解析网页的内容</p>
+<p>**以下3个不需要用户配置<br>
+engine控制所有模块之间的数据流，根据条件触发事件<br>
+downloader根据请求下载<br>
+scheduler对所有爬取进行调度<br>
+在以上三个中有一个中间件：downloader middleware</p>
+<h3 id="scrapy库爬虫常用命令">scrapy库爬虫常用命令</h3>
+<p>格式：scrapy<command>[options][args]<br>
+一个工程是最大的单元（大的scrapy框架），其中有多个spider<br>
+<img src="https://s1.ax1x.com/2020/04/05/GBh3Pf.png" alt=" "></p>
+<h3 id="实例">实例</h3>
+<p>…</p>
+<h2 id="实例-2">实例</h2>
+<h3 id="中国大学排名爬取">中国大学排名爬取</h3>
+<p>数据来源：<a target="_blank" rel="noopener" href="http://www.zuihaodaxue.com/zuihaodaxuepaiming2019.html">软科中国最好大学排名2019</a></p>
+<ol>
+<li>获取网页内容：gethtmltext()</li>
+<li>提取信息到合适的数据结构：fillunivlist()</li>
+<li>输出结果：printunivlist()</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> bs4</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gethtmltext</span>(<span class="params">url</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r=requests.get(url,timeout=<span class="number">30</span>)</span><br><span class="line">        r.raise_for_status()</span><br><span class="line">        r.encoding=r.apparent_encoding</span><br><span class="line">        <span class="keyword">return</span> r.text</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fillunivlist</span>(<span class="params">ulist,html</span>):</span></span><br><span class="line">    soup=BeautifulSoup(html,<span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> tr <span class="keyword">in</span> soup.find(<span class="string">&#x27;tbody&#x27;</span>).children:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(tr,bs4.element.Tag):</span><br><span class="line">            tds=tr(<span class="string">&#x27;td&#x27;</span>)</span><br><span class="line">            ulist.append([tds[<span class="number">0</span>].string,tds[<span class="number">1</span>].string,tds[<span class="number">3</span>].string])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printunivlist</span>(<span class="params">ulist,num</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&#123;:^10&#125;\t&#123;:^6&#125;\t&#123;:^10&#125;&quot;</span>.<span class="built_in">format</span>(<span class="string">&quot;排名&quot;</span>,<span class="string">&quot;学校名称&quot;</span>,<span class="string">&quot;总分&quot;</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        u=ulist[i]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;&#123;:^10&#125;\t&#123;:^6&#125;\t&#123;:^10&#125;&quot;</span>.<span class="built_in">format</span>(u[<span class="number">0</span>],u[<span class="number">1</span>],u[<span class="number">2</span>]))</span><br><span class="line">        </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;suc&quot;</span>+<span class="built_in">str</span>(num))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    uinfo=[]<span class="comment"># 存放大学信息</span></span><br><span class="line">    url=<span class="string">&quot;http://www.zuihaodaxue.com/zuihaodaxuepaiming2019.html&quot;</span></span><br><span class="line">    html=gethtmltext(url)</span><br><span class="line">    fillunivlist(uinfo,html)</span><br><span class="line">    printunivlist(uinfo,<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/232092d7.html" rel="prev" title="2020.03.08-2020.03.15">
+                  <i class="fa fa-chevron-left"></i> 2020.03.08-2020.03.15
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/dcd92ddb.html" rel="next" title="2020.03.16-2020.03.22">
+                  2020.03.16-2020.03.22 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

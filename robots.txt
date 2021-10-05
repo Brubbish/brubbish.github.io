@@ -1,0 +1,7 @@
+#hexorobots.txt
+User-agent: Googlebot
+Disallow: /google5dc74d1e04f67b06.html
+Disallow: /archives/
+Disallow: /tags/
+Disallow: /page/2
+Disallow: /page/3

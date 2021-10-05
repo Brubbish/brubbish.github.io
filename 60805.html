@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="标题不确定 0x0 摘要 移动设备和物联网设备的操作系统，以及它们随后的软件升级通常是以二进制文件的形式发布。由于这些二进制文件通常是闭源的，用户或第三方企业若是想测试软件的安全性只能依靠逆向工程，此外，如何验证二进制文件中最近的补丁是否有效也是一个悬而未决的问题。常规的软件补丁修复是提升移动设备和物联网设备安全性的重要保障，这需要开发人员、集成商和供应商的共同支持，及时把补丁分发到受影响的所有设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Brubbish&#39;s">
+<meta property="og:url" content="https://brubbish.github.io/60805.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="标题不确定 0x0 摘要 移动设备和物联网设备的操作系统，以及它们随后的软件升级通常是以二进制文件的形式发布。由于这些二进制文件通常是闭源的，用户或第三方企业若是想测试软件的安全性只能依靠逆向工程，此外，如何验证二进制文件中最近的补丁是否有效也是一个悬而未决的问题。常规的软件补丁修复是提升移动设备和物联网设备安全性的重要保障，这需要开发人员、集成商和供应商的共同支持，及时把补丁分发到受影响的所有设">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908215509.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908213440.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220859.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210917223725.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220751.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919143257.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919171915.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919180346.png">
+<meta property="article:published_time" content="2021-10-05T12:49:39.079Z">
+<meta property="article:modified_time" content="2021-09-25T12:41:57.302Z">
+<meta property="article:author" content="Bruce">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908215509.png">
+
+
+<link rel="canonical" href="https://brubbish.github.io/60805.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/60805.html","path":"60805.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Brubbish's</title><meta name="robots" content="noindex">
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">标题不确定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">0x0 摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Ⅰ.引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Ⅱ.概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-%E5%8D%B1%E9%99%A9%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%8C%91%E6%88%98"><span class="nav-number">4.1.</span> <span class="nav-text">A.危险模型和挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-%E6%96%B9%E6%A1%88"><span class="nav-number">4.2.</span> <span class="nav-text">B.方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Ⅲ. 设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%9B%BA%E4%BB%B6%E6%BC%8F%E6%B4%9E%E8%AF%84%E4%BC%B0"><span class="nav-number">5.1.</span> <span class="nav-text">A.基于深度学习的固件漏洞评估</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-%E9%80%9A%E8%BF%87%E6%B7%B1%E5%85%A5%E7%9A%84%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E5%88%A0%E5%8E%BB%E5%80%99%E9%80%89%E5%87%BD%E6%95%B0%E4%B8%AD%E7%9A%84%E8%AF%AF%E6%8A%A5"><span class="nav-number">5.2.</span> <span class="nav-text">B.通过深入的动态分析删去候选函数中的误报</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%AF%AD%E4%B9%89%E7%9B%B8%E4%BC%BC%E5%BA%A6"><span class="nav-number">5.3.</span> <span class="nav-text">C.计算函数语义相似度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D-%E8%A1%A5%E4%B8%81%E6%A3%80%E6%B5%8B"><span class="nav-number">5.4.</span> <span class="nav-text">D.补丁检测</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">Ⅳ.实现及案例研究</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="nav-number">6.1.</span> <span class="nav-text">A.特征提取和深度学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E5%BC%95%E6%93%8E"><span class="nav-number">6.2.</span> <span class="nav-text">B.动态分析引擎</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/60805.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-05 20:49:39" itemprop="dateCreated datePublished" datetime="2021-10-05T20:49:39+08:00">2021-10-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-25 20:41:57" itemprop="dateModified" datetime="2021-09-25T20:41:57+08:00">2021-09-25</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>标题不确定</h1>
+<h1>0x0 摘要</h1>
+<p>移动设备和物联网设备的操作系统，以及它们随后的软件升级通常是以二进制文件的形式发布。由于这些二进制文件通常是闭源的，用户或第三方企业若是想测试软件的安全性只能依靠逆向工程，此外，如何验证二进制文件中最近的补丁是否有效也是一个悬而未决的问题。常规的软件补丁修复是提升移动设备和物联网设备安全性的重要保障，这需要开发人员、集成商和供应商的共同支持，及时把补丁分发到受影响的所有设备上。但实际上，供应商们对移动和物联网产品遵循着不同，有时候甚至是不恰当的安全更新议程。其次，以往的研究反映出存在着“隐蔽的补丁缺口”：有些供应商错误的声称他们已经修复了漏洞。因此，在二进制文件中检测漏洞是否被修复的技术对于软件安全至关重要。深度学习推断代码相似性和漏洞检测的能力已经被证明了在静态二进制代码分析中极具前景，然而，这种方法在捕捉系统动态行为上却失效了，导致了可能在挖掘在野漏洞时产生大量误报。另外还有一点十分关键，他们无法捕捉到用于区分漏洞是否修复所需的细粒度特征。</p>
+<p>在本文中，我们提出了PATCHECKO，一个针对可执行文件的漏洞和补丁存在性检测框架。PATCHECKO依赖于结合了基于深度学习的静态代码分析和动态分析的混合跨平台二进制代码相似性分析方法。它不需要目标二进制文件的源代码，也不需要访问脆弱函数的源代码。我们在最新的Google Pixel 2 和 Android Things IoT 固件映像上评估了PATCHECKO的性能，其中有25个CVE漏洞已经被报告和修复了。结果表明我们的深度学习模型在漏洞检测上达到了93%的准确率。通过动态分析，我们删减了深度学习阶段得到的候选函数（包括误报）。最终，PATCHECKO在规定时间内成功地在排名前三的候选函数中识别出了正确的匹配。此外，它的差分引擎也以96%的准确率区分了脆弱函数和已修复漏洞的函数。</p>
+<h1>Ⅰ.引言</h1>
+<p>软件漏洞披露的数量和发现漏洞的速度每年都在稳步上升。2010年提交给CVE数据库的漏洞报告数量大约为4600篇，2016年为6500篇，随后在2017年翻了一番，超过了14700篇。与此同时，移动和物联网设备的日益普及使他们成为了漏洞研究和利用的首选目标，根据Gartner预测，到2020年全球将会有204亿台物联网设备。此外，消费者和企业在其产品或者活动中也常常直接使用供应商提供的固件和补丁。这些外部设备通常需要进行一些检查步骤，包括对产品软件的安全断言等，例如进行黑盒渗透测试。如果这类测试没有做好，就可能会导致IoT设备的安全问题。好在对于渗透测试者来说，移动和物联网供应商通常重复使用开源代码并将其应用到他们的产品。渗透测试者通常关注于加密函数库、媒体函数库和分析器等在漏洞被发现后定期更新的二进制文件，但不幸的是，移动和物联网设备中这些库的源代码不易被获得，导致它们很难及时被更新到最新版本。</p>
+<p>通常来说，移动和物联网设备的补丁管理对于这种异质的生态系统来说是一种挑战。2018年，美国联邦贸易委员会（FTC）的一份报告显示，一个生态系统的多样性一方面为消费者提供了大量的选择，另一方面却增加了安全更新的复杂性和不一致性。软件补丁必须经过许多中间商，从开发者到集成商再到供应商，最后才被推送到终端设备上。</p>
+<p>这种较长的补丁链产生了两个问题。首先，这种冗长的中间人名单会使得补丁不能被及时到终端。在2016年， Duo Labs team 发现仅有25%的移动设备运行了最新的补丁。其次，供应商并不总能准确地报告他们是否修复了某个漏洞（隐蔽的补丁缺口），特别是对于移动设备和物联网设备。一个研究表明，由供应商发布的80.4%的固件都包含了多个已知漏洞，许多最近发布的固件升级包中里用使用的第三方库也存在许多漏洞，有些漏洞甚至在八年前就被发现了。另一个针对安卓手机的研究发现，一些供应商通常会<em>忘记</em>将漏洞修复，使得（物联网）生态系统的某一部分暴露在潜在的风险中。<br>
+<em>隐藏的补丁间隙</em>不止会导致大量设备易受攻击，同时，随着代码重用的普遍性增加，开发人员可能直接使用存在已知漏洞的代码，导致漏洞迅速传播。</p>
+<p>因此，识别存在漏洞的二进制代码和修复情况对终端用户来说是一个严峻的挑战。PATCHECKO通过一个两步混合方法解决了这个问题，该方法结合了一个轻量的固件静态分析和紧随其后的准确的动态分析，以完善静态分析的结果。</p>
+<p>**依赖深度学习进行的已知漏洞挖掘。**对于如何在给定的二进制文件中得到漏洞的集合-或者至少是超集，是一个已经被探索过的问题，但并没有令人满意的答案。最近，研究人员正在尝试通过跨平台的二进制代码相似性检查来检测已知漏洞。*这类方案尝试识别目标固件中是否存在函数，其与预填充的存在已知漏洞的函数数据库中的函数相似。*他们直接从控制流图里代表函数的的每个结点的二进制代码中提取健壮（robust）的、独立于平台的特征。除此之外，还有的方法侧重于二进制代码的相似性检测，其中使用了图匹配算法来检查两个函数的控制流图表达是否相似。更进一步来说，在自然语言处理方面的深度学习可以代替人工选择特征。</p>
+<p>前人做的研究表明深度学习方法可以用于在二进制代码分析中检测漏洞。最新的算法训练表现的模型评估指标达到0.971、检测准确率超过80%。然而，即便有这种较好的表现，假设目标二进制代码有3000+个函数，我们仍旧会得到大量（600+个）候选函数需要我们在自动分析后人工进行确认。这已经证明了，在能够访问符号表的情况下，候选函数是可以被精简的。然而，对于没有符号表的商用现成品（COTS）二进制文件，这种方法只能从它们那得到一个庞大的候选函数集，且大多是误报。因此，需要后续的步骤来对候选函数进行删减，以确保只识别和报告出真正含有漏洞的函数。PATCHECKO使用了目标二进制代码的静态分析结果（静态特征）来完成这一阶段。</p>
+<p>**通过动态分析对候选函数进行删减。**PATCHECK依据动态分析的结果（动态特征）对基于深度学习的方法得到的候选函数集进行删减，以避免误报。静态分析阶段已经移除了大多数极不可能含有漏洞的函数，只返回了一小部分函数，这使得PATCHECKO可以在这些函数上使用更耗费资源的动态分析技术。以往的工作出于对可扩展性的考虑，将执行速度放在首位，而牺牲了准确性，这种方法仅关注了<em>启发式或</em>基本块和函数的静态特征。相比之下，PATCHECKO混合的方法不仅加快了漏洞函数匹配的速度，而且在进行移除误报的操作后也提升了准确率。</p>
+<p>这个初始框架让我们能够开发一种新的训练模型生成方法，这种方法使用默认策略预训练了一个与任务无关的图嵌入网络。我们接着对从相同源代码编译而来但编译优化级别和目标平台不同的二进制函数使用了这种方法，生成了一个大规模的数据集。随后，我们构建了一个漏洞库，其中包含了1382个移动/物联网设备固件的漏洞。</p>
+<p>然而，该解决方案最终的目标不仅仅是找到相似的漏洞函数。<em>最终目标</em>是漏洞分辨出是否在目标固件，还是已经被修复了。</p>
+<p>**未修复检测。**过去的研究已经发展出了准确的补丁存在性检测，然而这个方案仅在能够访问到待检测函数和已修复漏洞函数的源代码时才适用。同时，因为这个方案依赖于基于二进制相似性的方法来定位目标函数，这也可能导致之前提到过的对候选函数的大量误报。我们的方案直接操作于剥离符号表的商用二进制文件，且在不需要访问源代码的同时还能明显地减少误报。</p>
+<p>最后，本文提出了PATCHECKO，一个结合了基于深度学习的二进制代码相似性检查和动态分析的框架，适用于挖掘已知漏洞和补丁存在性检测。根据我们的评估结果，PATCHECKO在准确性和效率方面都明显优于目前最先进的算法</p>
+<p>**贡献。**我们总结了我们做出的贡献如下：</p>
+<ul>
+<li>提出了一个高效的固件漏洞和补丁存在性检测框架。该框架利用了深度学习和动态二进制分析技术，达到了对受限二进制固件的高准确率和高性能的已知漏洞挖掘，而无需访问源代码。</li>
+<li>提出了一个细粒度的二进制比较算法，能够准确的区分同一函数的二进制代码的修复和未修复版本。我们的方案目前支持跨平台的ARM和X86架构。针对比较而选用的相关特征使得此方案能够以非常低的误报率，准确的定位未打补丁的函数。</li>
+<li>我们用4种架构、100个安卓固件库、25个CVE漏洞来评估PATCHECKO的性能，结果表明它非常有希望在实际环境中进行得到应用。PATCHECKO的大部分原型都是完全自动化的，同时，它的动态分析模块可以准确的识别和删除深度学习阶段的误报。动态分析后，由另一个模块再对结果进行处理，将未打补丁的函数和已修复的函数区分开。</li>
+</ul>
+<h1>Ⅱ.概述</h1>
+<p>我们在Ⅱ-A里介绍了漏洞函数相似性的问题和挑战，在Ⅱ-B里展示了我们的解决方案</p>
+<h2 id="A-危险模型和挑战">A.危险<em>模型</em>和挑战</h2>
+<p>在本文中，我们主要考虑在受限的商用移动/物联网设备二进制文件中寻找已知漏洞，并假设无法访问到源代码。我们还假设二进制文件没有经过压缩或者混淆，且是由高级语言，即具有函数概念的语言编译而成的。因为对于压缩过的代码来说，如何对代码进行处理十分重要，也带来了另一个方面的难题，而这超出了本文讨论的范围。基于以上这些假设，我们列出了在移动/物联网平台下面临的以下几个挑战。<br>
+**<br>
+移动/物联网平台通常由各种不同架构的硬件组成，但它们可能拥有相同的软件漏洞。因此，我们特别考虑了，不同目标平台和优化级别对相同源代码产生的二进制程序的情况。通过这样，我们可以生成不同硬件架构（例如x86和ARM）和软件平台（例如Windows、Linux和MacOS）下具有相同漏洞的二进制函数。<br>
+**大量的候选漏洞函数。**为了说明候选漏洞函数的数量级，我们分析了 Android Things 1.0 和 IOS 12.0.1 的固件。对于 Android Things 1.0 ，我们找到了379个不同的库，其中包含440532个函数；对于 IOS 12.0.1 ，我们找到了198个库，包含93714个函数。虽然过往的研究表明基于深度学习的方法可以用于识别候选漏洞函数集，且具有较高精度，但这类技术并没有自动化的解决方案来对误报结果进行进一步删减。此外，*【42】*的方案依赖于符号表，但受限制的商用软件中并没有符号表可以使用。因此，还有一个问题就是如何对没有符号表的二进制文件进行候选漏洞函数的删减<br>
+**区分已修复代码和漏洞代码。**未修复漏洞的函数和被修复过的函数可能并不容易区分，它们之间的差别可能小到只改变了一行代码。以往的研究可以检测漏洞是否被修复了，但这需要访问漏洞源码和修复过的源码。但实际上，我们通常无法获得二进制函数的源码。</p>
+<p>基于这些激励人的挑战，我们现在来介绍一下PATCHECKO框架。</p>
+<h2 id="B-方案">B.方案</h2>
+<p>PATCHECKO框架的概况在图1进行了展示。我们的方案分为三个步骤进行：（1）用深度学习训练漏洞检测器，（2）用训练的漏洞检测器对目标移动/物联网固件进行静态分析，（3）对识别出的含有漏洞的子程序进行更进一步的动态分析，验证漏洞是否存在。分析过程用到了从漏洞函数和已修复漏洞函数中提取的静态和动态特征，来识别候选漏洞函数是否已经被修复。<br>
+PATCHECKO的目标是将二进制固件中的函数与CVE漏洞库以及相关的补丁进行对比，输出目标固件镜像中的漏洞函数以及对应的CVE编号。为了在运行时比较两个二进制函数，PATCHECKO结合了静态和动态分析技术以及人工智能和机器学习的深度学习方法。PATCHECKO先使用轻量级的静态分析模块将每个固件中的函数转换为用于机器学习的特征向量，接着调事先训练过的深度神经网络模型来判断两个（源代码相同但编译选项可能不同的）函数（一个来自固件，另一个来自CVE数据库）是否相似。如果两个函数检测结果表明可能相似，PATCHECKO就会进行更深入的动态分析，来确保静态分析的结果并不是误报。<br>
+为了进行动态分析，PATCHECKO在对应的移动/物联网嵌入式系统平台内运行CVE漏洞函数和目标固件函数时，使用了DLL注入以及远程调试并给函数参数和全局变量赋了相同的值。它捕捉了两个函数的每个运行轨迹并提取动态特征，例如指令的数量和类型、系统调用的次数和类型，以及库函数调用和堆栈数据读写量等。<br>
+基于提取出的这些特征，PATCHECKO算出两个函数的相似度并判断静态分析的结果是否是正确的。如果正确，这个固件里的这个函数就会被当作含有漏洞，与对应的CVE编号在最后被作为结果输出。值得一提的是，PATCHECKO的分析过程完全不需要访问源代码，因此，它完全不需要固件供应商的支持。<br>
+因为我们并不知道输出的函数是否被修复过，PATCHECKO会首先基于两个函数的静态特征对它们进行比较，然后再拿修复过的函数进行比较，随后使用差分引擎对静态/动态特征和相似度进行分析，来判断函数中的漏洞是否被修复了。</p>
+<p>![图1]](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210903221707.png">https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210903221707.png</a>)</p>
+<h1>Ⅲ. 设计</h1>
+<p>在这一节中，我们将展示PATCHECKO框架的设计方案，包括它是如何处理移动/物联网二进制可执行文件、如何发现并报告固件里二进制代码/数据段中的漏洞点，且无需访问源代码。在基于相似性检测的漏洞挖掘之外，PATCHECKO还能够准确识别目标固件是否打上了安全补丁。</p>
+<h2 id="A-基于深度学习的固件漏洞评估">A.基于深度学习的固件漏洞评估</h2>
+<p>对于已知漏洞挖掘，深度学习方法的准确性和效率都明显优于过去的二分图匹配和动态相似性测试。这是由于深度学习方法可以从整体上评估二进制文件的图像表示，而且可以在在没有人为定义规则的情况下自动学习关系。PATCHECKO的第一步使用了一个深度学习框架，以秒为单位生成了一个漏洞候选函数列表。为了符合之前的假设，我们首先需要提取静态静态函数特征，构建一个训练数据集，然后对深度学习模型进行训练。<br>
+**特征提取。**为了提取函数的静态特征，PATCHECKO首先分析了函数的汇编格式，标记了每个每个汇编例程正确的边界、范围。其次，区分代码和数据同样很重要。PATCHECKO的神经网络模型输入的数据是从目标函数的反编译代码中提取的函数特征向量。为了获得特征向量，我们先识别了函数的边界。在尽量不依赖指令集语义的情况下识别函数边界是一个有趣的问题。之前研究的方法从传统的机器学习到神经网络再到函数接口验证，*我们假设这些方法都由反汇编器通过某种具有鲁棒性的启发式技术完成。<em>反汇编器可以提供一个二进制文件的控制流图（CFG），一个在漏洞检测中常常使用的特征。<br>
+图2表示了PATCHECKO的函数特征提取过程。PATCHECKO利用了具有不同基本块级属性的CFG作为特征来进行模拟。对于每个函数，PATCHECKO可以提取函数级、基本块级、块间级信息。表Ⅰ展示了生成一个特征向量用到的提取出的48个有趣的特征。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908215509.png" alt="图2"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908213440.png" alt="表Ⅰ"><br>
+PATCHECKO保证了提取特征的丰富（48个特征）、高效（自动提取）和可扩展（支持多架构）<br>
+**训练深度学习模型。**对于PATCHECKO的深度学习，我们采用了一个由线性层堆叠的序贯模型，所有超参数都是凭经验确定的。图3展示了一个用于深度学习模型的样本向量。样本向量由函数向量对和一个表示两个函数是否相似的比特组成，其中两个相似的特征向量对应着相同源代码的两个二进制子程序（函数）。图4描述了一个用6层网络模型训练的实际过程。我们首先给每一层指定了输入。顺序模型中的第一层需要接收</em>输入形状的信息。*这个模型使用了从我们数据集中提取的函数特征进行训练，该数据集包含了2108个具有不同架构的二进制文件。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220859.png" alt="20210918220859"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210917223725.png" alt="20210917223725"></p>
+<h2 id="B-通过深入的动态分析删去候选函数中的误报">B.通过深入的动态分析删去候选函数中的误报</h2>
+<p>我们使用动态分析来进一步删减深度学习阶段返回的候选函数。这个阶段决定了先前报告的函数对是否确实是匹配相似的（例如，均为修复过或含有漏洞的函数）。在动态分析步骤进行时，程序用相同的输入值执行了两个候选函数，并比较观察到的行为和其他几个特征的相似性。<br>
+生成两个函数的编译选项可能不同，在这种情况下，对于相同的输入，两个函数的执行轨迹可能差别很大。因此，我们的分析将考虑执行轨迹的语义相似性，即两个函数输入相同数值后执行完毕对内存的影响。<br>
+为了实现这个功能，我们从执行轨迹中提取了特征（动态特征）。我们的方法比较了两个具有相同输入值的函数执行所产生的两条轨迹的特征向量。如果对于不同的输入值，均观察到具有相似特征，那么我们就猜测它们在语义上是相似的。<br>
+图5展示了PATCHECKO动态分析的工作流程。真正要进行动态分析还有如下几个困难，首先，如何准备执行的环境；其次，如何同时监控多个候选函数的执行情况；另外，由于我们研究的是异构的移动/IoT生态系统，因此要运行所有的二进制代码来获得执行轨迹并不容易，特别是一些函数的执行需要“有效”的输入。我们先讨论输入动态分析引擎的准备工作。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220751.png" alt="20210918220751"><br>
+<strong>输入动态分析引擎的数据。<strong>实现PATCHECKO动态分析引擎的一个关键问题是如何准备相关的输入。动态分析引擎需要两个输入内容：程序的二进制代码，我们称为</strong>F</strong>，以及<strong>F</strong>的运行环境。其中程序的二进制代码包括了目标函数<strong>f</strong>。其中有一个难点，如何将目标函数和整个二进制函数的执行区别开。一个方案是在执行时提供具体而有效的输入值，因为无法引导操作系统在特定的地址开始执行程序，所以这个方案通常需要装载并运行整个程序。PATCHECKO提供一个包含了所需执行状态的执行环境，从而解决了这个问题。<br>
+PATCHECKO使用模糊测试为不同目标函数生成不同的输入，以提高相关控制流图（CFG）上的覆盖率。对于每次目标函数的执行，PATCHECKO都会导出一个<em>压缩的函数级可执行文件</em>，即一个压缩的、可通过运行时DLL注入执行的二进制文件和使其能够运行的相关输入。这使得动态分析执行引擎能够高效地执行目标函数，同时也意味着PATCHECKO可以针对不同目标函数使用特定执行环境和不同输入。<br>
+**验证候选函数的执行。*<em>在PATCHECKO开始<em>检测</em>目标函数前，它对众多的候选函数使用了<em>多样的</em>执行环境。在我们开始运行目标函数f后会有几个可能的结果，例如，函数f可能正常运行，可能触发了系统异常，或者进入死循环。如果候选函数f触发了一个系统异常，我们将从候选集里移除该函数。在使用多种执行环境验证各个函数执行后，候选的函数将会被<em>instrumented</em><br>
+<strong>目标函数</strong></em>instrumentation*。在特定执行环境下，动态分析引擎对函数f的分析结果输出了一个长度为N的特征向量<em>v(f，env)</em>。为了生成该特征向量，PATCHECKO追踪了函数的执行。在动态分析时，通常有大量的工具可以使用，例如调试器、模拟器和虚拟机，但由于移动/IoT固件架构和平台的异构性，PATCHECKO因此利用了一个支持多种架构和平台的<em>instrumentation</em>工具。<br>
+PATCHECKO提取了各种指令的指定特征，包括指令信息（例如指令数量）、系统级信息（例如内存访问）以及例如函数和系统调用的高级别特征。表Ⅱ展示了我们最初考虑并最终证明对建立函数二元相似性有用的初始特征集。然而这些特征并不并不全面，也很容易进一步扩展。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919143257.png" alt="20210919143257"><br>
+对于每次执行，动态分析引擎会对每个特征会生成一组观察结果，例如，在上面的例子里会生成21组观察结果。当f里的所有指令都被覆盖到后，PATCHECKO把所有结果合并成一个单独的向量，例如f<sub>input_1</sub>。同样的过程会在每次对函数进行不同输入时重复，产生f<sub>input_2</sub>、f<sub>input_3</sub>、…、f<sub>input_N</sub>。<br>
+现在我们能够提取目标函数的动态特征了，接下来介绍计算一对函数和特征集的相似性的算法。</p>
+<h2 id="C-计算函数语义相似度">C.计算函数语义相似度</h2>
+<p>对于每个函数对(f,g)，PATCHECKO基于它们的动态特征向量距离计算出语义相似度。在<em>数据挖掘的背景下，距离已经被用于代表对象特征的维度。<em>值得一提的是，对于每个函数的特征向量，PATCHECKO使用了闵氏距离(Minkowski Distance)作为测量相似度的方法。不同的</em>行为</em>会导致特征向量中相应的相应坐标值有轻微差异，我们现在详细讨论一下距离的测量。<br>
+闵氏距离是欧氏距离(Euclidean Distance)和曼哈顿距离(Manhattan distance)的一般化形式（闵氏距离中的p=2时即为欧氏距离，p=1时即为曼哈顿距离）。在我们的项目中，将闵氏距离的p设为3。闵氏距离公式的一般式如下：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919171915.png" alt="20210919171915"><br>
+在这个闵氏距离公式中，f代表了CVE函数，g代表目标固件中的候选函数，k指的是用到了第k个执行环境，x和y分别代表f和g的动态特征向量，此时P设为3。<br>
+我们计算了每一对(f,g)在多种执行环境下的相似度，然后算出所有执行环境中的平均值得到最终结果。设k为执行环境的编号，我们定义：<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919180346.png" alt="20210919180346"><br>
+最后，我们将每个候选函数的动态特征向量送入相似度计算的方程中，得到一系列（函数和相似性距离）的排名对（见图5）。这是检测已知漏洞的最后一步，现在我们开始设计检测补丁是否存在的最后一个步骤。</p>
+<h2 id="D-补丁检测">D.补丁检测</h2>
+<p>我们注意到一个补丁通常只对漏洞函数引入了较少的改变，然而这些细微的改变仍然可以对修复前和修复后的函数造成明显影响，使它们存在一定差异-这一观点会在第Ⅴ节得到证实。基于这个概念，PATCHECKO使用了一个差分引擎来收集静态和动态相似性检测结果，来判断一个漏洞函数是否被修复了。<br>
+对于给定的漏洞函数f<sub>v</sub>、修复过的函数f<sub>p</sub>和目标函数f<sub>t</sub>，差分引擎会首先生成三个值：f<sub>v</sub>、f<sub>p</sub>和f<sub>t</sub>的静态特征、sim<sub>v</sub>与sim<sub>t</sub>、sim<sub>p</sub>与sim<sub>t</sub>的动态语义相似性得分以及S<sub>v</sub>和S<sub>p</sub>之间的<em>差异签名</em>。静态特征即上述的48个不同的量化特征，动态语义相似度得分与上述的函数相似度指标。<em>差异签名</em>是一个用于比较CFG结构的附加指标，即两个函数的CFG拓扑以及语义信息，例如函数参数、局部变量和库函数调用。</p>
+<h1>Ⅳ.实现及案例研究</h1>
+<p>我们将PATCHECKO框架部署在了Ubuntu18.04-amd64上，实验过程在一个配有 Intel Xeon E5-1650v4 、 128GB 内存、 2TB SSD 和 4块 NVIDIA 1080Ti GPU 的服务器上进行，在训练和评估过程中，4块GPU均被使用到了。在设计中，PATCHECKO由四个主要部分组成：特征提取器、深度学习模型、动态分析引擎和用于补丁检测的差异分析引擎。</p>
+<h2 id="A-特征提取和深度学习">A.特征提取和深度学习</h2>
+<p>特征提取器接收的输入是目标函数的反编译代码。我们默认 IDA Pro （一个用于提取二进制程序特征的商用反编译器）识别出的函数边界是可用且正确的。因此，我们将特征提取器作为 IDA Pro 的一个插件。我们开发出了插件的两个版本：一个带GUI，另一个使用命令行（用于自动化）。因为PATCHECKO的目标是跨平台的二进制文件，所以插件可以支持对不同架构（x86、amd64和arm 32/64）进行特征提取。<br>
+我们基于Keras和TensorFlow实现了神经网络的建模、训练和分类，使用TensorBoard来实现整个训练过程的可视化。</p>
+<h2 id="B-动态分析引擎">B.动态分析引擎</h2>
+<!-- flag of hidden posts -->
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

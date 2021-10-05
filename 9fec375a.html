@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="OllyDbg 学习 常用断点 int(interrupt) 3断点 在OD中用’F2’来设置，机器码是0xCC 执行一个int 3断点时，该地址处的指令首字节修改位CC（OD显示的还是原来的指令） 优点是可以设置无数个指令，缺点是改变了原程序机器码，容易被软件检测到，例如有些软件会检测api的首地址是否为0xCC 硬件断点 和DRx调试寄存器有关 DRx调试器共有8个（x从0 ~ 7）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020.02.24-2020.03.01">
+<meta property="og:url" content="https://brubbish.github.io/9fec375a.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="OllyDbg 学习 常用断点 int(interrupt) 3断点 在OD中用’F2’来设置，机器码是0xCC 执行一个int 3断点时，该地址处的指令首字节修改位CC（OD显示的还是原来的指令） 优点是可以设置无数个指令，缺点是改变了原程序机器码，容易被软件检测到，例如有些软件会检测api的首地址是否为0xCC 硬件断点 和DRx调试寄存器有关 DRx调试器共有8个（x从0 ~ 7）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/24/3G1qVf.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/28/3D6OqU.png">
+<meta property="article:published_time" content="2020-02-24T07:40:38.000Z">
+<meta property="article:modified_time" content="2020-07-05T13:31:06.000Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="周报">
+<meta property="article:tag" content="加密与解密">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/02/24/3G1qVf.png">
+
+
+<link rel="canonical" href="https://brubbish.github.io/9fec375a.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/9fec375a.html","path":"9fec375a.html","title":"2020.02.24-2020.03.01"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2020.02.24-2020.03.01 | Brubbish's</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">OllyDbg 学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%AD%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">常用断点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#int-interrupt-3%E6%96%AD%E7%82%B9"><span class="nav-number">1.1.1.</span> <span class="nav-text">int(interrupt) 3断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E6%96%AD%E7%82%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">硬件断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%96%AD%E7%82%B9"><span class="nav-number">1.1.3.</span> <span class="nav-text">内存断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%E4%B8%80%E6%AC%A1%E6%80%A7%E6%96%AD%E7%82%B9"><span class="nav-number">1.1.4.</span> <span class="nav-text">内存访问一次性断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E6%96%AD%E7%82%B9"><span class="nav-number">1.1.5.</span> <span class="nav-text">消息断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%96%AD%E7%82%B9"><span class="nav-number">1.1.6.</span> <span class="nav-text">条件断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%AE%B0%E5%BD%95%E6%96%AD%E7%82%B9"><span class="nav-number">1.1.7.</span> <span class="nav-text">条件记录断点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Run-trace"><span class="nav-number">1.3.</span> <span class="nav-text">Run trace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hit-trace"><span class="nav-number">1.4.</span> <span class="nav-text">Hit trace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OD%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">OD常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%B1%E7%A0%81"><span class="nav-number">1.5.1.</span> <span class="nav-text">乱码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%8F%8D%E6%B1%87%E7%BC%96%E7%AA%97%E5%8F%A3%E8%BE%93%E5%85%A5%E2%80%99push-E000%E2%80%99%E4%B8%8D%E8%83%BD%E6%AD%A3%E7%A1%AE%E8%AF%86%E5%88%AB"><span class="nav-number">1.5.2.</span> <span class="nav-text">在反汇编窗口输入’push E000’不能正确识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#od%E2%80%99%E5%81%87%E6%AD%BB%E2%80%99"><span class="nav-number">1.5.3.</span> <span class="nav-text">od’假死’</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">静态分析技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E5%88%86%E6%9E%90"><span class="nav-number">2.1.</span> <span class="nav-text">文件类型分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDA"><span class="nav-number">2.2.</span> <span class="nav-text">IDA</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/9fec375a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2020.02.24-2020.03.01
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-24 15:40:38" itemprop="dateCreated datePublished" datetime="2020-02-24T15:40:38+08:00">2020-02-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-05 21:31:06" itemprop="dateModified" datetime="2020-07-05T21:31:06+08:00">2020-07-05</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>OllyDbg 学习</h1>
+<h2 id="常用断点">常用断点</h2>
+<h3 id="int-interrupt-3断点">int(interrupt) 3断点</h3>
+<p>在OD中用’F2’来设置，机器码是0xCC<br>
+执行一个int 3断点时，该地址处的指令首字节修改位CC（OD显示的还是原来的指令）</p>
+<p>优点是可以设置无数个指令，缺点是<strong>改变了原程序机器码，容易被软件检测到</strong>，例如有些软件会检测api的首地址是否为0xCC</p>
+<h3 id="硬件断点">硬件断点</h3>
+<p>和DRx调试寄存器有关<br>
+DRx调试器共有8个（x从0 ~ 7）</p>
+<p><img src="https://s2.ax1x.com/2020/02/24/3G1qVf.png" alt=" "></p>
+<span id="more"></span>
+<p>0 ~ 3：调试地址寄存器，用于保存需要监视的地址，例如设置硬件断点<br>
+4、5：（先不做了解）<br>
+6：调试寄存器组状态寄存器（‘这个寄存器主要是在调试异常产生后，报告产生调试异常的相关信息’)<br>
+7：调试寄存器组控制寄存器，控制调试<br>
+硬件断点的原理是使用DR0、DR1、DR2、DR3设定地址，并用DR7设定状态，因此最多设置4个断点<br>
+设置方法为：1.在代码行单击右键，执行’断点’-&gt;‘硬件执行 2.在数据窗口’右键’-&gt;‘硬件访问断点’-&gt;（选择数据长度1/2/4字节），如4字节（Dword)当访问xxxxx0~xxxxx3的内存时会被断下</p>
+<p>快捷键’F4’执行到光标所在的行</p>
+<h3 id="内存断点">内存断点</h3>
+<p>原理是对所设的地址赋予不可访问/不可写属性，当访问/写入的时候就会产生异常，OD比较异常地址是不是断点地址，如果是就中断<br>
+设置内存断点在每次出现异常时都需要比较来判断是否应该中断，所以会降低OD的执行速度<br>
+OD只能下一个内存断点，设置方法为：在数据/代码窗口选中要下断点的地址区域，右键执行’断点’-&gt;‘内存写入’<br>
+硬件访问/写入断点实在触发硬件断点的下一条指令处下断；内存断点是在触发断点的指令处下断。<br>
+内存断点不修改原始代码，不会因为被程序校验而失败</p>
+<h3 id="内存访问一次性断点">内存访问一次性断点</h3>
+<p>windows 对内存使用段页式的管理方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(quote):</span><br><span class="line">段页式存储管理方式即先将用户程序分成若干个段，再把每个段分成若干个页，并为每一个段赋予一个段名。</span><br><span class="line">（基本分段存储管理方式和基本分页存储管理方式原理的结合）</span><br></pre></td></tr></table></figure>
+<p>快捷键’Alt+M’显示内存，可以看到许多段，每个段都有不可访问、读、写、执行属性<br>
+可用’F2’对整个段设置断点。当所在段被读取或执行时，中断发生，断点删除。</p>
+<h3 id="消息断点">消息断点</h3>
+<p>当某个特定窗口函数接收到某个特定消息时，消息断点将使程序中断<br>
+消息断点与INT 3断点的区别在于：INT 3 断点可以在程序启动之前设置，消息断点<strong>只有在窗口被创建后才能设置</strong></p>
+<p>当用户点击按钮、移动光标、输入文字时，一条消息就会发送给当前窗体。发送的信息有4个参数：1个窗口句柄，1个消息编号，2个32位长的参数。<br>
+设置方法：工具栏中的’w’按钮，在条目上单击右键…。</p>
+<p>ps：<em>当单击按钮并松开时会发送’WM_LBUTTONUP’这个消息。</em></p>
+<h3 id="条件断点">条件断点</h3>
+<p>在满足一定条件时才会中断。OD中可以按寄存器、储存器、消息等设断点。<br>
+用带有条件表达式的INT 3 断点，当调试器遇到断点时，计算表达式的值，如果表达式有效则断点生效。</p>
+<ol>
+<li>按寄存器条件中断<br>
+快捷键’Shift+F2’ 条件表达式例如：  eax==0400000</li>
+<li>按存储器条件中断<br>
+<em>（CreateFileA函数用于打开文件，可对其设断）</em><br>
+在栈窗口右键，执行’Address’-&gt;'Relative to ESP’可看到各个参数相对于当前ESP的地址，如果要得到第一个参数的地址，可以用[ESP+4],如果要得到指向的字符串，使用[[ESP+4]],表达式可用：[STRING [ESP+4]]==“…”(STRING前缀是“以0结尾的ASCII字符串”,还有UNICODE前缀等)</li>
+</ol>
+<h3 id="条件记录断点">条件记录断点</h3>
+<p>可以记录断点处函数表达式或参数的值，也可以设置断点次数，每次符合条件暂停后计数值-1<br>
+快捷键’Shift+F4’打开条件记录窗口<br>
+条件记录断点可以向插件传递多个命令</p>
+<h2 id="插件">插件</h2>
+<p>OD只能加载32个插件<br>
+添加插件可通过将插件复制到’plugin’文件夹中</p>
+<h2 id="Run-trace">Run trace</h2>
+<p>把程序执行过的指令保存下来。<br>
+将地址、寄存器等记录到Run tarce 缓冲区中。如果缓冲区太小可能造成缓冲区溢出，OD会自动丢弃旧记录。<br>
+数据可以在’查看’-&gt;‘RUN跟踪’里（或按’…‘）查看。使用’+‘和’-'浏览程序执行路线</p>
+<h2 id="Hit-trace">Hit trace</h2>
+<p>分辨哪一部分代码被执行了，哪一部分没有执行。在遇到一段跳转分支比较多的代码，需要了解程序执行路线时，可以用Hit trace。<br>
+选中代码-&gt;右键-&gt;‘Hit trace’-&gt;‘Add selection’<br>
+效果是执行过的指令前为红色，未执行的为蓝色：<br>
+<img src="https://s2.ax1x.com/2020/02/28/3D6OqU.png" alt=""></p>
+<p>ps：<strong>不要在监视的代码中设置断点</strong></p>
+<h2 id="OD常见问题">OD常见问题</h2>
+<h3 id="乱码">乱码</h3>
+<ol>
+<li>右键’分析’-&gt;‘分析代码’或快捷键’Ctrl+A’</li>
+<li>右键’分析’-&gt;‘从模块中删除分析’，或在udd文件夹中删除相应文件</li>
+</ol>
+<h3 id="在反汇编窗口输入’push-E000’不能正确识别">在反汇编窗口输入’push E000’不能正确识别</h3>
+<p>改为’push 0E000’</p>
+<h3 id="od’假死’">od’假死’</h3>
+<p>可能在调试加壳程序时产生<br>
+打开’ollydbg.ini’设置’Restore windows 0’</p>
+<h1>静态分析技术</h1>
+<p>用高级语言写的程序有两种形式。</p>
+<ol>
+<li>程序被编译成机器语言在cpu上执行<br>
+对于这种程序，可以将机器语言转化为汇编语言，这个过程称为<strong>反汇编</strong></li>
+<li>边解释边执行（编写这种程序的语言称为解释性语言，如java）<br>
+这种语言编译程序后可以被还原成高级语言的原始结构，这个过程被称为<strong>反编译</strong></li>
+</ol>
+<p>静态分析：通过反编译、反汇编获得程序的汇编代码或源代码，然后分析流程，了解模块的功能</p>
+<h2 id="文件类型分析">文件类型分析</h2>
+<p>逆向分析程序的第一步<br>
+了解编写程序的语言、编译的编译器或是否被加密<br>
+各种开发语言都有固定的启动代码，被加密程序处理过的程序中会留下加密软件的相关信息<br>
+但有些外壳程序会将一些加壳信息去除，并伪造启动代码，从而欺骗了PEiD等检测分析软件。因此识别工具给出的结果只能作为参考</p>
+<h2 id="IDA">IDA</h2>
+<p>ida 是按区块装载pe文件的，例如.text代码块、.data数据块、.rsrc资源块、.idata输入表、.edata输出表。<br>
+反编译过程分为两个阶段：</p>
+<ol>
+<li>将代码和数据分开，分析函数的参数调用、跳转等</li>
+<li>装载对应的编译器特征文件，给各个函数赋名</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%91%A8%E6%8A%A5/" rel="tag"># 周报</a>
+              <a href="/tags/%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/" rel="tag"># 加密与解密</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/13498.html" rel="prev" title="课设-药店管理系统">
+                  <i class="fa fa-chevron-left"></i> 课设-药店管理系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2f00783a.html" rel="next" title="2020.03.02-2020.03.08">
+                  2020.03.02-2020.03.08 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

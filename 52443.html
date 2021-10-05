@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂 所以这篇的要求也就是能看懂和在变量名之类的做一点优化（统一）就行了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VEX IR学习">
+<meta property="og:url" content="https://brubbish.github.io/52443.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂 所以这篇的要求也就是能看懂和在变量名之类的做一点优化（统一）就行了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210428124520.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210516225639.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210510184101.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210510213959.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210510213751.png">
+<meta property="article:published_time" content="2021-10-05T12:49:39.052Z">
+<meta property="article:modified_time" content="2021-07-25T14:23:29.842Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="课题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210428124520.png">
+
+
+<link rel="canonical" href="https://brubbish.github.io/52443.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/52443.html","path":"52443.html","title":"VEX IR学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>VEX IR学习 | Brubbish's</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%811"><span class="nav-number">1.</span> <span class="nav-text">代码1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%901"><span class="nav-number">1.1.</span> <span class="nav-text">分析1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%812"><span class="nav-number">2.</span> <span class="nav-text">代码2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%903-%E6%9D%A5%E6%B3%A2%E5%A4%A7%E7%9A%84"><span class="nav-number">3.</span> <span class="nav-text">分析3_来波大的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AE%B5"><span class="nav-number">3.1.</span> <span class="nav-text">第二段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A5%E4%B8%AAaarch64%E7%9A%84"><span class="nav-number">4.</span> <span class="nav-text">来个aarch64的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#aarch64"><span class="nav-number">4.1.</span> <span class="nav-text">aarch64</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amd64"><span class="nav-number">4.2.</span> <span class="nav-text">amd64</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/52443.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VEX IR学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-05 20:49:39" itemprop="dateCreated datePublished" datetime="2021-10-05T20:49:39+08:00">2021-10-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-25 22:23:29" itemprop="dateModified" datetime="2021-07-25T22:23:29+08:00">2021-07-25</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂</p>
+<p>所以这篇的要求也就是能看懂和在变量名之类的做一点优化（统一）就行了</p>
+<span id="more"></span>
+<h2 id="代码1">代码1</h2>
+<p>从程序里转了一段中间代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">IRSB &#123;</span><br><span class="line">   t0:Ity_I32 t1:Ity_I32 t2:Ity_I32 t3:Ity_I32 t4:Ity_I32 t5:Ity_I32 t6:Ity_I32 t7:Ity_I32 t8:Ity_I32 t9:Ity_I32 t10:Ity_I32 t11:Ity_I32 t12:Ity_I32 t13:Ity_I32 t14:Ity_I32 t15:Ity_I32 t16:Ity_I32 t17:Ity_I32 t18:Ity_I32 t19:Ity_I32 t20:Ity_I32 t21:Ity_I32 t22:Ity_I32 t23:Ity_I32 t24:Ity_I32 t25:Ity_I32 t26:Ity_I32 t27:Ity_I32</span><br><span class="line"></span><br><span class="line">   00 | ------ IMark(0x80491b0, 1, 0) ------</span><br><span class="line">   01 | t0 = GET:I32(ebp)</span><br><span class="line">   02 | t13 = GET:I32(esp)</span><br><span class="line">   03 | t12 = Sub32(t13,0x00000004)</span><br><span class="line">   04 | PUT(esp) = t12</span><br><span class="line">   05 | STle(t12) = t0</span><br><span class="line">   06 | ------ IMark(0x80491b1, 2, 0) ------</span><br><span class="line">   07 | PUT(ebp) = t12</span><br><span class="line">   08 | ------ IMark(0x80491b3, 3, 0) ------</span><br><span class="line">   09 | t2 = Sub32(t12,0x00000018)</span><br><span class="line">   10 | PUT(cc_op) = 0x00000006</span><br><span class="line">   11 | PUT(cc_dep1) = t12</span><br><span class="line">   12 | PUT(cc_dep2) = 0x00000018</span><br><span class="line">   13 | PUT(cc_ndep) = 0x00000000</span><br><span class="line">   14 | PUT(esp) = t2</span><br><span class="line">   15 | PUT(eip) = 0x080491b6</span><br><span class="line">   16 | ------ IMark(0x80491b6, 7, 0) ------</span><br><span class="line">   17 | t15 = Add32(t12,0xfffffffc)</span><br><span class="line">   18 | STle(t15) = 0x00000000</span><br><span class="line">   19 | PUT(eip) = 0x080491bd</span><br><span class="line">   20 | ------ IMark(0x80491bd, 7, 0) ------</span><br><span class="line">   21 | t17 = Add32(t12,0xfffffff8)</span><br><span class="line">   22 | STle(t17) = 0x00000000</span><br><span class="line">   23 | ------ IMark(0x80491c4, 6, 0) ------</span><br><span class="line">   24 | PUT(eip) = 0x080491ca</span><br><span class="line">   25 | ------ IMark(0x80491ca, 3, 0) ------</span><br><span class="line">   26 | STle(t2) = 0x0804a021</span><br><span class="line">   27 | ------ IMark(0x80491cd, 3, 0) ------</span><br><span class="line">   28 | t20 = Add32(t12,0xfffffff8)</span><br><span class="line">   29 | PUT(eax) = t20</span><br><span class="line">   30 | PUT(eip) = 0x080491d0</span><br><span class="line">   31 | ------ IMark(0x80491d0, 4, 0) ------</span><br><span class="line">   32 | t22 = Add32(t2,0x00000004)</span><br><span class="line">   33 | STle(t22) = t20</span><br><span class="line">   34 | PUT(eip) = 0x080491d4</span><br><span class="line">   35 | ------ IMark(0x80491d4, 5, 0) ------</span><br><span class="line">   36 | t25 = Sub32(t2,0x00000004)</span><br><span class="line">   37 | PUT(esp) = t25</span><br><span class="line">   38 | STle(t25) = 0x080491d9</span><br><span class="line">   NEXT: PUT(eip) = 0x08049060; Ijk_Call</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>angr输出的反编译代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; irsb.pp()</span><br><span class="line">0x80491b0:	push	ebp</span><br><span class="line">0x80491b1:	mov	ebp, esp</span><br><span class="line">0x80491b3:	sub	esp, 0x18</span><br><span class="line">0x80491b6:	mov	dword ptr [ebp - 4], 0</span><br><span class="line">0x80491bd:	mov	dword ptr [ebp - 8], 0</span><br><span class="line">0x80491c4:	lea	eax, [0x804a021]</span><br><span class="line">0x80491ca:	mov	dword ptr [esp], eax</span><br><span class="line">0x80491cd:	lea	eax, [ebp - 8]</span><br><span class="line">0x80491d0:	mov	dword ptr [esp + 4], eax</span><br><span class="line">0x80491d4:	call	0x8049060</span><br></pre></td></tr></table></figure>
+<p>对应ida中选中的部分：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210428124520.png" alt="20210428124520"></p>
+<h3 id="分析1">分析1</h3>
+<p>首先第一行表示函数的开始（IRSB在此处无意义）<br>
+IRSB:</p>
+<p>后续的一堆tx:Ity blabla 代表临时变量，同时指明了变量类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">quote:Temporary variables. VEX uses temporary variables as internal registers.</span><br><span class="line">These temporaries are strongly typed (i.e., &quot;64-bit integer&quot; or &quot;32-bit float&quot;).</span><br></pre></td></tr></table></figure>
+<p>IMark没有实际意义，仅作为一个statement，括号中的内容分别代表了在程序中的起始地址、指令长度和（不知道，不过只见过值=0）</p>
+<p>对寄存器操作前需要读取该寄存器[GET]<br>
+操作结束后将值写回[PUT]</p>
+<p>t0 = GET:I32(ebp)：t0 gets ebp, which is a 32bit integer</p>
+<p>t12 = Sub32(t13,0x00000004): t12 = t13 - 0x4</p>
+<p>PUT(esp) = t12: esp = t12<br>
+   [Update a register with the value of the given IR Expression.]</p>
+<p>STle(t12) = t0: [t12] = t0<br>
+  Update a location in memory, “le” in STle (and LDle) stands for “little-endian”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0~7行大概干了个</span><br><span class="line">push ebp</span><br><span class="line">mov ebp,esp</span><br></pre></td></tr></table></figure>
+<p>09行的命令很直白，但10~15指的是啥呢…似乎跟10~13出现的&quot;cc_*&quot;有挺大关系，但“cc_”只出现在arm架构的文档中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># NOTE 2: Something is goofy w/r/t archinfo and VEX; cc_op3 is used in ccalls, but there&#x27;s</span><br><span class="line"># no cc_op3 in archinfo, angr itself uses cc_depn instead.  We do the same.</span><br></pre></td></tr></table></figure>
+<p>17~22对应了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov     [ebp-4], 0</span><br><span class="line">mov     [ebp-4], 0</span><br></pre></td></tr></table></figure>
+<p>t15=t12+0xfffffffc，此时t12=ebp。看起来很奇怪，但其实把t15指向了ebp-4的位置，（不过为啥不用减法了？…）</p>
+<p>24~26行实现了两条语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x80491c4:	lea	eax, [0x804a021]</span><br><span class="line">0x80491ca:	mov	dword ptr [esp], eax</span><br></pre></td></tr></table></figure>
+<p>24行：没有实际意义<br>
+26行：<br>
+此时t2=esp，把esp指向的值改为0x0804a021d<br>
+相当于mov [esp],[0x804a021]<br>
+所以其实是再进行了优化的（可能这就是RISC吧…)</p>
+<p>28~34:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x80491cd:	lea	eax, [ebp - 8]</span><br><span class="line">0x80491d0:	mov	dword ptr [esp + 4], eax</span><br></pre></td></tr></table></figure>
+<p>但并没有像上面一样绕过eax，直接对内存的进行修改，应该是因为针对一个基本块分析的时候要保存寄存器最后的值，不能再优化了</p>
+<p>最后的跳转：<br>
+放一个官方对于跳转命令的整理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">typedef</span><br><span class="line">   enum &#123;</span><br><span class="line">      Ijk_INVALID=0x1A00, </span><br><span class="line">      Ijk_Boring,         /* not interesting; just goto next */</span><br><span class="line">      Ijk_Call,           /* guest is doing a call */</span><br><span class="line">      Ijk_Ret,            /* guest is doing a return */</span><br><span class="line">      Ijk_ClientReq,      /* do guest client req before continuing */</span><br><span class="line">      Ijk_Yield,          /* client is yielding to thread scheduler */</span><br><span class="line">      Ijk_EmWarn,         /* report emulation warning before continuing */</span><br><span class="line">      Ijk_EmFail,         /* emulation critical (FATAL) error; give up */</span><br><span class="line">      Ijk_NoDecode,       /* current instruction cannot be decoded */</span><br><span class="line">      Ijk_MapFail,        /* Vex-provided address translation failed */</span><br><span class="line">      Ijk_InvalICache,    /* Inval icache for range [CMSTART, +CMLEN) */</span><br><span class="line">      Ijk_FlushDCache,    /* Flush dcache for range [CMSTART, +CMLEN) */</span><br><span class="line">      Ijk_NoRedir,        /* Jump to un-redirected guest addr */</span><br><span class="line">      Ijk_SigILL,         /* current instruction synths SIGILL */</span><br><span class="line">      Ijk_SigTRAP,        /* current instruction synths SIGTRAP */</span><br><span class="line">      Ijk_SigSEGV,        /* current instruction synths SIGSEGV */</span><br><span class="line">      Ijk_SigBUS,         /* current instruction synths SIGBUS */</span><br><span class="line">      Ijk_SigFPE,         /* current instruction synths generic SIGFPE */</span><br><span class="line">      Ijk_SigFPE_IntDiv,  /* current instruction synths SIGFPE - IntDiv */</span><br><span class="line">      Ijk_SigFPE_IntOvf,  /* current instruction synths SIGFPE - IntOvf */</span><br><span class="line">      Ijk_Privileged,     /* current instruction should fail depending on privilege level */</span><br><span class="line">      /* Unfortunately, various guest-dependent syscall kinds.  They</span><br><span class="line">	 all mean: do a syscall before continuing. */</span><br><span class="line">      Ijk_Sys_syscall,    /* amd64/x86 &#x27;syscall&#x27;, ppc &#x27;sc&#x27;, arm &#x27;svc #0&#x27; */</span><br><span class="line">      Ijk_Sys_int32,      /* amd64/x86 &#x27;int $0x20&#x27; */</span><br><span class="line">      Ijk_Sys_int128,     /* amd64/x86 &#x27;int $0x80&#x27; */</span><br><span class="line">      Ijk_Sys_int129,     /* amd64/x86 &#x27;int $0x81&#x27; */</span><br><span class="line">      Ijk_Sys_int130,     /* amd64/x86 &#x27;int $0x82&#x27; */</span><br><span class="line">      Ijk_Sys_int145,     /* amd64/x86 &#x27;int $0x91&#x27; */</span><br><span class="line">      Ijk_Sys_int210,     /* amd64/x86 &#x27;int $0xD2&#x27; */</span><br><span class="line">      Ijk_Sys_sysenter    /* x86 &#x27;sysenter&#x27;.  guest_EIP becomes </span><br><span class="line">                             invalid at the point this happens. */</span><br><span class="line">   &#125;</span><br><span class="line">   IRJumpKind;</span><br></pre></td></tr></table></figure>
+<h2 id="代码2">代码2</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">IRSB &#123;</span><br><span class="line">   t0:Ity_I32 t1:Ity_I32 t2:Ity_I32 t3:Ity_I32 t4:Ity_I32 t5:Ity_I32 t6:Ity_I1 t7:Ity_I32 t8:Ity_I32 t9:Ity_I32 t10:Ity_I32 t11:Ity_I32 t12:Ity_I32 t13:Ity_I32 t14:Ity_I1 t15:Ity_I1</span><br><span class="line"></span><br><span class="line">   00 | ------ IMark(0x80491fd, 4, 0) ------</span><br><span class="line">   01 | t5 = GET:I32(ebp)</span><br><span class="line">   02 | t4 = Add32(t5,0xfffffff8)</span><br><span class="line">   03 | t2 = LDle:I32(t4)</span><br><span class="line">   04 | PUT(cc_op) = 0x00000006</span><br><span class="line">   05 | PUT(cc_dep1) = t2</span><br><span class="line">   06 | PUT(cc_dep2) = 0x0000000a</span><br><span class="line">   07 | PUT(cc_ndep) = 0x00000000</span><br><span class="line">   08 | PUT(eip) = 0x08049201</span><br><span class="line">   09 | ------ IMark(0x8049201, 6, 0) ------</span><br><span class="line">   10 | t14 = CmpEQ32(t2,0x0000000a)</span><br><span class="line">   11 | t13 = 1Uto32(t14)</span><br><span class="line">   12 | t11 = t13</span><br><span class="line">   13 | t15 = 32to1(t11)</span><br><span class="line">   14 | t6 = t15</span><br><span class="line">   15 | if (t6) &#123; PUT(eip) = 0x8049207; Ijk_Boring &#125;</span><br><span class="line">   NEXT: PUT(eip) = 0x08049221; Ijk_Boring</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对应汇编代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x80491fd:	cmp	dword ptr [ebp - 8], 0xa</span><br><span class="line">0x8049201:	jne	0x8049221</span><br></pre></td></tr></table></figure>
+<p>suprise…汇编好简洁</p>
+<p>03行：t2=[t4]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDle：The value stored at a memory address, with the address specified by another IR Expression.</span><br></pre></td></tr></table></figure>
+<p>11行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Iop_1Uto32, /* :: Ity_Bit -&gt; Ity_I32, unsigned widen */</span><br></pre></td></tr></table></figure>
+<p>看一下寄存器的定义，t14的大小也是一个bit<br>
+所以这个命令的作用就是把它扩展成32位的无符号数，放到t13里</p>
+<p>13行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Iop_32to1,  /* :: Ity_I32 -&gt; Ity_Bit, just select bit[0] */</span><br></pre></td></tr></table></figure>
+<p>再取最低位放到t15里</p>
+<p>讲真没看懂这波操作为啥要这么多次转换</p>
+<h2 id="分析3-来波大的">分析3_来波大的</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; irsb.vex.pp()</span><br><span class="line">IRSB &#123;</span><br><span class="line">   t0:Ity_I64 t1:Ity_I32 t2:Ity_I32 t3:Ity_I32 t4:Ity_I64 t5:Ity_I64 t6:Ity_I32 t7:Ity_I32 t8:Ity_I32 t9:Ity_I64 t10:Ity_I64 t11:Ity_I64 t12:Ity_I64 t13:Ity_I64 t14:Ity_I64 t15:Ity_I64 t16:Ity_I64 t17:Ity_I64 t18:Ity_I128 t19:Ity_I128 t20:Ity_I64 t21:Ity_I64 t22:Ity_I32 t23:Ity_I32 t24:Ity_I32 t25:Ity_I64 t26:Ity_I64 t27:Ity_I64 t28:Ity_I64 t29:Ity_I32 t30:Ity_I32 t31:Ity_I64 t32:Ity_I64 t33:Ity_I64 t34:Ity_I64 t35:Ity_I64 t36:Ity_I32 t37:Ity_I64 t38:Ity_I64 t39:Ity_I64 t40:Ity_I64 t41:Ity_I64 t42:Ity_I64 t43:Ity_I64 t44:Ity_I32 t45:Ity_I64 t46:Ity_I64 t47:Ity_I64 t48:Ity_I32 t49:Ity_I64 t50:Ity_I64 t51:Ity_I64 t52:Ity_I64 t53:Ity_I64 t54:Ity_I32 t55:Ity_I64 t56:Ity_I64 t57:Ity_I64 t58:Ity_I64 t59:Ity_I64 t60:Ity_I64 t61:Ity_I64 t62:Ity_I64 t63:Ity_I64 t64:Ity_I32 t65:Ity_I64 t66:Ity_I64 t67:Ity_I64 t68:Ity_I64 t69:Ity_I64 t70:Ity_I64 t71:Ity_I64 t72:Ity_I32 t73:Ity_I64 t74:Ity_I64 t75:Ity_I64 t76:Ity_I64 t77:Ity_I64 t78:Ity_I64 t79:Ity_I32 t80:Ity_I64 t81:Ity_I64 t82:Ity_I64 t83:Ity_I64 t84:Ity_I128 t85:Ity_I64 t86:Ity_I64 t87:Ity_I64 t88:Ity_I64 t89:Ity_I64 t90:Ity_I64 t91:Ity_I64 t92:Ity_I64 t93:Ity_I64 t94:Ity_I64 t95:Ity_I32 t96:Ity_I32 t97:Ity_I64 t98:Ity_I64 t99:Ity_I64 t100:Ity_I64 t101:Ity_I64 t102:Ity_I64 t103:Ity_I32 t104:Ity_I64 t105:Ity_I64 t106:Ity_I1</span><br><span class="line"></span><br><span class="line">   00 | ------ IMark(0x401163, 3, 0) ------</span><br><span class="line">   01 | t27 = GET:I64(rbp)</span><br><span class="line">   02 | t26 = Add64(t27,0xffffffffffffffd4)</span><br><span class="line">   03 | t29 = LDle:I32(t26)</span><br><span class="line">   04 | t28 = 32Uto64(t29)</span><br><span class="line">   05 | ------ IMark(0x401166, 3, 0) ------</span><br><span class="line">   06 | t30 = 64to32(t28)</span><br><span class="line">   07 | t1 = Add32(t30,0x00000001)</span><br><span class="line">   08 | t34 = 32Uto64(t1)</span><br><span class="line">   09 | ------ IMark(0x401169, 3, 0) ------</span><br><span class="line">   10 | t36 = 64to32(t34)</span><br><span class="line">   11 | t35 = 32Sto64(t36)</span><br><span class="line">   12 | PUT(rip) = 0x000000000040116c</span><br><span class="line">   13 | ------ IMark(0x40116c, 4, 0) ------</span><br><span class="line">   14 | t40 = Shl64(t35,0x02)</span><br><span class="line">   15 | t39 = Add64(t27,t40)</span><br><span class="line">   16 | t38 = Add64(t39,0xffffffffffffffe0)</span><br><span class="line">   17 | t44 = LDle:I32(t38)</span><br><span class="line">   18 | t43 = 32Uto64(t44)</span><br><span class="line">   19 | PUT(rip) = 0x0000000000401170</span><br><span class="line">   20 | ------ IMark(0x401170, 4, 0) ------</span><br><span class="line">   21 | t45 = Add64(t27,0xffffffffffffffd4)</span><br><span class="line">   22 | t48 = LDle:I32(t45)</span><br><span class="line">   23 | t47 = 32Sto64(t48)</span><br><span class="line">   24 | PUT(rip) = 0x0000000000401174</span><br><span class="line">   25 | ------ IMark(0x401174, 4, 0) ------</span><br><span class="line">   26 | t51 = Shl64(t47,0x02)</span><br><span class="line">   27 | t50 = Add64(t27,t51)</span><br><span class="line">   28 | t49 = Add64(t50,0xffffffffffffffe0)</span><br><span class="line">   29 | t54 = 64to32(t43)</span><br><span class="line">   30 | t7 = LDle:I32(t49)</span><br><span class="line">   31 | t6 = Add32(t54,t7)</span><br><span class="line">   32 | t58 = 32Uto64(t6)</span><br><span class="line">   33 | PUT(rip) = 0x0000000000401178</span><br><span class="line">   34 | ------ IMark(0x401178, 4, 0) ------</span><br><span class="line">   35 | t61 = Shl64(t47,0x02)</span><br><span class="line">   36 | t60 = Add64(t27,t61)</span><br><span class="line">   37 | t59 = Add64(t60,0xffffffffffffffe0)</span><br><span class="line">   38 | t64 = 64to32(t58)</span><br><span class="line">   39 | STle(t59) = t64</span><br><span class="line">   40 | PUT(rip) = 0x000000000040117c</span><br><span class="line">   41 | ------ IMark(0x40117c, 4, 0) ------</span><br><span class="line">   42 | t66 = Add64(t27,0xffffffffffffffd8)</span><br><span class="line">   43 | t68 = LDle:I64(t66)</span><br><span class="line">   44 | PUT(rip) = 0x0000000000401180</span><br><span class="line">   45 | ------ IMark(0x401180, 4, 0) ------</span><br><span class="line">   46 | t69 = Add64(t27,0xffffffffffffffd4)</span><br><span class="line">   47 | t72 = LDle:I32(t69)</span><br><span class="line">   48 | t71 = 32Sto64(t72)</span><br><span class="line">   49 | PUT(rip) = 0x0000000000401184</span><br><span class="line">   50 | ------ IMark(0x401184, 5, 0) ------</span><br><span class="line">   51 | t75 = Shl64(t71,0x02)</span><br><span class="line">   52 | t74 = Add64(t27,t75)</span><br><span class="line">   53 | t73 = Add64(t74,0xffffffffffffffe0)</span><br><span class="line">   54 | t79 = LDle:I32(t73)</span><br><span class="line">   55 | t78 = 32Sto64(t79)</span><br><span class="line">   56 | ------ IMark(0x401189, 4, 0) ------</span><br><span class="line">   57 | t16 = Mul64(t78,t68)</span><br><span class="line">   58 | ------ IMark(0x40118d, 3, 0) ------</span><br><span class="line">   59 | ------ IMark(0x401190, 2, 0) ------</span><br><span class="line">   60 | t81 = Sar64(t16,0x3f)</span><br><span class="line">   61 | ------ IMark(0x401192, 5, 0) ------</span><br><span class="line">   62 | PUT(rcx) = 0x0000000000000002</span><br><span class="line">   63 | ------ IMark(0x401197, 3, 0) ------</span><br><span class="line">   64 | t84 = 64HLto128(t81,t16)</span><br><span class="line">   65 | t106 = CmpEQ64(0x0000000000000002,0x0000000000000000)</span><br><span class="line">   66 | if (t106) &#123; PUT(rip) = 0x401197; Ijk_SigFPE_IntDiv &#125;</span><br><span class="line">   67 | t19 = DivModS128to64(t84,0x0000000000000002)</span><br><span class="line">   68 | t88 = 128HIto64(t19)</span><br><span class="line">   69 | PUT(rdx) = t88</span><br><span class="line">   70 | PUT(rip) = 0x000000000040119a</span><br><span class="line">   71 | ------ IMark(0x40119a, 4, 0) ------</span><br><span class="line">   72 | t89 = Add64(t27,0xffffffffffffffd8)</span><br><span class="line">   73 | STle(t89) = t88</span><br><span class="line">   74 | PUT(rip) = 0x000000000040119e</span><br><span class="line">   75 | ------ IMark(0x40119e, 3, 0) ------</span><br><span class="line">   76 | t92 = Add64(t27,0xffffffffffffffd4)</span><br><span class="line">   77 | t95 = LDle:I32(t92)</span><br><span class="line">   78 | t94 = 32Uto64(t95)</span><br><span class="line">   79 | ------ IMark(0x4011a1, 3, 0) ------</span><br><span class="line">   80 | t96 = 64to32(t94)</span><br><span class="line">   81 | t22 = Add32(t96,0x00000001)</span><br><span class="line">   82 | PUT(cc_op) = 0x0000000000000003</span><br><span class="line">   83 | t98 = 32Uto64(t96)</span><br><span class="line">   84 | PUT(cc_dep1) = t98</span><br><span class="line">   85 | PUT(cc_dep2) = 0x0000000000000001</span><br><span class="line">   86 | t100 = 32Uto64(t22)</span><br><span class="line">   87 | PUT(rax) = t100</span><br><span class="line">   88 | PUT(rip) = 0x00000000004011a4</span><br><span class="line">   89 | ------ IMark(0x4011a4, 3, 0) ------</span><br><span class="line">   90 | t101 = Add64(t27,0xffffffffffffffd4)</span><br><span class="line">   91 | t103 = 64to32(t100)</span><br><span class="line">   92 | STle(t101) = t103</span><br><span class="line">   93 | ------ IMark(0x4011a7, 5, 0) ------</span><br><span class="line">   NEXT: PUT(rip) = 0x0000000000401159; Ijk_Boring</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>angr的汇编代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; irsb.pp()</span><br><span class="line">0x401163:	mov	eax, dword ptr [rbp - 0x2c]</span><br><span class="line">0x401166:	add	eax, 1</span><br><span class="line">0x401169:	movsxd	rcx, eax</span><br><span class="line">0x40116c:	mov	eax, dword ptr [rbp + rcx*4 - 0x20]</span><br><span class="line">0x401170:	movsxd	rcx, dword ptr [rbp - 0x2c]</span><br><span class="line">0x401174:	add	eax, dword ptr [rbp + rcx*4 - 0x20]</span><br><span class="line">0x401178:	mov	dword ptr [rbp + rcx*4 - 0x20], eax</span><br><span class="line">0x40117c:	mov	rcx, qword ptr [rbp - 0x28]</span><br><span class="line">0x401180:	movsxd	rdx, dword ptr [rbp - 0x2c]</span><br><span class="line">0x401184:	movsxd	rdx, dword ptr [rbp + rdx*4 - 0x20]</span><br><span class="line">0x401189:	imul	rcx, rdx</span><br><span class="line">0x40118d:	mov	rax, rcx</span><br><span class="line">0x401190:	cqo	</span><br><span class="line">0x401192:	mov	ecx, 2</span><br><span class="line">0x401197:	idiv	rcx</span><br><span class="line">0x40119a:	mov	qword ptr [rbp - 0x28], rdx</span><br><span class="line">0x40119e:	mov	eax, dword ptr [rbp - 0x2c]</span><br><span class="line">0x4011a1:	add	eax, 1</span><br><span class="line">0x4011a4:	mov	dword ptr [rbp - 0x2c], eax</span><br><span class="line">0x4011a7:	jmp	0x401159</span><br></pre></td></tr></table></figure>
+<p>这段代码是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> j=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">	a[i]+=a[i+<span class="number">1</span>];</span><br><span class="line">	j=j*a[i]%<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>的循环部分</p>
+<p>01~04：执行后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t26=rbp-0x2c</span><br><span class="line">t29=dowrd ptr [rbp-0x2c]=eax</span><br><span class="line">t28=eax(64bits)</span><br></pre></td></tr></table></figure>
+<p>结合下一步的操作，不是很懂意义何在…</p>
+<p>11行：出现了vex ir 指令，Sto，S指的是singed widen；类似的Uto中，U指的是unsigned widen<br>
+对于这行代码的理解可以参考汇编中的movsxd：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> MOVSXD r64, r/m32       Move doubleword to quadword with sign-extension.</span><br><span class="line">这是64位代码的指令，该指令将32位寄存器或地址转换为32位值，并将其符号扩展为64位寄存器。符号扩展是获取源的最高位（符号位）的值，并使用它来填充目标的所有高位。</span><br></pre></td></tr></table></figure>
+<p>到57行前都是些重复的语句</p>
+<p>57行：<br>
+mul64：官方文档中写道，mul代表的是signless的，相对的有以下乘法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      /* -- Ordering not important after here. -- */</span><br><span class="line">      ...</span><br><span class="line">      /* Widening multiplies */</span><br><span class="line">      Iop_MullS8, Iop_MullS16, Iop_MullS32, Iop_MullS64,</span><br><span class="line">      Iop_MullU8, Iop_MullU16, Iop_MullU32, Iop_MullU64,</span><br><span class="line"></span><br><span class="line">(看上去和arm的精简指令集挺像的)</span><br></pre></td></tr></table></figure>
+<p>看到这行产生了个疑惑：imul是带符号的，但mul64是个无符号的乘法<br>
+再往下看看，发现，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t16=Mul64(t78,t68)</span><br><span class="line">t81=Sar64(t16,0x3f)</span><br></pre></td></tr></table></figure>
+<p>完成了以下三条汇编指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0x401189:	imul	rcx, rdx</span><br><span class="line">0x40118d:	mov	rax, rcx</span><br><span class="line">0x401190:	cqo	</span><br></pre></td></tr></table></figure>
+<p>sar64：官方文档中没有描述作用，猜测和x64汇编相似，即算术右移（用符号位补）<br>
+cqo：将rax中的符号复制到rdx的每个位上</p>
+<p>64~70行：<br>
+简单的一条</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">idiv rcx</span><br></pre></td></tr></table></figure>
+<p>被转换成了七行ir</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">64 | t84 = 64HLto128(t81,t16)</span><br><span class="line">65 | t106 = CmpEQ64(0x0000000000000002,0x0000000000000000)</span><br><span class="line">66 | if (t106) &#123; PUT(rip) = 0x401197; Ijk_SigFPE_IntDiv &#125;</span><br><span class="line">67 | t19 = DivModS128to64(t84,0x0000000000000002)</span><br><span class="line">68 | t88 = 128HIto64(t19)</span><br><span class="line">69 | PUT(rdx) = t88</span><br><span class="line">70 | PUT(rip) = 0x000000000040119a</span><br></pre></td></tr></table></figure>
+<p>涉及到了几个没有见过的VEX IR 指令：<br>
+64HLto128：两个64位的寄存器里的值组合扩展到128位的寄存器中<br>
+DivModS128to64：:: V128,I64 -&gt; V128，of which lo half is div and hi half is mod<br>
+128HIto64：128位数据中的高64位复制到64位寄存器中</p>
+<p>82~85行，出现了“cc_*”的“寄存器”，但似乎对理解这个基本块的VEX IR完全没有影响…（不会是因为代码片段还不够长吧orz）</p>
+<h3 id="第二段">第二段</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; irsb.vex.pp()</span><br><span class="line">IRSB &#123;</span><br><span class="line">   t0:Ity_I32 t1:Ity_I32 t2:Ity_I32 t3:Ity_I64 t4:Ity_I64 t5:Ity_I64 t6:Ity_I64 t7:Ity_I64 t8:Ity_I1 t9:Ity_I64 t10:Ity_I64 t11:Ity_I64 t12:Ity_I64 t13:Ity_I64 t14:Ity_I64 t15:Ity_I64 t16:Ity_I64 t17:Ity_I1 t18:Ity_I32 t19:Ity_I32 t20:Ity_I1</span><br><span class="line"></span><br><span class="line">   00 | ------ IMark(0x401159, 4, 0) ------</span><br><span class="line">   01 | t5 = GET:I64(rbp)</span><br><span class="line">   02 | t4 = Add64(t5,0xffffffffffffffd4)</span><br><span class="line">   03 | t2 = LDle:I32(t4)</span><br><span class="line">   04 | PUT(cc_op) = 0x0000000000000007</span><br><span class="line">   05 | t15 = 32Uto64(t2)</span><br><span class="line">   06 | t6 = t15</span><br><span class="line">   07 | PUT(cc_dep1) = t6</span><br><span class="line">   08 | PUT(cc_dep2) = 0x0000000000000003</span><br><span class="line">   09 | PUT(rip) = 0x000000000040115d</span><br><span class="line">   10 | ------ IMark(0x40115d, 6, 0) ------</span><br><span class="line">   11 | t18 = 64to32(0x0000000000000003)</span><br><span class="line">   12 | t19 = 64to32(t6)</span><br><span class="line">   13 | t17 = CmpLT32S(t19,t18)</span><br><span class="line">   14 | t16 = 1Uto64(t17)</span><br><span class="line">   15 | t13 = t16</span><br><span class="line">   16 | t20 = 64to1(t13)</span><br><span class="line">   17 | t8 = t20</span><br><span class="line">   18 | if (t8) &#123; PUT(rip) = 0x401163; Ijk_Boring &#125;</span><br><span class="line">   NEXT: PUT(rip) = 0x00000000004011ac; Ijk_Boring</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">反汇编结果：</span><br><span class="line">```asm</span><br><span class="line">0x401159:	cmp	dword ptr [rbp - 0x2c], 3</span><br><span class="line">0x40115d:	jge	0x4011ac</span><br></pre></td></tr></table></figure>
+<p>第一部分13行：cmpLT32S<br>
+官方文档中的解释很短：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* Standard integer comparisons */</span><br><span class="line">Iop_CmpLT32S, Iop_CmpLT64S,</span><br><span class="line">Iop_CmpLE32S, Iop_CmpLE64S,</span><br><span class="line">Iop_CmpLT32U, Iop_CmpLT64U,</span><br><span class="line">Iop_CmpLE32U, Iop_CmpLE64U,</span><br></pre></td></tr></table></figure>
+<p>该结果为在x86汇编中为指令jge服务（大于等于则跳转）<br>
+所以小于3时t8=t20=t16=1<br>
+因此cmpLT应该是“前小于后返回1”<br>
+所以&quot;CmpL*&quot;是只能比较小于或等于？</p>
+<p><em>注：试了一下还真是这样的，形成的中间代码会把其他判断方式转换成&quot;&lt;“/”=&quot;</em><br>
+<em>注2：在微软的文档搜到了SSE2指令集，里边的比较指令和 vex ir 长得还蛮像的↓</em><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210516225639.png" alt="20210516225639"></p>
+<h2 id="来个aarch64的">来个aarch64的</h2>
+<p>用aarch64-linux-gnu-gcc编译了相同的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">a</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	<span class="keyword">int</span>* b;</span><br><span class="line">&#125;aa;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">double</span> b=<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a);</span><br><span class="line">	<span class="keyword">switch</span>(a)&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;a=2&quot;</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;a=1&quot;</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;a==null&quot;</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;aa.a);</span><br><span class="line">	aa.b = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">	<span class="keyword">if</span> (aa.a ==a)</span><br><span class="line">		aa.b[<span class="number">1</span>] = aa.a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用angr加载的时候会产生警告，但（对于这个样例）没有影响<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210510184101.png" alt="20210510184101"><br>
+<em>注：上一个应该是因为找不到动态链接库，编译选项设置静态编译后可以正常加载</em></p>
+<p>发现vex ir用到的寄存器是根据程序cpu架构改变的。如i386、amd64下用到PUT(rip)、PUT(eip)，在aarch64下则是PUT(pc)</p>
+<p>选取下面这句代码的中间代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*(_DWORD *)(qword_4999C8 + <span class="number">4</span>) = aa;</span><br></pre></td></tr></table></figure>
+<h3 id="aarch64">aarch64</h3>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210510213959.png" alt="20210510213959"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">   00 | ------ IMark(0x400778, 4, 0) ------</span><br><span class="line">   01 | ------ IMark(0x40077c, 4, 0) ------</span><br><span class="line">   02 | PUT(pc) = 0x0000000000400780</span><br><span class="line">   03 | ------ IMark(0x400780, 4, 0) ------</span><br><span class="line">   04 | t4 = LDle:I64(0x00000000004999c8)</span><br><span class="line">   05 | ------ IMark(0x400784, 4, 0) ------</span><br><span class="line">   06 | t7 = Add64(t4,0x0000000000000004)</span><br><span class="line">   07 | ------ IMark(0x400788, 4, 0) ------</span><br><span class="line">   08 | ------ IMark(0x40078c, 4, 0) ------</span><br><span class="line">   09 | PUT(pc) = 0x0000000000400790</span><br><span class="line">   10 | ------ IMark(0x400790, 4, 0) ------</span><br><span class="line">   11 | t34 = LDle:I32(0x00000000004999c0)</span><br><span class="line">   12 | t57 = 32Uto64(t34)</span><br><span class="line">   13 | t33 = t57</span><br><span class="line">   14 | PUT(pc) = 0x0000000000400794</span><br><span class="line">   15 | ------ IMark(0x400794, 4, 0) ------</span><br><span class="line">   16 | t58 = 64to32(t33)</span><br><span class="line">   17 | t37 = t58</span><br><span class="line">   18 | STle(t7) = t37</span><br><span class="line">   19 | ------ IMark(0x400798, 4, 0) ------</span><br><span class="line">   20 | ------ IMark(0x40079c, 4, 0) ------</span><br><span class="line">   21 | PUT(x1) = 0x0000000000000000</span><br><span class="line">   22 | ------ IMark(0x4007a0, 4, 0) ------</span><br><span class="line">   23 | PUT(pc) = 0x00000000004007a4</span><br><span class="line">   24 | ------ IMark(0x4007a4, 4, 0) ------</span><br><span class="line">   25 | t19 = LDle:I64(0x0000000000497f50)</span><br><span class="line">   26 | PUT(x0) = t19</span><br><span class="line">   27 | PUT(pc) = 0x00000000004007a8</span><br><span class="line">   28 | ------ IMark(0x4007a8, 4, 0) ------</span><br><span class="line">   29 | t46 = GET:I64(xsp)</span><br><span class="line">   30 | t45 = Add64(t46,0x0000000000000028)</span><br><span class="line">   31 | t21 = LDle:I64(t45)</span><br><span class="line">   32 | PUT(pc) = 0x00000000004007ac</span><br><span class="line">   33 | ------ IMark(0x4007ac, 4, 0) ------</span><br><span class="line">   34 | t23 = LDle:I64(t19)</span><br><span class="line">   35 | ------ IMark(0x4007b0, 4, 0) ------</span><br><span class="line">   36 | t27 = Sub64(t21,t23)</span><br><span class="line">   37 | PUT(x2) = t27</span><br><span class="line">   38 | PUT(cc_op) = 0x0000000000000004</span><br><span class="line">   39 | PUT(cc_dep1) = t21</span><br><span class="line">   40 | PUT(cc_dep2) = t23</span><br><span class="line">   41 | PUT(cc_ndep) = 0x0000000000000000</span><br><span class="line">   42 | ------ IMark(0x4007b4, 4, 0) ------</span><br><span class="line">   43 | PUT(x3) = 0x0000000000000000</span><br><span class="line">   44 | PUT(pc) = 0x00000000004007b8</span><br><span class="line">   45 | ------ IMark(0x4007b8, 4, 0) ------</span><br><span class="line">   46 | t60 = CmpEQ64(t21,t23)</span><br><span class="line">   47 | t59 = 1Uto64(t60)</span><br><span class="line">   48 | t55 = t59</span><br><span class="line">   49 | t61 = 64to1(t55)</span><br><span class="line">   50 | t49 = t61</span><br><span class="line">   51 | if (t49) &#123; PUT(pc) = 0x4007c0; Ijk_Boring &#125;</span><br><span class="line">   NEXT: PUT(pc) = 0x00000000004007bc; Ijk_Boring</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="amd64">amd64</h3>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210510213751.png" alt="20210510213751"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">   00 | ------ IMark(0x40126d, 7, 0) ------</span><br><span class="line">   01 | t9 = LDle:I64(0x0000000000404028)</span><br><span class="line">   02 | ------ IMark(0x401274, 4, 0) ------</span><br><span class="line">   03 | t10 = Add64(t9,0x0000000000000004)</span><br><span class="line">   04 | PUT(rdx) = t10</span><br><span class="line">   05 | PUT(rip) = 0x0000000000401278</span><br><span class="line">   06 | ------ IMark(0x401278, 6, 0) ------</span><br><span class="line">   07 | t13 = LDle:I32(0x0000000000404020)</span><br><span class="line">   08 | t29 = 32Uto64(t13)</span><br><span class="line">   09 | t12 = t29</span><br><span class="line">   10 | PUT(rip) = 0x000000000040127e</span><br><span class="line">   11 | ------ IMark(0x40127e, 2, 0) ------</span><br><span class="line">   12 | t30 = 64to32(t12)</span><br><span class="line">   13 | t14 = t30</span><br><span class="line">   14 | STle(t10) = t14</span><br><span class="line">   15 | ------ IMark(0x401280, 5, 0) ------</span><br><span class="line">   16 | PUT(rax) = 0x0000000000000000</span><br><span class="line">   17 | PUT(rip) = 0x0000000000401285</span><br><span class="line">   18 | ------ IMark(0x401285, 4, 0) ------</span><br><span class="line">   19 | t18 = GET:I64(rbp)</span><br><span class="line">   20 | t17 = Add64(t18,0xfffffffffffffff8)</span><br><span class="line">   21 | t19 = LDle:I64(t17)</span><br><span class="line">   22 | PUT(rip) = 0x0000000000401289</span><br><span class="line">   23 | ------ IMark(0x401289, 9, 0) ------</span><br><span class="line">   24 | t21 = GET:I64(fs)</span><br><span class="line">   25 | t20 = Add64(0x0000000000000028,t21)</span><br><span class="line">   26 | t6 = LDle:I64(t20)</span><br><span class="line">   27 | t5 = Xor64(t19,t6)</span><br><span class="line">   28 | PUT(cc_op) = 0x0000000000000014</span><br><span class="line">   29 | PUT(cc_dep1) = t5</span><br><span class="line">   30 | PUT(cc_dep2) = 0x0000000000000000</span><br><span class="line">   31 | PUT(rcx) = t5</span><br><span class="line">   32 | PUT(rip) = 0x0000000000401292</span><br><span class="line">   33 | ------ IMark(0x401292, 2, 0) ------</span><br><span class="line">   34 | t32 = CmpEQ64(t5,0x0000000000000000)</span><br><span class="line">   35 | t31 = 1Uto64(t32)</span><br><span class="line">   36 | t27 = t31</span><br><span class="line">   37 | t33 = 64to1(t27)</span><br><span class="line">   38 | t22 = t33</span><br><span class="line">   39 | if (t22) &#123; PUT(rip) = 0x401299; Ijk_Boring &#125;</span><br><span class="line">   NEXT: PUT(rip) = 0x0000000000401294; Ijk_Boring</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BE%E9%A2%98/" rel="tag"># 课题</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/26324.html" rel="prev" title="pwn刷题">
+                  <i class="fa fa-chevron-left"></i> pwn刷题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/4052.html" rel="next" title="乐事各种口味评价">
+                  乐事各种口味评价 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
