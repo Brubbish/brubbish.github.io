@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="在前面： 完整阅读完的第一篇论文。这篇出自2019年MDPI的Future Internet，虽然最近两年出了更新的成果和趋势，但也本文也没有太过时，算是讲全了IoT研究的发展和角度。 翻译和自己阅读还是挺不一样的，发现了自己语文水平蒟蒻，连啥时候用逗号都把握不住… DeepL 和 Google Translate 还是各有千秋。  文章由本人首发于安全客：IoT设备安全漏洞分析、挖掘、检测和缓解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【翻译】A Survey of Security Vulnerability Analysis,Discovery, Detection, and Mitigation on IoT Devices">
@@ -54,6 +54,9 @@
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>【翻译】A Survey of Security Vulnerability Analysis,Discovery, Detection, and Mitigation on IoT Devices | Brubbish's</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
 
 
 
@@ -98,7 +101,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+        <li class="menu-item menu-item-book"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>book</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -195,8 +198,9 @@
         </div>
       </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
+
+
+
 <!-- sidebar -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -204,6 +208,18 @@
      data-ad-slot="5504766755"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -291,11 +307,11 @@
 完整阅读完的第一篇论文。这篇出自2019年MDPI的Future Internet，虽然最近两年出了更新的成果和趋势，但也本文也没有太过时，算是讲全了IoT研究的发展和角度。<br>
 翻译和自己阅读还是挺不一样的，发现了自己语文水平蒟蒻，连啥时候用逗号都把握不住… DeepL 和 Google Translate 还是各有千秋。</p>
 <blockquote>
-<p>文章由本人首发于安全客：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/244711">IoT设备安全漏洞分析、挖掘、检测和缓解综述 - 安全客，安全资讯平台 (anquanke.com)</a></p>
+<p>文章由本人首发于安全客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjQ0NzEx">IoT设备安全漏洞分析、挖掘、检测和缓解综述 - 安全客，安全资讯平台 (anquanke.com)<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <span id="more"></span>
 <h1>IoT设备安全漏洞分析、挖掘、检测和缓解综述</h1>
-<p>来源：<a target="_blank" rel="noopener" href="http://netsec.ccert.edu.cn/chs/publications/futureinternet20-iot">http://netsec.ccert.edu.cn/chs/publications/futureinternet20-iot</a></p>
+<p>来源：<span class="exturl" data-url="aHR0cDovL25ldHNlYy5jY2VydC5lZHUuY24vY2hzL3B1YmxpY2F0aW9ucy9mdXR1cmVpbnRlcm5ldDIwLWlvdA==">http://netsec.ccert.edu.cn/chs/publications/futureinternet20-iot<i class="fa fa-external-link-alt"></i></span></p>
 <!-- vscode-markdown-toc -->
 <ul>
 <li>
@@ -551,10 +567,10 @@ Fernandes等人[^107]首先深入研究了IoT平台的安全例如SmartThings，
 <h2 id="7-a-name-1-a-结论">7. <code>&lt;a name='-1'&gt;&lt;/a&gt;</code>结论</h2>
 <p>随着IoT的迅速发展，确保用户的安全和隐私保护带来了显著的影响和挑战。虽然关于IoT设备安全的研究数量逐渐上升，但在信息安全的领域仍然处于起始阶段。因此，需要一个对于现有研究的综合摘要来指引IoT安全的发展。这篇论文分析了消费者层和产业层的IoT设备架构和攻击面，展示了当前研究的背景。我们首先从四个方面完善了分类：分析工具、漏洞挖掘、漏洞检测和漏洞缓解。基于这四个方面，我们回顾了漏洞分析的技术。另外，我们总结了目标、特点和研究方向。随后，我们评估了漏洞分析的技术，发现现有研究面临的难点，包括设备的复杂性和异构性、设备资源的限制、长期闭源的措施。困难同样伴随着机会。AI技术和外围设备分析将会广泛应用在IoT安全领域。在未来，将会有越来越多的技术和新领域结合，来实现大规模、跨架构的自动化漏洞分析。</p>
 <h2 id="8-参考">8. 参考</h2>
-<p>[^1]: Lueth, K.L. State of the IoT 2018: Number of IoT Devices Now at 7B—Market Accelerating. Available online:<a target="_blank" rel="noopener" href="https://IoT-analytics.com/state-of-the-IoT-update-q1-q2-2018-number-of-IoT-devices-now-7b/">https://IoT-analytics.com/state-of-the-IoT-update-q1-q2-2018-number-of-IoT-devices-now-7b/</a> (accessed on 6 December 2019).</p>
-<p>[^2]: Rawlinson, K. Internet of Things Research Study. Available online: <a target="_blank" rel="noopener" href="https://www8.hp.com/us/en/hp%EF%BF%BEnews/press-release.html?id=1744676">https://www8.hp.com/us/en/hp￾news/press-release.html?id=1744676</a> (accessed on 6 December 2019).</p>
-<p>[^3]: Wikipedia. Mirai(malware). Available online: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mirai_(malware)">https://en.wikipedia.org/wiki/Mirai_(malware)</a> (accessed on 6 December 2019).</p>
-<p>[^4]: Trevor, H. Internet of Things (IoT) History. Available online: <a target="_blank" rel="noopener" href="https://www.postscapes.com/IoT-history/">https://www.postscapes.com/IoT-history/</a>(accessed on 6 December 2019).Future Internet 2019, 12, 27 18 of 23</p>
+<p>[^1]: Lueth, K.L. State of the IoT 2018: Number of IoT Devices Now at 7B—Market Accelerating. Available online:<span class="exturl" data-url="aHR0cHM6Ly9Jb1QtYW5hbHl0aWNzLmNvbS9zdGF0ZS1vZi10aGUtSW9ULXVwZGF0ZS1xMS1xMi0yMDE4LW51bWJlci1vZi1Jb1QtZGV2aWNlcy1ub3ctN2Iv">https://IoT-analytics.com/state-of-the-IoT-update-q1-q2-2018-number-of-IoT-devices-now-7b/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^2]: Rawlinson, K. Internet of Things Research Study. Available online: <span class="exturl" data-url="aHR0cHM6Ly93d3c4LmhwLmNvbS91cy9lbi9ocCVFRiVCRiVCRW5ld3MvcHJlc3MtcmVsZWFzZS5odG1sP2lkPTE3NDQ2NzY=">https://www8.hp.com/us/en/hp￾news/press-release.html?id=1744676<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^3]: Wikipedia. Mirai(malware). Available online: <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTWlyYWlfKG1hbHdhcmUp">https://en.wikipedia.org/wiki/Mirai_(malware)<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^4]: Trevor, H. Internet of Things (IoT) History. Available online: <span class="exturl" data-url="aHR0cHM6Ly93d3cucG9zdHNjYXBlcy5jb20vSW9ULWhpc3Rvcnkv">https://www.postscapes.com/IoT-history/<i class="fa fa-external-link-alt"></i></span>(accessed on 6 December 2019).Future Internet 2019, 12, 27 18 of 23</p>
 <p>[^5]: Gan, G.; Lu, Z.; Jiang, J. Internet of things security analysis. In Proceedings of the International Conference on Internet Technology and Applications, Wuhan, China, 16–18 August 2011.</p>
 <p>[^6]: Suo, H.; Wan, J.; Zou, C.; Liu, J. Security in the internet of things: A review. In Proceeding of the International Conference on Computer Science and Electronics Engineering, Hangzhou, China, 23–25 March 2012.</p>
 <p>[^7]: Zhao, K., Ge; L. A survey on the internet of things security. In Proceedings of the 2013 Ninth International Conference on Computational Intelligence and Security, Leshan, China, 14–15 December 2013.</p>
@@ -566,54 +582,54 @@ Fernandes等人[^107]首先深入研究了IoT平台的安全例如SmartThings，
 <p>[^13]: Zhang, Z.K.; Cho, M.C.Y.; Wang, C.W.; Hsu, C.W.; Chen, C.K.; Shieh, S. IoT security: ongoing challenges and research opportunities. In Proceedings of the 7th IEEE International Conference on Service-Oriented Computing and Applications, Matsue, Japan, 17–19 November 2014.</p>
 <p>[^14]: Mahmoud, R.; Yousuf, T.; Aloul, F.; Zualkernan, I. Internet of things (IoT) security: Current status, challenges and prospective measures. In Proceedings of the 10th International Conference for Internet Technology and Secured Transactions (ICITST), London, UK, 14–16 December 2015.</p>
 <p>[^15]: Fernandes, E.; Rahmati, A.; Eykholt, K.; Prakash, A. Internet of things security research: A rehash of old ideas or new intellectual challenges. IEEE Secur. Priv. 2017, 15, 79–84. [CrossRef]</p>
-<p>[^16]: Al-Garadi, M.A.; Mohamed, A.; Al-Ali, A.; Du, X.; Guizani, M. A survey of machine and deep learning methods for internet of things (IoT) security. arXiv 2018, arXiv:1807.11023. Available online: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1807.11023">https://arxiv.org/abs/1807.11023</a> (accessed on 6 December 2019).</p>
+<p>[^16]: Al-Garadi, M.A.; Mohamed, A.; Al-Ali, A.; Du, X.; Guizani, M. A survey of machine and deep learning methods for internet of things (IoT) security. arXiv 2018, arXiv:1807.11023. Available online: <span class="exturl" data-url="aHR0cHM6Ly9hcnhpdi5vcmcvYWJzLzE4MDcuMTEwMjM=">https://arxiv.org/abs/1807.11023<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^17]: Alrawi, O.; Lever, C.; Antonakakis, M.; Monrose, F. Sok: Security evaluation of home-based IoT deployments. In Proceedings of the IEEE Symposium on Security and Privacy (SP), San Francisco, CA, USA, 19–23 May 2019.</p>
 <p>[^18]: Xie, W.; Jiang, Y.; Tang, Y.; Ding, N.; Gao, Y. Vulnerability detection in IoT firmware: A survey. In Proceedings of the IEEE 23rd International Conference on Parallel and Distributed Systems (ICPADS), Shenzhen, China, 15–17 December 2017.</p>
 <p>[^19]: Zheng, Y.; Wen, H.; Cheng, K.; Song, Z.W.; Zhu, H.S.; Sun, L.M. A Survey of IoT Device Vulnerability Mining Techniques. J. Cyber Secur. 2019, 4, 61–75. [CrossRef]</p>
-<p>[^20]: Samsung. Samsung SmartThings. Available online: <a target="_blank" rel="noopener" href="https://www.smartthings.com/">https://www.smartthings.com/</a> (accessed on 6 December 2019).</p>
-<p>[^21]: Google. Google Weave Project. Available online: <a target="_blank" rel="noopener" href="https://developers.google.com/weave/">https://developers.google.com/weave/</a> (accessed on 6 December 2019).</p>
-<p>[^22]: Apple Inc. Apple HomeKit. Available online: <a target="_blank" rel="noopener" href="http://www.apple.com/ios/home/">http://www.apple.com/ios/home/</a> (accessed on 6 December 2019).</p>
-<p>[^23]: Home, A. Home Assistant. Available online: <a target="_blank" rel="noopener" href="https://www.home-assistant.io">https://www.home-assistant.io</a> (accessed on 6 December 2019).</p>
-<p>[^24]: Mi Inc. IoT Developer Platform. Available online: <a target="_blank" rel="noopener" href="https://IoT.mi.com/">https://IoT.mi.com/</a> (accessed on 6 December 2019).</p>
-<p>[^25]: WiFi, A. WiFi. Available online: <a target="_blank" rel="noopener" href="https://www.wi-fi.org/">https://www.wi-fi.org/</a> (accessed on 6 December 2019).</p>
-<p>[^26]: Zigbee, A. Zigbee. Available online: <a target="_blank" rel="noopener" href="https://zigbee.org/">https://zigbee.org/</a> (accessed on 6 December 2019).</p>
-<p>[^27]: Bluetooth Technology Website. Available online: <a target="_blank" rel="noopener" href="https://www.bluetooth.com/">https://www.bluetooth.com/</a> (accessed on 6 December 2019).</p>
+<p>[^20]: Samsung. Samsung SmartThings. Available online: <span class="exturl" data-url="aHR0cHM6Ly93d3cuc21hcnR0aGluZ3MuY29tLw==">https://www.smartthings.com/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^21]: Google. Google Weave Project. Available online: <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmdvb2dsZS5jb20vd2VhdmUv">https://developers.google.com/weave/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^22]: Apple Inc. Apple HomeKit. Available online: <span class="exturl" data-url="aHR0cDovL3d3dy5hcHBsZS5jb20vaW9zL2hvbWUv">http://www.apple.com/ios/home/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^23]: Home, A. Home Assistant. Available online: <span class="exturl" data-url="aHR0cHM6Ly93d3cuaG9tZS1hc3Npc3RhbnQuaW8=">https://www.home-assistant.io<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^24]: Mi Inc. IoT Developer Platform. Available online: <span class="exturl" data-url="aHR0cHM6Ly9Jb1QubWkuY29tLw==">https://IoT.mi.com/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^25]: WiFi, A. WiFi. Available online: <span class="exturl" data-url="aHR0cHM6Ly93d3cud2ktZmkub3JnLw==">https://www.wi-fi.org/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^26]: Zigbee, A. Zigbee. Available online: <span class="exturl" data-url="aHR0cHM6Ly96aWdiZWUub3JnLw==">https://zigbee.org/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^27]: Bluetooth Technology Website. Available online: <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmx1ZXRvb3RoLmNvbS8=">https://www.bluetooth.com/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^28]: Liu, X.; Zhou, Z.; Diao, W.; Li, Z.; hang, K. When good becomes evil: Keystroke inference with smartwatch. In Proceedings of the 22nd ACM SIGSAC Conference on Computer and Communications Security, Denver, CO, USA, 12–16 October 2015.</p>
 <p>[^29]: Das, A.; Borisov, N.; Caesar M. Do you hear what i hear?: Fingerprinting smart devices through embedded acoustic components. In Proceedings of the ACM SIGSAC Conference on Computer and Communications Security, Scottsdale, AZ, USA, 3–7 November 2014. Future Internet 2019, 12, 27 19 of 23</p>
 <p>[^30]: Vasyltsov, I.; Lee, S. Entropy extraction from bio-signals in healthcare IoT. In Proceedings of the 1st ACM Workshop on IoT Privacy, Trust, and Security, Singapore, 14 April 2015.</p>
 <p>[^31]: McCann, D.; Eder, K.; Oswald, E. Characterising and comparing the energy consumption of side channel attack countermeasures and lightweight cryptography on embedded device. In Proceedings of the International Workshop on Secure Internet of Things (SIoT), Vienna, Austria, 21–25 September 2015.</p>
-<p>[^32]: Stokes, P., SentinelOne. Checkm8: 5 Things You Should Know about the New Ios Boot Rom Exploit. Available online: <a target="_blank" rel="noopener" href="https://www.sentinelone.com/blog/checkm8-5-things-you-should-know-new-ios-boot%EF%BF%BErom-exploit/">https://www.sentinelone.com/blog/checkm8-5-things-you-should-know-new-ios-boot￾rom-exploit/</a> (accessed on 6 December 2019).</p>
-<p>[^33]: MITRE Corp. Marvell WiFi. Available online: <a target="_blank" rel="noopener" href="https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=+Marvell+WiFi">https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=+Marvell+WiFi</a> (accessed on 6 December 2019).</p>
-<p>[^34]: Paganini, P. Million of Telestar Digital GmbH IoT Radio Devices Can Be Remotely Hacked. Available online:<a target="_blank" rel="noopener" href="https://securityaffairs.co/wordpress/91069/hacking/telestar-IoT-radio-devices-hack.html">https://securityaffairs.co/wordpress/91069/hacking/telestar-IoT-radio-devices-hack.html</a> (accessed on 6 December 2019).</p>
-<p>[^35]: MITRE Corp. CVE-2019-13473. Available online: <a target="_blank" rel="noopener" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-13473">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-13473</a> (accessed on 6 December 2019).</p>
-<p>[^36]: MITRE Corp. CVE-2019-13474. Available online: <a target="_blank" rel="noopener" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-13474">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-13474</a> (accessed on 6 December 2019).</p>
+<p>[^32]: Stokes, P., SentinelOne. Checkm8: 5 Things You Should Know about the New Ios Boot Rom Exploit. Available online: <span class="exturl" data-url="aHR0cHM6Ly93d3cuc2VudGluZWxvbmUuY29tL2Jsb2cvY2hlY2ttOC01LXRoaW5ncy15b3Utc2hvdWxkLWtub3ctbmV3LWlvcy1ib290JUVGJUJGJUJFcm9tLWV4cGxvaXQv">https://www.sentinelone.com/blog/checkm8-5-things-you-should-know-new-ios-boot￾rom-exploit/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^33]: MITRE Corp. Marvell WiFi. Available online: <span class="exturl" data-url="aHR0cHM6Ly9jdmUubWl0cmUub3JnL2NnaS1iaW4vY3Zla2V5LmNnaT9rZXl3b3JkPStNYXJ2ZWxsK1dpRmk=">https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=+Marvell+WiFi<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^34]: Paganini, P. Million of Telestar Digital GmbH IoT Radio Devices Can Be Remotely Hacked. Available online:<span class="exturl" data-url="aHR0cHM6Ly9zZWN1cml0eWFmZmFpcnMuY28vd29yZHByZXNzLzkxMDY5L2hhY2tpbmcvdGVsZXN0YXItSW9ULXJhZGlvLWRldmljZXMtaGFjay5odG1s">https://securityaffairs.co/wordpress/91069/hacking/telestar-IoT-radio-devices-hack.html<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^35]: MITRE Corp. CVE-2019-13473. Available online: <span class="exturl" data-url="aHR0cHM6Ly9jdmUubWl0cmUub3JnL2NnaS1iaW4vY3ZlbmFtZS5jZ2k/bmFtZT1DVkUtMjAxOS0xMzQ3Mw==">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-13473<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
+<p>[^36]: MITRE Corp. CVE-2019-13474. Available online: <span class="exturl" data-url="aHR0cHM6Ly9jdmUubWl0cmUub3JnL2NnaS1iaW4vY3ZlbmFtZS5jZ2k/bmFtZT1DVkUtMjAxOS0xMzQ3NA==">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-13474<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^37]: Costa Gondim, J.J.; de Oliveira Albuquerque, R.; Clayton Alves Nascimento, A.; García Villalba, L.J.;Kim, T.H. A methodological approach for assessing amplified reflection distributed denial of service on the internet of things. Sensors 2016, 16, 1855. [CrossRef] [PubMed]</p>
-<p>[^38]: Wikipedia. Constrained Application Protocol. Available online: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/">https://en.wikipedia.org/wiki/</a> Constrained_Application_Protocol (accessed on 6 December 2019).</p>
-<p>[^39]: UPnP Corp. UPnP Device Architecture 1.0. Available online: <a target="_blank" rel="noopener" href="http://www.upnp.org/specs/arch/UPnP%EF%BF%BEarch-DeviceArchitecture-v1.0-20080424.pdf">http://www.upnp.org/specs/arch/UPnP￾arch-DeviceArchitecture-v1.0-20080424.pdf</a> (accessed on 6 December 2019).</p>
+<p>[^38]: Wikipedia. Constrained Application Protocol. Available online: <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kv">https://en.wikipedia.org/wiki/<i class="fa fa-external-link-alt"></i></span> Constrained_Application_Protocol (accessed on 6 December 2019).</p>
+<p>[^39]: UPnP Corp. UPnP Device Architecture 1.0. Available online: <span class="exturl" data-url="aHR0cDovL3d3dy51cG5wLm9yZy9zcGVjcy9hcmNoL1VQblAlRUYlQkYlQkVhcmNoLURldmljZUFyY2hpdGVjdHVyZS12MS4wLTIwMDgwNDI0LnBkZg==">http://www.upnp.org/specs/arch/UPnP￾arch-DeviceArchitecture-v1.0-20080424.pdf<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^40]: Li, C.; Cai, Q.; Li, J.; Liu, H.; Zhang, Y.; Gu, D.; Yu, Y. Passwords in the Air: Harvesting Wi-Fi Credentials from SmartCfg Provisioning. In Proceedings of the 11th ACM Conference on Security &amp; Privacy in Wireless and Mobile Networks, Stockholm, Sweden, 18–20 June 2018.</p>
 <p>[^41]: Zhou, W.; Jia, Y.; Yao, Y.; Zhu, L.; Guan, L.; Mao, Y.; Zhang, Y. Phantom Device Attack: Uncovering the Security Implications of the Interactions among Devices, IoT Cloud, and Mobile Apps. arXiv 2018, arXiv:1811.03241.</p>
 <p>[^42]: Vasile, S.; Oswald, D.; Chothia, T. Breaking All the Things—A Systematic Survey of Firmware Extraction Techniques for IoT Devices. In Proceedings of the International Conference on Smart Card Research and Advanced Applications, Montpellier, France, 12–14 November 2018.</p>
 <p>[^43]: Zaddach, J.; Bruno, L.; Francillon, A.; Balzarotti, D. AVATAR: A Framework to Support Dynamic Security Analysis of Embedded Systems’ Firmwares. In Proceedings of the Network and Distributed System Security (NDSS) Symposium, San Diego, CA, USA, 23–26 February 2014.</p>
-<p>[^44]: Kammerstetter, M.; Platzer, C.; Kastner, W. Prospect: peripheral proxying supported embedded code <a target="_blank" rel="noopener" href="http://testing.In">testing.In</a> Proceedings of the 9th ACM Symposium on Information, Computer and Communications Security, Kyoto, Japan, 3–6 June 2014.</p>
+<p>[^44]: Kammerstetter, M.; Platzer, C.; Kastner, W. Prospect: peripheral proxying supported embedded code <span class="exturl" data-url="aHR0cDovL3Rlc3RpbmcuSW4=">testing.In<i class="fa fa-external-link-alt"></i></span> Proceedings of the 9th ACM Symposium on Information, Computer and Communications Security, Kyoto, Japan, 3–6 June 2014.</p>
 <p>[^45]: Koscher, K.; Kohno, T.; Molnar, D. SURROGATES: Enabling Near-Real-Time Dynamic Analyses of Embedded Systems. In Proceedings of the 9th USENIX Workshop on Offensive Technologies (WOOT 15), Washington, DC, USA, 10–11 August 2015.</p>
 <p>[^46]: Muench, M.; Nisi, D.; Francillon, A.; Balzarotti, D. Avatar 2: A Multi-target Orchestration Platform. In Proceedings of the Workshop on Binary Analysis Research (colocated with NDSS Symposium), San Diego, CA, USA, 18 February 2018.</p>
 <p>[^47]: Chen, D.D.; Woo, M.; Brumley, D.; Egele, M. Towards Automated Dynamic Analysis for Linux-based Embedded Firmware. In Proceedings of the Network and Distributed System Security (NDSS) Symposium, San Diego, CA, USA, 21–24 February 2016.</p>
 <p>[^48]: Bellard, F. QEMU, a fast and portable dynamic translator. In Proceedings of the USENIX Annual Technical Conference, Anaheim, CA, USA, 10–15 April 2005.</p>
-<p>[^49]: Wikipedia. Fuzzing. Available online: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fuzzing">https://en.wikipedia.org/wiki/Fuzzing</a> (accessed on 6 December 2019). Future Internet 2019, 12, 27 20 of 23</p>
-<p>[^50]: Wikipedia. Taint Checking. Available online: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Taint_checking">https://en.wikipedia.org/wiki/Taint_checking</a> (accessed on 6 December 2019).</p>
+<p>[^49]: Wikipedia. Fuzzing. Available online: <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRnV6emluZw==">https://en.wikipedia.org/wiki/Fuzzing<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019). Future Internet 2019, 12, 27 20 of 23</p>
+<p>[^50]: Wikipedia. Taint Checking. Available online: <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVGFpbnRfY2hlY2tpbmc=">https://en.wikipedia.org/wiki/Taint_checking<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^51]: King, J.C. Symbolic execution and program testing. Commun. ACM 1976, 19; 385–394. [CrossRef]</p>
-<p>[^52]: Alimi, V.; Vernois, S.; Rosenberger, C. Analysis of embedded applications by evolutionary <a target="_blank" rel="noopener" href="http://fuzzing.In">fuzzing.In</a> Proceedings the 2014 International Conference on High Performance Computing &amp; Simulation (HPCS), Bologna, Italy, 21–25 July 2014.</p>
+<p>[^52]: Alimi, V.; Vernois, S.; Rosenberger, C. Analysis of embedded applications by evolutionary <span class="exturl" data-url="aHR0cDovL2Z1enppbmcuSW4=">fuzzing.In<i class="fa fa-external-link-alt"></i></span> Proceedings the 2014 International Conference on High Performance Computing &amp; Simulation (HPCS), Bologna, Italy, 21–25 July 2014.</p>
 <p>[^53]: Kamel, N.; Lanet, J.L. Analysis of HTTP protocol implementation in smart card embedded web server. Int. J. Inf. Netw. Security (IJINS) 2013, 2, 417. [CrossRef]</p>
 <p>[^54]: Koscher, K.; Czeskis, A.; Roesner, F.; Patel, S.; Kohno, T.; Checkoway, S.; McCoy, D.; Kantor, B.; Anderson, D;Shacham, H.; et al. Experimental security analysis of a modern automobile. In Proceedings of the IEEE Symposium on Security and Privacy (SP), Berkeley, CA, USA, 16–19 May 2010.</p>
 <p>[^55]: Lee, H.; Choi, K.; Chung, K.; Kim, J.; Yim, K. Fuzzing can packets into automobiles. In Proceedings of the 29th International Conference on Advanced Information Networking and Applications, Gwangiu, Korea,24–27 March 2015.</p>
-<p>[^56]: Wikipedia. CAN bus. Available online: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/CAN_bus">https://en.wikipedia.org/wiki/CAN_bus</a> (accessed on 6 December 2019).</p>
+<p>[^56]: Wikipedia. CAN bus. Available online: <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ0FOX2J1cw==">https://en.wikipedia.org/wiki/CAN_bus<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^57]: Chen, J.; Diao, W.; Zhao, Q.; Zuo, C.; Lin, Z.; Wang, X.; Lau, W.C.; Sun, M.; Yang, R.; Zhang, K. IoTfuzzer:Discovering Memory Corruptions in IoT through App-Based Fuzzing. In Proceedings of the Network and Distributed System Security (NDSS) Symposium, San Diego, CA, USA, 18–21 February 2018.</p>
 <p>[^58]: Costin, A.; Zarras, A.; Francillon, A. Automated dynamic firmware analysis at scale: A case studyon embedded web interfaces. In Proceedings of the 11th ACM on Asia Conference on Computer and Communications Security, Xi’an, China, 30 May–3 June 2016.</p>
 <p>[^59]: Srivastava, P.; Peng, H.; Li, J.; Okhravi, H.; Shrobe, H.; Payer, M. FirmFuzz: Automated IoT Firmware Introspection and Analysis. In Proceedings of the 2nd International ACM Workshop on Security and Privacy for the Internet-of-Things, London, UK, 15 November 2019.</p>
 <p>[^60]: Zheng, Y.; Davanian, A.; Yin, H.; Song, C.; Zhu, H.; Sun, L. FIRM-AFL: high-throughput greybox fuzzing of IoT firmware via augmented process emulation. In Proceedings of the 28th USENIX Security Symposium (USENIX Security 19), Santa Clara, CA, USA, 14–16 August 2019.</p>
-<p>[^61]: Zalewski, M. American Fuzzy Lop. Available online: <a target="_blank" rel="noopener" href="http://lcamtuf.coredump.cx/afl">http://lcamtuf.coredump.cx/afl</a> (accessed on 6 December 2019).</p>
+<p>[^61]: Zalewski, M. American Fuzzy Lop. Available online: <span class="exturl" data-url="aHR0cDovL2xjYW10dWYuY29yZWR1bXAuY3gvYWZs">http://lcamtuf.coredump.cx/afl<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^62]: Muench, M.; Stijohann, J.; Kargl, F.; Francillon, A.; Balzarotti, D. What You Corrupt Is Not What You Crash: Challenges in Fuzzing Embedded Devices. In Proceedings of the Network and Distributed System Security (NDSS) Symposium, San Diego, CA, USA, 18–21 February 2018.</p>
-<p>[^63]: Dolan-Gavitt, B.; Hodosh, J.; Hulin, P.; Leek, T.; Whelan, R. Repeatable reverse engineering with <a target="_blank" rel="noopener" href="http://PANDA.In">PANDA.In</a> Proceedings of the 5th Program Protection and Reverse Engineering Workshop, Los Angeles, CA, USA,15 December 2015.</p>
+<p>[^63]: Dolan-Gavitt, B.; Hodosh, J.; Hulin, P.; Leek, T.; Whelan, R. Repeatable reverse engineering with <span class="exturl" data-url="aHR0cDovL1BBTkRBLklu">PANDA.In<i class="fa fa-external-link-alt"></i></span> Proceedings of the 5th Program Protection and Reverse Engineering Workshop, Los Angeles, CA, USA,15 December 2015.</p>
 <p>[^64]: Costin, A.; Zaddach, J.; Francillon, A.; Balzarotti, D. A large-scale analysis of the security of embedded firmwares. In Proceedings of the 23rd USENIX Security Symposium (USENIX Security 14), San Diego, CA, USA, 20–22 August 2014.</p>
 <p>[^65]: Davidson, D.; Moench, B.; Ristenpart, T.; Jha, S. FIE on Firmware: Finding Vulnerabilities in Embedded Systems Using Symbolic Execution. In Proceedings of the 22nd USENIX Security Symposium (USENIX Security 13), Washington, DC, USA, 14–16 August 2013.</p>
 <p>[^66]: Celik, Z.B.; Babun, L.; Sikder, A.K.; Aksu, H.; Tan, G.; McDaniel, P.; Uluagac, A.S. KLEE: Unassisted and Automatic Generation of High-Coverage Tests for Complex Systems Programs. In Proceedings of the 8th USENIX Symposium on Operating Systems Design and Implementation(OSDI 2008), San Diego, CA, USA, 8–10 December 2008.</p>
@@ -623,10 +639,10 @@ Fernandes等人[^107]首先深入研究了IoT平台的安全例如SmartThings，
 <p>[^70]: Cui, A.; Stolfo, S.J. A quantitative analysis of the insecurity of embedded network devices: results of a wide-area scan. In Proceedings of the 26th Annual Computer Security Applications Conference, Austin, TX, USA, 6–10 December 2010.</p>
 <p>[^71]: Al-Alami, H;, Ali, H.; Hussein, A.B. Vulnerability scanning of IoT devices in Jordan using Shodan. In Proceedings of the 2nd International Conference on the Applications of Information Technology in Developing Renewable Energy Processes &amp; Systems (IT-DREPS), Amman, Jordan, 6–7 December 2017.</p>
 <p>[^72]: Durumeric, Z.; Adrian, D.; Mirian, A.; Bailey, M.; Halderman, J.A. A search engine backed by Internet-wide scanning. In Proceedings of the 22nd ACM SIGSAC Conference on Computer and Communications Security, Denver, CO, USA, 12–16 October 2015.</p>
-<p>[^73]: Knownsec, Inc. Zoomeye. Available online: <a target="_blank" rel="noopener" href="https://www.zoomeye.org/">https://www.zoomeye.org/</a> (accessed on 6 December 2019).</p>
+<p>[^73]: Knownsec, Inc. Zoomeye. Available online: <span class="exturl" data-url="aHR0cHM6Ly93d3cuem9vbWV5ZS5vcmcv">https://www.zoomeye.org/<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^74]: Li, Z.; Lu, S.; Myagmar, S.; Zhou, Y. CP-Miner: A Tool for Finding Copy-paste and Related Bugs in Operating System Code. In Proceedings of the 6th Symposium on Operating System Design and Implementation (OSDI 2004), San Francisco, CA, USA, 6–8 December 2004.</p>
 <p>[^75]: Jang, J.; Agrawal, A.; Brumley, D. ReDeBug: finding unpatched code clones in entire os distributions. In Proceedings of the IEEE Symposium on Security and Privacy (SP), San Francisco, CA, USA, 20–23 May 2012.</p>
-<p>[^76]: Wikipedia. N-gram. Available online: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/N-gram">https://en.wikipedia.org/wiki/N-gram</a> (accessed on 6December 2019).</p>
+<p>[^76]: Wikipedia. N-gram. Available online: <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTi1ncmFt">https://en.wikipedia.org/wiki/N-gram<i class="fa fa-external-link-alt"></i></span> (accessed on 6December 2019).</p>
 <p>[^77]: Myles, G.; Christian, C. K-gram based software birthmarks. In Proceedings of the 2005 ACM Symposium on Applied Computing, Santa Fe, NM, USA, 13–17 March 2005.</p>
 <p>[^78]: Khoo, W.M.; Mycroft, A.; Anderson R. Rendezvous: A search engine for binary code. In Proceedings of the 10th Working Conference on Mining Software Repositories, San Francisco, CA, USA, 18–19 May 2013.</p>
 <p>[^79]: Karim, M.E.; Walenstein, A.; Lakhotia, A.; Parida, L. Malware phylogeny generation using permutations of code. J. Comput. Virol. 2005, 1, 13–23. [CrossRef]</p>
@@ -647,13 +663,13 @@ Fernandes等人[^107]首先深入研究了IoT平台的安全例如SmartThings，
 <p>[^94]: Liu, B.; Huo, W.; Zhang, C.; Li, W.; Li, F.; Piao, A.; Zou, W. αDiff: cross-version binary code similarity detection with DNN. In Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering, Montpellier, France, 3–7 September 2018.</p>
 <p>[^95]: Gao, J.; Yang, X.; Fu, Y.; Jiang, Y.; Sun, J. Vulseeker: a semantic learning based vulnerability seeker for cross-platform binary. In Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering, Montpellier, France, 3–7 September 2018.</p>
 <p>[^96]: Gao, J.; Yang, X.; Fu, Y.; Jiang, Y.; Shi, H.; Sun, J. Vulseeker-pro: enhanced semantic learning based binary vulnerability seeker with emulation. In Proceedings of the 26th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering, Tallinn, Estonia, 26–30 August 2019.</p>
-<p>[^97]: Long, F.; Rinard, M. Prophet: Automatic Patch Generation via Learning from Successful Patches. <a target="_blank" rel="noopener" href="https://core.ac.uk/download/pdf/78062945.pdf">https://core.ac.uk/download/pdf/78062945.pdf</a> (accessed on 6 December 2019).</p>
+<p>[^97]: Long, F.; Rinard, M. Prophet: Automatic Patch Generation via Learning from Successful Patches. <span class="exturl" data-url="aHR0cHM6Ly9jb3JlLmFjLnVrL2Rvd25sb2FkL3BkZi83ODA2Mjk0NS5wZGY=">https://core.ac.uk/download/pdf/78062945.pdf<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^98]: Long, F.; Rinard, M. Automatic patch generation by learning correct code. In Proceedings of the 43rd Annual ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages, St. Petersburg, FL, USA, 20–22 January 2016.</p>
 <p>[^99]: Long, F.; Amidon, P.; Rinard, M. Automatic inference of code transforms for patch generation. In Proceedings of the 11th Joint Meeting on Foundations of Software Engineering, Paderborn, Germany, 4–8 September 2017.</p>
 <p>[^100]: Le Goues, C.; Nguyen, T.; Forrest, S.; Weimer, W. Genprog: A generic method for automatic software repair. IEEE Trans. Soft. Eng. 2011, 38, 54–72. [CrossRef]</p>
 <p>[^101]: Kim, D.; Nam, J.; Song, J.; Kim, S. Automatic patch generation learned from human-written patches. In Proceedings of the International Conference on Software Engineering, San Francisco, CA, USA, 18–26 May 2013.</p>
 <p>[^102]: Zhang, Y.; Chen, Y.; Bao, C.; Xia, L.; Zhen, L.; Lu, Y.; Wei, T. Adaptive kernel live patching: An open collaborative effort to ameliorate android n-day root exploits. In Proceedings of Black Hat USA, Las Vegas, NA, USA, 30 July–4 August 2016.</p>
-<p>[^103]: DARPA. Cyber Grand Challenge. Available online: <a target="_blank" rel="noopener" href="https://www.darpa.mil/program/cyber-grand%EF%BF%BEchallenge">https://www.darpa.mil/program/cyber-grand￾challenge</a> (accessed on 6 December 2019).</p>
+<p>[^103]: DARPA. Cyber Grand Challenge. Available online: <span class="exturl" data-url="aHR0cHM6Ly93d3cuZGFycGEubWlsL3Byb2dyYW0vY3liZXItZ3JhbmQlRUYlQkYlQkVjaGFsbGVuZ2U=">https://www.darpa.mil/program/cyber-grand￾challenge<i class="fa fa-external-link-alt"></i></span> (accessed on 6 December 2019).</p>
 <p>[^104]: Shoshitaishvili, Y.; Bianchi, A.; Borgolte, K.; Cama, A.; Corbetta, J.; Disperati, F.; Dutcher, A.; Grosen, J.;Grosen, P.;Machiry, A.; etc. Mechanical phish: Resilient autonomous hacking. IEEE Secur. Priv. 2018, 16, 12–22. [CrossRef]</p>
 <p>[^105]: Shoshitaishvili, Y.; Weissbacher, M.; Dresel, L.; Salls, C.; Wang, R.; Kruegel, C.; Vigna, G. Rise of the hacrs: Augmenting autonomous cyber reasoning systems with human assistance. In Proceedings of the ACM SIGSAC Conference on Computer and Communications Security, Dallas, TX, USA, 30 October–3 November 2017.</p>
 <p>[^106]: Nguyen-Tuong, A.; Melski, D.; Davidson, J.W.; Co, M.; Hawkins, W.; Hiser, J.D.;Morris, D.; Nguyen, D.; Rizzi, E. Xandra: An Autonomous Cyber Battle System for the Cyber Grand Challenge. IEEE Secur. Priv.2018, 16, 42–51. [CrossRef]</p>
@@ -734,7 +750,7 @@ Fernandes等人[^107]首先深入研究了IoT平台的安全例如SmartThings，
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
   </div>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"

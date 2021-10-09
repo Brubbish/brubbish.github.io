@@ -183,7 +183,7 @@ body {
   background: var(--body-bg-color);
   color: var(--text-color);
   font-family: Open Sans, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 0.8em;
+  font-size: 0.9em;
   line-height: 2;
   min-height: 100%;
   position: relative;
@@ -2729,7 +2729,7 @@ mark.search-keyword {
   transition: all 0.2s ease-in-out;
 }
 .links-of-author a::before {
-  background: #4bffeb;
+  background: #a27cd1;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);

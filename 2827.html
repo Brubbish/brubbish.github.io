@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="树和二叉树 非线性结构：至少存在一个数据元素可以有两个或者两个以上的前驱或后继元素。 树形结构属于非线性结构，是以分支关系定义的一种层次结构。树形结构中的一个元素为一个结点，结点之间的关系为分支，树中一个结点包含了一个数据元素以及若干指向其子树的分支 树 当结点n&#x3D;0时称为空树 从逻辑上看：  任何非空树中有且只有一个结点没有前驱结点，就是树的根结点 除了根节点外，其余所有结点有且只有一个直接前驱">
 <meta property="og:type" content="article">
 <meta property="og:title" content="7-30">
@@ -48,6 +48,9 @@
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>7-30 | Brubbish's</title><meta name="robots" content="noindex">
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
 
 
 
@@ -92,7 +95,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+        <li class="menu-item menu-item-book"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>book</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -189,8 +192,9 @@
         </div>
       </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
+
+
+
 <!-- sidebar -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -198,6 +202,18 @@
      data-ad-slot="5504766755"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -322,20 +338,20 @@ m棵（m≥0）树的集合。对于树种每个分支结点来说，其子树�
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&quot;220.249.52.133&quot;</span>, <span class="number">45173</span>)</span><br><span class="line">p.recv()</span><br><span class="line">a = <span class="string">&quot;1&quot;</span>*<span class="number">0x20</span> + p64(<span class="number">1</span>)</span><br><span class="line">p.sendline(a)</span><br><span class="line">p.recv()</span><br><span class="line">c = cdll.LoadLibrary(<span class="string">&#x27;/lib/x86_64-linux-gnu/libc.so.6&#x27;</span>)</span><br><span class="line">c.srand(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">	a = <span class="built_in">str</span>(c.rand()%<span class="number">6</span>+<span class="number">1</span>)</span><br><span class="line">	p.recvuntil(<span class="string">&#x27;number:&#x27;</span>)</span><br><span class="line">	<span class="built_in">print</span>(a)</span><br><span class="line">	p.sendline(a)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 <p>这题遇到了几个之前没了解过的地方：</p>
 <ol>
-<li>rand、srand()、seed：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_33962621/article/details/85825271">https://blog.csdn.net/weixin_33962621/article/details/85825271</a></li>
-<li>python中调用动态链接库<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.7/library/ctypes.html">ctypes — Python 的外部函数库 — Python 3.7.8 文档</a></li>
+<li>rand、srand()、seed：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zMzk2MjYyMS9hcnRpY2xlL2RldGFpbHMvODU4MjUyNzE=">https://blog.csdn.net/weixin_33962621/article/details/85825271<i class="fa fa-external-link-alt"></i></span></li>
+<li>python中调用动态链接库<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnB5dGhvbi5vcmcvemgtY24vMy43L2xpYnJhcnkvY3R5cGVzLmh0bWw=">ctypes — Python 的外部函数库 — Python 3.7.8 文档<i class="fa fa-external-link-alt"></i></span></li>
 <li>sendline()只能传字符和字符串，所以循环里a赋值的时候要转换srt(),不然会报错“‘int’ object has no attribute ‘encode’”</li>
 <li>linux下运行.py的方法：</li>
 </ol>
 <blockquote>
-<p>python <a target="_blank" rel="noopener" href="http://xn--5nqx7jp0r.py">文件名.py</a></p>
+<p>python <span class="exturl" data-url="aHR0cDovL3huLS01bnF4N2pwMHIucHk=">文件名.py<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <ol start="5">
-<li>linux下编译c的方法（虽然没有用上）：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44895651/article/details/89309790">https://blog.csdn.net/weixin_44895651/article/details/89309790</a></li>
+<li>linux下编译c的方法（虽然没有用上）：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg5NTY1MS9hcnRpY2xlL2RldGFpbHMvODkzMDk3OTA=">https://blog.csdn.net/weixin_44895651/article/details/89309790<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.b1ndsec.cn/?p=319">https://www.b1ndsec.cn/?p=319</a><br>
+<p>参考：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYjFuZHNlYy5jbi8/cD0zMTk=">https://www.b1ndsec.cn/?p=319<i class="fa fa-external-link-alt"></i></span><br>
 写完之后看了别人的题解，发现可以不用ctypes，也应证了第3条<img src="https://adworld.xctf.org.cn/media/uploads/writeup/60f6d96a951f11ea88a9fa163e3c3fd2.png" alt="xctf-writeup"></p>
-<h2 id="Hello，CTF"><a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/task/answer?type=reverse&amp;number=4&amp;grade=0&amp;id=5075&amp;page=1">Hello，CTF</a></h2>
+<h2 id="Hello，CTF"><span class="exturl" data-url="aHR0cHM6Ly9hZHdvcmxkLnhjdGYub3JnLmNuL3Rhc2svYW5zd2VyP3R5cGU9cmV2ZXJzZSZudW1iZXI9NCZncmFkZT0wJmlkPTUwNzUmcGFnZT0x">Hello，CTF<i class="fa fa-external-link-alt"></i></span></h2>
 <p>放到ida里看伪代码<br>
 <img src="https://s1.ax1x.com/2020/07/30/aKBph6.png" alt="aKBph6.png"><br>
 其中这处能看出是将输入的内容转换为16进制的数字<br>
@@ -343,13 +359,13 @@ m棵（m≥0）树的集合。对于树种每个分支结点来说，其子树�
 <img src="https://s1.ax1x.com/2020/07/30/aKBC9K.png" alt="aKBC9K.png"><br>
 再与“437…56e&quot;那串数字进行对比，所以只要把“437…56e&quot;转换回去就行了</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="built_in">bytes</span>.fromhex(<span class="string">&quot;437261636b4d654a757374466f7246756e&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment">#python真好用</span></span><br></pre></td></tr></table></figure>
-<h2 id="python-trade"><a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/task/answer?type=reverse&amp;number=4&amp;grade=0&amp;id=5083&amp;page=1">python-trade</a></h2>
+<h2 id="python-trade"><span class="exturl" data-url="aHR0cHM6Ly9hZHdvcmxkLnhjdGYub3JnLmNuL3Rhc2svYW5zd2VyP3R5cGU9cmV2ZXJzZSZudW1iZXI9NCZncmFkZT0wJmlkPTUwODMmcGFnZT0x">python-trade<i class="fa fa-external-link-alt"></i></span></h2>
 <p>这个名字真是…</p>
 <p>下载了一个.pyc文件，放到在线反编译的网站上看看</p>
 <p>大概是把输入的内容的每一位经过一个变换，最后再转换为base64编码，跟”XlNkVmtUI1MgXWBZXCFeKY+AaXNt“进行对比</p>
 <p>所以就可以直接开始写了</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">correct = <span class="string">&#x27;XlNkVmtUI1MgXWBZXCFeKY+AaXNt&#x27;</span></span><br><span class="line">s=base64.b64decode(correct)</span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">    x = i-<span class="number">16</span>	<span class="comment">#这边如果写ord(i)会报错</span></span><br><span class="line">    x=x^<span class="number">32</span></span><br><span class="line">    flag+=<span class="built_in">chr</span>(x)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
-<p>i-16那行：<a target="_blank" rel="noopener" href="https://blog.csdn.net/thinszx/article/details/104519533">python3遇到的&quot;ord() expected string of length 1, but int found&quot;问题</a><br>
+<p>i-16那行：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RoaW5zengvYXJ0aWNsZS9kZXRhaWxzLzEwNDUxOTUzMw==">python3遇到的&quot;ord() expected string of length 1, but int found&quot;问题<i class="fa fa-external-link-alt"></i></span><br>
 其中异或（^）进行逆运算就只需要再异或一次<br>
 异或的逆运算是同或</p>
 <!-- flag of hidden posts -->
@@ -405,7 +421,7 @@ m棵（m≥0）树的集合。对于树种每个分支结点来说，其子树�
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
   </div>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"

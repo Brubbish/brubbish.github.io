@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="就此开一篇单独记录 py 爬虫的学习以及实操中遇到的问题(可能吧) （分割线用（***或—））">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 爬虫学习">
@@ -59,6 +59,9 @@
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>python 爬虫学习 | Brubbish's</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
 
 
 
@@ -103,7 +106,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+        <li class="menu-item menu-item-book"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>book</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -200,8 +203,9 @@
         </div>
       </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
+
+
+
 <!-- sidebar -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -209,6 +213,18 @@
      data-ad-slot="5504766755"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -296,7 +312,7 @@
 （分割线用（***或—））</p>
 <h2 id="more"><span id="more"></span></h2>
 <h1>爬虫入门</h1>
-<p>以下为 mooc 上 BIT 嵩天老师课程<a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/BIT-1001870001?tid=1206951268#/learn/announce">Python 网络爬虫与信息提取</a>的学习</p>
+<p>以下为 mooc 上 BIT 嵩天老师课程<span class="exturl" data-url="aHR0cHM6Ly93d3cuaWNvdXJzZTE2My5vcmcvbGVhcm4vQklULTEwMDE4NzAwMDE/dGlkPTEyMDY5NTEyNjgjL2xlYXJuL2Fubm91bmNl">Python 网络爬虫与信息提取<i class="fa fa-external-link-alt"></i></span>的学习</p>
 <h2 id="requests-库">requests 库</h2>
 <h3 id="安装">安装</h3>
 <p>管理员打开 cmd，安装 requests 库</p>
@@ -311,7 +327,7 @@
 <ol start="2">
 <li>pip install pip -U</li>
 </ol>
-<p>pip config set global.index-url <a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a><br>
+<p>pip config set global.index-url <span class="exturl" data-url="aHR0cHM6Ly9weXBpLnR1bmEudHNpbmdodWEuZWR1LmNuL3NpbXBsZQ==">https://pypi.tuna.tsinghua.edu.cn/simple<i class="fa fa-external-link-alt"></i></span><br>
 （升级 pip 后更换为的清华镜像）</p>
 <h3 id="r-request-get-url">r=request.get(url)</h3>
 <p>构造一个向服务器请求资源的 request 对象，返回一个包含服务器资源的 response 对象<br>
@@ -322,7 +338,7 @@ r.encoding: 如果 header 中不存在 charset，则默认编码为 ISO-8859-1</
 <h3 id="爬取网页的通用代码框架">爬取网页的通用代码框架</h3>
 <p><img src="https://s1.ax1x.com/2020/03/17/8tyy2q.md.png" alt="8tyy2q.md.png"></p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requsets</span><br><span class="line"><span class="comment">#----</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHTMLText</span>(<span class="params">url</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r=requests.get(url,timeout=<span class="number">30</span>)</span><br><span class="line">        r.raise_for_status()    <span class="comment"># 判断状态  如果不是200，则引发HTTPError异常</span></span><br><span class="line">        r.encoding=r.apparent_encoding</span><br><span class="line">        <span class="keyword">return</span> r.text</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;产生异常&quot;</span></span><br><span class="line"><span class="comment">#----</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    url=<span class="string">&quot;http://www.baidu.com&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;getHTMLText(url))</span></span><br></pre></td></tr></table></figure>
-<p>try：python 捕捉异常语句，详见：<a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-exceptions.html">https://www.runoob.com/python/python-exceptions.html</a></p>
+<p>try：python 捕捉异常语句，详见：<span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9weXRob24vcHl0aG9uLWV4Y2VwdGlvbnMuaHRtbA==">https://www.runoob.com/python/python-exceptions.html<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="requests-库主要方法">requests 库主要方法</h3>
 <p><img src="https://s1.ax1x.com/2020/03/17/8ty6x0.md.png" alt="8ty6x0.md.png"></p>
 <p>requests.request(method, url, **kwargs)<br>
@@ -364,7 +380,7 @@ robots 协议时建议而非约束性，不遵守的话存在法律风险（类�
 <h3 id="拒绝被爬：尝试修改-user-agent">拒绝被爬：尝试修改 user-agent</h3>
 <p><img src="https://s1.ax1x.com/2020/03/19/8y3yQ0.md.png" alt="主要为黄色荧光部分"></p>
 <h3 id="搜索引擎关键词提交">搜索引擎关键词提交</h3>
-<p>百度：<a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=">https://www.baidu.com/s?wd=</a><u>关键词</u></p>
+<p>百度：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29tL3M/d2Q9">https://www.baidu.com/s?wd=<i class="fa fa-external-link-alt"></i></span><u>关键词</u></p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">keyword=<span class="string">&quot;xxxx&quot;</span></span><br><span class="line"></span><br><span class="line">kv=&#123;<span class="string">&#x27;wd&#x27;</span>:keyword&#125;</span><br><span class="line"></span><br><span class="line">r=requests.get(<span class="string">&quot;https://www.baidu.com/s&quot;</span>,params=kv)</span><br></pre></td></tr></table></figure>
 <h3 id="图片的爬取和存储">图片的爬取和存储</h3>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">url=<span class="string">&quot;....../...jpg&quot;</span></span><br><span class="line">root=<span class="string">&quot;D://pics//&quot;</span></span><br><span class="line">path=root+url.split(<span class="string">&#x27;/&#x27;</span>)[-<span class="number">1</span>]    <span class="comment">#需要import os</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(root):</span><br><span class="line">        os.mkdir(root)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path):</span><br><span class="line">        r=requests.get(url)</span><br><span class="line">        <span class="comment">#保存↓</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(path,<span class="string">&#x27;wb&#x27;</span>)<span class="keyword">as</span> f:</span><br><span class="line">            f.write(r.content)</span><br><span class="line">            f.close()</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;成功“)</span></span><br><span class="line"><span class="string">    else:</span></span><br><span class="line"><span class="string">        print(&quot;</span>文件已存在<span class="string">&quot;)</span></span><br><span class="line"><span class="string">except:</span></span><br><span class="line"><span class="string">    print(&quot;</span>失败<span class="string">&quot;)</span></span><br></pre></td></tr></table></figure>
@@ -483,7 +499,7 @@ robots 协议时建议而非约束性，不遵守的话存在法律风险（类�
 </tr>
 </tbody>
 </table>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-tutorial.html">https://www.runoob.com/regexp/regexp-tutorial.html</a></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9yZWdleHAvcmVnZXhwLXR1dG9yaWFsLmh0bWw=">https://www.runoob.com/regexp/regexp-tutorial.html<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="Re-库">Re 库</h2>
 <h3 id="调用方法">调用方法</h3>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
@@ -546,7 +562,7 @@ scheduler对所有爬取进行调度<br>
 <p>…</p>
 <h2 id="实例-2">实例</h2>
 <h3 id="中国大学排名爬取">中国大学排名爬取</h3>
-<p>数据来源：<a target="_blank" rel="noopener" href="http://www.zuihaodaxue.com/zuihaodaxuepaiming2019.html">软科中国最好大学排名2019</a></p>
+<p>数据来源：<span class="exturl" data-url="aHR0cDovL3d3dy56dWloYW9kYXh1ZS5jb20venVpaGFvZGF4dWVwYWltaW5nMjAxOS5odG1s">软科中国最好大学排名2019<i class="fa fa-external-link-alt"></i></span></p>
 <ol>
 <li>获取网页内容：gethtmltext()</li>
 <li>提取信息到合适的数据结构：fillunivlist()</li>
@@ -621,7 +637,7 @@ scheduler对所有爬取进行调度<br>
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
   </div>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"

