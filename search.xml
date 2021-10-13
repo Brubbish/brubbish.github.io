@@ -3138,7 +3138,7 @@ windbg查看寄存器信息</p>
       </tags>
   </entry>
   <entry>
-    <title>不定期日记</title>
+    <title>非定期のDiary</title>
     <url>/39190.html</url>
     <content><![CDATA[<p>…</p>
 <span id="more"></span>
@@ -3488,7 +3488,7 @@ XDnb</p>
 <h3 id="2021-08-14">2021-08-14</h3>
 <p>去翔安当了个疫苗接种志愿者（进行身份证信息录入），时间是早上八点到下午三点半（因为疫苗不够2333）。蛮有意义的，建议有机会都来基层感受，就不多说了（懒<br>
 晚上回家，用事实证明，融化一罐意外冻成冰块的可乐可能会得到一罐糖水…不过好像因为是我nt在没融化完之前就打开了易拉罐…</p>
-<p><a href="/987654321.html">今天是七夕</a></p>
+<p>今天是七夕，在博客上某处偷偷放了个碎碎念</p>
 <h3 id="2021-08-16">2021-08-16</h3>
 <p>2333开始对上周收集的网站进行渗透测试</p>
 <p>9:00-12:40：找找有啥自动化批量扫洞的工具。下了个xray和w3scan，问了波神还有啥，他说这俩就挺好的<br>
@@ -3626,13 +3626,19 @@ python真好用</p>
 怎么说呢，看到这个结果感觉像是：</p>
 <blockquote>
 <p>这很西方，他们造就了殖民主义，又回过头来显示他们关注难民。<br>
-颇有点在阿富汗，美军怀抱阿富汗小孩以展示人道主义的味道。<br>
-想起了我国</p>
+颇有点在阿富汗，美军怀抱阿富汗小孩以展示人道主义的味道。</p>
 </blockquote>
+<p>想起了我国</p>
 <p>再：搜“诺贝尔文学奖”和“阿布杜勒拉扎克·古尔纳”的时候清一色的复制粘贴通稿…吐了</p>
 <h3 id="2021-10-09">2021-10-09</h3>
-<p>网上冲浪发现我上回胡乱记录的 VEX IR 被一个师傅引流了（<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnNoaTEwMTEuY24vY3RmLzE2MDElRUYlQkMlODklRTMlODAlODIlRTUlODYlOEQlRTUlOUIlOUUlRTUlOEUlQkIlRTclOUMlOEIlRTclOUMlOEIlRTglODclQUElRTUlQjclQjElRTUlODYlOTklRTclOUElODQlRUYlQkMlOEMlRTUlOTUlQTUlRTclOEUlQTklRTYlODQlOEYlRTUlOTUlOEElRTQlQjklQjElRTQlQjglODMlRTUlODUlQUIlRTclQjMlOUYlRTclOUElODQ=">https://blog.shi1011.cn/ctf/1601）。再回去看看自己写的，啥玩意啊乱七八糟的<i class="fa fa-external-link-alt"></i></span>…打算重新整理一下</p>
+<p>网上冲浪发现我上回胡乱记录的 VEX IR 被一个师傅引流了（<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLnNoaTEwMTEuY24vY3RmLzE2MDElRUYlQkMlODk=">https://blog.shi1011.cn/ctf/1601）<i class="fa fa-external-link-alt"></i></span> 。再回去看看自己写的，啥玩意啊乱七八糟的…打算重新整理一下</p>
 <p>今天把日记又解封了，不想公布的东西放到了别的地方</p>
+<h3 id="2021-10-10">2021-10-10</h3>
+<p>这两天实验室（教学楼）网络全崩了orzz<br>
+看了两页论文，写了篇雅思阅读和小作文<br>
+摸鱼啊摸鱼~为啥有网划水，没网也摸鱼</p>
+<p>前几天说可能要帮学弟他们打个ctf校赛，得重新开始看看pwn，看了题pwn，怀念每天死磕pwn题的日子，真有趣<br>
+想搞搞kernel pwn，或者至少接触一下kernel</p>
 ]]></content>
       <tags>
         <tag>莫名其妙的记录</tag>
@@ -5246,7 +5252,7 @@ sub_804898D()里包括了菜单和进入各个功能函数的跳转<br>
       </tags>
   </entry>
   <entry>
-    <title>一个自动验证多个弱密码的脚本（含验证码识别）</title>
+    <title>一个用单个弱密码测试大量网站脚本（含图片验证码识别）</title>
     <url>/35069.html</url>
     <content><![CDATA[<p>实习期间写的，能用就行</p>
 <span id="more"></span>
