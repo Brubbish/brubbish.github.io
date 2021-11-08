@@ -3504,6 +3504,14 @@ python真好用</p>
 nessus跑了八九个小时，到晚上才跑完，结果还没看</p>
 <p>熬夜成瘾了，今晚又在实验室通宵<br>
 收集了一点资产，打算玩玩edusrc（不过每次写在这里的flag都会鸽掉）</p>
+<h3 id="2021-11-06">2021-11-06</h3>
+<p>给新生出了个键盘流量的简单题，主要参考：<br>
+<span class="exturl" data-url="aHR0cHM6Ly9hYmF3YXplZWVyLm1lZGl1bS5jb20va2FpemVuLWN0Zi0yMDE4LXJldmVyc2UtZW5naW5lZXItdXNiLWtleXN0cm9rLWZyb20tcGNhcC1maWxlLTI0MTIzNTE2NzlmNA==">https://abawazeeer.medium.com/kaizen-ctf-2018-reverse-engineer-usb-keystrok-from-pcap-file-2412351679f4<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuMTM2LmxhL2ppbmdwaW4vc2hvdy0yMTE5NDkuaHRtbA==">https://www.136.la/jingpin/show-211949.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>改了一下昨天的脚本，把target放到命令行了<br>
+晚上本来想跑个脚本，然后把结果放到工具里扫一晚上，然后发现脚本没有去重，结果里有好多重复的，就用了一下pandas，在实验室整到十二点多。</p>
+<p>今晚雪下的蛮大，跟熬夜看EDG比赛的学弟们吃了点烧烤</p>
+<p>作为上周因为马服捆绑wegame而把LOL卸载掉（当时还能通过改init文件直接登录但是万一以后完全堵上了呢orz）、主播只看马老师，偶尔C皇王纪超啥的、基本不看比赛的（半）路人来说，S11总决赛的观众确实很…诡异，（不过估计在普通高校里我邮也算正常了）。</p>
 ]]></content>
       <tags>
         <tag>莫名其妙的记录</tag>
@@ -5425,10 +5433,13 @@ sub_804898D()里包括了菜单和进入各个功能函数的跳转<br>
     <title></title>
     <url>/0.html</url>
     <content><![CDATA[<hr>
-<p>title: Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities<br>
+<h2 id="title-Fr3v1带你读论文-Hybrid-Firmware-Analysis-for-Known-Mobile-and-IoT-Security-Vulnerabilitiesdate-2021-11-02abbrlink-hidden-truepassword-PassWordmessage-testabstract-test-没写先上锁了">title: Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities<br>
 date: 2021-11-02<br>
-hidden: true</p>
-<p>–</p>
+abbrlink:<br>
+hidden: true<br>
+password: PassWord<br>
+message: test<br>
+abstract: test-没写先上锁了</h2>
 ]]></content>
   </entry>
   <entry>
