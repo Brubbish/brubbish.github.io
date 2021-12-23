@@ -3008,12 +3008,8 @@ checksec一看，保护全没开，极有可能<br>
 <p>最近要练科三了（3号考），学习的时间再次减少。拿了本经济学原理（微观），希望能在去练车场的路上看看…<br>
 不知道啥时候能开始坚持写日报，希望至少在考完科三后开始。</p>
 <h3 id="2021-02-26">2021-02-26</h3>
-<p>懂了，这是月记。今天返校了。这个寒假拿了个驾照，在市区&amp;县城开了几趟，以及开了一趟高速；看了五六章x86汇编，然后跳到《操作系统精髓与设计原理》懂了一点内核、进程 线程、分页 分段、虚拟内存的概念，并由于知识量大 尝试每看三章就对每章做一次总结；看了一章《0day2》，进度到了堆漏洞的章节，然后再看了其他的资料了解ptmalloc分配和释放内存的步骤。党哥前几天说回学校之后要给我个考核，这两天复习了一点汇编和PE文件结构。每次回家感觉都会产生一些别的想法（？）。这次的话主要是：</p>
-<ol>
-<li>对考研的目的有更深的理解。讲真有时候挺佩服我爸的学习能力和信息搜集能力的，能够很快理解某个陌生行业/知识的体系和框架（尤其是他从零开始对安全领域的理解），以及一些其他硕士出身的长辈，这种“检索理解归纳新领域信息”的能力似乎就是研究生所需要学会的。另外，考研也是一个掌握牢本科几门课程的机会，罔论专业课，我似乎快感受到数学的重要性了…</li>
-<li>关于以后从事什么职业以及在什么城市。之前总觉得去个腾讯、绿盟亦或360之类的公司挖漏洞挺好的，只有去不了大公司的情况下才会选择进体制内。没想到某天晚上跟我妈聊天，问她了个“100w年薪的企业or20w公务员”的问题，她回答觉得公务员比较好，我把企业的年薪提到200w，她还是觉得公务员好…Orz。不由想对职业选择再仔细考虑一下。<br>
-感觉在哪个城市也挺关键的。如果在厦门，安全类的公司除了美亚柏科和另外一个做区块链安全的公司外好像也没有了orz，如果在北京或深圳，我似乎也没资格进体制内。之前挺想在北京或深圳的，过了一个假期不知道为啥感觉在厦门居住也太舒服了（部分原因可能是跟着我爸妈去玩），仔细想来概因是能直接享受到父母和亲戚积累的成果，包括人脉（which现在觉得非常重要了）和车、房，我妈还能帮我介绍对象（…）并且在他们老了之后可以很方便的照顾。前两个原因是否也算一种变相啃老呢emmm，但或许这一代的家庭就应该是在一个城市扎根，而不像父辈那样在一个新的城市从零开始。</li>
-</ol>
+<p>懂了，这是月记。今天返校了。这个寒假拿了个驾照，在市区&amp;县城开了几趟，以及开了一趟高速；看了五六章x86汇编，然后跳到《操作系统精髓与设计原理》懂了一点内核、进程 线程、分页 分段、虚拟内存的概念，并由于知识量大 尝试每看三章就对每章做一次总结；看了一章《0day2》，进度到了堆漏洞的章节，然后再看了其他的资料了解ptmalloc分配和释放内存的步骤。党哥前几天说回学校之后要给我个考核，这两天复习了一点汇编和PE文件结构。每次回家感觉都会产生一些别的想法（？）。</p>
+<p>已删</p>
 <h3 id="2021-03-01">2021-03-01</h3>
 <p>其实党哥根本没有准备给我考核…<br>
 开学的第一天，复习了一下堆分配和释放的过程，整理了一波笔记<br>
@@ -3574,7 +3570,7 @@ It would be much easier if wearing a mask…</p>
 <p>坚果云markdown这傻逼软件逻辑是真的有问题</p>
 <h3 id="2021-12-01">2021-12-01</h3>
 <p>我咋觉得记的小作文被坚果云吞了…明明感觉上次写日记不是在19号，工资的事情也早记过了，orz</p>
-<p>最近发生了蛮多有意思事的，收到人生第一笔工资（11.08）、买了第一个大于100块&amp;头戴式耳机（AKG 371bt）、前后买了三个垂直鼠标（上班上得拇短展肌和拇短屈肌酸…本来想买轨迹球的但是肯辛顿也太贵了orz），然后一个太大一个太小，所以退了两个，京东无理由真香，以及虽然贵了点但还是没选择支持淘宝、在某网友的邀请下（11.28 29）一行人去周边的石泉县玩了两天，这个月第二次出长安区了属于是，小县城活得好悠闲qwq。</p>
+<p>最近发生了蛮多有意思事的，收到人生第一笔工资（11.08）、买了第一个大于100块&amp;头戴式耳机（AKG 371bt）、前后买了三个垂直鼠标（上班上得拇短展肌和拇短屈肌酸…本来想买轨迹球的但是肯辛顿也太贵了orz），然后一个太大一个太小，所以退了两个，京东无理由真香，以及虽然贵了点但还是没选择支持淘宝、在某网友的邀请下（11.27 28）一行人去周边的石泉县玩了两天，这个月第二次出长安区了属于是，小县城活得好悠闲qwq。</p>
 <p>这段时间嗯，课题稳步进展，最近在看LLVM IR，之后开始进一步处理生成的中间代码；英语…学了，但是雅思已经放在#n了；pwn/web，没咋学了（躺），感觉像是个懒狗，估计短期内也不会咋学了，还是先想想期末考和考研吧orzzzzzz（不过上回把winafl的环境搭好了，十二月的话还是希望能把看雪上那个fuzz流程搞一遍，印证一下综述里的一些东西）</p>
 <p>前几天看了个b站的视频：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMWNTNHkxUjdSMQ==">探究《尚气》里的中文对白为何如此蹩脚，再一一改正，寻本溯源<i class="fa fa-external-link-alt"></i></span>，大概是关于汉语西化的现象，仔细一想其实大部分年轻人（包括本人）在口头和书面表达中都或多或少有些…Enginese？包括前段时间的论文翻译也是。还是要及时纠正啊…</p>
 <p>十二月啊，2021年马上又要过了…</p>
@@ -3599,6 +3595,41 @@ It would be much easier if wearing a mask…</p>
 <p>陪人通宵一晚<br>
 连通两天，真好。昨天十点睡三点醒；今天七点睡两点醒。真有我的<br>
 本学期洗澡通宵定律：洗完澡必通宵</p>
+<h3 id="2021-12-16">2021-12-16</h3>
+<p>看了一周英语，再过一天半就结束了:D</p>
+<p>下午蹭了个信工所孟国柱老师给复旦（应该还是上回那个实验室）的报告，关于人工智能在安全方面的应用和探索，包括移动安全、恶意代码和GAN，蛮有意思的。不过时间上和组会（因为疫情所以线上了）有点冲突，双线程听会议并不是很成功（脑子炸了）。搜了一下，孟老师是国重的…%%%</p>
+<p>记录一下最近在想的一（两）个…可能偏向传播学的问题：how to define majority and minority group on the Internet (when it involves region as a variable), and why the “minority” has such influences.</p>
+<h3 id="2021-12-19">2021-12-19</h3>
+<p>昨天考了个六级，本来以为运气一般的话530上下，现在估计勉强飘过了。除了仔细阅读和选词之外没一个写得正常的：作文差点没写完，听力犯困，匹配题两个没找到，翻译只会CPC。不过确实好久没有“认真考试”的感觉了，六级要是真的低分飘过，估计还真得去考个多邻国（便宜方便）或者雅思，不然500-的分数也太拉了，顺便也找回些应对考试的感觉。</p>
+<p>通宵然后早晨七点多去洗澡，之后回宿舍睡觉，睡到下午四点半orz，醒来感觉感冒好像重了一些。</p>
+<p>咋还不线上上课或者提前放假啊</p>
+<p>疫情+出血热，哈哈…<br>
+前几天在b站上看到附近某栋宿舍里住了鼠鼠，真牛逼。</p>
+<h3 id="2021-12-21">2021-12-21</h3>
+<blockquote>
+<p>“擦，封校+网课了真刺激，__________”<br>
+好久没有写日报了，今天好想说些啥</p>
+</blockquote>
+<p>反正本来对这个地方也没多少好感，就稍稍吐点槽吧，想到啥说啥，画横线的地方请自行理解，今天的日报是开方式理解</p>
+<p>这两天过的跟周末/放假似的。<br>
+昨天晚上学校突然通知上网课，本市学生回家，外省学生一会儿能走一会儿不能的（然后第二天有老师说学校没有通知能回家，并要对这些不实消息传播者进行______。😅😅😅<br>
+反正就，直接打破了本来的风平浪静（或许是学校把学生“保护”得太好了，学校里之前看起来一点事没有😅）。嗯…原来学校外边这么严重…目前毒圈是越来越近了</p>
+<p>然后又是出现了例如“发誓做了核酸”、“一码通挂了”等问题，前者虽然大多以段子形式传播，但认真审视的话…也太危险和不负责任了；对于一码通加载不出来，我一开始还以为是被打了（个人认为如果进行攻击的话18-20号确实非常合适），结果好像并不是这样的，只能说这个用户量千万级的产品确实彳亍，牛逼(๑•̀ㅂ•́)و✧。</p>
+<p>辛亏👴不是今年考研，不然直接破防开摆了，日，什么玩意儿啊，真__牛逼</p>
+<p><strong>人（部分）真的有被黑心理啊。做错就得认，挨打就得立正，结果反倒像是全网故意地域黑似的orz（不过也不排除挑起地域矛盾的人反串了，套娃）。反正比起暑假在厦门的那回疫情，政府应对方式____了，起码其中一个地方可以及时划（足够大的）区域进行封闭管理，也不用在核酸检测或隔离时耗费大量时间和造成不必要的矛盾，其中一个地方的人民可以及时停工，也不用看到zf朝令夕改或者相互推诿，…</strong>___。</p>
+<p>话说回来，为啥大多hemorrhagic fever都集中在西安附近呢？不说福建的某医生只在书上见过这种fever，连榆林的同学在上大学都没听过这个词…</p>
+<p>对于希望上网课和线上考试所以看到确诊人数增长就欢呼的fds表是不是很理解，思想多单一啊</p>
+<p>不过还是要说：防疫工作者辛苦了！！！</p>
+<p>似乎感受到了去年年初的武汉，不出意外的话，👴可能要在西安过年了。草，草，草</p>
+<h3 id="2021-12-23">2021-12-23</h3>
+<p>没啥说的，反正就在宿舍呆着，每天做核酸、三餐被送饭呗，没想到我还能有嫖学校的一天<br>
+昨天学校上了热搜#4…行，不过确实学校在短暂慌乱后安排得还是蛮合理的</p>
+<p>昨天晚上老师给师兄和我在线上开了个小会，理了一下课题后续思路，然后我终于可以把llvm ir的ppt讲了2333，也算是少了个事情。讲的过程还行，就是ppt有些内容多余了<br>
+这两天虽然盘算着要做些事或者看书，但基本也没咋去实现，每天睡到十二点，美好的一天就过去了<br>
+甚至实习也没咋去搞…白嫖工资了（打算明天+周末把要交的东西写了）</p>
+<p>感觉只有只身在外才能真实体会到身处疫区的感觉，跟之前在家里隔离完全不同2333也能再次在心里坚定信任并佩服国家关于严控疫情的政策，反正我确实在刚开始幻想过为啥国家不躺平呢…<br>
+西安的防疫工作者以及受到牵连的工作人员（指例如被迫呆在学校里的后勤等）真的好惨…嗯，这个地方的某些__配不上它的人民/人员</p>
+<p>最近还想写点对于安全行业的粗浅认识，不过害怕过于幼稚或者得罪人啊orz</p>
 ]]></content>
       <tags>
         <tag>莫名其妙的记录</tag>
@@ -5429,164 +5460,6 @@ sub_804898D()里包括了菜单和进入各个功能函数的跳转<br>
       </tags>
   </entry>
   <entry>
-    <title>Fr3v1带你读论文-Similarity of Binaries through re-Optimization</title>
-    <url>/4066.html</url>
-    <content><![CDATA[<p>在知乎上看到白泽的师傅们读论文的记录，试着把读的论文做了个类似的总结。之后看论文也会选用这种方法，翻译实在太笨比了</p>
-<p>这篇是课题组导师给的论文，跟课题相关度极大</p>
-<p>数学公式渲染并不是很好</p>
-<blockquote>
-<p>文章由本人首发于安全客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjU0Nzkz">Fr3v1带你读论文-Similarity of Binaries through re-Optimization - 安全客，安全资讯平台 (anquanke.com)<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<span id="more"></span>
-<h1>引言</h1>
-<p>在对不含符号表等信息的二进制代码检测相似性时的主要难点是建立相似性，例如有时候代码是通过不同编译器、不同优化级别或者针对不同架构编译的。在尽量减少误报的情况下解决这个难题无论是对逆向工程还是定位漏洞代码都至关重要。<br>
-作者提出了一个可用于大规模检测且具有较高准确度的技术。其工作原理是将二进制代码过程分解为上下文无关的可比较片段，并将其统一为规范的形式，随后通过简单的比较来找到等价的片段。<br>
-结果表明该方案（称为GitZ）能够有效地执行大规模比较，且相似性比较的精度较高，误报率较少。</p>
-<h1>目前的技术缺陷</h1>
-<ol>
-<li>在受限（stripped）二进制文件、跨编译器、跨架构和跨优化选项的场景下效果不好</li>
-<li>误报率高</li>
-<li>无法应对百万级的大规模比较</li>
-<li>在静态分析时需要动态分析进行配合</li>
-</ol>
-<h1>提出的方法</h1>
-<ol>
-<li>分割程序片段。将程序分解为strand，即基本块的数据流片段，作为相似性比较的基本单元<strong>strand:A strand is the list of all of the instructions from the basic block that affect the computation of a specific value.</strong></li>
-<li>通过重新优化找到等价的代码片段。通过在strands上重新进行编译优化器的优化过程，将代码片段引入新的规范化形式，从而在后续能够<strong>识别语法上不同但语义等价的strands</strong>。</li>
-<li>建立代码相似性。爬取部分语料库生成一个统计框架，来评估每一个strand在整个程序中的重要程度。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210924140852.png" alt="20210924140852"></p>
-<h1>设计与实现</h1>
-<h2 id="二进制代码规范化和一般化处理">二进制代码规范化和一般化处理</h2>
-<h3 id="将二进制代码提升为中间代码">将二进制代码提升为中间代码</h3>
-<p>这个步骤排除了编译器和链接器的干扰，使得后续工作可以关注于语义方面。该步骤有很多框架可以使用，作者在这里使用了angr的pyvex库将Intel的x86_64和ARM的AArch64指令（包括浮点指令）提升为VEX-IR作为原型。<br>
-值得一提的是这一步进行的不只是简单的反编译，而是使用变量表示相应机器的状态（包括内存、寄存器，包括标志寄存器），并用对这些变量的操作来表示指令的语义，因此在这个过程中并不关心任何优化，只需要专注于准确表示语义信息。</p>
-<h4 id="指令提升的过程对相似性的影响">指令提升的过程对相似性的影响</h4>
-<p>会产生一些冗余和总体上的偏差。例如在图3中将aarch64的&quot;mov x1,x21&quot;转换为VEX-IR时产生了冗余的临时变量t14、t15、t16；将x86_64的&quot;add rax,1&quot;转换为BAP后，生成了临时变量T2。<br>
-如在图1中体现的，存在这种冗余的变量在进行相似性学习时是致命的，也会对后续在跨架构和优化级别的比较中造成严重干扰<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210927141152.png" alt="20210927141152"></p>
-<h3 id="从提升后的IR得到LLVM-IR-strands">从提升后的IR得到LLVM-IR strands</h3>
-<p>为了达到“Lifter无关”，作者使用了一个（自己写的）工具把VEX-IR转换为LLVM-IR。选择LLVM-IR的原因是它的稳定性、辅助扩展工具多且对多架构支持较好。（个人猜测主要是方便对代码进行统一优化）</p>
-<h4 id="提取strands">提取strands</h4>
-<p>在这个阶段的目标是建立一个过程表达（procedure representation）以便在后续配合找到相似的程序片段<br>
-提取strand的步骤：生成CFG，分离出每个基本块，其中strand就是在一个基本块中和某个值计算相关的所有指令</p>
-<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210928224354.png" alt="20210928224354"><br>
-以上是提取strands过程的伪代码，大概是“倒序取一条指令，判断其操作的变量与当前strand中记录的变量交集是否为空，如果不为空则将指令记录到该strand中”。其中Ref和Def函数返回一个指令所引用或定义的变量集合。这个算法在一个基本块上重复执行，直到把整个基本块完全覆盖。</p>
-<h3 id="将-LLVM-IR-的strands规范化">将 LLVM-IR 的strands规范化</h3>
-<p>这个部分要解决的三个主要问题是：1.编译器造成的strand的语义差异，例如编译优化、运行时库和控制流的影响 2.不同机构造成的影响，例如通用寄存器数量、指令集表达差异等 3.提升器的造成的影响（如前面提到的冗余指令）</p>
-<p>解决方案是利用编译器重新进行优化，变相进行统一规范。LLVM-IR对应的优化工具是CLang opt。作者将每个strand作为一个LLVM-IR函数片段，并对代码做了两步更改：1.将寄存器更改为全局变量 2.添加返回strand值的指令。用’-early-cse’和’-instcombine’选项进行了“公共子表达式消除”和“合并冗余指令”。图1(ii)-(iii)中描述的就是这个过程</p>
-<p><em>在用编译器进行规范化处理时，strand默认被输出为储存着表达式的有向非循环图（DAG），为了方便后续比较，作者将其输出为线性表达的文本格式。</em></p>
-<h3 id="转换为一般化表示">转换为一般化表示</h3>
-<p>重命名strands中所有符号，即将寄存器和临时变量按顺序重新命名。这步对跨架构的比较十分关键，因为在给定的计算中使用的寄存器与实际语义无关，并且在不同架构中完全不同。</p>
-<h2 id="进行大规模代码相似性搜索">进行大规模代码相似性搜索</h2>
-<h3 id="使用strands的MD5值检测相似性">使用strands的MD5值检测相似性</h3>
-<p>在比较时使用代码片段的md5值进行比较，这个方能够法减少内存使用且加快了比较过程。对于过程<em>P</em>，将它的表示*R§*定义为过程中所有strands哈希值的集合，即:<br>
-<strong>R§={MD5(Canonicalize&amp;Normalize(sp))|sp∈P}</strong></p>
-<h3 id="分离出需要的strands">分离出需要的strands</h3>
-<p>在对已知序列和目标函数q，t进行比较时，有一个可行的思路是比较两个过程的哈希集的交集，表示为M(q,t)=R(q)∩R(t)，但在实际中这个方法效果并不好，一个原因是一些匹配的strands可能只是编译器针对特定架构等因素添加的语义无关代码（artifacts），例如栈空间访问或编译优化，与实际代码语义并没有关系。（题外话，这些代码可以用于识别生成程序时使用的工具链。）</p>
-<p>为了避免这个问题，需要区别出从源代码中直接产生的、与程序语义相关的strands。一个简单的方法是将出现次数较多的strand赋予较低的权重。定义Pr(s)为strand s 出现的概率，其中概率空间限制为①从二进制文件中提升的代码，②规范化和一般化后的strands，记为W和 $\widetilde{W}$ 。<br>
-如在1式中定义的，我们定义strand s 的重要性为Pr $\widetilde{W}$ (s)并将其出现在不同程序中的次数除以 $\widetilde{W}$ 里所有函数中出现的strand种类数。<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211005012155.png" alt="20211005012155"><br>
-因此已知序列和目标函数的相似性度量即为<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20211002183201.png" alt="20211002183201"></p>
-<h3 id="用随机抽样来估算strand的频率">用随机抽样来估算strand的频率</h3>
-<p>由于计算Pr $\widetilde{W}$ (s)需要 $\widetilde{W}$ ，但 $\widetilde{W}$ 是一个动态增长的值，因此无法简单地计算出Pr $\widetilde{W}$ (s)。作者采用了另一个方案，随机采样获得一个较大的子集P作为全局上下文，来估计Pr $\widetilde{W}$ (s)：<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20211002191720.png" alt="20211002191720">（将4式代换到3式将得到2式）</p>
-<p>其中P是通过爬取 $\widetilde{W}$ 获得的函数集，因此覆盖了所有支持的编译器、优化级别和架构。同时P作为子集具有较小的尺寸，在后续方法中也能减少内存使用。<br>
-注意到此时的Pr $\widetilde{W}$ 其实是一个近似值，因此设P中未收集的strand的f(s)=1，在避免f(s)/|P|产生不确定的同时也做了假设——这些strands在 $\widetilde{W}$ 中极少出现。</p>
-<h1>实验与结果</h1>
-<h2 id="生成样本">生成样本</h2>
-<p>在学习样本上，作者用了多个版本的CLang、gcc和icc从一些开源代码（包括OpenSSL、git、bash, Wireshark, QEMU等）中编译了大约50万个优化级别不同、针对x86_64和AArch64的二进制文件（对应关系如下图），其中有意选择了一些包含漏洞的软件版本。作者从中爬取了一千个函数，用来生成全局上下文P。<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211003205831.png" alt="20211003205831"></p>
-<p><em>对于全局上下文的合适大小进行实验时，作者发现大约在400个函数后就对误报率基本不造成影响，因此使用了1K个函数（2.5倍）</em></p>
-<h2 id="评价指标">评价指标</h2>
-<p>使用CROC（Concentrated ROC）来测量随着阈值的提高而遇到的误报率</p>
-<h2 id="评估结果">评估结果</h2>
-<ol>
-<li>与另一个工具Esh相比，作者的工具支持跨架构和优化级别，且具有更高的准确率，在效率上更是明显优于Esh</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211005002153.png" alt="20211005002153"></p>
-<ol start="2">
-<li>挑战最大的是学习单一架构的代码相似性后跨架构对代码进行检测。因为实现操作和指令的范式不同，可能导致错误匹配strands。同时，由编译器和架构导致的内存布局和寻址等方式的不同，也会影响匹配准确率。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211004223519.png" alt="20211004223519"></p>
-<h2 id="缺陷">缺陷</h2>
-<p>作者方法的前提是假定了相同源代码编译出的二进制代码会产生语义相同的strands，并且可以进行提取和一系列转化，但这个假设其实不是完全成立的。</p>
-<ul>
-<li>编译器不同时，控制流图可能存在差异，导致基本块表达存在不同（如下图）。这个问题会使得匹配度偏低。</li>
-</ul>
-<p>造成这个的原因是作者为了提高效率和大规模检测，把strands的范围限制在了一个基本块中。可以通过扩大执行链的范围来缓解这个问题（当然代价是开销上的增加）<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211004214237.png" alt="20211004214237"></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities</title>
-    <url>/41992.html</url>
-    <content><![CDATA[<blockquote>
-<p>文章由本人首发于安全客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjYwNDcx">Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities - 安全客，安全资讯平台 (anquanke.com)<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2Fic3RyYWN0L2RvY3VtZW50LzkxNTMzOTk=">Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities<i class="fa fa-external-link-alt"></i></span>(<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjU5MjQ2">针对移动和物联网设备已知漏洞的混合固件分析<i class="fa fa-external-link-alt"></i></span>)的太长不看版</p>
-<span id="more"></span>
-<h1>主要内容</h1>
-<p>移动设备和物联网设备的操作系统以及它们随后的升级文件通常是以二进制文件的形式发布。由于这些二进制文件通常是闭源的，用户或第三方企业若是想测试软件的安全性只能依靠逆向工程，此外，如何验证二进制文件中最近的补丁是否有效也是一个悬而未决的问题。常规的软件补丁修复是提升移动设备和物联网设备安全性的重要保障，这就需要开发人员、集成商和供应商的共同支持，及时把补丁分发到受影响的所有设备上。但实际上，供应商们对移动和物联网产品遵循着不同，甚至是错误的安全更新议程。其次，以往的研究反映出存在着“潜在的补丁缺口(a hidden patch gap)”：有些供应商错误的声称他们已经修复了漏洞。因此，在二进制文件中检测漏洞是否被修复对于软件安全至关重要。以往对二进制文件中的漏洞检测大多基于静态的代码相似性分析，然而它无法捕捉程序的动态行为，因此可能产生大量误报且难以区分漏洞是否已经修复。<br>
-在论文中，作者提出了一个针对可执行文件漏洞和补丁存在性检测的框架PATCHECKO。它混合了静态检测和动态检测方法，能够对X86和arm架构的二进制代码进行漏洞检测。作者的测试结果表明这个框架对漏洞检测和漏洞函数区分具有较高的准确率。</p>
-<h1>设计与实现</h1>
-<p>PATCHECKO的工作需要以下三个步骤：</p>
-<ol>
-<li>训练漏洞检测器</li>
-<li>用漏洞检测器对固件进行静态分析</li>
-<li>对2分析得出的可能含有漏洞的函数进行动态分析，验证漏洞是否存在并识别函数中的漏洞是否被修复</li>
-</ol>
-<p>工作过程如图：<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210903221707.png" alt="workflow"></p>
-<h2 id="0x1-漏洞静态检测器和静态分析">0x1  漏洞静态检测器和静态分析</h2>
-<p>对于已知漏洞挖掘，深度学习方法的准确性和效率都明显优于过去的二分图匹配和动态相似性测试。PATCHECKO的漏洞检测器使用Keras和TensorFlow实现了神经网络的建模、训练和分类，使用TensorBoard来实现整个训练过程的可视化。</p>
-<h3 id="Ⅰ-构建数据集">Ⅰ 构建数据集</h3>
-<p>使用反汇编器（如IDA）的插件提取程序控制流图（CFG），并生成每个函数以及其基本块级的特征向量，每个特征向量包括48个特征，如下图：<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908213440.png" alt="feature-vector"></p>
-<h3 id="Ⅱ-深度学习">Ⅱ 深度学习</h3>
-<p>作者在采用了一个线性层堆叠的序贯模型。<br>
-图3展示了一个用于深度学习模型的样本向量。样本向量由函数向量对和一个表示两个函数是否相似的比特组成，其中两个相似的特征向量对应着相同源代码的两个二进制函数。图4是该6层序列模型训练的实际过程，第一层接收输入张量的形状（input shape）的信息。这个模型使用了从数据集中提取的函数特征进行训练。<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220859.png" alt="fig-3"><br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210917223725.png" alt="fig-4"></p>
-<h2 id="0x2-动态分析">0x2 动态分析</h2>
-<p>动态分析的工作流程如图5：<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220751.png" alt="fig-5"></p>
-<p>该阶段使用相同的输入值执行两个函数，并比较两个函数的执行轨迹和其他特征的相似性。</p>
-<h3 id="Ⅰ-动态分析引擎的输入数据">Ⅰ 动态分析引擎的输入数据</h3>
-<p>作者使用Fuzz工具（在评估过程中选用了LibFuzzer）生成函数的多组输入数据，以完全覆盖CFG，并测试证明这些数据都能正常运行于漏洞函数和已修复漏洞的函数。接着使用这些数据来测试每个候选函数，筛去执行过程中崩溃的函数。<br>
-随后PATCHECKO将剩下函数作为可执行文件导出，在后续动态分析中使用DLL注入进行执行</p>
-<h3 id="Ⅱ-插桩测试">Ⅱ 插桩测试</h3>
-<p>作者使用了gdbserver和debugserver对函数执行进行跟踪和特征提取，提取的特征包括指令的数量和类型、系统调用的次数和类型，以及库函数调用和堆栈数据读写量等，具体在表Ⅱ中展示：<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919143257.png" alt="tab-2"></p>
-<p>对于每个输入执行时，动态分析引擎会对每个特征会生成一组观察结果。当该函数里的所有指令都被覆盖到后，PATCHECKO会根据所有结果生成一个单独的向量。这个过程会在每次对函数进行不同输入时重复。</p>
-<h3 id="Ⅲ-计算函数语义相似度">Ⅲ 计算函数语义相似度</h3>
-<p>对于每个函数对(f,g)，PATCHECKO基于它们的动态特征向量距离计算出语义相似度。对于每个函数的特征向量，PATCHECKO使用了闵氏距离(Minkowski Distance)作为测量相似度的方法，在评估过程中，作者把p设为3。闵氏距离公式的一般式如下：<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919171915.png" alt="minkowski"><br>
-在这个公式中，f代表了CVE函数，g代表目标固件中的候选函数，k指的是用到了第k个执行环境，x和y分别代表f和g的动态特征向量，此时P设为3。</p>
-<p>每个函数相似度的最终结果为所有执行环境中得到相似距离的平均值，相似度计算方程如下（k为执行环境编号）：<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919180346.png" alt="sim-algorithm"></p>
-<h3 id="Ⅳ-补丁检测">Ⅳ 补丁检测</h3>
-<p>PATCHECKO使用了一个差分引擎来收集静态和动态相似性的检测结果，以此判断漏洞是否被修复。<br>
-对于给定的漏洞函数f<sub>v</sub>、已修复函数f<sub>p</sub>和目标函数f<sub>t</sub>，差分引擎会首先生成三个值：f<sub>v</sub>、f<sub>p</sub>和f<sub>t</sub>的静态特征、sim<sub>v</sub>与sim<sub>t</sub>、sim<sub>p</sub>与sim<sub>t</sub>的动态语义相似性得分以及S<sub>v</sub>和S<sub>p</sub>之间的差分特征（differential signatures）。静态特征即上述的48个不同的量化特征，动态语义相似度得分与上述的函数相似度指标。差分特征（differential signatures）是一个用于比较CFG结构的附加指标，即两个函数的CFG拓扑以及语义信息，例如函数参数、局部变量和库函数调用。</p>
-<h1>评价</h1>
-<h2 id="评估结果">评估结果</h2>
-<p>对于模型训练数据集，作者使用Clang从Android-8.1.0_r36的源码中编译了100个库函数，每个库根据不同的目标平台（ x86, AMD64, ARM 32bit， ARM 64bit ISA）、优化级别（O0, O1, O2,O3, Oz, Ofast）生成了23个不同的二进制文件，总共获得了2108个库文件，包含了2037772个函数特征样本。其中1222663个函数用于模型训练，407554个函数用于校验，407555个函数用于下图的测试<br>
-图8展示了在训练了大约15小时后，深度学习模型的准确率和损失，其中准确率可达到96%。<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090924.png" alt="fig-8"></p>
-<p>作者对Android Things 1.0 和 Google Pixel 2 XL (Android 8.0) 的固件进行了评估。所用的漏洞函数数据集来自Android Security Bulletins，包括了从2016年7月到2018年11月的漏洞，涵盖2076个漏洞。检测结果表明，模型的静态检测平均准确率高于93%</p>
-<p>对于动态分析输出的漏洞函数，除了深度学习阶段就被漏报的CVE-2017-13209外，PATCHECKO能将其余所有预期的目标函数输出到结果的前三位。<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090830.png" alt="dyn-result"></p>
-<p>对于函数是否已修复的检测，PATCHECKO在25个CVE漏洞函数中只遗漏了CVE-2018-9470，该CVE的漏洞函数和修复函数仅差了一个整数。<br>
-<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090706.png" alt="dyn-result-2"></p>
-<h2 id="缺点">缺点</h2>
-<ol>
-<li>在静态检测时，PATCHECKO通过比较候选函数与已修复/未修复函数来检测是否为目标函数，这导致了可能会产生遗漏</li>
-<li>检测漏洞是否已修复时，由于CFG表示的特征粒度不够细，可能会因为漏洞函数和已修复函数之间的差异非常微小，导致相似性检测可能无法捕捉到它们之间的差异。</li>
-</ol>
-<p>第二点或许可以通过应用/结合其他程序表示方法，如CDG、PDG等结构来进行优化。但如作者所说的，这样可能还需要进一步对方案通用性方面进行设计。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>RARBG上种子收集脚本</title>
     <url>/38266.html</url>
     <content><![CDATA[<p>跟着<span class="exturl" data-url="aHR0cHM6Ly9iYnMucGVkaXkuY29tL3RocmVhZC0yNjU5NTguaHRt">使用winafl对迅雷的torrent解析逻辑进行fuzz<i class="fa fa-external-link-alt"></i></span>做的时候收集BT语料库（种子种子…哈哈哈哈哈哈哈哈哈哈哈）的脚本<br>
@@ -5746,6 +5619,164 @@ Zhang等人提出了一个新颖的角度(“Precise and accurate patch presence
 <h1>Ⅶ.结论</h1>
 <p>我们提出了漏洞评估框架PATCHECKO，它使用深度学习和混合了静态、动态二进制分析来进行跨平台二进制代码相似性分析，在无法获得源代码的情况下以高精度识别已知漏洞，此外，它可以使用差分引擎来区分漏洞函数和补丁函数。我们针对多种优化级别和目标架构编译了 Google Pixel XL2 和 Android Things 固件映像中的25种CVE漏洞函数，并用它们对PATCHECKO进行评估。结果表明我们的深度学习模型识别漏洞的准确率超过93%。<br>
 我们还展示了如何在受控环境下对漏洞函数进行动态分析，以减少误报。在所有测试结果中，PATCHEKO都能将正确的结果输出在排名的前三名之中。此外，它的差分引擎以96%的准确率区分了漏洞函数和已修复函数。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Fr3v1带你读论文-Similarity of Binaries through re-Optimization</title>
+    <url>/4066.html</url>
+    <content><![CDATA[<p>在知乎上看到白泽的师傅们读论文的记录，试着把读的论文做了个类似的总结。之后看论文也会选用这种方法，翻译实在太笨比了</p>
+<p>这篇是课题组导师给的论文，跟课题相关度极大</p>
+<p>数学公式渲染并不是很好</p>
+<blockquote>
+<p>文章由本人首发于安全客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjU0Nzkz">Fr3v1带你读论文-Similarity of Binaries through re-Optimization - 安全客，安全资讯平台 (anquanke.com)<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<span id="more"></span>
+<h1>引言</h1>
+<p>在对不含符号表等信息的二进制代码检测相似性时的主要难点是建立相似性，例如有时候代码是通过不同编译器、不同优化级别或者针对不同架构编译的。在尽量减少误报的情况下解决这个难题无论是对逆向工程还是定位漏洞代码都至关重要。<br>
+作者提出了一个可用于大规模检测且具有较高准确度的技术。其工作原理是将二进制代码过程分解为上下文无关的可比较片段，并将其统一为规范的形式，随后通过简单的比较来找到等价的片段。<br>
+结果表明该方案（称为GitZ）能够有效地执行大规模比较，且相似性比较的精度较高，误报率较少。</p>
+<h1>目前的技术缺陷</h1>
+<ol>
+<li>在受限（stripped）二进制文件、跨编译器、跨架构和跨优化选项的场景下效果不好</li>
+<li>误报率高</li>
+<li>无法应对百万级的大规模比较</li>
+<li>在静态分析时需要动态分析进行配合</li>
+</ol>
+<h1>提出的方法</h1>
+<ol>
+<li>分割程序片段。将程序分解为strand，即基本块的数据流片段，作为相似性比较的基本单元<strong>strand:A strand is the list of all of the instructions from the basic block that affect the computation of a specific value.</strong></li>
+<li>通过重新优化找到等价的代码片段。通过在strands上重新进行编译优化器的优化过程，将代码片段引入新的规范化形式，从而在后续能够<strong>识别语法上不同但语义等价的strands</strong>。</li>
+<li>建立代码相似性。爬取部分语料库生成一个统计框架，来评估每一个strand在整个程序中的重要程度。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210924140852.png" alt="20210924140852"></p>
+<h1>设计与实现</h1>
+<h2 id="二进制代码规范化和一般化处理">二进制代码规范化和一般化处理</h2>
+<h3 id="将二进制代码提升为中间代码">将二进制代码提升为中间代码</h3>
+<p>这个步骤排除了编译器和链接器的干扰，使得后续工作可以关注于语义方面。该步骤有很多框架可以使用，作者在这里使用了angr的pyvex库将Intel的x86_64和ARM的AArch64指令（包括浮点指令）提升为VEX-IR作为原型。<br>
+值得一提的是这一步进行的不只是简单的反编译，而是使用变量表示相应机器的状态（包括内存、寄存器，包括标志寄存器），并用对这些变量的操作来表示指令的语义，因此在这个过程中并不关心任何优化，只需要专注于准确表示语义信息。</p>
+<h4 id="指令提升的过程对相似性的影响">指令提升的过程对相似性的影响</h4>
+<p>会产生一些冗余和总体上的偏差。例如在图3中将aarch64的&quot;mov x1,x21&quot;转换为VEX-IR时产生了冗余的临时变量t14、t15、t16；将x86_64的&quot;add rax,1&quot;转换为BAP后，生成了临时变量T2。<br>
+如在图1中体现的，存在这种冗余的变量在进行相似性学习时是致命的，也会对后续在跨架构和优化级别的比较中造成严重干扰<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210927141152.png" alt="20210927141152"></p>
+<h3 id="从提升后的IR得到LLVM-IR-strands">从提升后的IR得到LLVM-IR strands</h3>
+<p>为了达到“Lifter无关”，作者使用了一个（自己写的）工具把VEX-IR转换为LLVM-IR。选择LLVM-IR的原因是它的稳定性、辅助扩展工具多且对多架构支持较好。（个人猜测主要是方便对代码进行统一优化）</p>
+<h4 id="提取strands">提取strands</h4>
+<p>在这个阶段的目标是建立一个过程表达（procedure representation）以便在后续配合找到相似的程序片段<br>
+提取strand的步骤：生成CFG，分离出每个基本块，其中strand就是在一个基本块中和某个值计算相关的所有指令</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210928224354.png" alt="20210928224354"><br>
+以上是提取strands过程的伪代码，大概是“倒序取一条指令，判断其操作的变量与当前strand中记录的变量交集是否为空，如果不为空则将指令记录到该strand中”。其中Ref和Def函数返回一个指令所引用或定义的变量集合。这个算法在一个基本块上重复执行，直到把整个基本块完全覆盖。</p>
+<h3 id="将-LLVM-IR-的strands规范化">将 LLVM-IR 的strands规范化</h3>
+<p>这个部分要解决的三个主要问题是：1.编译器造成的strand的语义差异，例如编译优化、运行时库和控制流的影响 2.不同机构造成的影响，例如通用寄存器数量、指令集表达差异等 3.提升器的造成的影响（如前面提到的冗余指令）</p>
+<p>解决方案是利用编译器重新进行优化，变相进行统一规范。LLVM-IR对应的优化工具是CLang opt。作者将每个strand作为一个LLVM-IR函数片段，并对代码做了两步更改：1.将寄存器更改为全局变量 2.添加返回strand值的指令。用’-early-cse’和’-instcombine’选项进行了“公共子表达式消除”和“合并冗余指令”。图1(ii)-(iii)中描述的就是这个过程</p>
+<p><em>在用编译器进行规范化处理时，strand默认被输出为储存着表达式的有向非循环图（DAG），为了方便后续比较，作者将其输出为线性表达的文本格式。</em></p>
+<h3 id="转换为一般化表示">转换为一般化表示</h3>
+<p>重命名strands中所有符号，即将寄存器和临时变量按顺序重新命名。这步对跨架构的比较十分关键，因为在给定的计算中使用的寄存器与实际语义无关，并且在不同架构中完全不同。</p>
+<h2 id="进行大规模代码相似性搜索">进行大规模代码相似性搜索</h2>
+<h3 id="使用strands的MD5值检测相似性">使用strands的MD5值检测相似性</h3>
+<p>在比较时使用代码片段的md5值进行比较，这个方能够法减少内存使用且加快了比较过程。对于过程<em>P</em>，将它的表示*R§*定义为过程中所有strands哈希值的集合，即:<br>
+<strong>R§={MD5(Canonicalize&amp;Normalize(sp))|sp∈P}</strong></p>
+<h3 id="分离出需要的strands">分离出需要的strands</h3>
+<p>在对已知序列和目标函数q，t进行比较时，有一个可行的思路是比较两个过程的哈希集的交集，表示为M(q,t)=R(q)∩R(t)，但在实际中这个方法效果并不好，一个原因是一些匹配的strands可能只是编译器针对特定架构等因素添加的语义无关代码（artifacts），例如栈空间访问或编译优化，与实际代码语义并没有关系。（题外话，这些代码可以用于识别生成程序时使用的工具链。）</p>
+<p>为了避免这个问题，需要区别出从源代码中直接产生的、与程序语义相关的strands。一个简单的方法是将出现次数较多的strand赋予较低的权重。定义Pr(s)为strand s 出现的概率，其中概率空间限制为①从二进制文件中提升的代码，②规范化和一般化后的strands，记为W和 $\widetilde{W}$ 。<br>
+如在1式中定义的，我们定义strand s 的重要性为Pr $\widetilde{W}$ (s)并将其出现在不同程序中的次数除以 $\widetilde{W}$ 里所有函数中出现的strand种类数。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211005012155.png" alt="20211005012155"><br>
+因此已知序列和目标函数的相似性度量即为<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20211002183201.png" alt="20211002183201"></p>
+<h3 id="用随机抽样来估算strand的频率">用随机抽样来估算strand的频率</h3>
+<p>由于计算Pr $\widetilde{W}$ (s)需要 $\widetilde{W}$ ，但 $\widetilde{W}$ 是一个动态增长的值，因此无法简单地计算出Pr $\widetilde{W}$ (s)。作者采用了另一个方案，随机采样获得一个较大的子集P作为全局上下文，来估计Pr $\widetilde{W}$ (s)：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20211002191720.png" alt="20211002191720">（将4式代换到3式将得到2式）</p>
+<p>其中P是通过爬取 $\widetilde{W}$ 获得的函数集，因此覆盖了所有支持的编译器、优化级别和架构。同时P作为子集具有较小的尺寸，在后续方法中也能减少内存使用。<br>
+注意到此时的Pr $\widetilde{W}$ 其实是一个近似值，因此设P中未收集的strand的f(s)=1，在避免f(s)/|P|产生不确定的同时也做了假设——这些strands在 $\widetilde{W}$ 中极少出现。</p>
+<h1>实验与结果</h1>
+<h2 id="生成样本">生成样本</h2>
+<p>在学习样本上，作者用了多个版本的CLang、gcc和icc从一些开源代码（包括OpenSSL、git、bash, Wireshark, QEMU等）中编译了大约50万个优化级别不同、针对x86_64和AArch64的二进制文件（对应关系如下图），其中有意选择了一些包含漏洞的软件版本。作者从中爬取了一千个函数，用来生成全局上下文P。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211003205831.png" alt="20211003205831"></p>
+<p><em>对于全局上下文的合适大小进行实验时，作者发现大约在400个函数后就对误报率基本不造成影响，因此使用了1K个函数（2.5倍）</em></p>
+<h2 id="评价指标">评价指标</h2>
+<p>使用CROC（Concentrated ROC）来测量随着阈值的提高而遇到的误报率</p>
+<h2 id="评估结果">评估结果</h2>
+<ol>
+<li>与另一个工具Esh相比，作者的工具支持跨架构和优化级别，且具有更高的准确率，在效率上更是明显优于Esh</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211005002153.png" alt="20211005002153"></p>
+<ol start="2">
+<li>挑战最大的是学习单一架构的代码相似性后跨架构对代码进行检测。因为实现操作和指令的范式不同，可能导致错误匹配strands。同时，由编译器和架构导致的内存布局和寻址等方式的不同，也会影响匹配准确率。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211004223519.png" alt="20211004223519"></p>
+<h2 id="缺陷">缺陷</h2>
+<p>作者方法的前提是假定了相同源代码编译出的二进制代码会产生语义相同的strands，并且可以进行提取和一系列转化，但这个假设其实不是完全成立的。</p>
+<ul>
+<li>编译器不同时，控制流图可能存在差异，导致基本块表达存在不同（如下图）。这个问题会使得匹配度偏低。</li>
+</ul>
+<p>造成这个的原因是作者为了提高效率和大规模检测，把strands的范围限制在了一个基本块中。可以通过扩大执行链的范围来缓解这个问题（当然代价是开销上的增加）<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211004214237.png" alt="20211004214237"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities</title>
+    <url>/41992.html</url>
+    <content><![CDATA[<blockquote>
+<p>文章由本人首发于安全客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjYwNDcx">Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities - 安全客，安全资讯平台 (anquanke.com)<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2Fic3RyYWN0L2RvY3VtZW50LzkxNTMzOTk=">Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities<i class="fa fa-external-link-alt"></i></span>(<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjU5MjQ2">针对移动和物联网设备已知漏洞的混合固件分析<i class="fa fa-external-link-alt"></i></span>)的太长不看版</p>
+<span id="more"></span>
+<h1>主要内容</h1>
+<p>移动设备和物联网设备的操作系统以及它们随后的升级文件通常是以二进制文件的形式发布。由于这些二进制文件通常是闭源的，用户或第三方企业若是想测试软件的安全性只能依靠逆向工程，此外，如何验证二进制文件中最近的补丁是否有效也是一个悬而未决的问题。常规的软件补丁修复是提升移动设备和物联网设备安全性的重要保障，这就需要开发人员、集成商和供应商的共同支持，及时把补丁分发到受影响的所有设备上。但实际上，供应商们对移动和物联网产品遵循着不同，甚至是错误的安全更新议程。其次，以往的研究反映出存在着“潜在的补丁缺口(a hidden patch gap)”：有些供应商错误的声称他们已经修复了漏洞。因此，在二进制文件中检测漏洞是否被修复对于软件安全至关重要。以往对二进制文件中的漏洞检测大多基于静态的代码相似性分析，然而它无法捕捉程序的动态行为，因此可能产生大量误报且难以区分漏洞是否已经修复。<br>
+在论文中，作者提出了一个针对可执行文件漏洞和补丁存在性检测的框架PATCHECKO。它混合了静态检测和动态检测方法，能够对X86和arm架构的二进制代码进行漏洞检测。作者的测试结果表明这个框架对漏洞检测和漏洞函数区分具有较高的准确率。</p>
+<h1>设计与实现</h1>
+<p>PATCHECKO的工作需要以下三个步骤：</p>
+<ol>
+<li>训练漏洞检测器</li>
+<li>用漏洞检测器对固件进行静态分析</li>
+<li>对2分析得出的可能含有漏洞的函数进行动态分析，验证漏洞是否存在并识别函数中的漏洞是否被修复</li>
+</ol>
+<p>工作过程如图：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210903221707.png" alt="workflow"></p>
+<h2 id="0x1-漏洞静态检测器和静态分析">0x1  漏洞静态检测器和静态分析</h2>
+<p>对于已知漏洞挖掘，深度学习方法的准确性和效率都明显优于过去的二分图匹配和动态相似性测试。PATCHECKO的漏洞检测器使用Keras和TensorFlow实现了神经网络的建模、训练和分类，使用TensorBoard来实现整个训练过程的可视化。</p>
+<h3 id="Ⅰ-构建数据集">Ⅰ 构建数据集</h3>
+<p>使用反汇编器（如IDA）的插件提取程序控制流图（CFG），并生成每个函数以及其基本块级的特征向量，每个特征向量包括48个特征，如下图：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908213440.png" alt="feature-vector"></p>
+<h3 id="Ⅱ-深度学习">Ⅱ 深度学习</h3>
+<p>作者在采用了一个线性层堆叠的序贯模型。<br>
+图3展示了一个用于深度学习模型的样本向量。样本向量由函数向量对和一个表示两个函数是否相似的比特组成，其中两个相似的特征向量对应着相同源代码的两个二进制函数。图4是该6层序列模型训练的实际过程，第一层接收输入张量的形状（input shape）的信息。这个模型使用了从数据集中提取的函数特征进行训练。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220859.png" alt="fig-3"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210917223725.png" alt="fig-4"></p>
+<h2 id="0x2-动态分析">0x2 动态分析</h2>
+<p>动态分析的工作流程如图5：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220751.png" alt="fig-5"></p>
+<p>该阶段使用相同的输入值执行两个函数，并比较两个函数的执行轨迹和其他特征的相似性。</p>
+<h3 id="Ⅰ-动态分析引擎的输入数据">Ⅰ 动态分析引擎的输入数据</h3>
+<p>作者使用Fuzz工具（在评估过程中选用了LibFuzzer）生成函数的多组输入数据，以完全覆盖CFG，并测试证明这些数据都能正常运行于漏洞函数和已修复漏洞的函数。接着使用这些数据来测试每个候选函数，筛去执行过程中崩溃的函数。<br>
+随后PATCHECKO将剩下函数作为可执行文件导出，在后续动态分析中使用DLL注入进行执行</p>
+<h3 id="Ⅱ-插桩测试">Ⅱ 插桩测试</h3>
+<p>作者使用了gdbserver和debugserver对函数执行进行跟踪和特征提取，提取的特征包括指令的数量和类型、系统调用的次数和类型，以及库函数调用和堆栈数据读写量等，具体在表Ⅱ中展示：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919143257.png" alt="tab-2"></p>
+<p>对于每个输入执行时，动态分析引擎会对每个特征会生成一组观察结果。当该函数里的所有指令都被覆盖到后，PATCHECKO会根据所有结果生成一个单独的向量。这个过程会在每次对函数进行不同输入时重复。</p>
+<h3 id="Ⅲ-计算函数语义相似度">Ⅲ 计算函数语义相似度</h3>
+<p>对于每个函数对(f,g)，PATCHECKO基于它们的动态特征向量距离计算出语义相似度。对于每个函数的特征向量，PATCHECKO使用了闵氏距离(Minkowski Distance)作为测量相似度的方法，在评估过程中，作者把p设为3。闵氏距离公式的一般式如下：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919171915.png" alt="minkowski"><br>
+在这个公式中，f代表了CVE函数，g代表目标固件中的候选函数，k指的是用到了第k个执行环境，x和y分别代表f和g的动态特征向量，此时P设为3。</p>
+<p>每个函数相似度的最终结果为所有执行环境中得到相似距离的平均值，相似度计算方程如下（k为执行环境编号）：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919180346.png" alt="sim-algorithm"></p>
+<h3 id="Ⅳ-补丁检测">Ⅳ 补丁检测</h3>
+<p>PATCHECKO使用了一个差分引擎来收集静态和动态相似性的检测结果，以此判断漏洞是否被修复。<br>
+对于给定的漏洞函数f<sub>v</sub>、已修复函数f<sub>p</sub>和目标函数f<sub>t</sub>，差分引擎会首先生成三个值：f<sub>v</sub>、f<sub>p</sub>和f<sub>t</sub>的静态特征、sim<sub>v</sub>与sim<sub>t</sub>、sim<sub>p</sub>与sim<sub>t</sub>的动态语义相似性得分以及S<sub>v</sub>和S<sub>p</sub>之间的差分特征（differential signatures）。静态特征即上述的48个不同的量化特征，动态语义相似度得分与上述的函数相似度指标。差分特征（differential signatures）是一个用于比较CFG结构的附加指标，即两个函数的CFG拓扑以及语义信息，例如函数参数、局部变量和库函数调用。</p>
+<h1>评价</h1>
+<h2 id="评估结果">评估结果</h2>
+<p>对于模型训练数据集，作者使用Clang从Android-8.1.0_r36的源码中编译了100个库函数，每个库根据不同的目标平台（ x86, AMD64, ARM 32bit， ARM 64bit ISA）、优化级别（O0, O1, O2,O3, Oz, Ofast）生成了23个不同的二进制文件，总共获得了2108个库文件，包含了2037772个函数特征样本。其中1222663个函数用于模型训练，407554个函数用于校验，407555个函数用于下图的测试<br>
+图8展示了在训练了大约15小时后，深度学习模型的准确率和损失，其中准确率可达到96%。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090924.png" alt="fig-8"></p>
+<p>作者对Android Things 1.0 和 Google Pixel 2 XL (Android 8.0) 的固件进行了评估。所用的漏洞函数数据集来自Android Security Bulletins，包括了从2016年7月到2018年11月的漏洞，涵盖2076个漏洞。检测结果表明，模型的静态检测平均准确率高于93%</p>
+<p>对于动态分析输出的漏洞函数，除了深度学习阶段就被漏报的CVE-2017-13209外，PATCHECKO能将其余所有预期的目标函数输出到结果的前三位。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090830.png" alt="dyn-result"></p>
+<p>对于函数是否已修复的检测，PATCHECKO在25个CVE漏洞函数中只遗漏了CVE-2018-9470，该CVE的漏洞函数和修复函数仅差了一个整数。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090706.png" alt="dyn-result-2"></p>
+<h2 id="缺点">缺点</h2>
+<ol>
+<li>在静态检测时，PATCHECKO通过比较候选函数与已修复/未修复函数来检测是否为目标函数，这导致了可能会产生遗漏</li>
+<li>检测漏洞是否已修复时，由于CFG表示的特征粒度不够细，可能会因为漏洞函数和已修复函数之间的差异非常微小，导致相似性检测可能无法捕捉到它们之间的差异。</li>
+</ol>
+<p>第二点或许可以通过应用/结合其他程序表示方法，如CDG、PDG等结构来进行优化。但如作者所说的，这样可能还需要进一步对方案通用性方面进行设计。</p>
 ]]></content>
   </entry>
 </search>
