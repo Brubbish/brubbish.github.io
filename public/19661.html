@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="2020.1.12-2020.1.18  1.scanf、getchar、getch、getche和缓冲区 https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1354983 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lanhaicode&#x2F;p&#x2F;10575049.html  读取字符时： (1)scanf()以 Enter 结束一次输入，不会舍弃最后的回车符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020.01.12-2020.01.18">
+<meta property="og:url" content="https://brubbish.github.io/19661.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="2020.1.12-2020.1.18  1.scanf、getchar、getch、getche和缓冲区 https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1354983 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lanhaicode&#x2F;p&#x2F;10575049.html  读取字符时： (1)scanf()以 Enter 结束一次输入，不会舍弃最后的回车符">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200117224034766.bmp?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWlzaGk=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200117223137978.bmp?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWlzaGk=,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-01-18T06:13:51.000Z">
+<meta property="article:modified_time" content="2020-07-05T13:33:10.000Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="周报">
+<meta property="article:tag" content="汇编">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200117224034766.bmp?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWlzaGk=,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="https://brubbish.github.io/19661.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/19661.html","path":"19661.html","title":"2020.01.12-2020.01.18"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2020.01.12-2020.01.18 | Brubbish's</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-book-list"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">2020.1.12-2020.1.18</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-scanf%E3%80%81getchar%E3%80%81getch%E3%80%81getche%E5%92%8C%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.scanf、getchar、getch、getche和缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B4%9B%E8%B0%B7"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.洛谷</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-P1597-%E8%AF%AD%E5%8F%A5%E8%A7%A3%E6%9E%90"><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">1.P1597-语句解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-P1739-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D"><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">2.P1739-表达式括号匹配</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.汇编语言学习</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%A0%88%E6%AE%B5"><span class="nav-number">1.0.3.0.0.1.</span> <span class="nav-text">栈段</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%BA%90%E7%A8%8B%E5%BA%8F%E4%BB%8E%E5%86%99%E5%87%BA%E5%88%B0%E6%89%A7%E8%A1%8C%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">1.0.3.0.0.2.</span> <span class="nav-text">一个源程序从写出到执行的过程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%BA%90%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.0.3.0.0.3.</span> <span class="nav-text">源程序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#bx-%E5%92%8Cloop%E6%8C%87%E4%BB%A4"><span class="nav-number">1.0.3.0.0.4.</span> <span class="nav-text">[bx]和loop指令</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+<!-- sidebar -->
+    </div>
+
+
+
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/19661.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2020.01.12-2020.01.18
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-18 14:13:51" itemprop="dateCreated datePublished" datetime="2020-01-18T14:13:51+08:00">2020-01-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-05 21:33:10" itemprop="dateModified" datetime="2020-07-05T21:33:10+08:00">2020-07-05</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>2020.1.12-2020.1.18</h1>
+<hr>
+<h3 id="1-scanf、getchar、getch、getche和缓冲区">1.scanf、getchar、getch、getche和缓冲区</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xMzU0OTgz">https://cloud.tencent.com/developer/article/1354983<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGFuaGFpY29kZS9wLzEwNTc1MDQ5Lmh0bWw=">https://www.cnblogs.com/lanhaicode/p/10575049.html<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>读取字符时：<br>
+(1)scanf()以 Enter 结束一次输入，不会舍弃最后的回车符（即回车符会残留在缓冲区中）；<br>
+(2)getchar()以 Enter 结束输入，不会舍弃最后的回车符。<br>
+读取字符串时：<br>
+(1) scanf()以Space、Enter、Tab结束一次输入，不会舍弃最后的回车符；<br>
+(2) gets()以Enter结束输入（空格不结束），接受空格，会舍弃最后的回车符！<br>
+所以读取一个字符串中的每一个字符的时候，往往使用getchar()而不使用scanf()，因为一个字符串中是会出现空格的。如果使用scanf()会造成将一个字符串首先读入第一个空格前的部分，其余部分会残留在输入缓冲区的情况，在下次读取时可能会出现错误。<br>
+其次为了避免出现上述问题，必须要在读取输入前，清空缓冲区的残留数据</p>
+</blockquote>
+<span id="more"></span>
+<p>缓冲区是一块内存空间，用来缓存数据，目的是让快速的cpu不必等待慢速的输入输出设备，同时减少操作硬件的次数</p>
+<p>根据数据刷新的时机可将缓冲区类型分为<br>
+1.全缓冲：当缓冲区被填满以后才进行真正的输入输出操作<br>
+2.行缓冲：当输入或输出时遇到换行符时才进行真正的输入输出操作<br>
+3.无缓冲：没有缓冲区，立即进行输入输出</p>
+<p>Windows下c语言的printf是无缓冲的</p>
+<h3 id="2-洛谷">2.洛谷</h3>
+<h5 id="1-P1597-语句解析">1.P1597-语句解析</h5>
+<p><img src="https://img-blog.csdnimg.cn/20200117224034766.bmp?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWlzaGk=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+没有啥思路就看题解了<br>
+因为scanf成功读入一个返回值为1，读入两个返回值为2，可以此作为循环条件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">3</span>];</span><br><span class="line">	<span class="keyword">char</span> c1,c2;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%c:=%c;&quot;</span>,&amp;c1,&amp;c2)==<span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span>(c2&gt;<span class="string">&#x27;0&#x27;</span>&amp;&amp;c2&lt;<span class="string">&#x27;a&#x27;</span>)&#123;</span><br><span class="line">			a[c1-<span class="string">&#x27;a&#x27;</span>]=c2-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			a[c1-<span class="string">&#x27;a&#x27;</span>]=a[c2-<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d %d %d&quot;</span>,a[<span class="number">0</span>],a[<span class="number">1</span>],a[<span class="number">2</span>]);</span><br><span class="line"><span class="comment">//	char a=14;</span></span><br><span class="line"><span class="comment">//	int b;</span></span><br><span class="line"><span class="comment">//	b=a;</span></span><br><span class="line"><span class="comment">//	printf(&quot;%d&quot;,b);</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-P1739-表达式括号匹配">2.P1739-表达式括号匹配</h5>
+<p><img src="https://img-blog.csdnimg.cn/20200117223137978.bmp?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWlzaGk=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+第一次提交了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> b;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>,&amp;b);</span><br><span class="line">		<span class="keyword">if</span>(b==<span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">if</span>(b==<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">			i++;</span><br><span class="line">		<span class="keyword">if</span>(b==<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">			j++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(j==i)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;YES&quot;</span>);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;NO&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>没考虑到右括号在左括号旁边的情况 如：)(a+1)*(a+2)(@<br>
+看了一下题解：<br>
+<strong>每出现一个左括号+1，每出现一个右括号且该变量大于0时-1.最后整个字符串判断完之后如果这个变量值为0则原表达式是匹配的。</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%c&quot;</span>,&amp;b);</span><br><span class="line">		<span class="keyword">if</span>(b==<span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">if</span>(b==<span class="string">&#x27;(&#x27;</span>)&#123;</span><br><span class="line">			i++;</span><br><span class="line">			c++;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">if</span>(b==<span class="string">&#x27;)&#x27;</span>)&#123;</span><br><span class="line">			j++;</span><br><span class="line">			<span class="keyword">if</span>(c&gt;<span class="number">0</span>)</span><br><span class="line">				c--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(j==i&amp;&amp;c==<span class="number">0</span>)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;YES&quot;</span>);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;NO&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>通过了</p>
+<h3 id="3-汇编语言学习">3.汇编语言学习</h3>
+<h6 id="栈段">栈段</h6>
+<p>栈顶的变化范围是0~ffff，栈空时sp=0，栈满时sp也=0，一个栈容量最大为64kb<br>
+执行修改栈段寄存器ss的指令时，下一条指令也紧接着被执行<br>
+如 用t命令执行 mov ss，ax时，下一条mov sp，10也紧接着执行了</p>
+<h6 id="一个源程序从写出到执行的过程">一个源程序从写出到执行的过程</h6>
+<ol>
+<li>编写汇编源程序，产生了一个存储源程序的文本文件</li>
+<li>用汇编语言编译程序编译源程序，产生目标文件，再用连接程序对目标文件进行连接，生成可执行文件<br>
+可执行文件包1.含程序（机器码）和数据，2.相关描述信息，如程序有多大，要占用多少内存空间等</li>
+<li>执行可执行文件中的程序</li>
+</ol>
+<h6 id="源程序">源程序</h6>
+<p>例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">assume cs:codesg</span><br><span class="line"> codesg segment</span><br><span class="line"> 	mov ax,0123</span><br><span class="line"> 	mov bx,0456</span><br><span class="line"> 	add ax,bx</span><br><span class="line"> 	add ax,ax</span><br><span class="line"> 	</span><br><span class="line"> 	mov ax,4c00</span><br><span class="line"> 	int 21</span><br><span class="line"> 	</span><br><span class="line"> codesg ends</span><br><span class="line"> end</span><br></pre></td></tr></table></figure>
+<ol>
+<li>伪指令<br>
+1。<code>xxx segment\n····\nxxx ends</code><br>
+是必须使用到的一对伪指令，功能是定义一个段，xxx是段名<br>
+一个汇编程序是由多个段组成的，这些段被用来存放代码/数据/当作栈空间用<br>
+一个汇编程序中至少要有一个段用来存放代码<br>
+段名（xxx）最终将被处理为一个段的段地址<br>
+2。<code>end</code><br>
+是一个汇编程序的结束标记<br>
+3。<code>assume</code><br>
+假设某一段寄存器和程序中的某一个用 segment…ends定义的段相关联，如例中段codesg和cpu中的段寄存器cs联系起来</li>
+</ol>
+<h6 id="bx-和loop指令">[bx]和loop指令</h6>
+<ol>
+<li>[bx]<br>
+要完整地描述一个内存单元，需要两种信息：1。内存单元的地址；2.内存单元的长度（类型）（有多大）<br>
+mov al（ax）,[bx]   ：<br>
+将一个内存单元的内容送入al（ax），这个内存单元的长度为1（2）字节，存放一个字节（一个字），偏移地址在bx中，段地址在ds中。</li>
+<li>loop<br>
+用loop指令实现循环功能，cx中存放循环次数<br>
+执行loop指令的时候，1.（cx）=（cx)-1 ; 2.判断（cx），不为零则转至标号处执行程序，如果为零则向下执行<br>
+``  例：计算2^12</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line">code segment </span><br><span class="line">	mov ax,2</span><br><span class="line">	</span><br><span class="line">	mov cx,11</span><br><span class="line">s:	add ax,ax</span><br><span class="line">	loop s</span><br><span class="line">	</span><br><span class="line">	mov ax,4c00h</span><br><span class="line">	int 21h</span><br><span class="line">code ends</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%91%A8%E6%8A%A5/" rel="tag"># 周报</a>
+              <a href="/tags/%E6%B1%87%E7%BC%96/" rel="tag"># 汇编</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2598.html" rel="prev" title="2019.12.08-2019.12.14">
+                  <i class="fa fa-chevron-left"></i> 2019.12.08-2019.12.14
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/17577.html" rel="next" title="2020.01.19-2020.02.02">
+                  2020.01.19-2020.02.02 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

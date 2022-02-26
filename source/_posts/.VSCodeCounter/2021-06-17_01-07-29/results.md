@@ -1,0 +1,21 @@
+# Summary
+
+Date : 2021-06-17 01:07:29
+
+Directory d:\Github\Brubbish.github.io\Brubbish.github.io\source\_posts\2021-06-12.md
+
+Total : 1 files,  149 codes, 8 comments, 42 blanks, all 199 lines
+
+[details](details.md)
+
+## Languages
+| language | files | code | comment | blank | total |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| Markdown | 1 | 149 | 8 | 42 | 199 |
+
+## Directories
+| path | files | code | comment | blank | total |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| . | 1 | 149 | 8 | 42 | 199 |
+
+[details](details.md)

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1.用github搞了博客 参考：https:&#x2F;&#x2F;www.fast.ai&#x2F;2020&#x2F;01&#x2F;16&#x2F;fast_template&#x2F; 并用了他的模板… 页面还没改完 2.汇编语言学习 [BX]和loop指令 一次执行完循环的过程： g指令： “g 0012”从当前的cs：ip指向的指令执行，一直到（ip）&#x3D;0012为止 p指令： 直到（cx）&#x3D;0为止 段前缀： 在访问内存单元的指令中显式低给出内存单元段地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020.01.19-2020.02.02">
+<meta property="og:url" content="https://brubbish.github.io/17577.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="1.用github搞了博客 参考：https:&#x2F;&#x2F;www.fast.ai&#x2F;2020&#x2F;01&#x2F;16&#x2F;fast_template&#x2F; 并用了他的模板… 页面还没改完 2.汇编语言学习 [BX]和loop指令 一次执行完循环的过程： g指令： “g 0012”从当前的cs：ip指向的指令执行，一直到（ip）&#x3D;0012为止 p指令： 直到（cx）&#x3D;0为止 段前缀： 在访问内存单元的指令中显式低给出内存单元段地">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-02T08:26:22.000Z">
+<meta property="article:modified_time" content="2020-07-05T13:32:08.000Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="周报">
+<meta property="article:tag" content="汇编">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://brubbish.github.io/17577.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/17577.html","path":"17577.html","title":"2020.01.19-2020.02.02"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2020.01.19-2020.02.02 | Brubbish's</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-book-list"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%94%A8github%E6%90%9E%E4%BA%86%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.</span> <span class="nav-text">1.用github搞了博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">2.汇编语言学习</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#BX-%E5%92%8Cloop%E6%8C%87%E4%BB%A4"><span class="nav-number">2.0.1.</span> <span class="nav-text">[BX]和loop指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AE%B5%E5%89%8D%E7%BC%80%EF%BC%9A"><span class="nav-number">2.0.2.</span> <span class="nav-text">段前缀：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%AE%B5%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">2.0.3.</span> <span class="nav-text">在代码段中使用数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%86%E6%95%B0%E3%80%81%E4%BB%A3%E7%A0%81%E3%80%81%E6%A0%88%E6%94%BE%E5%85%A5%E4%B8%8D%E5%90%8C%E7%9A%84%E6%AE%B5"><span class="nav-number">2.0.4.</span> <span class="nav-text">将数、代码、栈放入不同的段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#and-%E5%92%8C-or-%E6%8C%87%E4%BB%A4"><span class="nav-number">2.0.5.</span> <span class="nav-text">and 和 or 指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A5%E5%AD%97%E7%AC%A6%E5%BD%A2%E5%BC%8F%E7%BB%99%E5%87%BA%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">2.0.6.</span> <span class="nav-text">以字符形式给出的数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bx-idata"><span class="nav-number">2.0.7.</span> <span class="nav-text">[bx+idata]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SI%E3%80%81DI"><span class="nav-number">2.0.8.</span> <span class="nav-text">SI、DI</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#BP"><span class="nav-number">2.0.8.1.</span> <span class="nav-text">BP</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BD%8D%E7%BD%AE%E7%9A%84%E8%A1%A8%E8%BE%BE"><span class="nav-number">2.0.8.2.</span> <span class="nav-text">数据位置的表达</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E8%A6%81%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B0%BA%E5%AF%B8"><span class="nav-number">2.0.8.3.</span> <span class="nav-text">指令要处理的数据的尺寸</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E6%95%B4%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">寄存器整理</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#bx%E3%80%81si%E3%80%81di%E3%80%81bp%EF%BC%9A"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">bx、si、di、bp：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#dx%EF%BC%9A%E7%B4%AF%E5%8A%A0%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">dx：累加寄存器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cs%EF%BC%9A%E4%BB%A3%E7%A0%81"><span class="nav-number">2.1.0.3.</span> <span class="nav-text">cs：代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ss-sp%EF%BC%9A%E6%A0%88%E9%A1%B6"><span class="nav-number">2.1.0.4.</span> <span class="nav-text">ss:sp：栈顶</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ds%EF%BC%9A%E6%95%B0%E6%8D%AE"><span class="nav-number">2.1.0.5.</span> <span class="nav-text">ds：数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cx%EF%BC%9Aloop"><span class="nav-number">2.1.0.6.</span> <span class="nav-text">cx：loop</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+<!-- sidebar -->
+    </div>
+
+
+
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/17577.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2020.01.19-2020.02.02
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-02 16:26:22" itemprop="dateCreated datePublished" datetime="2020-02-02T16:26:22+08:00">2020-02-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-05 21:32:08" itemprop="dateModified" datetime="2020-07-05T21:32:08+08:00">2020-07-05</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="1-用github搞了博客">1.用github搞了博客</h3>
+<p>参考：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFzdC5haS8yMDIwLzAxLzE2L2Zhc3RfdGVtcGxhdGUv">https://www.fast.ai/2020/01/16/fast_template/<i class="fa fa-external-link-alt"></i></span><br>
+并用了他的模板…<br>
+页面还没改完</p>
+<h3 id="2-汇编语言学习">2.汇编语言学习</h3>
+<h5 id="BX-和loop指令">[BX]和loop指令</h5>
+<p>一次执行完循环的过程：<br>
+g指令：<br>
+“g 0012”从当前的cs：ip指向的指令执行，一直到（ip）=0012为止<br>
+p指令：<br>
+直到（cx）=0为止</p>
+<h5 id="段前缀：">段前缀：</h5>
+<p>在访问内存单元的指令中显式低给出内存单元段地址所在的段寄存器，如：<br>
+mov ax,ds:[bx]<br>
+mov ax,cs:[bx]<br>
+mov ax,ss,[bx]<br>
+mov ax,ex,[0]<br>
+…</p>
+<span id="more"></span>
+<h5 id="在代码段中使用数据">在代码段中使用数据</h5>
+<p>code segment<br>
+“dw 0123，0456”<br>
+…<br>
+dw的含义是定义字型数据，因为用dw定义的数据出于代码段的最开始，所以偏移地址为0，这两个数据就在代码段的偏移0，2 处，地址为cs:0,cs:2</p>
+<h5 id="将数、代码、栈放入不同的段">将数、代码、栈放入不同的段</h5>
+<p>一个段的容量不能大于64kb（8086模式的限制）</p>
+<blockquote>
+<p>assume cs:code,ds:data,ss:stack<br>
+data segment<br>
+dw 0123h,0456h,0789h,0abch,0defh,0cbah,0987h<br>
+data ends<br>
+stack segment<br>
+dw 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0<br>
+stack ends<br>
+code segment<br>
+start: mov ax,==stack==<br>
+mov ss,ax<br>
+mov sp:20h<br>
+mov ax,==data==  ;将名称为data的段的段地址送入ax（数值）<br>
+mov ds,ax<br>
+mov bx,0<br>
+mov cx,8<br>
+s:	push [bx]<br>
+add bx,2<br>
+loop s<br>
+mov bx,0<br>
+mov cx,8<br>
+s0:	pop [bx]<br>
+add bx,2<br>
+loop s0<br>
+mov ax,4c00h<br>
+int 21h<br>
+code ends<br>
+end start</p>
+</blockquote>
+<h5 id="and-和-or-指令">and 和 or 指令</h5>
+<p>and：按位进行与运算<br>
+mov al，01100011B<br>
+and al，001111011B<br>
+or：按位进行或运算<br>
+…<br>
+or al，00111011B</p>
+<h5 id="以字符形式给出的数据">以字符形式给出的数据</h5>
+<p>用’…'的方式指明数据是以字符形式给出的，编译器将把它们转化为对应的ascii码<br>
+db ‘unix’ 相当于 db 75h,6eh,49h,58h (ascii 码)</p>
+<h5 id="bx-idata">[bx+idata]</h5>
+<p>mov ax,[200+bx]==mov ax,[bx+200]==mov ax,200[bx]==mov ax,[bx].200<br>
+(ax)=((ds)*16+(bx)+200)<br>
+用[bx+idata]的方式进行数组的处理</p>
+<h5 id="SI、DI">SI、DI</h5>
+<p>是和bx功能相近的寄存器，不能够分成两个8位寄存器来使用<br>
+可以使用 [bx+si+idata]和[bx+di+idata]的方式表示内存单元，不能用[si+di]</p>
+<h6 id="BP">BP</h6>
+<p>在8086cpu中只有 si、di、bp、bx四个寄存器能在[…]里进行内存单元的寻址<br>
+四个寄存器可以单个出现或只能出现：bx+si;bx+di;bp+si;bp+di。bx+b；si+di是错的<br>
+只要使用了bp而没有给出段地址，段地址就默认在ss中</p>
+<h6 id="数据位置的表达">数据位置的表达</h6>
+<p>1.直接用立即数idata表示：mov ax,1；mov al,‘a’<br>
+2.将数据存在寄存器中<br>
+3.要处理的数据在内存中，可用[…]的格式给出EA,SA在某个段寄存器中</p>
+<ul>
+<li>1.mov ax,[bx+si+8]中 段地址默认在ds中</li>
+<li>2.mov ax,[bp+si+8]中 段地址默认在ss中</li>
+<li>存放段地址的寄存器也可以显性给出：mov ax,ds:[bx+si+8]</li>
+</ul>
+<h6 id="指令要处理的数据的尺寸">指令要处理的数据的尺寸</h6>
+<ul>
+<li>1.通过寄存器名指明：ax 字，al/ah 字节</li>
+<li>2.用操作符_word/byte__ptr<br>
+inc word ptr [bx]<br>
+add byte ptr [bx],2<br>
+否则cpu无法得知要访问的单元是字单元还是字节单元</li>
+<li>3.其他<br>
+如push,[1000]</li>
+</ul>
+<h4 id="寄存器整理">寄存器整理</h4>
+<h6 id="bx、si、di、bp：">bx、si、di、bp：</h6>
+<p>不使用bp时段地址默认在ds中<br>
+使用bp时段地址默认在ss中</p>
+<h6 id="dx：累加寄存器">dx：累加寄存器</h6>
+<h6 id="cs：代码">cs：代码</h6>
+<h6 id="ss-sp：栈顶">ss:sp：栈顶</h6>
+<h6 id="ds：数据">ds：数据</h6>
+<h6 id="cx：loop">cx：loop</h6>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%91%A8%E6%8A%A5/" rel="tag"># 周报</a>
+              <a href="/tags/%E6%B1%87%E7%BC%96/" rel="tag"># 汇编</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/19661.html" rel="prev" title="2020.01.12-2020.01.18">
+                  <i class="fa fa-chevron-left"></i> 2020.01.12-2020.01.18
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/7089.html" rel="next" title="2020.02.03-2020.02.09">
+                  2020.02.03-2020.02.09 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

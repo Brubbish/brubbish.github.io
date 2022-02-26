@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="IDA 枚举 ‘View’-&gt;‘Open subviews’-&gt;‘Enumerations’ 打开枚举窗口，按’Insert’插入新的枚举类型，按’N’添加成员 选中需要重新定义的数据，按’M’后将其转换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020.03.08-2020.03.15">
+<meta property="og:url" content="https://brubbish.github.io/232092d7.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="IDA 枚举 ‘View’-&gt;‘Open subviews’-&gt;‘Enumerations’ 打开枚举窗口，按’Insert’插入新的枚举类型，按’N’添加成员 选中需要重新定义的数据，按’M’后将其转换">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/12/8etGNT.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/12/8etJ4U.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/12/8eOmin.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/14/8lFm6K.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/12/8maVFP.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/14/8lP1De.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/15/83ZkQA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/15/83eB4S.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/03/15/83uRHI.png">
+<meta property="article:published_time" content="2020-03-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-05T13:30:52.000Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="周报">
+<meta property="article:tag" content="加密与解密">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/03/12/8etGNT.md.png">
+
+
+<link rel="canonical" href="https://brubbish.github.io/232092d7.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/232092d7.html","path":"232092d7.html","title":"2020.03.08-2020.03.15"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2020.03.08-2020.03.15 | Brubbish's</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-book-list"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">IDA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE"><span class="nav-number">1.1.</span> <span class="nav-text">枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FLIRT"><span class="nav-number">1.2.</span> <span class="nav-text">FLIRT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88%E4%B8%8D%E7%9F%A5%E9%81%93%E6%8A%8A%E8%BF%99%E9%83%A8%E5%88%86%E5%8F%AB%E4%BD%9C%E5%95%A5%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">（不知道把这部分叫作啥）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">32位软件逆向技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">启动函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">2.2.1.</span> <span class="nav-text">函数的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%A0%88%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">利用栈传递参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">利用寄存器传递参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8D%E7%A7%B0%E4%BF%AE%E9%A5%B0%E7%BA%A6%E5%AE%9A"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">名称修饰约定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">2.2.2.</span> <span class="nav-text">函数的返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8return%E6%93%8D%E4%BD%9C%E7%AC%A6%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">用return操作符返回值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%82%E6%95%B0%E6%8C%89%E4%BC%A0%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">2.2.3.</span> <span class="nav-text">通过参数按传引用方式返回值</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+<!-- sidebar -->
+    </div>
+
+
+
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/232092d7.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2020.03.08-2020.03.15
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-15T00:00:00+08:00">2020-03-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-05 21:30:52" itemprop="dateModified" datetime="2020-07-05T21:30:52+08:00">2020-07-05</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>IDA</h1>
+<h2 id="枚举">枚举</h2>
+<p>‘View’-&gt;‘Open subviews’-&gt;‘Enumerations’ 打开枚举窗口，按’Insert’插入新的枚举类型，按’N’添加成员<br>
+选中需要重新定义的数据，按’M’后将其转换<br>
+<img src="https://s1.ax1x.com/2020/03/12/8etGNT.md.png" alt="8etGNT.md.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/12/8etJ4U.md.png" alt="8etJ4U.md.png"></p>
+<span id="more"></span>
+<h2 id="FLIRT">FLIRT</h2>
+<p>库文件快速识别与鉴定技术<br>
+在一系列编译器的标准库文件里自动找出调用的函数，如，把’call 406E40’识别为’call strlen’<br>
+如果没有自动识别出来，可以强制使用编译器特征文件（xxxx.sig）<br>
+‘View’-&gt;‘Open subviews’-&gt;'Signatures’或’Shift+F5’打开签名窗口，右键’Apply new signature’选择签名文件</p>
+<h2 id="（不知道把这部分叫作啥）">（不知道把这部分叫作啥）</h2>
+<ol>
+<li></li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/12/8eOmin.md.png" alt="可见，可以把004010c9的内容改了让程序显示'OK'"></p>
+<p><img src="https://s1.ax1x.com/2020/03/14/8lFm6K.png" alt="Assmeble修改汇编指令，Apply patches to input file...将修改保存到文件"><br>
+2.<br>
+输入输出等函数可在name窗口中查看</p>
+<h1>32位软件逆向技术</h1>
+<h2 id="启动函数">启动函数</h2>
+<p>Windows程序执行并不是由WinMain函数开始的，首先执行的是启动函数的相关代码（由编译器生成），完成后才调用WinMain函数</p>
+<p>c/c++程序的启动函数作用基本相同，包括 检索指向新进程的<u>命令行</u>指针、检索指向新进程的<u>环境变量</u>指针、全局变量初始化和内存栈初始化等</p>
+<p><img src="https://s1.ax1x.com/2020/03/12/8maVFP.md.png" alt="某程序启动代码（部分）"><br>
+分析程序的过程中可以略过启动代码，直接将重点放到WinMain函数上</p>
+<h2 id="函数">函数</h2>
+<p>通过call…ret把函数调用和其他跳转指令区别开<br>
+直接调用：call <u>函数首地址</u><br>
+间接调用：call [<u> eax </u>] (通过寄存器传递函数地址或动态计算函数地址)</p>
+<h3 id="函数的参数">函数的参数</h3>
+<p>函数传递参数有3种方式：栈方式、寄存器方式、通过全局变量进行隐含参数传递方式<br>
+每一种机制与使用的编译语言有关</p>
+<h4 id="利用栈传递参数">利用栈传递参数</h4>
+<p>函数计算结束后，由调用者或函数本身修改栈，使栈恢复原样（<strong>平衡栈数据</strong>）<br>
+调用约定：为了实现函数调用而建立的协议（按照什么顺序入栈；由谁来平衡栈…）</p>
+<ol>
+<li>c规范(__cdecl)函数按照从右到左的顺序入栈，由调用者负责清除栈（c/c++/mfc(微软基础类库)默认调用约定）</li>
+<li>stdcall调用约定按照从右到左传递参数，并由调用的函数在返回前清理传送参数的内存栈</li>
+<li>stdcall调用约定是Win32 API采用的约定方式，在Win32 API种也有一些函数采用(__cdecl)调用，如wsprintf</li>
+</ol>
+<p>c、c++、pascal 等高级语言的子程序执行过程基本相似：</p>
+<ol>
+<li>调用者将函数执行完毕时应返回的地址和参数压入栈</li>
+<li>子程序通过’ebp 指针+偏移量’对栈中的操作进行寻址</li>
+<li>子程序使用ret或retf返回，此时cpu将eip置为栈中保存的地址</li>
+</ol>
+<p>栈的操作对象只能是双操作数（占4个字节）<br>
+<img src="https://s1.ax1x.com/2020/03/14/8lP1De.md.png" alt="一个凑行数的图"></p>
+<p>用ebp存取栈<br>
+用ret平衡栈时，在ret指令后加一个操作数，表示在ret指令后给esp加上操作数  如’ret 8’相当于在返回后将esp+8，ret后面的值等于参数个数*4h</p>
+<p>enter 和 leave指令可以帮助进行栈的维护</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">enter xxxx,0   ;0表示创建xxxx大小的空间来放置局部变量</span><br><span class="line">....</span><br><span class="line">leave </span><br><span class="line">ret 8</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">enter的作用为：</span><br><span class="line">push ebp</span><br><span class="line">mov ebp,esp</span><br><span class="line">sub esp,xxxx</span><br><span class="line"></span><br><span class="line">leave的作用为：</span><br><span class="line">add esp,xxxx</span><br><span class="line">pop ebp</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ENTER 有两个操作数：第一个是常数，定义为局部变量保存的堆栈空间字节数；第二个定义了过程的词法嵌套级。<br>
+ENTER numbytes, nestinglevel<br>
+Numbytes 总是向上舍入为 4 的倍数，以便 ESP 对齐双字边界。Nestinglevel 确定了从主调过程堆栈帧复制到当前帧的堆栈帧指针的个数。</p>
+</blockquote>
+<h4 id="利用寄存器传递参数">利用寄存器传递参数</h4>
+<p>绝大多数编译器都遵循fastcall规范<br>
+不同的编译器实现的fastcall稍有不同</p>
+<h4 id="名称修饰约定">名称修饰约定</h4>
+<p>c++编译器会按照某种规则改写每一个入口点的符号名，从而允许同一个名字有多个用法且不破坏链接器。这种技术称为名称改编或名称修饰<br>
+在vc++种，函数修饰名由编译类型(c/c++)、函数名、类（class）名、调用约定、返回类型等决定<br>
+<img src="https://s1.ax1x.com/2020/03/15/83ZkQA.png" alt="常见的c和c++编译函数名的修饰"></p>
+<h3 id="函数的返回值">函数的返回值</h3>
+<p>最常见的是return操作符，还有通过参数 按 传引用方式 返回值、通过全局变量返回值</p>
+<h4 id="用return操作符返回值">用return操作符返回值</h4>
+<p>一般情况下返回值放在eax中，如果超过大小，高32位就会放在edx<br>
+对于一个返回两个参数和的子函数：<br>
+<img src="https://s1.ax1x.com/2020/03/15/83eB4S.png" alt="圈起来的即为存放返回值的过程"><br>
+对应c语言代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">add(<span class="keyword">int</span> x,<span class="keyword">int</span> y)&#123;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    temp=x+y;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过参数按传引用方式返回值">通过参数按传引用方式返回值</h3>
+<p>传递参数的方式有：传值和传引用<br>
+传值调用时会建立参数的一份复本，并把它传给调用参数<br>
+传引用允许调用函数修改原始变量的值（指针）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(*a&lt;*b)</span><br><span class="line">        *a=*b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2020/03/15/83uRHI.png" alt=" "></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%91%A8%E6%8A%A5/" rel="tag"># 周报</a>
+              <a href="/tags/%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86/" rel="tag"># 加密与解密</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2f00783a.html" rel="prev" title="2020.03.02-2020.03.08">
+                  <i class="fa fa-chevron-left"></i> 2020.03.02-2020.03.08
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/710f8e5f.html" rel="next" title="python 爬虫学习">
+                  python 爬虫学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

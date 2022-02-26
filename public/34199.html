@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="汇编学习 offset 功能是取得标号的偏移地址 12345678assume cs:codesgcodesg segment    start:mov ax,offset start    &lt;!-- 相当于mov ax,0 --&gt;    s:mov ax,offstet s    &lt;!-- 相当于mov ax,3 --&gt;codesg endsend start offse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020.02.10-2020.02.16">
+<meta property="og:url" content="https://brubbish.github.io/34199.html">
+<meta property="og:site_name" content="Brubbish&#39;s">
+<meta property="og:description" content="汇编学习 offset 功能是取得标号的偏移地址 12345678assume cs:codesgcodesg segment    start:mov ax,offset start    &lt;!-- 相当于mov ax,0 --&gt;    s:mov ax,offstet s    &lt;!-- 相当于mov ax,3 --&gt;codesg endsend start offse">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/12/1bafdf.png">
+<meta property="article:published_time" content="2020-02-16T07:35:26.000Z">
+<meta property="article:modified_time" content="2020-07-05T13:31:52.000Z">
+<meta property="article:author" content="Bruce">
+<meta property="article:tag" content="周报">
+<meta property="article:tag" content="汇编">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/02/12/1bafdf.png">
+
+
+<link rel="canonical" href="https://brubbish.github.io/34199.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/34199.html","path":"34199.html","title":"2020.02.10-2020.02.16"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2020.02.10-2020.02.16 | Brubbish's</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Brubbish's</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-book-list"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="6634125020"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">汇编学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#offset"><span class="nav-number">1.1.</span> <span class="nav-text">offset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jmp"><span class="nav-number">1.2.</span> <span class="nav-text">jmp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E6%8D%AE%E4%BD%8D%E7%A7%BB%E8%BF%9B%E8%A1%8C%E8%BD%AC%E7%A7%BB%E7%9A%84jmp%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.1.</span> <span class="nav-text">依据位移进行转移的jmp指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-jmp-short-%E6%A0%87%E5%8F%B7"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.jmp short 标号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-jmp-near-ptr-%E6%A0%87%E5%8F%B7"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2.jmp near ptr 标号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB%E7%9A%84%E7%9B%AE%E7%9A%84%E5%9C%B0%E5%9D%80%E5%9C%A8%E6%8C%87%E4%BB%A4%E4%B8%AD%E7%9A%84jmp%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.2.</span> <span class="nav-text">转移的目的地址在指令中的jmp指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-jmp-far-ptr-%E6%A0%87%E5%8F%B7"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1.jmp far ptr 标号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB%E5%9C%B0%E5%9D%80%E5%9C%A8%E5%AF%84%E5%AD%98%E5%99%A8%E4%B8%AD%E7%9A%84jmp%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.3.</span> <span class="nav-text">转移地址在寄存器中的jmp指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-jmp-16%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">1.jmp 16位寄存器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB%E5%9C%B0%E5%9D%80%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84jmp%E6%8C%87%E4%BB%A4"><span class="nav-number">1.2.4.</span> <span class="nav-text">转移地址在内存中的jmp指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-jmp-word-ptr-%E5%86%85%E5%AD%98%E5%8D%95%E5%85%83%E5%9C%B0%E5%9D%80%EF%BC%88%E6%AE%B5%E5%86%85%E8%BD%AC%E7%A7%BB%EF%BC%89"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">1.jmp word ptr 内存单元地址（段内转移）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-jmp-dword-ptr-%E5%86%85%E5%AD%98%E5%8D%95%E5%85%83%E5%9C%B0%E5%9D%80%EF%BC%88%E6%AE%B5%E9%97%B4%E8%BD%AC%E7%A7%BB%EF%BC%89"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">2.jmp dword ptr 内存单元地址（段间转移）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jcxz"><span class="nav-number">1.3.</span> <span class="nav-text">jcxz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loop"><span class="nav-number">1.4.</span> <span class="nav-text">loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%BD%8D%E7%A7%BB%E8%BF%9B%E8%A1%8C%E8%BD%AC%E7%A7%BB%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">1.5.</span> <span class="nav-text">根据位移进行转移的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call%E5%92%8Cret%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.</span> <span class="nav-text">call和ret指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ret%E5%92%8Cretf"><span class="nav-number">1.6.1.</span> <span class="nav-text">ret和retf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">1.6.2.</span> <span class="nav-text">call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BE%9D%E6%8D%AE%E4%BD%8D%E7%A7%BB%E8%BF%9B%E8%A1%8C%E8%BD%AC%E7%A7%BB%E7%9A%84call%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.3.</span> <span class="nav-text">1.依据位移进行转移的call指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%BD%AC%E7%A7%BB%E7%9A%84%E7%9B%AE%E7%9A%84%E5%9C%B0%E5%9D%80%E5%9C%A8%E6%8C%87%E4%BB%A4%E4%B8%AD%E7%9A%84call%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.4.</span> <span class="nav-text">2.转移的目的地址在指令中的call指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%BD%AC%E7%A7%BB%E5%9C%B0%E5%9D%80%E5%9C%A8%E5%AF%84%E5%AD%98%E5%99%A8%E4%B8%AD%E7%9A%84call%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.5.</span> <span class="nav-text">3.转移地址在寄存器中的call指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%BD%AC%E7%A7%BB%E5%9C%B0%E5%9D%80%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84call%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.6.</span> <span class="nav-text">4.转移地址在内存中的call指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-call-word-ptr-%E5%86%85%E5%AD%98%E5%8D%95%E5%85%83%E5%9C%B0%E5%9D%80"><span class="nav-number">1.6.6.1.</span> <span class="nav-text">4.1.call word ptr 内存单元地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-call-dword-ptr-%E5%86%85%E5%AD%98%E5%8D%95%E5%85%83%E5%9C%B0%E5%9D%80"><span class="nav-number">1.6.6.2.</span> <span class="nav-text">4.2.call dword ptr 内存单元地址</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call-%E5%92%8C-ret%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-number">1.6.7.</span> <span class="nav-text">call 和 ret配合使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mul%E6%8C%87%E4%BB%A4"><span class="nav-number">1.7.</span> <span class="nav-text">mul指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%85%AC%E5%BC%8F"><span class="nav-number">1.8.</span> <span class="nav-text">一个公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.9.</span> <span class="nav-text">标志寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ZF%E6%A0%87%E5%BF%97"><span class="nav-number">1.9.1.</span> <span class="nav-text">ZF标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PF%E6%A0%87%E5%BF%97"><span class="nav-number">1.9.2.</span> <span class="nav-text">PF标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SF%E6%A0%87%E5%BF%97"><span class="nav-number">1.9.3.</span> <span class="nav-text">SF标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF%E6%A0%87%E5%BF%97"><span class="nav-number">1.9.4.</span> <span class="nav-text">CF标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OF%E6%A0%87%E5%BF%97"><span class="nav-number">1.9.5.</span> <span class="nav-text">OF标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adc%E6%8C%87%E4%BB%A4"><span class="nav-number">1.9.6.</span> <span class="nav-text">adc指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sbb%E6%8C%87%E4%BB%A4"><span class="nav-number">1.9.7.</span> <span class="nav-text">sbb指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cmp%E6%8C%87%E4%BB%A4"><span class="nav-number">1.9.8.</span> <span class="nav-text">cmp指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E6%AF%94%E8%BE%83%E7%BB%93%E6%9E%9C%E7%9A%84%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4"><span class="nav-number">1.10.</span> <span class="nav-text">检测比较结果的条件转移指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DF%E6%A0%87%E5%BF%97%E5%92%8C%E4%B8%B2%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.11.</span> <span class="nav-text">DF标志和串传送指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pushf%E5%92%8Cpopf"><span class="nav-number">1.11.1.</span> <span class="nav-text">pushf和popf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E4%B8%AD%E6%96%AD"><span class="nav-number">1.12.</span> <span class="nav-text">内中断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E4%B8%AD%E6%96%AD%E7%9A%84%E4%BA%A7%E7%94%9F"><span class="nav-number">1.12.1.</span> <span class="nav-text">内中断的产生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%90%91%E9%87%8F%E8%A1%A8"><span class="nav-number">1.12.2.</span> <span class="nav-text">中断向量表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.13.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+<!-- sidebar -->
+    </div>
+
+
+
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/34199.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2020.02.10-2020.02.16
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-16 15:35:26" itemprop="dateCreated datePublished" datetime="2020-02-16T15:35:26+08:00">2020-02-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-05 21:31:52" itemprop="dateModified" datetime="2020-07-05T21:31:52+08:00">2020-07-05</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>汇编学习</h1>
+<h2 id="offset">offset</h2>
+<p>功能是取得标号的偏移地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">assume cs:codesg</span><br><span class="line">codesg segment</span><br><span class="line">    start:mov ax,offset start</span><br><span class="line">    &lt;!-- 相当于mov ax,0 --&gt;</span><br><span class="line">    s:mov ax,offstet s</span><br><span class="line">    &lt;!-- 相当于mov ax,3 --&gt;</span><br><span class="line">codesg ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+<p>offset取得了标号start和s的偏移地址：0和3</p>
+<span id="more"></span>
+<h2 id="jmp">jmp</h2>
+<h3 id="依据位移进行转移的jmp指令">依据位移进行转移的jmp指令</h3>
+<h4 id="1-jmp-short-标号">1.jmp short 标号</h4>
+<p>实现段内短转移，对ip修改范围为：-128~127字节<br>
+例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">....</span><br><span class="line">start:mov ax,0</span><br><span class="line">      jmp short s</span><br><span class="line">      add ax,1</span><br><span class="line">    s:inc ax</span><br><span class="line">....</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>执行后ax=1</p>
+<p>“依据位移进行转移”:指令对应的机器码中不包含转移的目的地址，而是转移的位移，位移由编译器根据汇编指令计算</p>
+<p>jmp short 标号 == （ip）+=8位位移</p>
+<ul>
+<li>8位位移=标号处的地址 - jmp指令后第一个字节的地址</li>
+<li>short 指明位移为8位</li>
+<li>8位位移在编译时算出，在机器码中用补码表示</li>
+</ul>
+<h4 id="2-jmp-near-ptr-标号">2.jmp near ptr 标号</h4>
+<p>与jump short 标号 相似<br>
+功能为：ip+16位位移</p>
+<h3 id="转移的目的地址在指令中的jmp指令">转移的目的地址在指令中的jmp指令</h3>
+<h4 id="1-jmp-far-ptr-标号">1.jmp far ptr 标号</h4>
+<p>用标号的段地址和偏移地址修改cs和ip<br>
+实现的是段间转移（远转移）<br>
+功能为：<br>
+ (cs)=标号所在段地址 <br>
+（ip）=标号所在偏移地址<br>
+<strong>机器码：EA0B01BD0B</strong><br>
+<strong>对应：jmp 0BBD:0B01</strong></p>
+<h3 id="转移地址在寄存器中的jmp指令">转移地址在寄存器中的jmp指令</h3>
+<h4 id="1-jmp-16位寄存器">1.jmp 16位寄存器</h4>
+<p>（ip）=（16位寄存器）</p>
+<h3 id="转移地址在内存中的jmp指令">转移地址在内存中的jmp指令</h3>
+<h4 id="1-jmp-word-ptr-内存单元地址（段内转移）">1.jmp word ptr 内存单元地址（段内转移）</h4>
+<p>内存单元地址处开始存放的一个字作为偏移地址<br>
+内存单元地址可用寻址方式的任一格式给出</p>
+<h4 id="2-jmp-dword-ptr-内存单元地址（段间转移）">2.jmp dword ptr 内存单元地址（段间转移）</h4>
+<p>高地址处的字是转移到目的地段地址，低地址处是转移到目的偏移地址：<br>
+ （cs）=（内存单元地址+2）<br>
+ （ip）=（内存单元地址)</p>
+<p>如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov ax,0123</span><br><span class="line">mov ds:[0],ax</span><br><span class="line">mov word ptr ds:[2],0</span><br><span class="line">jmp dword ptr ds:[0]</span><br></pre></td></tr></table></figure>
+<p>(cs)=0,(ip)=0123</p>
+<h2 id="jcxz">jcxz</h2>
+<p>为有条件转移指令</p>
+<p><em>所有有条件的转移指令都是短转移，在机器码中包含的是位移而不是目的地址，ip修改范围为：-128~127</em></p>
+<p>格式：jcxz 标号<br>
+相当于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if((cx)==0)</span><br><span class="line">    jmp short 标号</span><br></pre></td></tr></table></figure>
+<h2 id="loop">loop</h2>
+<p><em>所有循环指令都是短转移在机器码中包含的是位移而不是目的地址，ip修改范围为：-128~127</em><br>
+格式：loop 标号<br>
+相当于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(cx)--;</span><br><span class="line">if((cx)!=0)</span><br><span class="line">    jmp short 标号;</span><br></pre></td></tr></table></figure>
+<h2 id="根据位移进行转移的意义">根据位移进行转移的意义</h2>
+<p>在机器码中包含的是位移而不是目的地址—这种设计方便了程序段在内存中的浮动装配，在不同位置都可正确执行</p>
+<h2 id="call和ret指令">call和ret指令</h2>
+<p>call和ret都是转移指令，修改ip或同时修改cs和ip</p>
+<h3 id="ret和retf">ret和retf</h3>
+<p>ret用栈中的数据修改ip实现近转移，相当于:<br>
+pop ip<br>
+retf用栈中的数据修改cs和ip实现远转移，相当于:<br>
+ pop ip<br>
+ pop cs<br>
+ </p>
+<h3 id="call">call</h3>
+<p>CPU执行call时：<br>
+1.将ip或cs和ip压入栈<br>
+2.实现长转移<br>
+<strong>call不能实现短转移</strong></p>
+<h3 id="1-依据位移进行转移的call指令">1.依据位移进行转移的call指令</h3>
+<p>call 标号<br>
+执行时进行如下操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(sp)=(sp)-2</span><br><span class="line">((sp)*16+(sp))=(ip)</span><br><span class="line">(ip)=(ip)+16位位移</span><br></pre></td></tr></table></figure>
+<p>将当前ip压栈后，转到标号处<br>
+相当于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">push ip</span><br><span class="line">jmp near ptr 标号</span><br></pre></td></tr></table></figure>
+<h3 id="2-转移的目的地址在指令中的call指令">2.转移的目的地址在指令中的call指令</h3>
+<p>call far ptr 标号<br>
+执行时进行如下操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(sp)=(sp)-2</span><br><span class="line">((ss)*16+(sp))=(cs)</span><br><span class="line">(sp)=(sp)-2</span><br><span class="line">((sp)*16+(sp))=(ip)</span><br></pre></td></tr></table></figure>
+<p>相当于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">push cs</span><br><span class="line">push ip</span><br><span class="line">jmp far ptr 标号</span><br></pre></td></tr></table></figure>
+<h3 id="3-转移地址在寄存器中的call指令">3.转移地址在寄存器中的call指令</h3>
+<p>call 16位寄存器<br>
+相当于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">push ip</span><br><span class="line">jmp 16位寄存器</span><br></pre></td></tr></table></figure>
+<h3 id="4-转移地址在内存中的call指令">4.转移地址在内存中的call指令</h3>
+<h4 id="4-1-call-word-ptr-内存单元地址">4.1.call word ptr 内存单元地址</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">push ip</span><br><span class="line">jmp word ptr 内存单元地址</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-call-dword-ptr-内存单元地址">4.2.call dword ptr 内存单元地址</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">push cs</span><br><span class="line">push ip</span><br><span class="line">jmp dword ptr 内存单元地址</span><br></pre></td></tr></table></figure>
+<h3 id="call-和-ret配合使用">call 和 ret配合使用</h3>
+<p>实现子程序，用call指令执行子程序，再用ret指令转到call指令后的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">标号：</span><br><span class="line">    ....</span><br><span class="line">    指令</span><br><span class="line">    ....</span><br><span class="line">    ret</span><br></pre></td></tr></table></figure>
+<h2 id="mul指令">mul指令</h2>
+<p>乘法指令</p>
+<p>注意：</p>
+<ul>
+<li>两个相乘的数要么都是8位，要么都是16位<br>
+ 1.如果是8位，一个默认放在al中，另一个放在8位寄存器或内存字节单元中。结果默认放在ax中<br>
+ 2.如果是16位，一个默认在ax中，另一个放在16位寄存器或内存字单元中。结果高位默认放在dx中，低位2放在ax中</li>
+</ul>
+<p>格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mul 寄存器/内存单元</span><br></pre></td></tr></table></figure>
+<p>如：<br>
+1.100*10</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov al,100</span><br><span class="line">mov bl,10</span><br><span class="line">mul bl</span><br></pre></td></tr></table></figure>
+<p>结果：(ax)=1000</p>
+<p>2.100*10000</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov ax,100</span><br><span class="line">mov bx,10000</span><br><span class="line">mul bx</span><br></pre></td></tr></table></figure>
+<p>结果：(ax)=4240h (dx)=000fh<br>
+(f4240h=1000000)</p>
+<h2 id="一个公式">一个公式</h2>
+<p> 将可能产生溢出的除法运算转变为多个不会产生溢出的除法运算(商小于65536)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x/n=int (h/n)*65536+[ rem(h/n)*65536+l]/n  </span><br></pre></td></tr></table></figure>
+<p>x : 被除数(0,ffffffff)<br>
+n : 除数(0,ffff)<br>
+h : x高16位<br>
+l : x低16位<br>
+int() : 取商<br>
+rem() : 取余</p>
+<h2 id="标志寄存器">标志寄存器</h2>
+<p>标志寄存器作用：<br>
+1.用来储存相关指令的执行结果<br>
+2.用来为CPU执行相关指令提供行为依据<br>
+3.用来控制CPU的相关工作方式<br>
+8086CPU有16位，其中储存的信息被称为程序状态字（psw）<br>
+<strong>flag是按位起作用的，每一位都有专门的含义，记录特定的信息</strong></p>
+<p><img src="https://s2.ax1x.com/2020/02/12/1bafdf.png" alt="flag寄存器各位示意图 "></p>
+<p>flag的1、3、5、12、13、14、15位在8086CPU中没有使用，其他位都有特殊含义</p>
+<p>影响标志寄存器的大都是运算指令，没有影响的大都是传送指令</p>
+<h3 id="ZF标志">ZF标志</h3>
+<p>零标志位<br>
+记录相关指令执行后结果是否为0，如果为0那么ZF=1，如果不为0那么ZF=0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov ax,1</span><br><span class="line">sub ax,1</span><br></pre></td></tr></table></figure>
+<p>执行后zf=1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov ax,2</span><br><span class="line">sub ax,1</span><br></pre></td></tr></table></figure>
+<p>执行后zf=0</p>
+<h3 id="PF标志">PF标志</h3>
+<p>奇偶标志位<br>
+记录相关指令执行后结果的所有bit位中 1 的个数是否为偶数，如果为偶数PF=1，如果不为偶数PF=0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov al,1(10)</span><br><span class="line">add al,10(10)</span><br></pre></td></tr></table></figure>
+<p>结果为00001011B，∴PF=0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov al,1</span><br><span class="line">or al,2</span><br></pre></td></tr></table></figure>
+<p>结果为00000011B，∴PF=1</p>
+<h3 id="SF标志">SF标志</h3>
+<p>符号标志位<br>
+记录相关指令执行后结果是否为负，如果负sf=1，如果非负sf=0</p>
+<p>计算机中通常用补码表示有符号数据，一个数据可以看作是 有符号数，也可以看成无符号数。<strong>不管如何看待，CPU在执行指令的时候就已经包含了两种含义，也将得到两种结果，关键在于程序需要哪种结果</strong><br>
+sf标志是对于有符号数运算的一种记录，记录了数据的正负<br>
+将数据<strong>当作有符号数运算时，可以通过 sf 知道结果的正负</strong><br>
+将数据<strong>当作无符号数运算时， sf 值无意义，虽然相关指令影响了它的值</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov al,10000001B</span><br><span class="line">add al,1</span><br></pre></td></tr></table></figure>
+<p>结果为10000010，sf=1，表示：如果指令进行的是有符号数的运算，那么结果为负。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov al,10000001B</span><br><span class="line">add al,01111111B</span><br></pre></td></tr></table></figure>
+<p>结果为0，sf=0，表示如果指令进行的是有符号数运算，那么结果为非负。</p>
+<p><strong>单纯地考查sf的值不能知道结果的正负，因为sf记录的只是可以在计算机中存放的相应位数的结果的正负(如果发生溢出)</strong></p>
+<h3 id="CF标志">CF标志</h3>
+<p>进位标志位<br>
+进行<strong>无符号数</strong>运算的时候，它记录了运算结果的最高有效位向更高位的进位值，或从更高位的借位值</p>
+<p>对于位数为N的无符号数来说，N-1位为它的<em>最高有效位</em>，假想存在的第N位就是相对于最高有效位的更高位</p>
+<p>当两个数据相加的时候，可能产生从最高有效位向更高位的进位。CPU不丢弃这个高位进位值，而是保存在CF上</p>
+<h3 id="OF标志">OF标志</h3>
+<p>溢出标志位<br>
+在进行<strong>有符号数</strong>运算时，如果结果超过了机器能表达的范围称为溢出<br>
+记录了有符号数运算的结果是否发生了溢出，如果发生溢出OF=1，如果没有OF=0</p>
+<p><strong>CF是对无符号数运算有意义的标志位，OF是对有符号数运算有意义的标志位。</strong><br>
+<strong>对于无符号数运算，CPU用CF来记录是否产生进位；对于有符号数，CPU用OF来记录是否产生溢出,还要用SF来记录结果的符号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov al,98</span><br><span class="line">add al,99</span><br></pre></td></tr></table></figure>
+<p>执行后 CF=0，OF=1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov al,0f0H</span><br><span class="line">add al,78H</span><br></pre></td></tr></table></figure>
+<p>执行后CF=1，OF=0</p>
+<h3 id="adc指令">adc指令</h3>
+<p>带进位加法指令，利用了CF位上记录的进位值<br>
+格式：adc 操作对象1，操作对象2<br>
+操作对象1=操作对象1+操作对象2+CF<br>
+比add指令多加了一个CF位的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add ax,bx</span><br><span class="line">==</span><br><span class="line">add al,bl</span><br><span class="line">adc ah,bh</span><br></pre></td></tr></table></figure>
+<p>adc指令执行后也可能产生进位值，所以也会对CF位进行设置<br>
+add指令和adc指令配合 可以对更大的数据进行加法运算</p>
+<p>例：<br>
+计算1EF0001000H+2010001EF0H,结果放在ax，bx，cx中</p>
+<p>1.将低16位相加，CF中记录相加的进位值<br>
+2.将次高16位和CF相加，CF中记录相加的进位值<br>
+3.高16位和CF相加，CF中记录相加的进位值</p>
+<h3 id="sbb指令">sbb指令</h3>
+<p>带借位减法指令，利用了CF位上的借位值<br>
+格式：sbb 操作对象1，操作对象2<br>
+功能：操作对象1=操作对象1-操作对象2-CF<br>
+可以对任意大的数据进行减法运算，思路同adc指令</p>
+<h3 id="cmp指令">cmp指令</h3>
+<p>比较指令，功能相当于减法指令，只是不保存结果，仅仅根据计算结果对标志寄存器进行设置<br>
+格式：cmp 操作对象1，操作对象2<br>
+cmp可以对无符号数进行比较，也可以对有符号数进行比较<br>
+通过cmp指令执行后，相关标志位的值可以看出比较的结果：</p>
+<p>进行无符号数比较时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmp ax,bx</span><br></pre></td></tr></table></figure>
+<p>如果(ax)=(bx)则(ax)-(bx)=0，所以zf=1<br>
+如果(ax)!=(bx)则(ax)-(bx)!=0，所以zf=0<br>
+如果(ax)&lt;(bx)则(ax)-(bx)将产生借位，所以cf=1<br>
+如果(ax)&gt;=(bx)则(ax)-(bx)将不必借位，所以cf=0<br>
+如果(ax)&gt;(bx)则(ax)-(bx)=0不必借位且结果不为0，所以cf=0，zf=0<br>
+如果(ax)&lt;=(bx)则(ax)-(bx)=0可能借位，结果可能为0，所以cf=1或zf=1</p>
+<p>进行有符号数比较时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmp ah,bh</span><br></pre></td></tr></table></figure>
+<p>如果(ah)=(bh)则(ah)-(bh)=0，所以zf=1<br>
+如果(ah)!=(bh)则(ah)-(bh)!=0，所以zf=0</p>
+<p>如果sf=1，of=0，(ah)&lt;(bh)<br>
+如果sf=1，of=1，(ah)&gt;(bh)<br>
+如果sf=0，of=1，(ah)&lt;(bh)<br>
+如果sf=0，of=0，(ah)&gt;=(bh)</p>
+<p>of=0，说明没有溢出，逻辑上真正结果的正负=实际结果的正负<br>
+如果因为溢出导致了实际结果为负(正)，那么逻辑上真正的结果必然为正(负)</p>
+<p>*zf：记录结果是否为0。如果为0那么ZF=1，如果不为0那么ZF=0<br>
+*cf：记录了无符号数运算结果的最高有效位向更高位的进位值<br>
+*of：记录了有符号数运算的结果是否发生了溢出，如果发生溢出OF=1，如果没有OF=0。 OF=0,说明逻辑上真正结果的正负=实际结果的正负<br>
+*sf： 记录相关指令执行后结果是否为负，如果负sf=1，如果非负sf=0<br>
+*pf：记录相关指令执行后结果的所有bit位中 1 的个数是否为偶数，如果为偶数PF=1，如果不为偶数PF=0</p>
+<h2 id="检测比较结果的条件转移指令">检测比较结果的条件转移指令</h2>
+<p>与call和ret类似，通常和cmp配合使用<br>
+检测被cmp影响的，表示比较结果的标志位</p>
+<p>根据<strong>无符号数</strong>的比较结果进行转移的条件转移指令检测zf、cf：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">指令            含义                检测标志位</span><br><span class="line">je             等于则转移            zf=1      </span><br><span class="line">jne          不等于则转移            zf=0                    </span><br><span class="line">jb             低于则转移            cf=1</span><br><span class="line">jnb          不低于则转移            cf=0                   </span><br><span class="line">ja             高于则转移            cf=0&amp;&amp;zf=0     </span><br><span class="line">jna          不高于则转移            cf=1||zf=1 </span><br></pre></td></tr></table></figure>
+<p>根据<strong>有符号数</strong>的比较结果进行转移的条件转移指令检测sf、of、zf</p>
+<h2 id="DF标志和串传送指令">DF标志和串传送指令</h2>
+<p>DF：方向标志位，在串传送指令中，控制每次操作后si、di的增减<br>
+df=0，每次操作后si、di递增<br>
+df=1，每次操作后si、di递减</p>
+<ol>
+<li>
+<p>movsb<br>
+功能：将ds：si指向的内存单元中的<em>字节</em>送入es：di中，然后根据标志寄存器df位的值将si和di递增或递减</p>
+</li>
+<li>
+<p>movsw<br>
+功能：将ds：si指向的内存单元中的<em>字</em>送入es：di中，然后根据标志寄存器df位的值将si和di递增2或递减2</p>
+</li>
+</ol>
+<p>一般来说，movsb和movsw都和rep配合使用<br>
+格式： rep movsb<br>
+功能：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s:movsb</span><br><span class="line">loop s</span><br></pre></td></tr></table></figure>
+<p>对df位进行设置的指令：<br>
+cld指令：将df位置0<br>
+std指令：将df位置1</p>
+<p>使用串传送指令进行数据的传送，需要：</p>
+<ol>
+<li>传送的原始位置：ds：si</li>
+<li>传送的目的位置：es：di</li>
+<li>传送的长度：cx</li>
+<li>传送的方向：df  (正向/反向传送，si、di递增/递减)</li>
+</ol>
+<h3 id="pushf和popf">pushf和popf</h3>
+<p>pushf是将标志寄存器的值压栈<br>
+popf是从栈中弹出数据送入标志寄存器中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mov ax,0 ;ax清零</span><br><span class="line">push ax ;ax入栈</span><br><span class="line">popf ;把栈中数据弹出到PSW。至此，PSW已经被全置为: 0000 0000 0000 0000 B</span><br><span class="line"></span><br><span class="line">mov ax,0fff0h</span><br><span class="line">add ax,0010h</span><br><span class="line"></span><br><span class="line">CF：假设这是无符号运算：FFF0h+0010h = 1111 1111 1111 0000b + 0000 0000 0001 0000b</span><br><span class="line">=(进位1)0000 0000 0000 0000b，产生进位1，CF标志 = 1。</span><br><span class="line"></span><br><span class="line">OF：假设这是有符号运算：FFF0h此处为补码形式，(FFF0h)原 = 1000 0000 0001 0000b。FFF0h+0010h=0，OF标志 = 0</span><br><span class="line"></span><br><span class="line">pushf</span><br><span class="line">pop ax</span><br><span class="line">这两句把 ax的值设置为：(0000 00** 010* 0101)b</span><br><span class="line"></span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+<p><em>tips</em>:</p>
+<p><strong>正加正得负，或负加负得正，肯定溢出</strong></p>
+<p><strong>一个正数和一个负数相加不可能溢出</strong></p>
+<h2 id="内中断">内中断</h2>
+<p>任何一个cpu都可以在执行完当前正在执行的指令后，检测到从cpu外部发送来的或内部产生的一种特殊信息，并且可以立即对所接收到的信息进行处理，这种信息称为<strong>中断信息</strong>。</p>
+<h3 id="内中断的产生">内中断的产生</h3>
+<p>cpu内部有4种情况可以产生需要及时处理的中断信息<br>
+处理中断信息首先要知道接收到的信息的来源，所以中断信息中必须包含识别来源的编码。8086cpu用中断类型码来标识中断信息的来源<br>
+中断类型码为一个字节型数据，即可以表示256种中断信息的来源（简称中断源）</p>
+<ol>
+<li>除法错误，如执行div指令产生的除法溢出 中断类型码：0</li>
+<li>单步执行 中断类型码：1</li>
+<li>执行into指令 中断类型码：4</li>
+<li>执行int 指令 指令格式为int n,n为字节型立即数,中断类型码：n</li>
+</ol>
+<h3 id="中断向量表">中断向量表</h3>
+<p>中断处理程序入口地址的列表<br>
+cpu用8位的终端类型码，通过中断向量表，找到相应的中断处理程序的入口地址<br>
+中断向量表在内存中保存，其中存放着256个中断源所对应的中断处理程序的入口<br>
+cpu知道了中断类型码就可以将中断类型码作为中断向量表的表项号，定位相应的表项，从而得到程序的入口地址<br>
+如果使用8086cpu，中断向量表就必须存放在0000：0000~0000：03FF中，一个表项占两个字，高地址存放段地址，低地址字存放偏移地址</p>
+<h2 id=""></h2>
+<p>*一个字节：8位<br>
+*一个字==两个字节</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%91%A8%E6%8A%A5/" rel="tag"># 周报</a>
+              <a href="/tags/%E6%B1%87%E7%BC%96/" rel="tag"># 汇编</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/7089.html" rel="prev" title="2020.02.03-2020.02.09">
+                  <i class="fa fa-chevron-left"></i> 2020.02.03-2020.02.09
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/12995.html" rel="next" title="2020.02.17-2020.02.23">
+                  2020.02.17-2020.02.23 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- 1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="9629035599"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
