@@ -1,3 +1,0 @@
-#hexorobots.txt
-User-agent: Googlebot
-Disallow: /google5dc74d1e04f67b06.html
