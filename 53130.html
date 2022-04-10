@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
@@ -17,25 +16,11 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="pwnable.kr-blukat  题目：ssh blukat@pwnable.kr -p2222 (pw: guest)  首先 1ls -al 看到 12345678total 36drwxr-x---   4 root blukat     4096 Aug 16  2018 .drwxr-xr-x 116 root root       4096 Apr 17 14:10 ..-r-xr">
-<meta property="og:type" content="article">
-<meta property="og:title" content="7-28">
-<meta property="og:url" content="https://brubbish.github.io/53130.html">
-<meta property="og:site_name" content="Brubbish&#39;s">
-<meta property="og:description" content="pwnable.kr-blukat  题目：ssh blukat@pwnable.kr -p2222 (pw: guest)  首先 1ls -al 看到 12345678total 36drwxr-x---   4 root blukat     4096 Aug 16  2018 .drwxr-xr-x 116 root root       4096 Apr 17 14:10 ..-r-xr">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/28/aVKNcj.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/28/aV89je.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/28/aVKUjs.png">
-<meta property="article:published_time" content="2020-07-28T07:00:30.000Z">
-<meta property="article:modified_time" content="2020-07-28T15:33:10.000Z">
-<meta property="article:author" content="Bruce">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s1.ax1x.com/2020/07/28/aVKNcj.png">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
 
 
 <link rel="canonical" href="https://brubbish.github.io/53130.html">
@@ -50,6 +35,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
   <script src="/js/third-party/analytics/google-analytics.js"></script>
+
 
 
 
@@ -77,7 +63,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Brubbish's</h1>
+      <p class="site-title">Brubbish's</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -92,10 +78,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-book-list"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-book-list"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>Book List</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -128,18 +111,7 @@
     </div>
   </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9943095847270020"
-     data-ad-slot="6634125020"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-      </div>
+</div>
         
   
   <div class="toggle sidebar-toggle" role="button">
@@ -191,15 +163,7 @@
 
         </div>
       </div>
-
-
-
-
-<!-- sidebar -->
     </div>
-
-
-
   </aside>
   <div class="sidebar-dimmer"></div>
 
@@ -233,11 +197,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Brubbish's">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="7-28 | Brubbish's">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -275,7 +244,7 @@
     <div class="post-body" itemprop="articleBody">
         <h2 id="pwnable-kr-blukat">pwnable.kr-blukat</h2>
 <blockquote>
-<p>题目：ssh <span class="exturl" data-url="bWFpbHRvOmJsdWthdEBwd25hYmxlLmty">blukat@pwnable.kr<i class="fa fa-external-link-alt"></i></span> -p2222 (pw: guest)</p>
+<p>题目：ssh <a href="mailto:blukat@pwnable.kr">blukat@pwnable.kr</a> -p2222 (pw: guest)</p>
 </blockquote>
 <p>首先</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure>
@@ -297,7 +266,7 @@
 <p>就可以得到flag了</p>
 <p>看其他的writeup涉及到了“id”命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">blukat@pwnable:~$ id     </span><br><span class="line">uid=1104(blukat) gid=1104(blukat) groups=1104(blukat),1105(blukat_pwn)</span><br></pre></td></tr></table></figure>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lleGlhbmdjc2RuL2FydGljbGUvZGV0YWlscy84MDczNjAxOQ==">查了点资料<i class="fa fa-external-link-alt"></i></span>可能这就是找到password的思路…吧<br>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yexiangcsdn/article/details/80736019">查了点资料</a>可能这就是找到password的思路…吧<br>
 <img src="https://s1.ax1x.com/2020/07/28/aV89je.png" alt="aV89je.png"></p>
 <p>这个writeup最后还给了一个命令：“strace ./blukat&quot;，不过敲出来之后没看懂…<br>
 <img src="https://s1.ax1x.com/2020/07/28/aVKUjs.png" alt="aVKUjs.png"></p>
@@ -357,19 +326,6 @@
   <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
   </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
-<!-- 1 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9943095847270020"
-     data-ad-slot="9629035599"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
     </div>
   </footer>
 
@@ -393,7 +349,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
 
 
 

@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
@@ -17,40 +16,11 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="文章由本人首发于安全客：针对移动和物联网设备已知漏洞的混合固件分析 - 安全客，安全资讯平台 (anquanke.com)  一篇DSN2020 的论文：Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities，太长不看版会在不久后发出。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="针对移动和物联网设备已知漏洞的混合固件分析">
-<meta property="og:url" content="https://brubbish.github.io/60805.html">
-<meta property="og:site_name" content="Brubbish&#39;s">
-<meta property="og:description" content="文章由本人首发于安全客：针对移动和物联网设备已知漏洞的混合固件分析 - 安全客，安全资讯平台 (anquanke.com)  一篇DSN2020 的论文：Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities，太长不看版会在不久后发出。">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210903221707.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908215509.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908213440.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220859.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210917223725.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220751.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919143257.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919171915.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919180346.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211012230244.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211029225224.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211029225207.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030053720.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090924.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030074438.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090830.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030082128.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090706.png">
-<meta property="article:published_time" content="2021-11-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-23T12:30:30.136Z">
-<meta property="article:author" content="Bruce">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210903221707.png">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
 
 
 <link rel="canonical" href="https://brubbish.github.io/60805.html">
@@ -65,6 +35,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
   <script src="/js/third-party/analytics/google-analytics.js"></script>
+
 
 
 
@@ -92,7 +63,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Brubbish's</h1>
+      <p class="site-title">Brubbish's</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -107,10 +78,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-book-list"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-book-list"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>Book List</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -143,18 +111,7 @@
     </div>
   </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-9943095847270020"
-     data-ad-slot="6634125020"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-      </div>
+</div>
         
   
   <div class="toggle sidebar-toggle" role="button">
@@ -206,15 +163,7 @@
 
         </div>
       </div>
-
-
-
-
-<!-- sidebar -->
     </div>
-
-
-
   </aside>
   <div class="sidebar-dimmer"></div>
 
@@ -248,11 +197,16 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="Bruce">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Brubbish's">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="针对移动和物联网设备已知漏洞的混合固件分析 | Brubbish's">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -269,13 +223,13 @@
 
       <time title="创建时间：2021-11-11 00:00:00" itemprop="dateCreated datePublished" datetime="2021-11-11T00:00:00+08:00">2021-11-11</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-23 20:30:30" itemprop="dateModified" datetime="2021-11-23T20:30:30+08:00">2021-11-23</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
       </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-11-23 20:30:30" itemprop="dateModified" datetime="2021-11-23T20:30:30+08:00">2021-11-23</time>
+    </span>
 
   
     <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
@@ -295,9 +249,9 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>文章由本人首发于安全客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjU5MjQ2">针对移动和物联网设备已知漏洞的混合固件分析 - 安全客，安全资讯平台 (anquanke.com)<i class="fa fa-external-link-alt"></i></span></p>
+<p>文章由本人首发于安全客：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/259246">针对移动和物联网设备已知漏洞的混合固件分析 - 安全客，安全资讯平台 (anquanke.com)</a></p>
 </blockquote>
-<p>一篇DSN2020 的论文：<span class="exturl" data-url="aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2Fic3RyYWN0L2RvY3VtZW50LzkxNTMzOTk=">Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities<i class="fa fa-external-link-alt"></i></span>，太长不看版会在不久后发出。</p>
+<p>一篇DSN2020 的论文：<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9153399">Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities</a>，太长不看版会在不久后发出。</p>
 <span id="more"></span>
 <h1>0x0 摘要</h1>
 <p>移动设备和物联网设备的操作系统以及它们随后的升级文件，通常是以二进制文件的形式发布。由于这些二进制文件通常是闭源的，用户或第三方企业若是想测试软件的安全性只能依靠逆向工程，此外，如何验证二进制文件中最近的补丁是否有效也是一个悬而未决的问题。常规的软件补丁修复是提升移动设备和物联网设备安全性的重要保障，这就需要开发人员、集成商和供应商的共同支持，及时把补丁分发到受影响的所有设备上。但实际上，供应商们对移动和物联网产品遵循着不同，甚至是错误的安全更新议程。其次，以往的研究反映出存在着“潜在的补丁缺口(a hidden patch gap)”：有些供应商错误的声称他们已经修复了漏洞。因此，在二进制文件中检测漏洞是否被修复对于软件安全至关重要。通过深度学习的方法来判断代码相似性和进行漏洞检测已经被证明在静态二进制代码分析中极具前景，然而，这种方法无法捕捉程序动态行为，导致了可能在挖掘在野漏洞时产生大量误报。此外还有一点十分关键，静态的方法无法捕捉到用于区分漏洞是否修复所需的细粒度特征。</p>
@@ -499,19 +453,6 @@ Zhang等人提出了一个新颖的角度(“Precise and accurate patch presence
   <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
   </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
-<!-- 1 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9943095847270020"
-     data-ad-slot="9629035599"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
     </div>
   </footer>
 
@@ -535,7 +476,7 @@ Zhang等人提出了一个新颖的角度(“Precise and accurate patch presence
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha256-M6KFoDq9eUpmogkDgw6+3R3ZgUPSuFXnQyr8tskSfQs=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
 
 
 
