@@ -3771,10 +3771,8 @@ It would be much easier if wearing a mask…</p>
 <h3 id="2022-03-26">2022-03-26</h3>
 <p>早上在遍历retdec的所有工具，发现可能只有decompiler和capstone2llvmir能用。<br>
 打算写retdec-decompiler的usage，结果发现自己虚拟机上的gcc版本太高了，捣鼓一阵发现gcc-7的apt源在TUNA镜像(Ubuntu18)的注释部分</p>
-<h2 id="几个懒得分类的记录">几个懒得分类的记录</h2>
-<h2 id="g-可以自动链接C-标准库，如C-内的string、vectorgcc可以根据文件后缀自动识别是C还是C-文件（似乎没什么作用）gcc编译C文件要比gcc编译C-文件有更少的宏定义（gcc可以编译C-，需要在后面加上-lstdc-，作用是链接C-库）">g++可以自动链接C++标准库，如C++内的string、vector<br>
-gcc可以根据文件后缀自动识别是C还是C++文件（似乎没什么作用）<br>
-gcc编译C文件要比gcc编译C++文件有更少的宏定义（gcc可以编译C++，需要在后面加上-lstdc++，作用是链接C++库）</h2>
+<p>几个懒得分类的记录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">g++可以自动链接C++标准库，如C++内的string、vector</span><br><span class="line">gcc可以根据文件后缀自动识别是C还是C++文件（似乎没什么作用）</span><br><span class="line">gcc编译C文件要比gcc编译C++文件有更少的宏定义（gcc可以编译C++，需要在后面加上-lstdc++，作用是链接C++库）</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo sh -c &#x27;echo/... ...&#x27;</span><br><span class="line">find -type 1 -delete</span><br></pre></td></tr></table></figure>
 <h3 id="2022-03-29">2022-03-29</h3>
 <p>从实验室搬走惹(虽然本意是把位置留给大一的,但是为啥没人来呢…就是说这届不太行啊(逃<br>
@@ -3794,7 +3792,7 @@ gcc编译C文件要比gcc编译C++文件有更少的宏定义（gcc可以编译C
 期间尝试了sakurafrp和nginx反向代理，然后突然想起来宿舍的网络是局域网中的局域网…<br>
 于是试了一下在实验室ping宿舍宽带，OK（这要是不行估计也只能向日葵了，不过yysy向日葵还蛮快的）<br>
 搜了一下PandoraBox端口映射的方法，结果发现宿舍路由器上没有装管理防火墙的软件，固件版本又太老，2017.01的，TUNA镜像上都没有可以直接用的源了…（写这个的时候发现：得在跳转的openwrt.org自己找）<br>
-又百度了一圈，在<span class="exturl" data-url="aHR0cDovL2Rvd25sb2Fkcy5wYW5ndWJveC5jb206NjM4MC9vbGRfc2l0ZS9wYW5kb3JhYm94L3BhY2thZ2VzL21pcHNlbF8yNGtlY19kc3Av">pangubox.com<i class="fa fa-external-link-alt"></i></span>下找到了*firewall相关文件，wget下载，opkg安装一气呵成（还好没啥依赖包，手动下载几个就好了。于是把端口映射开了。<br>
+又百度了一圈，在<span class="exturl" data-url="aHR0cDovL2Rvd25sb2Fkcy5wYW5ndWJveC5jb206NjM4MC9vbGRfc2l0ZS9wYW5kb3JhYm94L3BhY2thZ2VzL21pcHNlbF8yNGtlY19kc3Av">pangubox.com<i class="fa fa-external-link-alt"></i></span>下找到了 ’ * firewall’相关文件，wget下载，opkg安装一气呵成（还好没啥依赖包，手动下载几个就好了。于是把端口映射开了。<br>
 然后就是，芜湖~</p>
 <p>BTW, miniUPnP屁用没有Orzz（可能是有啥软件没装上吧…</p>
 <h3 id="2022-04-17">2022-04-17</h3>
@@ -3811,6 +3809,16 @@ gcc编译C文件要比gcc编译C++文件有更少的宏定义（gcc可以编译C
 <p>最近听学长吐槽他读研和写论文（正在经历）的经历，对未来更加不确定了</p>
 <p>考研真tm难，虽然由于疫情比较难找实习但是就业真容易多了orzz<br>
 啊所以…“选大学先看城市”这种话在疫情这种特殊时期确实有道理</p>
+<h3 id="2022-06-04">2022-06-04</h3>
+<p>好久没有记录了…这段时间发生了点小事：<br>
+实验室学习的地方被制裁了；学长把论文写完了；信工所夏令营开始报名；👴成了原批<br>
+一条一条说的话就是：<br>
+①实验室的事争取过了，现在👴在图书馆写这条日（月）记。看清和看开了一些人和事，并且反正👴热爱实验室又不是因为某个教室，更不可能是因为某些人（我咋一直打错字打成狗呢…?）<br>
+②会议月底出结果，等就完了，虽然是水刊三作但是…聊胜于无了。其实要不是上学期时间确实不太够用，我应该可以主动一点，在几个月前就整一篇质量稍高的出来，跟在学长后面蹭文章实在太被动了…qwq+orz，希望他秋招能早点找到满意的然后再改进一下出一篇吧2333<br>
+③没太懂我一个不能保研的对这玩意这么激动干啥…不过简历要从高中开始是我没想到的2333，还要写爱好和特长。上网看了一下别人简历和自述，发现自己在科研上其实太浅了，但是本该可以____<br>
+④罗莎莉亚太戳xp了；可莉wwww；活了二十几年第一次给游戏充钱…（等等，我之前为啥要花小100买Steep还没打开几次啊…</p>
+<p>另外，简中的环境越来越__了，（partly because 想要跳出信息茧房，关注了无法理解的人和事件）。最近不知不觉也想通很多，有些想法还是太理想化了。<br>
+这个应该是不会错的，也懒得写在别的地方，直说了吧：程序员是偏离中国传统（思想）文化比例最大的群体</p>
 ]]></content>
       <tags>
         <tag>莫名其妙的记录</tag>
