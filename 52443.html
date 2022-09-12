@@ -11,6 +11,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
   <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -164,7 +166,8 @@
         </div>
       </div>
     </div>
-
+  </aside>
+  <div class="sidebar-dimmer">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
      crossorigin="anonymous"></script>
 <!-- sidebar -->
@@ -177,9 +180,7 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
-  </aside>
-  <div class="sidebar-dimmer"></div>
+  </div>
 
 
     </header>
@@ -381,20 +382,6 @@ DivModS128to64：:: V128,I64 -&gt; V128，of which lo half is div and hi half is
 <h3 id="amd64">amd64</h3>
 <p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210510213751.png" alt="20210510213751"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">   00 | ------ IMark(0x40126d, 7, 0) ------</span><br><span class="line">   01 | t9 = LDle:I64(0x0000000000404028)</span><br><span class="line">   02 | ------ IMark(0x401274, 4, 0) ------</span><br><span class="line">   03 | t10 = Add64(t9,0x0000000000000004)</span><br><span class="line">   04 | PUT(rdx) = t10</span><br><span class="line">   05 | PUT(rip) = 0x0000000000401278</span><br><span class="line">   06 | ------ IMark(0x401278, 6, 0) ------</span><br><span class="line">   07 | t13 = LDle:I32(0x0000000000404020)</span><br><span class="line">   08 | t29 = 32Uto64(t13)</span><br><span class="line">   09 | t12 = t29</span><br><span class="line">   10 | PUT(rip) = 0x000000000040127e</span><br><span class="line">   11 | ------ IMark(0x40127e, 2, 0) ------</span><br><span class="line">   12 | t30 = 64to32(t12)</span><br><span class="line">   13 | t14 = t30</span><br><span class="line">   14 | STle(t10) = t14</span><br><span class="line">   15 | ------ IMark(0x401280, 5, 0) ------</span><br><span class="line">   16 | PUT(rax) = 0x0000000000000000</span><br><span class="line">   17 | PUT(rip) = 0x0000000000401285</span><br><span class="line">   18 | ------ IMark(0x401285, 4, 0) ------</span><br><span class="line">   19 | t18 = GET:I64(rbp)</span><br><span class="line">   20 | t17 = Add64(t18,0xfffffffffffffff8)</span><br><span class="line">   21 | t19 = LDle:I64(t17)</span><br><span class="line">   22 | PUT(rip) = 0x0000000000401289</span><br><span class="line">   23 | ------ IMark(0x401289, 9, 0) ------</span><br><span class="line">   24 | t21 = GET:I64(fs)</span><br><span class="line">   25 | t20 = Add64(0x0000000000000028,t21)</span><br><span class="line">   26 | t6 = LDle:I64(t20)</span><br><span class="line">   27 | t5 = Xor64(t19,t6)</span><br><span class="line">   28 | PUT(cc_op) = 0x0000000000000014</span><br><span class="line">   29 | PUT(cc_dep1) = t5</span><br><span class="line">   30 | PUT(cc_dep2) = 0x0000000000000000</span><br><span class="line">   31 | PUT(rcx) = t5</span><br><span class="line">   32 | PUT(rip) = 0x0000000000401292</span><br><span class="line">   33 | ------ IMark(0x401292, 2, 0) ------</span><br><span class="line">   34 | t32 = CmpEQ64(t5,0x0000000000000000)</span><br><span class="line">   35 | t31 = 1Uto64(t32)</span><br><span class="line">   36 | t27 = t31</span><br><span class="line">   37 | t33 = 64to1(t27)</span><br><span class="line">   38 | t22 = t33</span><br><span class="line">   39 | if (t22) &#123; PUT(rip) = 0x401299; Ijk_Boring &#125;</span><br><span class="line">   NEXT: PUT(rip) = 0x0000000000401294; Ijk_Boring</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
-<!-- sidebar -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9943095847270020"
-     data-ad-slot="5504766755"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
     </div>
 
     

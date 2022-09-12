@@ -11,6 +11,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
   <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -163,7 +165,8 @@
         </div>
       </div>
     </div>
-
+  </aside>
+  <div class="sidebar-dimmer">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
      crossorigin="anonymous"></script>
 <!-- sidebar -->
@@ -176,9 +179,7 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
-  </aside>
-  <div class="sidebar-dimmer"></div>
+  </div>
 
 
     </header>
@@ -268,20 +269,6 @@
 参考：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1MjU0OTgzMzAzL2FydGljbGUvZGV0YWlscy83OTQzNDg4Mg==">https://blog.csdn.net/fu254983303/article/details/79434882<i class="fa fa-external-link-alt"></i></span></p>
 <span id="more"></span>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">kv=&#123;<span class="string">&#x27;user-agent&#x27;</span>:<span class="string">&#x27;Mozilla/5.0&#x27;</span>&#125;</span><br><span class="line">r=requests.get(<span class="string">&#x27;https://music.163.com/playlist?id=xxxxxxxxx&#x27;</span>,headers=kv,timeout=<span class="number">30</span>)</span><br><span class="line">html=r.text</span><br><span class="line">reg_list = <span class="string">&#x27;&lt;ul class=&quot;f-hide&quot;&gt;&lt;li&gt;(.*?)&lt;/ul&gt;&#x27;</span></span><br><span class="line">reg_list = re.<span class="built_in">compile</span>(reg_list, re.S)</span><br><span class="line">content = re.findall(reg_list, html)</span><br><span class="line">reg = <span class="string">&#x27;&lt;a href=&quot;(.*?)&quot;&gt;(.*?)&lt;/a&gt;&lt;/li&gt;&#x27;</span>  </span><br><span class="line">reg = re.<span class="built_in">compile</span>(reg, re.S)</span><br><span class="line">song_list = re.findall(reg, content[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">singer=[]</span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    singer.append([<span class="number">0</span>]*<span class="number">2</span>)</span><br><span class="line">k=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> song_list:</span><br><span class="line">    url=<span class="string">&quot;https://music.163.com&quot;</span>+song_list[i][<span class="number">0</span>]</span><br><span class="line">    r=requests.get(url,headers=kv,timeout=<span class="number">30</span>)</span><br><span class="line">    htm=r.text</span><br><span class="line">    reg_list2=<span class="string">&#x27;&lt;p class=&quot;des s-fc4&quot;&gt;歌手：&lt;span title=&quot;(.*?)&quot;&gt;&#x27;</span></span><br><span class="line">    reg_list2=re.<span class="built_in">compile</span>(reg_list2,re.S)</span><br><span class="line">    s=re.findall(reg_list2,htm)</span><br><span class="line"></span><br><span class="line">    j=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> j&lt;k:</span><br><span class="line">        <span class="keyword">if</span> s!=singer[j][<span class="number">0</span>]:</span><br><span class="line">            j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            singer[j][<span class="number">1</span>]+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> j==k:</span><br><span class="line">        <span class="keyword">if</span> s!=singer[j][<span class="number">0</span>]:</span><br><span class="line">            k+=<span class="number">1</span></span><br><span class="line">            singer[k][<span class="number">0</span>]=s</span><br><span class="line">            singer[k][<span class="number">1</span>]+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            singer[j][<span class="number">1</span>]+=<span class="number">1</span></span><br><span class="line">    j+=<span class="number">1</span></span><br><span class="line">    i=i+<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(singer)</span><br></pre></td></tr></table></figure>
-
-
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
-<!-- sidebar -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9943095847270020"
-     data-ad-slot="5504766755"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
     </div>
 
