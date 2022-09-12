@@ -164,6 +164,20 @@
         </div>
       </div>
     </div>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
   </aside>
   <div class="sidebar-dimmer"></div>
 
@@ -509,6 +523,20 @@ scheduler对所有爬取进行调度<br>
 <li>输出结果：printunivlist()</li>
 </ol>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> bs4</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gethtmltext</span>(<span class="params">url</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r=requests.get(url,timeout=<span class="number">30</span>)</span><br><span class="line">        r.raise_for_status()</span><br><span class="line">        r.encoding=r.apparent_encoding</span><br><span class="line">        <span class="keyword">return</span> r.text</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot; &quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fillunivlist</span>(<span class="params">ulist,html</span>):</span></span><br><span class="line">    soup=BeautifulSoup(html,<span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> tr <span class="keyword">in</span> soup.find(<span class="string">&#x27;tbody&#x27;</span>).children:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(tr,bs4.element.Tag):</span><br><span class="line">            tds=tr(<span class="string">&#x27;td&#x27;</span>)</span><br><span class="line">            ulist.append([tds[<span class="number">0</span>].string,tds[<span class="number">1</span>].string,tds[<span class="number">3</span>].string])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printunivlist</span>(<span class="params">ulist,num</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&#123;:^10&#125;\t&#123;:^6&#125;\t&#123;:^10&#125;&quot;</span>.<span class="built_in">format</span>(<span class="string">&quot;排名&quot;</span>,<span class="string">&quot;学校名称&quot;</span>,<span class="string">&quot;总分&quot;</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">        u=ulist[i]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;&#123;:^10&#125;\t&#123;:^6&#125;\t&#123;:^10&#125;&quot;</span>.<span class="built_in">format</span>(u[<span class="number">0</span>],u[<span class="number">1</span>],u[<span class="number">2</span>]))</span><br><span class="line">        </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;suc&quot;</span>+<span class="built_in">str</span>(num))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    uinfo=[]<span class="comment"># 存放大学信息</span></span><br><span class="line">    url=<span class="string">&quot;http://www.zuihaodaxue.com/zuihaodaxuepaiming2019.html&quot;</span></span><br><span class="line">    html=gethtmltext(url)</span><br><span class="line">    fillunivlist(uinfo,html)</span><br><span class="line">    printunivlist(uinfo,<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+
+
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
     </div>
 
