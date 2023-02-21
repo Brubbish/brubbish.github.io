@@ -4087,6 +4087,14 @@ It would be much easier if wearing a mask…</p>
 这学期一周只有一节课，本来还有一节Linux编程的，给退了，虽然有点意思但我要是上了肯定也不会听，要是下学期发现学分不够就再多上个课得了<br>
 最近把知乎卸了，虽然说要听些不同观点，但是观察不同人思维的同时也容易让自己血压升高…用了rsshub+vercel来订阅rss看新闻和评论，结果没过几天vercel就被blocked了orzz<br>
 续费了qq音乐的会员，结果半个月后原神送了两个月apple music的会员，发现am的音质不仅更高（win上好像不能无损，但是安卓可以），而且价格更便宜，下载之后还能离线听…qtmd</p>
+<h3 id="2023-02-21">2023-02-21</h3>
+<p>最近在看CWE-Checker，学了一点Rust<br>
+以下是一个小意外</p>
+<blockquote>
+<p>挂起ubuntu22之后直接在vmware里强制关了，第二天发现ens33和eth0挂了，搞了一个多小时弄好，主要参考如下：<br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmNoZW55dTM2NS9hcnRpY2xlL2RldGFpbHMvMTI0NDkyNDE0">https://blog.csdn.net/yanchenyu365/article/details/124492414<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Bvb2xvb2xvby9hcnRpY2xlL2RldGFpbHMvMTE4MzkxMDMz">https://blog.csdn.net/poolooloo/article/details/118391033<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
 ]]></content>
       <tags>
         <tag>莫名其妙的记录</tag>
@@ -4095,7 +4103,8 @@ It would be much easier if wearing a mask…</p>
   <entry>
     <title>VEX IR学习</title>
     <url>/52443.html</url>
-    <content><![CDATA[<p>搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂</p>
+    <content><![CDATA[<p>2023-02-Update：很早之前想要重新整理一下来着，一直鸽着。希望今年五月份可以完成orz</p>
+<p>搞这个的原因是课题那边，把基本块转成VEX IR后需要进行一些modify。老师：你这周就先把VEX IR （和LLVM IR ）看懂</p>
 <p>所以这篇的要求也就是能看懂和在变量名之类的做一点优化（统一）就行了</p>
 <span id="more"></span>
 <h2 id="代码1">代码1</h2>
