@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -268,7 +268,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-18 23:04:43" itemprop="dateModified" datetime="2023-03-18T23:04:43+08:00">2023-03-18</time>
+      <time title="修改时间：2023-08-30 16:00:16" itemprop="dateModified" datetime="2023-08-30T16:00:16+08:00">2023-08-30</time>
     </span>
 
   
@@ -281,7 +281,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>…</p>
+          已锁。密码是QQ号
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/39190.html#more" rel="contents">
@@ -290,99 +290,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/4.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brubbish's Notebook">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Brubbish's Notebook">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/4.html" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-03-17 18:22:32 / 修改时间：19:44:20" itemprop="dateCreated datePublished" datetime="2023-03-17T18:22:32+08:00">2023-03-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
-     crossorigin="anonymous"></script>
-<!-- sidebar -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9943095847270020"
-     data-ad-slot="5504766755"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-          <h1>Week6</h1>
-<p>检测b00k时，检测到’free(0)'的过程:</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">compute_with_max_steps()执行worklist算法，循环，结点运行次数超过max_step（<span class="number">100</span>）则放到not_stable_list里作为新的worklist</span><br><span class="line">    -&gt;fixpoint.rs -- update_node()，获得结点连接的所有边并迭代update_edge()，</span><br><span class="line">        -&gt;fixpoint.rs -- update_edge()，获得edge连接的两个node</span><br><span class="line">            -&gt;forward_interprocedural_fixpoint.rs -- update_edge()，迭代，更新edge终点的值（？），</span><br><span class="line">            从edge的权值判断edge是属于什么类型的（jmp、call、....如下图）</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                block分支-&gt;trait_impls.rs -- update_def()，判断语句是load/store/变量声明，以及是否溢出   </span></span><br><span class="line"><span class="comment">                    （store和load分支）-&gt;state.rs() -- check_address_access，CWE125和787都会进行</span></span><br><span class="line"><span class="comment">                        -&gt; ....</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                ExternCallStub分支-&gt;trait_impls.rs -- update_call_stub()，根据call.term的结构进行跳转。</span><br><span class="line">                    直接跳转（Call）分支-&gt;stubs.rs -- handle_call()，匹配被调用的函数名</span><br><span class="line">                        不属于列举的那些函数-&gt; stub.rs -- handle_generic_call()，取每一个传参的寄存器进行遍历</span><br><span class="line">                            -&gt;<span class="keyword">mod</span>.rs -- check_param_at_call()，在发起调用的地方是否产生了越界</span><br><span class="line">                                -&gt;vsa_result_impl.rs -- eval_parameter_arg_at_call()，取state和context，调用↓</span><br><span class="line">                                    -&gt;access_handling.rs -- eval_parameter_arg()，根据parameter参数的结构（寄存器或栈）进行匹配</span><br><span class="line">                                        -&gt;access_handling.rs -- eval，获得eval_recursive()的结果()，执行replace_if_global_pointer()</span><br><span class="line">                                            -&gt;access_handling.rs -- eval_recursive()，对参数进行匹配，递归计算当前状态下表达式的值。</span><br><span class="line">                                                已知大小的寄存器或变量-&gt;access_handling.rs -- get_register()  <span class="comment">/*一些处理*/</span></span><br><span class="line">                                            -&gt;access_handling -- replace_if_global_pointer()，free()不经过，没有细看</span><br><span class="line">                            -&gt;state.rs -- check_address_access()，</span><br><span class="line">                                遍历address.relative_values，如果未计算该堆栈的边界-&gt;state.rs -- compute_bounds_of_id()</span><br><span class="line">                                    -&gt;bounds_computation.rs -- compute_bounds_of_id()，通过调用的地址判断在堆还是栈上</span><br><span class="line">                                        堆-&gt;<span class="keyword">mod</span>.rs -- compute_size_of_heap_object()，计算创建堆的大小，如果有多个可能的值则返回最小值</span><br><span class="line">                                            -&gt;param_replacement.rs -- recursively_substitute_param_values_context_sensitive()，</span><br><span class="line">                                            在检测 free()的时候直接返回了object_size，</span><br><span class="line">                                            相当于pointer inference 分析出的 malloc_tid_to_object_size_map</span><br><span class="line">                                                -&gt;param_replacement.rs -- recursively_substitute_param_values()</span><br><span class="line">                                                    中间有个循环，但是没有进去</span><br><span class="line">                                                    -&gt;data.rs -- replace_all_ids()，更新结点，准备下一轮循环，这边也跳过了</span><br><span class="line">                                            -&gt;<span class="keyword">mod</span>.rs -- try_to_offset_interval()，把从address.relative_values（堆/栈起始和结束地址的</span><br><span class="line">                                            偏移位置等）得到的offset.interval转成<span class="number">64</span>位数据，赋值给lower_offset，upper_offset</span><br><span class="line">                                            -&gt;bitvector.rs -- into_resize_signed()，把两个bound扩展/截断，位数为object_size.size</span><br><span class="line">                                            跟上面执行的所有内容无关（<span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Some</span>()匹配不成功），函数在此处返回了一个</span><br><span class="line">                                            smallest possible value（object_size=<span class="number">64</span>）和全为NULL的data。</span><br><span class="line">                                            -&gt;trait_impls.rs -- object_size.try_to_offset()，把object_size变成<span class="number">0</span></span><br><span class="line">                                        运行了一些无关的循环（<span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Some</span>()匹配不成功），返回lower_bound和upper_bound均为NULL，</span><br><span class="line">                                        （函数起始有一段注释<span class="string">&quot;where the bounds may be `None` if they could not be determined&quot;</span>）</span><br><span class="line">                                    通过into_resize_signed()比较lower_bound、upper_bound和位数（<span class="number">8</span>字节）把两个bound的</span><br><span class="line">                                    len重新设为<span class="number">64</span>，指针还是NULL，并插入<span class="keyword">self</span>.object_lower_bounds</span><br><span class="line">                                判断（upper_bound &lt; upper_offset + (<span class="built_in">u64</span>::from(value_size) <span class="keyword">as</span> <span class="built_in">i64</span>）为真，记录溢出，输出越界访问的警告</span><br><span class="line">            merge_node_value()，准备检查后续结点</span><br><span class="line">执行完所有checker后统一输出warning</span><br></pre></td></tr></table></figure>
-<p>在最后检查是否溢出时，value_size是固定的；upper_offset来自pointer inference；upper_bound在compute_size_of_heap_object()返回了NULL，因此可能是该函数执行的过程中有问题</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">enum</span> <span class="title">Edge</span></span>&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line">    <span class="comment">//Block边，从start指向end</span></span><br><span class="line">    <span class="comment">//用户定义的jmp和call</span></span><br><span class="line">    <span class="comment">//外部函数跳转，用ExternCallStub直接略过</span></span><br><span class="line">    Block,</span><br><span class="line">    Jump(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;, <span class="built_in">Option</span>&lt;&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;&gt;),</span><br><span class="line">    Call(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;),</span><br><span class="line">    ExternCallStub(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;),</span><br><span class="line">    <span class="comment">//在call某个函数的过程中，对应为：</span></span><br><span class="line">    <span class="comment">//虚拟的CallSource块指向虚拟的CallReturn块；</span></span><br><span class="line">    <span class="comment">//从子函数的Blkend指向虚拟的CallReturn块；</span></span><br><span class="line">    <span class="comment">//从发出跳转的Blkend指向虚拟的CallSource块；</span></span><br><span class="line">    <span class="comment">//从虚拟的CallReturn块指向后续的BlkStart块；</span></span><br><span class="line">    CrCallStub,</span><br><span class="line">    CrReturnStub,</span><br><span class="line">    CallCombine(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;),</span><br><span class="line">    ReturnCombine(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://fkie-cad.github.io/cwe_checker/doc/images/internal_function_call.png" alt="internal_function_call"><br>
-<img src="https://fkie-cad.github.io/cwe_checker/doc/images/extern_calls.png" alt="extern_calls"><br>
-<img src="https://fkie-cad.github.io/cwe_checker/doc/images/node_edge.png" alt="node_edge"></p>
-<p>Hitcon Traning Lab13的heapcreator（off-by-one）啥都没报<br>
-写了一个简单的栈溢出也没有任何告警</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">14</span>;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%c\n&quot;</span>,&amp;a[i]);</span><br><span class="line">		<span class="built_in">puts</span>(a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">puts</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>binabsinspector对几个文件的分析结果，第一个和最后一个对了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">b00k：</span><br><span class="line">BinAbsInspector.java&gt; [WARN] CWE190: Potential Integer Overflow due to tainted input from source of __isoc99_scanf(FUN_00100f55[0, 0, 10127f]) at inside of &quot;FUN_00100f55()&quot; @ 001010a6</span><br><span class="line">BinAbsInspector.java&gt; [WARN] CWE190: Potential Integer Overflow due to tainted input from source of __isoc99_scanf(FUN_00100a89[0, 0, 101240]) at inside of &quot;main()&quot; @ 00101259</span><br><span class="line">BinAbsInspector.java&gt; [WARN] CWE190: Potential Integer Overflow due to tainted input from source of __isoc99_scanf(FUN_00100a89[0, 0, 101240]) at inside of &quot;main()&quot; @ 00101268</span><br><span class="line">BinAbsInspector.java&gt; [WARN] CWE190: Potential Integer Overflow due to tainted input from source of __isoc99_scanf(FUN_00100f55[0, 0, 10127f]) at inside of &quot;FUN_00100f55()&quot; @ 00100fec</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -602,9 +509,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-01-01 00:01:00 / 修改时间：00:09:10" itemprop="dateCreated datePublished" datetime="2023-01-01T00:01:00+08:00">2023-01-01</time>
+      <time title="创建时间：2023-01-01 00:01:00" itemprop="dateCreated datePublished" datetime="2023-01-01T00:01:00+08:00">2023-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-18 10:22:40" itemprop="dateModified" datetime="2023-05-18T10:22:40+08:00">2023-05-18</time>
     </span>
 
   
@@ -689,7 +602,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-17 16:02:24" itemprop="dateModified" datetime="2023-01-17T16:02:24+08:00">2023-01-17</time>
+      <time title="修改时间：2023-05-30 00:31:10" itemprop="dateModified" datetime="2023-05-30T00:31:10+08:00">2023-05-30</time>
     </span>
 
   
@@ -1039,6 +952,92 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/41992.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/60805.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's Notebook">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Brubbish's Notebook">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/60805.html" class="post-title-link" itemprop="url">针对移动和物联网设备已知漏洞的混合固件分析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-11 00:00:00" itemprop="dateCreated datePublished" datetime="2021-11-11T00:00:00+08:00">2021-11-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-11-23 20:30:30" itemprop="dateModified" datetime="2021-11-23T20:30:30+08:00">2021-11-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>文章由本人首发于安全客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjU5MjQ2">针对移动和物联网设备已知漏洞的混合固件分析 - 安全客，安全资讯平台 (anquanke.com)<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>一篇DSN2020 的论文：<span class="exturl" data-url="aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2Fic3RyYWN0L2RvY3VtZW50LzkxNTMzOTk=">Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities<i class="fa fa-external-link-alt"></i></span>，太长不看版会在不久后发出。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/60805.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
