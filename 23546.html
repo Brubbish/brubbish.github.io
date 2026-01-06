@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://brubbish.github.io/23546.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/23546.html","path":"23546.html","title":"CWE_Checker笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CWE_Checker笔记 | Brubbish's Notebook</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Brubbish's Notebook</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-书单"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Week1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Week2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Week3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Week5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Week6</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/23546.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's Notebook">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CWE_Checker笔记 | Brubbish's Notebook">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CWE_Checker笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-02-10 00:00:00" itemprop="dateCreated datePublished" datetime="2023-02-10T00:00:00+00:00">2023-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-01-06 16:19:10" itemprop="dateModified" datetime="2026-01-06T16:19:10+00:00">2026-01-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>看 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2Vy">https://github.com/fkie-cad/cwe_checker<i class="fa fa-external-link-alt"></i></span> 的一些记录，目标是fix一个bug</p>
+<span id="more"></span>
+<h1>Week1</h1>
+<ul>
+<li>一个typo的PR（<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2VyL3B1bGwvMzg3">#387<i class="fa fa-external-link-alt"></i></span>）</li>
+<li>搭remote debug（source code）</li>
+<li>学Rust，到Rust Course的2.6：模式匹配</li>
+<li>看博客、讨论：<br>
+<span class="exturl" data-url="aHR0cHM6Ly9jYXNjYWRlcy1zanR1LmdpdGh1Yi5pby9wb3N0cy9jd2UtY2hla2Nlci8=">https://cascades-sjtu.github.io/posts/cwe-chekcer/<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2VyL2Rpc2N1c3Npb25zLzI5Ng==">What is the logic of discovering cwe?<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2VyL2Rpc2N1c3Npb25zLzIwOA==">Questions about internal mechanism of cwe_checker<i class="fa fa-external-link-alt"></i></span></li>
+<li>了解项目结构</li>
+<li>看文档
+<ul>
+<li>CWE119 Buffer Overflow:<br>
+误报：1.指针推断（Pointer Inference）过程不准确；2.不确定边界大小时，会以找到的最小边界为准<br>
+漏报：1.指针推断无法确定任何边界；2.指针推断只能检测到溢出整个栈帧的情况，例如off-by-one就检测不出；3.函数调用时被调用函数缓冲区大小不确定；4.Checker本身无法识别全局内存的溢出</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20230210164343.png" alt="20230210164343"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">cwe_checker</span><br><span class="line">├─ bare_metal # 裸机程序分析的config样例</span><br><span class="line">├─ cwe_checker_to_ida # 把分析结果生成ida anotation script</span><br><span class="line">├─ ghidra_plugin # 把分析结果（--json）生成ghidra可用的文件</span><br><span class="line">├─ src</span><br><span class="line">│  ├─ caller</span><br><span class="line">│  │  └─ src # cwe_checker主函数</span><br><span class="line">|  |         # 包括接收cmd参数、读取文件、调用lib.rs里的各个分析模块</span><br><span class="line">│  ├─ cwe_checker_lib</span><br><span class="line">│  │  └─ src</span><br><span class="line">│  │     ├─ abstract_domain</span><br><span class="line">│  │     ├─ analysis</span><br><span class="line">│  |     ├─ checkers # 所有CWE的check代码，</span><br><span class="line">|  |     |             大部分是调用analysis目录下的方法</span><br><span class="line">│  |     ├─ intermediate_representation</span><br><span class="line">│  |     ├─ lib.rs</span><br><span class="line">│  |     ├─ checkers.rs</span><br><span class="line">│  |     ├─ pcode</span><br><span class="line">│  |     ├─ pipeline</span><br><span class="line">│  |     └─ utils</span><br><span class="line">│  ├─ ghidra</span><br><span class="line">│  │  └─ src # 在lib里被调用，提取ghidra分析结果，</span><br><span class="line">|  |           包括变量、跳转关系等信息，以pcode表示</span><br><span class="line">│  └─ installer</span><br><span class="line">│     └─ src # 用于本地安装cwe_checker</span><br><span class="line">└─ test # cwe对应漏洞源码样本以及test build脚本</span><br></pre></td></tr></table></figure>
+<h1>Week2</h1>
+<p>上周最后那张图里的问题：<br>
+CWE-119、CWE-125、CWE-787: 都属于缓冲区溢出，119-缓冲区边界内操作的限制不恰当，125-越界读，787-越界写</p>
+<p>看 <span class="exturl" data-url="aHR0cDovL21haW4ucnM=">main.rs<i class="fa fa-external-link-alt"></i></span>、构建CFG、检查cwe_676及cwe-467的过程</p>
+<ul>
+<li>check过程：</li>
+</ul>
+<ol>
+<li>从ghidra中提取反编译的信息（在/pipeline/里实现）</li>
+<li>生成控制流图</li>
+<li>部分CWE的检测需要进行计算函数签名、指针推理、字符串抽象</li>
+<li>依次执行每个CWE检测模块</li>
+</ol>
+<ul>
+<li>cwe_676（使用不安全函数）检测过程：</li>
+</ul>
+<ol>
+<li>把调用到的库函数和配置文件里标注的危险函数进行对比，得到dangerous symbol</li>
+<li>找到所有调用危险函数的用户函数，以及它们发起调用的地址</li>
+</ol>
+<ul>
+<li>
+<p>生成控制流图：<br>
+4步(TODO)，看了第一步</p>
+</li>
+<li>
+<p>cwe-476（空指针解引用）：<br>
+污点分析(TODO)</p>
+</li>
+</ul>
+<p>Found some issues:<br>
+<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2VyL2lzc3Vlcy8zMDM=">What’s the meaning of subs?<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2VyL2lzc3Vlcy8zMDQ=">Why a certain block is both start and end?<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2VyL2lzc3Vlcy8zMDU=">What’s the meaning of block.term.jmps?<i class="fa fa-external-link-alt"></i></span>（the meaning of ‘tid’)<br>
+<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2VyL2lzc3Vlcy8zMDk=">What is the logic to check CWE476(NULL Pointer Dereference)?<i class="fa fa-external-link-alt"></i></span><br>
+(Mine ask) <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2VyL2lzc3Vlcy8zOTA=">Some comments seems confusing<i class="fa fa-external-link-alt"></i></span></p>
+<h1>Week3</h1>
+<p>Overall：CFG<br>
+字符串抽象（默认不用）&lt;-指针推理&lt;-函数签名<br>
+三个过程的含义，每一个过程的输出<br>
+CWE676：</p>
+<p>只用了project.term.subs，即子函数，<br>
+并非基于函数进行搜索</p>
+<p>cwe119和函数签名计算都要先进行不动点计算</p>
+<p>提取ghidra信息时一开始sub向量中的每一个.[].term.block不是对应基本块，粒度更细</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/CWE-Checker-Week-3&amp;4.png" alt="CWE-Checker-Week-3&amp;4"></p>
+<h1>Week5</h1>
+<p>南大《软件分析》的数据流分析和过程间分析（部分）</p>
+<p>One issue: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZraWUtY2FkL2N3ZV9jaGVja2VyL2lzc3Vlcy8zOTU=">https://github.com/fkie-cad/cwe_checker/issues/395<i class="fa fa-external-link-alt"></i></span><br>
+CWE-125&amp;787分别准确地指越界读和越界写；剩下不确定是读还是写越界的统统报CWE119<br>
+CWE-119的checker的下一步进展：跟踪值之间的关系，以及哪些值和缓冲区大小有关<br>
+在free()误报CWE119的场景基本上是由于误认为释放的堆大小为0<br>
+CWE119目前只能判断出编译时规定的内存分配大小，对运行时才知道分配大小的情况不会告警</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20230310163355.png" alt="20230310163355"><br>
+分析的主要部分其实在Computation部分，包括过程内和过程间的分析</p>
+<h1>Week6</h1>
+<p>检测b00k时，检测到’free(0)'的过程:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">compute_with_max_steps()执行worklist算法，循环，结点运行次数超过max_step（<span class="number">100</span>）则放到not_stable_list里作为新的worklist</span><br><span class="line">    -&gt;fixpoint.rs -- update_node()，获得结点连接的所有边并迭代update_edge()，</span><br><span class="line">        -&gt;fixpoint.rs -- update_edge()，获得edge连接的两个node</span><br><span class="line">            -&gt;forward_interprocedural_fixpoint.rs -- update_edge()，迭代，更新edge终点的值（？），</span><br><span class="line">            从edge的权值判断edge是属于什么类型的（jmp、call、....如下图）</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                block分支-&gt;trait_impls.rs -- update_def()，判断语句是load/store/变量声明，以及是否溢出   </span></span><br><span class="line"><span class="comment">                    （store和load分支）-&gt;state.rs() -- check_address_access，CWE125和787都会进行</span></span><br><span class="line"><span class="comment">                        -&gt; ....</span></span><br><span class="line"><span class="comment">                */</span></span><br><span class="line">                ExternCallStub分支-&gt;trait_impls.rs -- update_call_stub()，根据call.term的结构进行跳转。</span><br><span class="line">                    直接跳转（Call）分支-&gt;stubs.rs -- handle_call()，匹配被调用的函数名</span><br><span class="line">                        不属于列举的那些函数-&gt; stub.rs -- handle_generic_call()，取每一个传参的寄存器进行遍历</span><br><span class="line">                            -&gt;mod.rs -- check_param_at_call()，在发起调用的地方是否产生了越界</span><br><span class="line">                                -&gt;vsa_result_impl.rs -- eval_parameter_arg_at_call()，取state和context，调用↓</span><br><span class="line">                                    -&gt;access_handling.rs -- eval_parameter_arg()，根据parameter参数的结构（寄存器或栈）进行匹配</span><br><span class="line">                                        -&gt;access_handling.rs -- eval，获得eval_recursive()的结果()，执行replace_if_global_pointer()</span><br><span class="line">                                            -&gt;access_handling.rs -- eval_recursive()，对参数进行匹配，递归计算当前状态下表达式的值。</span><br><span class="line">                                                已知大小的寄存器或变量-&gt;access_handling.rs -- get_register()  <span class="comment">/*一些处理*/</span></span><br><span class="line">                                            -&gt;access_handling -- replace_if_global_pointer()，<span class="built_in">free</span>()不经过，没有细看</span><br><span class="line">                            -&gt;state.rs -- check_address_access()，</span><br><span class="line">                                遍历address.relative_values，如果未计算该堆栈的边界-&gt;state.rs -- compute_bounds_of_id()</span><br><span class="line">                                -&gt;bounds_computation.rs -- compute_bounds_of_id()，通过调用的地址判断在堆还是栈上</span><br><span class="line">                                    堆-&gt;mod.rs -- compute_size_of_heap_object()，计算创建堆的大小，如果有多个可能的值则返回最小值</span><br><span class="line">                                        -&gt;param_replacement.rs -- recursively_substitute_param_values_context_sensitive()，</span><br><span class="line">                                        在检测 <span class="built_in">free</span>()的时候直接返回了object_size，</span><br><span class="line">                                        相当于pointer inference 分析出的 malloc_tid_to_object_size_map</span><br><span class="line">                                            -&gt;param_replacement.rs -- recursively_substitute_param_values()</span><br><span class="line">                                                中间有个循环，但是没有进去</span><br><span class="line">                                                -&gt;data.rs -- replace_all_ids()，更新结点，准备下一轮循环，这边也跳过了</span><br><span class="line">                                        -&gt;mod.rs -- try_to_offset_interval()，把从address.relative_values（堆/栈起始和结束地址的</span><br><span class="line">                                        偏移位置等）得到的offset.interval转成<span class="number">64</span>位数据，赋值给lower_offset，upper_offset</span><br><span class="line">                                        -&gt;bitvector.rs -- into_resize_signed()，把两个bound扩展/截断，位数为object_size.size</span><br><span class="line">                                        -&gt;bounds_computation.rs -- compute_bounds_of_param_id()，返回<span class="literal">NULL</span></span><br><span class="line">                                    函数在此处给lower_bound和upper_bound返回了<span class="literal">NULL</span></span><br><span class="line">                                    -&gt;bounds_computation.rs -- object_size.try_to_offset()，把object_size变成<span class="number">0</span></span><br><span class="line">                                    运行了一些无关的循环（<span class="keyword">if</span> let <span class="title function_">Some</span><span class="params">()</span>匹配不成功），返回lower_bound和upper_bound均为<span class="literal">NULL</span>，</span><br><span class="line">                                    （函数起始有一段注释&quot;where the bounds may be `None` <span class="keyword">if</span> they could not be determined&quot;）</span><br><span class="line">                                    通过<span class="title function_">into_resize_signed</span><span class="params">()</span>比较lower_bound、upper_bound和位数（8字节）把两个bound的</span><br><span class="line">                                    len重新设为64，指针还是<span class="literal">NULL</span>，并插入self.object_lower_bounds</span><br><span class="line">                                判断（upper_bound &lt; upper_offset + <span class="params">(u64::from(value_size) as i64）为真，记录溢出，输出越界访问的警告</span></span><br><span class="line"><span class="params">            merge_node_value()，准备检查后续结点</span></span><br><span class="line"><span class="params">执行完所有checker后统一输出warning</span></span><br></pre></td></tr></table></figure>
+<p>在最后检查是否溢出时，value_size是固定的； ~<s>upper_offset来自pointer inference</s>~ ；upper_bound在compute_size_of_heap_object()返回了NULL，因此可能是该函数执行的过程中有问题</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">Edge</span>&lt;<span class="symbol">&#x27;a</span>&gt; &#123;</span><br><span class="line">    <span class="comment">//Block边，从start指向end</span></span><br><span class="line">    <span class="comment">//用户定义的jmp和call</span></span><br><span class="line">    <span class="comment">//外部函数跳转，用ExternCallStub直接略过</span></span><br><span class="line">    Block,</span><br><span class="line">    <span class="title function_ invoke__">Jump</span>(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;, <span class="type">Option</span>&lt;&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;&gt;),</span><br><span class="line">    <span class="title function_ invoke__">Call</span>(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;),</span><br><span class="line">    <span class="title function_ invoke__">ExternCallStub</span>(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;),</span><br><span class="line">    <span class="comment">//在call某个函数的过程中，对应为：</span></span><br><span class="line">    <span class="comment">//虚拟的CallSource块指向虚拟的CallReturn块；</span></span><br><span class="line">    <span class="comment">//从子函数的Blkend指向虚拟的CallReturn块；</span></span><br><span class="line">    <span class="comment">//从发出跳转的Blkend指向虚拟的CallSource块；</span></span><br><span class="line">    <span class="comment">//从虚拟的CallReturn块指向后续的BlkStart块；</span></span><br><span class="line">    CrCallStub,</span><br><span class="line">    CrReturnStub,</span><br><span class="line">    <span class="title function_ invoke__">CallCombine</span>(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;),</span><br><span class="line">    <span class="title function_ invoke__">ReturnCombine</span>(&amp;<span class="symbol">&#x27;a</span> Term&lt;Jmp&gt;),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://fkie-cad.github.io/cwe_checker/doc/images/internal_function_call.png" alt="internal_function_call"><br>
+<img src="https://fkie-cad.github.io/cwe_checker/doc/images/extern_calls.png" alt="extern_calls"><br>
+<img src="https://fkie-cad.github.io/cwe_checker/doc/images/node_edge.png" alt="node_edge"></p>
+<p>Hitcon Traning Lab13的heapcreator（off-by-one）啥都没报<br>
+写了一个简单的栈溢出也没有任何告警</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">char</span> a[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">14</span>;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%c\n&quot;</span>,&amp;a[i]);</span><br><span class="line">		<span class="built_in">puts</span>(a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">puts</span>(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>binabsinspector对几个文件的分析结果，第一个和最后一个对了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">b00k：</span><br><span class="line">BinAbsInspector.java&gt; [WARN] CWE190: Potential Integer Overflow due to tainted input from source of __isoc99_scanf(FUN_00100f55[0, 0, 10127f]) at inside of &quot;FUN_00100f55()&quot; @ 001010a6</span><br><span class="line">BinAbsInspector.java&gt; [WARN] CWE190: Potential Integer Overflow due to tainted input from source of __isoc99_scanf(FUN_00100a89[0, 0, 101240]) at inside of &quot;main()&quot; @ 00101259</span><br><span class="line">BinAbsInspector.java&gt; [WARN] CWE190: Potential Integer Overflow due to tainted input from source of __isoc99_scanf(FUN_00100a89[0, 0, 101240]) at inside of &quot;main()&quot; @ 00101268</span><br><span class="line">BinAbsInspector.java&gt; [WARN] CWE190: Potential Integer Overflow due to tainted input from source of __isoc99_scanf(FUN_00100f55[0, 0, 10127f]) at inside of &quot;FUN_00100f55()&quot; @ 00100fec</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/24383.html" rel="prev" title="南大《软件分析》笔记">
+                  <i class="fa fa-chevron-left"></i> 南大《软件分析》笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/9865.html" rel="next" title="Ghidra-BSim测试">
+                  Ghidra-BSim测试 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="busuanzi_value_total_view">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

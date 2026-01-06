@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://brubbish.github.io/9865.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/9865.html","path":"9865.html","title":"Ghidra-BSim测试"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ghidra-BSim测试 | Brubbish's Notebook</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Brubbish's Notebook</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-书单"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">使用过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI"><span class="nav-number">2.1.</span> <span class="nav-text">GUI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CLI"><span class="nav-number">2.2.</span> <span class="nav-text">CLI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">提供的脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA"><span class="nav-number">3.1.</span> <span class="nav-text">JAVA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python"><span class="nav-number">3.2.</span> <span class="nav-text">Python</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">匹配的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%B9%E9%85%8D"><span class="nav-number">4.1.</span> <span class="nav-text">单个函数的匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E7%9B%B8%E4%BC%BC%E5%BA%A6"><span class="nav-number">4.2.</span> <span class="nav-text">二进制文件相似度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#recall"><span class="nav-number">4.3.</span> <span class="nav-text">recall</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/9865.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's Notebook">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Ghidra-BSim测试 | Brubbish's Notebook">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ghidra-BSim测试
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-30 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-30T00:00:00+00:00">2023-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-01-06 16:19:10" itemprop="dateModified" datetime="2026-01-06T16:19:10+00:00">2026-01-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <span id="more"></span>
+<h1>介绍</h1>
+<h1>使用过程</h1>
+<h2 id="GUI">GUI</h2>
+<p>创建一个non-shared项目，打开BSim功能（v11.0 默认关闭）<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/master/20231230131132.png" alt="1"><br>
+执行CreateH2BSimDatabaseScript.java脚本，修改name和dir字段，其他不修改。<br>
+分析一个二进制文件<br>
+执行AddProgramToH2BSimDatabaseScript.java脚本，使用name.mv.db数据库。脚本执行后会把这个二进制文件的函数签名加入数据库中<br>
+在BSim的菜单栏里选择Manage Servers指定database<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20231230140608.png" alt="20231230140608"><br>
+把当前code view窗口选定的函数和database里的进行匹配，可以设置相似阈值和置信度阈值，也可以指定条件（二进制文件名、架构、调用了xx外部函数）<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20231230142324.png" alt="20231230142324"><br>
+得到结果<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20231230181838.png" alt="20231230181838"><br>
+比对的结果默认包含整个database里的函数，因此也包含了该二进制文件里的函数<br>
+可以对匹配到的函数名字进行替换、比对伪代码和汇编代码<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20231230183247.png" alt="20231230183247"></p>
+<p>在code browser里选择bsim-&gt;code overview，选择多行进行search可以在一个result窗口查看多个函数的匹配结果<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240103190919.png" alt="20240103190919"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240103190936.png" alt="20240103190936"></p>
+<h2 id="CLI">CLI</h2>
+<p>TO BE CONTINUED …</p>
+<h1>提供的脚本</h1>
+<p><em>可以从这些脚本（部分）去看BSim的相似度、置信度的计算规则</em></p>
+<h2 id="JAVA">JAVA</h2>
+<ul>
+<li>AddProgramToH2BSimDatabaseScript.java：生成当前二进制文件所有函数的BSim信息并保存到数据库</li>
+<li>CompareBSimSignaturesScript.java：对两个待测的函数各跑一遍（两个函数可以在不同文件），输出BSim对这两个函数的比较结果</li>
+<li>CompareBSimSignaturesSpecifyWeightsScript.java：基本同上</li>
+<li>CompareExecutablesScript.java：由两个二进制文件所有的函数相似得分，得到两个二进制的得分（实际上是把二进制文件放到数据库里进行比对，<em>需要再看一下如何选取函数进行比较，因为GUI比较里好像无法得到1对1的结果</em>）<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240103194149.png" alt="20240103194149"></li>
+<li>CreateH2BSimDatabaseScript.java：创建数据库</li>
+<li>DumpBSimSignaturesScript.java：导出选定函数的函数特征哈希，每条汇编有一个哈希<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240103195804.png" alt="20240103195804"></li>
+<li>ExampleOverviewQueryScript.java：GUI的Overview功能</li>
+<li>ExampleQueryClientScript.java：查询特定函数的“一些信息”（&lt;/responseinfo&gt;之前都相同，后续打印了callee函数）<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240103202052.png" alt="20240103202052"></li>
+<li>GenerateSignatures.java：生成签名</li>
+<li>LocalBSimQueryScript.java：在database里选一个二进制和当前的二进制进行函数比对<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240103201611.png" alt="20240103201611"></li>
+<li>QueryFunction.java：GUI里的search功能</li>
+<li>QueryWithFiltersScript.java：基本同上</li>
+<li>UpdateBSimMetadata.java：更新数据库</li>
+</ul>
+<h2 id="Python">Python</h2>
+<ul>
+<li><span class="exturl" data-url="aHR0cDovL0R1bXBCU2ltRGVidWdTaWduYXR1cmVzU2NyaXB0LnB5">DumpBSimDebugSignaturesScript.py<i class="fa fa-external-link-alt"></i></span>：导出选定函数的函数和调试信息<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240103195635.png" alt="20240103195635"></li>
+<li><span class="exturl" data-url="aHR0cDovL0R1bXBCU2ltU2lnbmF0dXJlc1NjcmlwdC5weQ==">DumpBSimSignaturesScript.py<i class="fa fa-external-link-alt"></i></span>：导出选定函数的函数签名哈希（与java脚本导出的哈希值不同）<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240103200008.png" alt="20240103200008"></li>
+<li><span class="exturl" data-url="aHR0cDovL0V4YW1wbGVPdmVydmlld1F1ZXJ5U2NyaXB0LnB5">ExampleOverviewQueryScript.py<i class="fa fa-external-link-alt"></i></span>：GUI的Overview功能</li>
+<li><span class="exturl" data-url="aHR0cDovL0dlbmVyYXRlU2lnbmF0dXJlcy5weQ==">GenerateSignatures.py<i class="fa fa-external-link-alt"></i></span>：生成签名</li>
+<li><span class="exturl" data-url="aHR0cDovL1F1ZXJ5RnVuY3Rpb24ucHk=">QueryFunction.py<i class="fa fa-external-link-alt"></i></span>：GUI里的search功能</li>
+</ul>
+<h1>匹配的例子</h1>
+<p>由于BSim会得到多个匹配结果，并且相似度值可能都相同，函数A的结果也可能和函数B匹配到的存在重复，因此比较fn，fp等对其他工具较为不公平。</p>
+<h2 id="单个函数的匹配">单个函数的匹配</h2>
+<p><em>青绿色的是函数的差异</em><br>
+当用光标进行选择时，<em>粉色是bsim关注的并且产生匹配的token</em>；<em>淡紫色是bsim关注但是没有匹配到的token</em>；<em>橘色表示token不会用作匹配</em></p>
+<p>以下两对的相似值分别为1和0.777<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240104165115.png" alt="20240104165115"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240104165141.png" alt="20240104165141"></p>
+<h2 id="二进制文件相似度">二进制文件相似度</h2>
+<p>排除了较低hitcont和较小的函数<br>
+library score：当较小的二进制在另一个二进制里全都能找到匹配则为1</p>
+<p>用提供的脚本跑的跨架构的例子，得到的文件相似度很低</p>
+<p><img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240104112320.png" alt="20240104112320"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240104163037.png" alt="20240104163037"></p>
+<h2 id="recall">recall</h2>
+<p>由于一个待匹配函数会得到多个匹配的结果，因此把这些结果都视为匹配</p>
+<ol>
+<li>7zip-rar<br>
+（GT里119个函数匹配到126个）<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240104155104.png" alt="20240104155104"></li>
+<li>apache2-bin<br>
+（GT里1198个函数匹配到829个）<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/20240104164252.png" alt="20240104164252"></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/23546.html" rel="prev" title="CWE_Checker笔记">
+                  <i class="fa fa-chevron-left"></i> CWE_Checker笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/20986.html" rel="next" title="UCAS-2023-ML复习">
+                  UCAS-2023-ML复习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="busuanzi_value_total_view">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

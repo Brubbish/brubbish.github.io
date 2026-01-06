@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/unnamed.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/photo.gif">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="eaKNHevzJD712W6CICpiQ4_TgpzOgFr3dBKOwg7Hqs4">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"brubbish.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://brubbish.github.io/41992.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://brubbish.github.io/41992.html","path":"41992.html","title":"Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities | Brubbish's Notebook</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514659-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-153514659-2","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Brubbish's Notebook</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-书单"><a href="/books/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书单</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">主要内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">设计与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x1-%E6%BC%8F%E6%B4%9E%E9%9D%99%E6%80%81%E6%A3%80%E6%B5%8B%E5%99%A8%E5%92%8C%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90"><span class="nav-number">2.1.</span> <span class="nav-text">0x1  漏洞静态检测器和静态分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%85%A0-%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">2.1.1.</span> <span class="nav-text">Ⅰ 构建数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%85%A1-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.1.2.</span> <span class="nav-text">Ⅱ 深度学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x2-%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90"><span class="nav-number">2.2.</span> <span class="nav-text">0x2 动态分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%85%A0-%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E5%BC%95%E6%93%8E%E7%9A%84%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.1.</span> <span class="nav-text">Ⅰ 动态分析引擎的输入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%85%A1-%E6%8F%92%E6%A1%A9%E6%B5%8B%E8%AF%95"><span class="nav-number">2.2.2.</span> <span class="nav-text">Ⅱ 插桩测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%85%A2-%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%AF%AD%E4%B9%89%E7%9B%B8%E4%BC%BC%E5%BA%A6"><span class="nav-number">2.2.3.</span> <span class="nav-text">Ⅲ 计算函数语义相似度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%85%A3-%E8%A1%A5%E4%B8%81%E6%A3%80%E6%B5%8B"><span class="nav-number">2.2.4.</span> <span class="nav-text">Ⅳ 补丁检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">评价</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E7%BB%93%E6%9E%9C"><span class="nav-number">3.1.</span> <span class="nav-text">评估结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bruce</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://brubbish.github.io/41992.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bruce">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brubbish's Notebook">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities | Brubbish's Notebook">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-11-12T00:00:00+00:00">2021-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-01-06 16:19:10" itemprop="dateModified" datetime="2026-01-06T16:19:10+00:00">2026-01-06</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>文章由本人首发于安全客：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjYwNDcx">Fr3v1带你读论文-Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities - 安全客，安全资讯平台 (anquanke.com)<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2Fic3RyYWN0L2RvY3VtZW50LzkxNTMzOTk=">Hybrid Firmware Analysis for Known Mobile and IoT Security Vulnerabilities<i class="fa fa-external-link-alt"></i></span>(<span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMjU5MjQ2">针对移动和物联网设备已知漏洞的混合固件分析<i class="fa fa-external-link-alt"></i></span>)的太长不看版</p>
+<span id="more"></span>
+<h1>主要内容</h1>
+<p>移动设备和物联网设备的操作系统以及它们随后的升级文件通常是以二进制文件的形式发布。由于这些二进制文件通常是闭源的，用户或第三方企业若是想测试软件的安全性只能依靠逆向工程，此外，如何验证二进制文件中最近的补丁是否有效也是一个悬而未决的问题。常规的软件补丁修复是提升移动设备和物联网设备安全性的重要保障，这就需要开发人员、集成商和供应商的共同支持，及时把补丁分发到受影响的所有设备上。但实际上，供应商们对移动和物联网产品遵循着不同，甚至是错误的安全更新议程。其次，以往的研究反映出存在着“潜在的补丁缺口(a hidden patch gap)”：有些供应商错误的声称他们已经修复了漏洞。因此，在二进制文件中检测漏洞是否被修复对于软件安全至关重要。以往对二进制文件中的漏洞检测大多基于静态的代码相似性分析，然而它无法捕捉程序的动态行为，因此可能产生大量误报且难以区分漏洞是否已经修复。<br>
+在论文中，作者提出了一个针对可执行文件漏洞和补丁存在性检测的框架PATCHECKO。它混合了静态检测和动态检测方法，能够对X86和arm架构的二进制代码进行漏洞检测。作者的测试结果表明这个框架对漏洞检测和漏洞函数区分具有较高的准确率。</p>
+<h1>设计与实现</h1>
+<p>PATCHECKO的工作需要以下三个步骤：</p>
+<ol>
+<li>训练漏洞检测器</li>
+<li>用漏洞检测器对固件进行静态分析</li>
+<li>对2分析得出的可能含有漏洞的函数进行动态分析，验证漏洞是否存在并识别函数中的漏洞是否被修复</li>
+</ol>
+<p>工作过程如图：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210903221707.png" alt="workflow"></p>
+<h2 id="0x1-漏洞静态检测器和静态分析">0x1  漏洞静态检测器和静态分析</h2>
+<p>对于已知漏洞挖掘，深度学习方法的准确性和效率都明显优于过去的二分图匹配和动态相似性测试。PATCHECKO的漏洞检测器使用Keras和TensorFlow实现了神经网络的建模、训练和分类，使用TensorBoard来实现整个训练过程的可视化。</p>
+<h3 id="Ⅰ-构建数据集">Ⅰ 构建数据集</h3>
+<p>使用反汇编器（如IDA）的插件提取程序控制流图（CFG），并生成每个函数以及其基本块级的特征向量，每个特征向量包括48个特征，如下图：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210908213440.png" alt="feature-vector"></p>
+<h3 id="Ⅱ-深度学习">Ⅱ 深度学习</h3>
+<p>作者在采用了一个线性层堆叠的序贯模型。<br>
+图3展示了一个用于深度学习模型的样本向量。样本向量由函数向量对和一个表示两个函数是否相似的比特组成，其中两个相似的特征向量对应着相同源代码的两个二进制函数。图4是该6层序列模型训练的实际过程，第一层接收输入张量的形状（input shape）的信息。这个模型使用了从数据集中提取的函数特征进行训练。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220859.png" alt="fig-3"><br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210917223725.png" alt="fig-4"></p>
+<h2 id="0x2-动态分析">0x2 动态分析</h2>
+<p>动态分析的工作流程如图5：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210918220751.png" alt="fig-5"></p>
+<p>该阶段使用相同的输入值执行两个函数，并比较两个函数的执行轨迹和其他特征的相似性。</p>
+<h3 id="Ⅰ-动态分析引擎的输入数据">Ⅰ 动态分析引擎的输入数据</h3>
+<p>作者使用Fuzz工具（在评估过程中选用了LibFuzzer）生成函数的多组输入数据，以完全覆盖CFG，并测试证明这些数据都能正常运行于漏洞函数和已修复漏洞的函数。接着使用这些数据来测试每个候选函数，筛去执行过程中崩溃的函数。<br>
+随后PATCHECKO将剩下函数作为可执行文件导出，在后续动态分析中使用DLL注入进行执行</p>
+<h3 id="Ⅱ-插桩测试">Ⅱ 插桩测试</h3>
+<p>作者使用了gdbserver和debugserver对函数执行进行跟踪和特征提取，提取的特征包括指令的数量和类型、系统调用的次数和类型，以及库函数调用和堆栈数据读写量等，具体在表Ⅱ中展示：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919143257.png" alt="tab-2"></p>
+<p>对于每个输入执行时，动态分析引擎会对每个特征会生成一组观察结果。当该函数里的所有指令都被覆盖到后，PATCHECKO会根据所有结果生成一个单独的向量。这个过程会在每次对函数进行不同输入时重复。</p>
+<h3 id="Ⅲ-计算函数语义相似度">Ⅲ 计算函数语义相似度</h3>
+<p>对于每个函数对(f,g)，PATCHECKO基于它们的动态特征向量距离计算出语义相似度。对于每个函数的特征向量，PATCHECKO使用了闵氏距离(Minkowski Distance)作为测量相似度的方法，在评估过程中，作者把p设为3。闵氏距离公式的一般式如下：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919171915.png" alt="minkowski"><br>
+在这个公式中，f代表了CVE函数，g代表目标固件中的候选函数，k指的是用到了第k个执行环境，x和y分别代表f和g的动态特征向量，此时P设为3。</p>
+<p>每个函数相似度的最终结果为所有执行环境中得到相似距离的平均值，相似度计算方程如下（k为执行环境编号）：<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master/blog/20210919180346.png" alt="sim-algorithm"></p>
+<h3 id="Ⅳ-补丁检测">Ⅳ 补丁检测</h3>
+<p>PATCHECKO使用了一个差分引擎来收集静态和动态相似性的检测结果，以此判断漏洞是否被修复。<br>
+对于给定的漏洞函数f<sub>v</sub>、已修复函数f<sub>p</sub>和目标函数f<sub>t</sub>，差分引擎会首先生成三个值：f<sub>v</sub>、f<sub>p</sub>和f<sub>t</sub>的静态特征、sim<sub>v</sub>与sim<sub>t</sub>、sim<sub>p</sub>与sim<sub>t</sub>的动态语义相似性得分以及S<sub>v</sub>和S<sub>p</sub>之间的差分特征（differential signatures）。静态特征即上述的48个不同的量化特征，动态语义相似度得分与上述的函数相似度指标。差分特征（differential signatures）是一个用于比较CFG结构的附加指标，即两个函数的CFG拓扑以及语义信息，例如函数参数、局部变量和库函数调用。</p>
+<h1>评价</h1>
+<h2 id="评估结果">评估结果</h2>
+<p>对于模型训练数据集，作者使用Clang从Android-8.1.0_r36的源码中编译了100个库函数，每个库根据不同的目标平台（ x86, AMD64, ARM 32bit， ARM 64bit ISA）、优化级别（O0, O1, O2,O3, Oz, Ofast）生成了23个不同的二进制文件，总共获得了2108个库文件，包含了2037772个函数特征样本。其中1222663个函数用于模型训练，407554个函数用于校验，407555个函数用于下图的测试<br>
+图8展示了在训练了大约15小时后，深度学习模型的准确率和损失，其中准确率可达到96%。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090924.png" alt="fig-8"></p>
+<p>作者对Android Things 1.0 和 Google Pixel 2 XL (Android 8.0) 的固件进行了评估。所用的漏洞函数数据集来自Android Security Bulletins，包括了从2016年7月到2018年11月的漏洞，涵盖2076个漏洞。检测结果表明，模型的静态检测平均准确率高于93%</p>
+<p>对于动态分析输出的漏洞函数，除了深度学习阶段就被漏报的CVE-2017-13209外，PATCHECKO能将其余所有预期的目标函数输出到结果的前三位。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090830.png" alt="dyn-result"></p>
+<p>对于函数是否已修复的检测，PATCHECKO在25个CVE漏洞函数中只遗漏了CVE-2018-9470，该CVE的漏洞函数和修复函数仅差了一个整数。<br>
+<img src="https://raw.githubusercontent.com/Brubbish/pic_bed/master//blog/20211030090706.png" alt="dyn-result-2"></p>
+<h2 id="缺点">缺点</h2>
+<ol>
+<li>在静态检测时，PATCHECKO通过比较候选函数与已修复/未修复函数来检测是否为目标函数，这导致了可能会产生遗漏</li>
+<li>检测漏洞是否已修复时，由于CFG表示的特征粒度不够细，可能会因为漏洞函数和已修复函数之间的差异非常微小，导致相似性检测可能无法捕捉到它们之间的差异。</li>
+</ol>
+<p>第二点或许可以通过应用/结合其他程序表示方法，如CDG、PDG等结构来进行优化。但如作者所说的，这样可能还需要进一步对方案通用性方面进行设计。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/60805.html" rel="prev" title="针对移动和物联网设备已知漏洞的混合固件分析">
+                  <i class="fa fa-chevron-left"></i> 针对移动和物联网设备已知漏洞的混合固件分析
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/38266.html" rel="next" title="RARBG上种子收集脚本">
+                  RARBG上种子收集脚本 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9943095847270020"
+     crossorigin="anonymous"></script>
+<!-- sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9943095847270020"
+     data-ad-slot="5504766755"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bruce</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="busuanzi_value_total_view">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
